@@ -12,10 +12,10 @@ const ChangeEmail = () => {
 
             <div className="form-row-colfull form-row">
                 <label className="label" for="email"> Enter your new email address </label>
-                <input required type="email" className="input" placeholder="Enter Email"></input>
+                <input required type="email" className="input"></input>
                 <span className="email-verification-note"> 
                 <FontAwesomeIcon icon={faCircleInfo} />
-                we will send a verification to this email ID 
+                we will send a verification code to this email ID 
                 </span>
             </div>
 
