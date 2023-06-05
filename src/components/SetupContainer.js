@@ -1,7 +1,27 @@
-import React from "react";
+import React, {useState} from "react";
 import ReactDOM from 'react-dom';
 
-const Setup_Container = () => {
+const SetupContainer = () => {
+
+    const [otp, setOtp] = useState(["", "", "", ""]);
+
+    const handleChange = (event, index) => {
+        const { value } = event.target;
+        const updatedOtp = [...otp];
+        updatedOtp[index] = value;
+        setOtp(updatedOtp);
+
+        if (value !== "" && index < 3) {
+            document.getElementById(`input${index + 1}`).focus();
+        }
+    };
+
+    const handleVerify = () => {
+        // Perform verification logic here
+    };
+
+    const isButtonDisabled = otp.some(value => value === "");
+
     return (
         <div className="content-title">
             <h2>Verify Your Email Address</h2>
@@ -11,19 +31,54 @@ const Setup_Container = () => {
             </div>
             <div className="verification-instructions">
                 <p>Please check your inbox, including your SPAM folder for an<br/>
-                email from no-reply@v2cloud.com with the subject "Verify your<br/>
+                email from <u>no-reply@v2cloud.com</u> with the subject "Verify your<br/>
                 email address - V2 Cloud," and enter the verification code below<br/>
                 to verify your email address; the code will expire in 20 minuites.
                 </p>
             </div>
             <div className="otp-container">
                 <div className="userInput">
-                    <input type="text" className="single-input" id='ist' maxlength="1" onkeyup="clickEvent(this,'sec')" />
-                    <input type="text" className="single-input" id="sec" maxlength="1" onkeyup="clickEvent(this,'third')" />
-                    <input type="text" className="single-input" id="third" maxlength="1" onkeyup="clickEvent(this,'fourth')" />
-                    <input type="text" className="single-input" id="fourth" maxlength="1" />
+                    <input 
+                        type="text" 
+                        className={`single-input ${otp[0] ? 'filled' : ''}`} 
+                        id='ist' 
+                        maxlength="1" 
+                        value={otp[0] || ""}
+                        onChange={(e) => handleChange(e, 0)} 
+                    />
+                    <input 
+                        type="text" 
+                        className={`single-input ${otp[1] ? 'filled' : ''}`} 
+                        id="sec" 
+                        maxlength="1" 
+                        value={otp[1] || ""}
+                        onChange={(e) => handleChange(e, 1)} 
+                    />
+                    <input 
+                        type="text" 
+                        className={`single-input ${otp[2] ? 'filled' : ''}`}
+                        id="third" 
+                        maxlength="1" 
+                        value={otp[2] || ""}
+                        onChange={(e) => handleChange(e, 2)} 
+                    />
+                    <input 
+                        type="text" 
+                        className={`single-input ${otp[3] ? 'filled' : ''}`}
+                        id="fourth" 
+                        maxlength="1"
+                        value={otp[3] || ""}
+                        onChange={(e) => handleChange(e, 3)}
+                    />
                 </div>
-                <button className="verify-btn">Verify</button>
+                <button 
+                    className="verify-btn"
+                    style={{ backgroundColor: isButtonDisabled ? '#a3bbd5' : '#00438b' }}
+                    disabled={isButtonDisabled}
+                    onClick={handleVerify}
+                >
+                    Verify
+                </button>
             </div>
             <div className="verification-actions">
                 <div className="resend-code">
@@ -41,10 +96,6 @@ const Setup_Container = () => {
     );
 };
 
-function clickEvent(first,last){
-    if(first.value.length){
-      document.getElementById(last).focus();
-    }
-}
 
-export default Setup_Container;
+
+export default SetupContainer;

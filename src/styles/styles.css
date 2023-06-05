@@ -12,8 +12,9 @@ body{
 }
 
 .sidebar {
-    width: 30%;
+    width: 25%;
     background-color: #f8f9fa;
+    height: 100vh;
 }
 
 .main {
@@ -30,8 +31,21 @@ body{
     padding-left: 65px;
 }
 
+.verficiation-content {
+    margin-top: 30px;
+}
+
 .verficiation-content p {
     margin: 5px 0;
+}
+
+.verification-instructions {
+    margin-top: 25px;
+    color: #495057;
+}
+
+.verficiation-content p{
+    color: #495057;
 }
 
 .verficiation-content .email-address-verification{
@@ -59,8 +73,9 @@ body{
     border: 1px solid #d1d1d1;
     border-radius: 10px;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 3rem;
     background: #ffffff;
+    color: #00438b;
 }
 
 .otp-container .userInput #ist {
@@ -69,6 +84,10 @@ body{
 
 .userInput .single-input:focus-visible {
     outline: 1px solid #00438b !important;
+}
+
+.userInput .single-input.filled {
+    outline: 1px solid #00438b;
 }
 
 .verify-btn {
@@ -115,12 +134,23 @@ body{
 }
 
 .sidebar .single-nav {
+    padding: 12px 0;
     margin: 20px 0;
     display: flex;
     justify-content: flex-start;
 }
 
 .sidebar .nav-bullet {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    text-align: center;
+    color: #abb1b6;
+    margin-right: 30px;
+}
+
+.sidebar .nav-bullet.active {
     height: 35px;
     width: 35px;
     border-radius: 50%;
@@ -132,8 +162,12 @@ body{
 
 .sidebar .nav-topic {
     font-size: 18px;
-    color: #00438b;
+    color: black;
     font-weight: 600;
+}
+
+.sidebar .nav-topic.active {
+    color: #00438b;
 }
 
 .sidebar .nav-subtopic {
@@ -148,4 +182,218 @@ body{
 
 .sidebar .nav-bullet svg {
     margin: -4px;
+}
+
+/* Password Form */
+.password.choose-password-container {
+    width: 100%;
+    padding-left: 65px;
+}
+
+.account-description {
+    display: flex;
+    flex-direction: row;
+}
+
+.account-name-email {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-name {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.account-email {
+    padding-top: 5px;
+    color: #495057;
+}
+
+.password-form-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+}
+
+.password-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 30%;
+}
+
+.account-img {
+    padding-right: 15px;
+}
+
+.password-title {
+    margin-bottom: -10px;
+    color: #495057;
+}
+
+.password-requirements {
+    margin-top: 25px;
+    background-color: #f8f9fa;
+    width: 29%;
+    padding: 5px 0 5px 10px;
+    border-left: 3px solid #adb5bd;
+}
+
+.password-requirements .title {
+    font-size: 19px;
+    padding-top: 5px;
+    font-weight: 600;
+}
+
+.password-requirements ul {
+    padding: 0;
+    list-style: none;
+}
+
+.password-requirements li {
+    padding: 4px 0;
+}
+
+.confirm-btn {
+    padding-top: 30px;
+}
+
+.custom-input {
+    border-color: #dee2e6;
+    border-radius: 5px;
+    padding: 12px 53% 12px 12px;
+}
+
+.input-container {
+    position: relative;
+}
+  
+  
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Adjust this value as needed */
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox-label input[type="checkbox"] {
+    display: none;
+  }
+  
+  .checkbox-custom {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #dee2e6;
+    margin-right: 13px;
+    margin-left: 5px;
+    position: relative;
+  }
+
+  .checkbox-custom.active {
+    background-color: #039855;
+  }
+  
+  .checkbox-icon {
+    color: white;
+    font-size: 10px;
+    position: absolute;
+  }
+  
+  .checkbox-custom:after {
+    content: "";
+    display: block;
+    width: 4px;
+    height: 8px;
+    margin-bottom: 1px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    visibility: visible; /* Make the checkbox visible by default */
+  }
+  
+  .checkbox-label input[type="checkbox"]:checked + .checkbox-custom:after {
+    visibility: visible;
+  }
+  
+  /* Change Email */
+
+  .form-row .label {
+    font-size: 14px;
+    line-height: 1.2;
+    color: #495057;
+    font-weight: 600;
+}
+
+.form-row .input, .form-row .text-area {
+    margin-bottom: 0;
+    border-color: #e9ecef;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    border-radius: 4px;
+    width: 100%;
+    padding: 12.5px 14px;
+    font-size: 16px;
+    line-height: 1.2;
+    height: 15px;
+}
+
+.form-row .email-verification-note {
+    background-color: #E9ECEF;
+    padding: 8px 16px;
+    border-radius: 0px 0px 6px 6px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    display: block;
+    width: 100%;
+    color:#6c757d;
+}
+
+.email-verification-note svg {
+    margin-right: 8px;
+    margin-top: 2px;
+}
+  
+.change-email-container {
+    padding-left: 65px;
+}
+
+.action-btn {
+    padding-top: 30px;
+}
+
+.action-btn .verify-btn {
+    width: 150px;
+    height: 50px;
+    margin: 0px auto 0px auto;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background: #00438b;    
+    margin-left: 25px;
+
+}
+
+.action-btn .back-btn {
+    width: 75px;
+    height: 50px;
+    margin: 0px auto 0px auto;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #adb5bd;
+    background: none;
 }
