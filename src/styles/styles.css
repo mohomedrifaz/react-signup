@@ -20,8 +20,7 @@ body{
 
 .main {
     display: flex;
-    width: 70%;
-    /* justify-content: center; */
+    width: 75%;
     align-items: flex-start;
     background-color: white;
 }
@@ -573,7 +572,7 @@ input.text, input.title, input[type=email], input[type=password], input[type=tel
 
 .asset-details-container {
     padding-left: 70px;
-    padding-right: 40px;
+    padding-right: 10px;
     width: 45%;
     margin-top: 20px;
 }
@@ -707,4 +706,264 @@ input.text, input.title, input[type=email], input[type=password], input[type=tel
     content: '✓';
     margin-right: 10px;
     color: #32ab75;
+}
+
+/* Select Plan  */
+
+.select-plan-container {
+    padding-left: 65px;
+  }
+  
+  .main-title {
+    padding-bottom: 20px;
+  }
+  
+  .tab-container {
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 10px;
+  }
+  
+  .tab {
+    cursor: pointer;
+    color: #555;
+    padding: 5px 10px;
+    margin-right: 10px;
+    position: relative;
+  }
+  
+  .tab.active {
+    color: #00438b;
+    font-weight: 600;
+  }
+
+.team-cloud-container li, 
+.team-individual-container li {
+    padding: 5px 0;
+}
+  
+  .tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #00438b;
+  }
+  
+  .tab-content {
+    margin-top: 20px;
+  }
+
+  .tab-content ul {
+    list-style-type:none;
+    padding-left: 10px;
+  }
+  
+  .tab-content ul li:before {
+    content: '✓';
+    margin-right: 10px;
+}
+
+.tab-content ul li.cross:before {
+    content: '✕'; /* Cross symbol */
+    margin-right: 10px;
+  }
+
+  .enable-backups-container {
+    padding: 15px 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    color: #495057;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 25px;
+}
+  
+
+.business-card {
+    color: #003875;
+    margin: 0 10px;
+    background-color: #e6ecf3;
+    padding: 10px;
+    border-radius: 25px;
+    font-size: 13px;
+}
+
+.recommended-card {
+    color: white;
+    margin: 0 10px;
+    background-color: #ffa500;
+    padding: 10px;
+    border-radius: 25px;
+    font-size: 13px;
+}
+
+.checkbox-label input[type="checkbox"] {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+/* Pricing Cards */
+
+.pricing-cards {
+    display: flex;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.pricing-card {
+    width: 25%;
+    border: 1px solid #e9ecef;
+    padding: 10px 20px 20px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+.pricing-card.selected {
+    background-color: #003875;
+    color: white  
+}
+
+.pricing-card-title {
+    margin: 5px 0;
+    font-size: 20px;
+}
+
+.no-of-users {
+    width: max-content;
+    background-color: #dee2e6;
+    padding: 5px 8px;
+    font-size: 12px;
+    border-radius: 20px;
+    margin: 10px 0;
+}
+
+.no-of-users.selected {
+    background-color: #002e5f;
+}
+
+.pricing-card-features {
+    padding-left: 0px;
+}
+
+.pricing-card-features li{
+    list-style: none;
+    padding: 3px 0px;
+}
+
+.pricing-card-features li:before {
+    content: '✓';
+    margin-right: 10px;
+}
+
+.custom-hr {
+    width: 50px; /* Adjust the width as desired */
+    margin: 0;
+    border: none;
+    border-top: 1px solid #dee2e6;
+    align-self: flex-start;
+  }
+
+  .monthly-title-check {
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 10px;
+}
+
+.monthly-title {
+    color: #00438b;
+    font-weight: 600;
+    padding-bottom: 3px;
+}
+
+.monthly-title-check.selected .monthly-title {
+    color: #7a9dc3;
+}
+
+.monthly-title-box {
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+}
+
+.pricing-card-price .amount {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.pricing-card-price .month {
+    color: #adb5bd;
+}
+
+.annual-title-check {
+    padding-top: 20px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.annual-title {
+    color: #00438b;
+    font-weight: 600;    
+    padding-bottom: 3px;
+}
+
+.annual-title-check.selected .annual-title {
+    color: #7a9dc3;
+}
+
+.annual-title-box {
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+}
+
+.offer-infobox {
+    font-size: 12px;
+    background-color: #d1fadf;
+    width: max-content;
+    padding: 4px 8px;
+    border-radius: 25px;
+    color: #027a48;
+    margin-top: 5px;
+}
+
+.select-plan-container .action-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.select-plan-container .action-btn .back-btn {
+    width: 130px;
+    height: 50px;
+    margin: 0;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #adb5bd;
+    background: none;
+}
+
+.select-plan-container .action-btn .verify-btn {
+    width: 150px;
+    height: 50px;
+    margin: 0;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background: #00438b;
+    margin-left: 25px;
+}
+  
+.users-message-box {
+    font-size: 12px;
 }

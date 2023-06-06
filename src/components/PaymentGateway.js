@@ -14,7 +14,6 @@ const PaymentGateway = () => {
 
                 <div className="main-title">
                     <h2> Enter payment info </h2>
-
                 </div>
 
                 <div className="card-verification-info">

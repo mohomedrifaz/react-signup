@@ -6,6 +6,7 @@ import Sidebar from './components/Sidebar';
 import Password from './components/Password';
 import ChangeEmail from './components/ChangeEmail';
 import PaymentGateway from './components/PaymentGateway';
+import SelectPlan from './components/SelectPlan';
 
 const App = () => {
   
@@ -18,7 +19,8 @@ const App = () => {
             {/* <SetupContainer /> */}
             {/* <Password /> */}
             {/* <ChangeEmail /> */}
-            <PaymentGateway />
+            {/* <PaymentGateway /> */}
+            <SelectPlan />
         </div>
     </div>
   );
