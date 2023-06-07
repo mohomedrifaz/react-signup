@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offervalue }) => {
+const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offervalue, isPopular }) => {
 
     const [isSelected, setIsSelected] = useState(false);
     const [isMonthlySelected, setIsMonthlySelected] = useState(false);

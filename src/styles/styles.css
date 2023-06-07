@@ -772,6 +772,7 @@ input.text, input.title, input[type=email], input[type=password], input[type=tel
   }
 
   .enable-backups-container {
+    width: fit-content;
     padding: 15px 10px;
     background-color: #f8f9fa;
     border: 1px solid #e9ecef;
