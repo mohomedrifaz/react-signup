@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import PlanCards from './PlanCards';
+import SpecialCard from "./SpecialCard";
+import './selectPlan.css';
 
 const SelectPlan = () => {
 
@@ -52,11 +54,61 @@ const SelectPlan = () => {
 
     ];
 
+    const pricingPlansIndividual = [
+        {
+            title: 'The Intern',
+            users: '',
+            functions: 'Data-entry, word-processing, Quickbooks, light multi-task*',
+            monthlyprice: '$35',
+            yearlyprice: '$30',
+            offervalue: '$60',
+            features: ['2 CPU core', '4 GB Memory RAM', '50 GB Storage'],
+            isPopular: false
+        },
+        {
+            title: 'The Doer',
+            users: '',
+            functions: 'Business applications, Photoshop design, medium*',
+            monthlyprice: '$75',
+            yearlyprice: '$65',
+            offervalue: '$120',
+            features: ['2 CPU core', '8 GB Memory RAM', '50 GB Storage'],
+            isPopular: false
+        },
+        {
+            title: 'The Workholic',
+            users: '',
+            functions: 'Intensive applications, software development, heavy multi-task*',
+            monthlyprice: '$95',
+            yearlyprice: '$85',
+            offervalue: '$130',
+            features: ['4 CPU core', '16 GB Memory RAM', '50 GB Storage'],
+            isPopular: false
+        },
+        {
+            title: 'The Magnate',
+            users: '',
+            functions: 'Ultimate multi-task, multiple heavy apps, jet flying speed*',
+            monthlyprice: '$115',
+            yearlyprice: '$105',
+            offervalue: '$170',
+            features: ['8 CPU core', '32 GB Memory RAM', '50 GB Storage'],
+            isPopular: false
+        },
+
+    ];
+
     const [activeTab, setActiveTab] = useState(1);
 
     const handleTabChange = (tabNumber) => {
         setActiveTab(tabNumber);
     };
+
+    const [isBackup, setIsBackup] = useState(false);
+
+    const handleCheckboxChange = () => {
+        setIsBackup(!isBackup);
+    }
 
     return (
         <div className="select-plan-container">
@@ -101,7 +153,7 @@ const SelectPlan = () => {
             <div className="backups-checbox-container">
                 <div className="enable-backups-container">
                     <label className="checkbox-label">
-                        <input type="checkbox" className="checkbox-input" />
+                        <input type="checkbox" className="checkbox-input" checked={isBackup} onChange={handleCheckboxChange} />
                     </label>
                     <div className="info-box">
                         Enable Daily Backups and a Professional Antivirus <span className="business-card"> Business Plan </span>
@@ -114,10 +166,24 @@ const SelectPlan = () => {
             </div>
 
             <div className="pricing-cards">
-                {pricingPlans.map((plan, index) => (
-                    <PlanCards key={index} title={plan.title} monthlyprice={plan.monthlyprice} yearlyprice={plan.yearlyprice}
-                        features={plan.features} offervalue={plan.offervalue} users={plan.users} isPopular={plan.isPopular} />
-                ))}
+                {activeTab === 1 && <div className="team-cloud-pricing-container">
+                    {pricingPlans.map((plan, index) => (
+                        <PlanCards key={index} title={plan.title} monthlyprice={plan.monthlyprice} yearlyprice={plan.yearlyprice}
+                            features={plan.features} offervalue={plan.offervalue} users={plan.users} isPopular={plan.isPopular} isBackup = {isBackup} />
+                    ))}
+                </div>
+                }
+                {activeTab === 2 && <div className="team-individual-pricing-container">
+                    {pricingPlansIndividual.map((plan, index) => (
+                        <PlanCards key={index} title={plan.title} monthlyprice={plan.monthlyprice} yearlyprice={plan.yearlyprice}
+                            features={plan.features} offervalue={plan.offervalue} users={plan.users} isPopular={plan.isPopular} functions={plan.functions} />
+                    ))}
+                    <SpecialCard
+                        title="The Enterprise"
+                        buttonText="Talk to an Expert"
+                        imageUrl="./src/components/SelectPlan/special-card-img.png"
+                    />
+                </div>}
             </div>
 
             <div className="users-message-box">

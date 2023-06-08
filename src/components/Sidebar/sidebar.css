@@ -1,0 +1,60 @@
+/* Sidebar Content CSS */
+
+.sidebar .sidebar-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.sidebar .single-nav {
+    padding: 12px 0;
+    margin: 20px 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.sidebar .nav-bullet {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    text-align: center;
+    color: #abb1b6;
+    margin-right: 30px;
+}
+
+.sidebar .nav-bullet.active {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: #00438b;
+    text-align: center;
+    color: white;
+    margin-right: 30px;
+}
+
+.sidebar .nav-topic {
+    font-size: 18px;
+    color: black;
+    font-weight: 600;
+}
+
+.sidebar .nav-topic.active {
+    color: #00438b;
+}
+
+.sidebar .nav-subtopic {
+    font-size: 14px;
+    margin-top: 3px;
+    color: #c0c7cd;
+}
+
+.sidebar .nav-bullet p {
+    margin: 10px;
+}
+
+.sidebar .nav-bullet svg {
+    margin: -4px;
+}

@@ -1,0 +1,458 @@
+/* Select Plan  */
+
+.select-plan-container {
+    padding-left: 65px;
+}
+
+.main-title {
+    padding-bottom: 20px;
+}
+
+.tab-container {
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 10px;
+}
+
+.tab {
+    cursor: pointer;
+    color: #555;
+    padding: 5px 10px;
+    margin-right: 10px;
+    position: relative;
+}
+
+.tab.active {
+    color: #00438b;
+    font-weight: 600;
+}
+
+.team-cloud-container li,
+.team-individual-container li {
+    padding: 5px 0;
+}
+
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #00438b;
+}
+
+.tab-content {
+    margin-top: 20px;
+}
+
+.tab-content ul {
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+.tab-content ul li:before {
+    content: '✓';
+    margin-right: 10px;
+}
+
+.tab-content ul li.cross:before {
+    content: '✕';
+    /* Cross symbol */
+    margin-right: 10px;
+}
+
+.enable-backups-container {
+    width: fit-content;
+    padding: 15px 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    color: #495057;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.backups-checbox-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.upgrade-plans-message {
+    color: #495057;
+    font-size: 12px;
+}
+
+.business-card {
+    color: #003875;
+    margin: 0 10px;
+    background-color: #e6ecf3;
+    padding: 10px;
+    border-radius: 25px;
+    font-size: 13px;
+}
+
+.recommended-card {
+    color: white;
+    margin: 0 10px;
+    background-color: #ffa500;
+    padding: 10px;
+    border-radius: 25px;
+    font-size: 13px;
+}
+
+.checkbox-label input[type="checkbox"] {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+/* Pricing Cards */
+
+.pricing-cards {
+    display: flex;
+}
+
+.team-cloud-pricing-container,
+.team-individual-pricing-container {
+    display: flex;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.team-individual-pricing-container .no-of-users {
+    display: none;
+}
+
+.team-cloud-pricing-container .functions {
+    display: none;
+}
+
+.functions {
+    font-size: 12px;
+    padding: 10px 0 20px 0;
+    line-height: 1.5;
+}
+
+.pricing-card {
+    width: 25%;
+    border: 1px solid #e9ecef;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-top: 35px;
+    font-family: 'Roboto' !important;
+}
+
+.team-individual-pricing-container .pricing-card {
+    width: 15%;
+}
+
+.tooltip-container {
+    position: relative;
+    z-index: 1;
+    top: -125px;
+}
+
+.tooltip {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    opacity: 0.9;
+    white-space: nowrap;
+}
+
+.tooltip-tip {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.tooltip ul {
+    list-style: disc;
+    margin: 0;
+    padding: 0 25px;
+}
+
+.tooltip ul li {
+    margin-bottom: 5px;
+}
+
+.pricing-card.special {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: conic-gradient(from 140.15deg at 53.17% 67.14%, #00438B 0deg, #252530 360deg);
+}
+
+.pricing-card.special .pricing-card-title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 120%;
+    color: #FFFFFF;
+}
+
+.special-pricing-card-content {
+    font-size: 14px;
+    line-height: 120%;
+    color: #DEE2E6;
+}
+
+.special-card-image {
+    width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.special-card-button {
+    background: #E6ECF3;
+    border: 1px solid #E6ECF3;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    border-radius: 4px;
+    padding: 10px 16px;
+    color: #003875;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.pricing-card {
+    position: relative;
+}
+
+
+.pricing-card.selected {
+    background-color: #003875;
+    color: white
+}
+
+.pricing-card.selected .pricing-card-title,
+.pricing-card.selected .amount,
+.pricing-card.selected .month {
+    color: white
+}
+
+.pricing-card.selected .custom-hr {
+    border-top: 1px solid #00438b;
+}
+
+.pricing-card.selected .monthly-title-check {
+    border-bottom: 1px solid #00438b;
+}
+
+.pricing-card-title {
+    margin: 5px 0;
+    font-size: 20px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    color: #212529;
+}
+
+.no-of-users {
+    width: max-content;
+    background-color: #dee2e6;
+    padding: 5px 8px;
+    border-radius: 20px;
+    margin: 10px 0;
+    font-size: 12px;
+    line-height: 120%;
+}
+
+.no-of-users.selected {
+    background-color: #002e5f;
+}
+
+.pricing-card-features {
+    padding-left: 0px;
+    margin: 15px 0px;
+}
+
+.pricing-card-features li {
+    list-style: none;
+    padding: 3px 0px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    color: #495057;
+}
+
+.pricing-card-features.selected li {
+    color: #fff;
+}
+
+.pricing-card-features li:before {
+    content: '✓';
+    margin-right: 10px;
+}
+
+.custom-hr {
+    width: 50px;
+    /* Adjust the width as desired */
+    margin: 0;
+    border: none;
+    border-top: 1px solid #dee2e6;
+    align-self: flex-start;
+}
+
+.monthly-title-check {
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 10px;
+}
+
+.monthly-title {
+    color: #00438b;
+    padding-bottom: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    width: 140px;
+}
+
+.monthly-title-check.selected .monthly-title {
+    color: #7a9dc3;
+}
+
+.monthly-title-box {
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+}
+
+.pricing-card-price .amount {
+    font-size: 32px;
+    font-weight: 500;
+    color: #212529;
+    line-height: 32px;
+}
+
+.pricing-card-price .month {
+    color: #adb5bd;
+    font-size: 16px;
+    line-height: 120%;
+    font-weight: 400;
+}
+
+.annual-title-check {
+    padding-top: 20px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.annual-title {
+    color: #00438b;
+    padding-bottom: 3px;
+    font-weight: 600;
+    font-size: 14px;
+    width: 132px;
+}
+
+.annual-title-check.selected .annual-title {
+    color: #7a9dc3;
+}
+
+.annual-title-box {
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+}
+
+.offer-infobox {
+    font-size: 12px;
+    background-color: #d1fadf;
+    width: max-content;
+    padding: 4px 8px;
+    border-radius: 25px;
+    color: #027a48;
+    margin-top: 10px;
+}
+
+.select-plan-container .action-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.select-plan-container .action-btn .back-btn {
+    width: 130px;
+    height: 50px;
+    margin: 0;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #adb5bd;
+    background: none;
+}
+
+.select-plan-container .action-btn .verify-btn {
+    width: 150px;
+    height: 50px;
+    margin: 0;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background: #00438b;
+    margin-left: 25px;
+}
+
+.users-message-box {
+    font-size: 12px;
+}
+
+.popular-badge {
+    background-color: #ff8000;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.pricing-card.popular-container {
+    border: 1px solid #ff8000;
+    margin-top: 0;
+}
+
+.pricing-card.selected.popular-container {
+    background-color: #ff9900;
+}
+
+.pricing-card.selected.popular-container .no-of-users.selected {
+    background-color: #ffa500;
+}
+
+.pricing-card.selected.popular-container .monthly-title-check.selected .monthly-title {
+    color: #fff;
+}
+
+.pricing-card.selected.popular-container .annual-title {
+    color: #fff;
+}
+
+.pricing-card.selected.popular-container .popular-badge {
+    border: 1px solid white;
+}
+
+.pricing-card.selected.popular-container .custom-hr {
+    border-top: 1px solid #fff;
+}
+
+.pricing-card.selected.popular-container .monthly-title-check {
+    border-bottom: 1px solid #fff;
+}

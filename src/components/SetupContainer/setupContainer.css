@@ -1,0 +1,98 @@
+/* Setup Account */
+
+.content-title {
+    padding-left: 65px;
+}
+
+.verficiation-content {
+    margin-top: 30px;
+}
+
+.verficiation-content p {
+    margin: 5px 0;
+}
+
+.verification-instructions {
+    margin-top: 25px;
+    color: #495057;
+}
+
+.verficiation-content p {
+    color: #495057;
+}
+
+.verficiation-content .email-address-verification {
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.verficiation-instructions {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.otp-container .userInput {
+    display: flex;
+    justify-content: flex-start;
+    margin: 25px 0 30px 0;
+}
+
+.otp-container .userInput .single-input {
+    margin: 10px;
+    height: 65px;
+    width: 65px;
+    border: 1px solid #d1d1d1;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 3rem;
+    background: #ffffff;
+    color: #00438b;
+}
+
+.otp-container .userInput #ist {
+    margin-left: 0;
+}
+
+.userInput .single-input:focus-visible {
+    outline: 1px solid #00438b !important;
+}
+
+.userInput .single-input.filled {
+    outline: 1px solid #00438b;
+}
+
+.verify-btn {
+    width: 150px;
+    height: 50px;
+    margin: 0px auto 0px auto;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background: #00438b;
+}
+
+.verification-actions {
+    margin: 25px 0;
+    display: flex;
+    gap: 70px;
+    align-items: center;
+}
+
+.resend-code {
+    display: flex;
+    align-items: center;
+}
+
+.resend-code,
+.change-email {
+    color: #00438b;
+    font-weight: 600;
+}
+
+.resend-code .resend-icon {
+    margin-right: 5px;
+}

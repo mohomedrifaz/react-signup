@@ -1,0 +1,125 @@
+/* Config PC  */
+
+.config-pc-container {
+    padding: 0 65px;
+}
+
+.name-password-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.name-password-input-fields {
+    width: 50%;
+    gap: 15px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+}
+
+.notice {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: #F8F9FA;
+    padding: 10px 16px;
+    border-left: 2px solid #FFA500;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 120%;
+    color: #212529;
+}
+
+.content {
+    padding-top: 10px;
+    font-size: 15px;
+    line-height: 140%;
+}
+
+.name-password-input-fields .form-row-colfull {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.name-password-input-fields .form-row-colfull .label {
+    font-size: 14px;
+    line-height: 1.2;
+    color: #495057;
+    font-weight: 600;
+}
+
+.name-password-input-fields .form-row-colfull .input {
+    margin-bottom: 0;
+    margin-top: 5px;
+    border-color: #e9ecef;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    border-radius: 4px 0 0 4px;
+    padding: 12.5px 14px;
+    font-size: 15px;
+    line-height: 1.2;
+    height: 15px;
+}
+
+.form-row-colfull.col2 {
+    margin-top: 20px;
+}
+
+.copy-button {
+    background: #fff;
+    border-radius: 0 4px 4px 0;
+    padding: 12px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #101828;
+    font-weight: 600;
+    border: 1px solid #e9ecef;
+    margin-right: 20px;
+}
+
+.regenerate-pass {
+    background: #E6ECF3;
+    border: 1px solid #E6ECF3;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    border-radius: 4px;
+    padding: 11px 16px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 120%;
+    color: #003875;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-row-colfull.col2 .password-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.form-row-colfull.col2 .regenerate-pass svg {
+    margin-right: 5px;
+}
+
+.form-row-colfull.col2 .copy-button svg {
+    margin-right: 10px;
+}
+
+.config-pc-container .main-title {
+    margin-top: 50px;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 120%;
+    color: #212529;
+}
+
+.config-pc-container .main-title .sub-topic {
+    font-size: 20px;
+    line-height: 120%;
+    color: #ADB5BD;
+}
