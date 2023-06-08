@@ -1,4 +1,6 @@
-body{
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
 }
@@ -6,7 +8,7 @@ body{
 .container {
     display: flex;
 }
-  
+
 .title {
     font-size: 24px;
     color: #333;
@@ -44,16 +46,16 @@ body{
     color: #495057;
 }
 
-.verficiation-content p{
+.verficiation-content p {
     color: #495057;
 }
 
-.verficiation-content .email-address-verification{
+.verficiation-content .email-address-verification {
     font-size: 19px;
     font-weight: 700;
 }
 
-.verficiation-instructions{
+.verficiation-instructions {
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
@@ -114,7 +116,8 @@ body{
     align-items: center;
 }
 
-.resend-code, .change-email {
+.resend-code,
+.change-email {
     color: #00438b;
     font-weight: 600;
 }
@@ -268,12 +271,13 @@ body{
 .input-container {
     position: relative;
 }
-  
-  
+
+
 .password-toggle {
     position: absolute;
     top: 50%;
-    right: 10px; /* Adjust this value as needed */
+    right: 10px;
+    /* Adjust this value as needed */
     transform: translateY(-50%);
     cursor: pointer;
 }
@@ -281,13 +285,13 @@ body{
 .checkbox-label {
     display: flex;
     align-items: center;
-  }
-  
-  .checkbox-label input[type="checkbox"] {
+}
+
+.checkbox-label input[type="checkbox"] {
     display: none;
-  }
-  
-  .checkbox-custom {
+}
+
+.checkbox-custom {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -298,19 +302,19 @@ body{
     margin-right: 13px;
     margin-left: 5px;
     position: relative;
-  }
+}
 
-  .checkbox-custom.active {
+.checkbox-custom.active {
     background-color: #039855;
-  }
-  
-  .checkbox-icon {
+}
+
+.checkbox-icon {
     color: white;
     font-size: 10px;
     position: absolute;
-  }
-  
-  .checkbox-custom:after {
+}
+
+.checkbox-custom:after {
     content: "";
     display: block;
     width: 4px;
@@ -319,18 +323,20 @@ body{
     border: solid white;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
-    visibility: visible; /* Make the checkbox visible by default */
-  }
-  
-  .checkbox-label input[type="checkbox"]:checked + .checkbox-custom:after {
     visibility: visible;
-  }
-  
-  /* Change Email */
+    /* Make the checkbox visible by default */
+}
+
+.checkbox-label input[type="checkbox"]:checked+.checkbox-custom:after {
+    visibility: visible;
+}
+
+/* Change Email */
 
 .change-email-container .form-row-colfull.form-row {
     padding-top: 15px;
 }
+
 .change-email-container .form-row .label {
     font-size: 14px;
     line-height: 1.2;
@@ -339,7 +345,8 @@ body{
     padding-bottom: 20px;
 }
 
-.change-email-container .form-row .input, .form-row .text-area {
+.change-email-container .form-row .input,
+.form-row .text-area {
     margin-bottom: 0;
     margin-top: 5px;
     border-color: #e9ecef;
@@ -362,14 +369,14 @@ body{
     font-weight: 400;
     display: block;
     width: 100%;
-    color:#6c757d;
+    color: #6c757d;
 }
 
 .email-verification-note svg {
     margin-right: 8px;
     margin-top: 2px;
 }
-  
+
 .change-email-container {
     padding-left: 65px;
 }
@@ -387,7 +394,7 @@ body{
     border-radius: 5px;
     cursor: pointer;
     color: white;
-    background: #00438b;    
+    background: #00438b;
     margin-left: 25px;
 
 }
@@ -405,7 +412,7 @@ body{
 }
 
 /* Payment Gateway */
-.payment-gateway .form-row{
+.payment-gateway .form-row {
     display: flex;
     margin-bottom: 20px;
     flex-direction: row;
@@ -424,7 +431,7 @@ body{
     width: 50%;
 }
 
-.payment-gateway .form-row .form-row-col1{
+.payment-gateway .form-row .form-row-col1 {
     width: 70%;
     float: left;
     display: flex;
@@ -472,7 +479,8 @@ body{
     font-weight: 600;
 }
 
-.payment-gateway .form-row .input, .form-row .text-area {
+.payment-gateway .form-row .input,
+.form-row .text-area {
     margin-bottom: 0;
     margin-top: 5px;
     border-color: #e9ecef;
@@ -493,7 +501,7 @@ body{
     font-weight: 400;
     display: block;
     width: 100%;
-    color:#6c757d;
+    color: #6c757d;
 }
 
 .payment-gateway .action-btn {
@@ -511,7 +519,7 @@ body{
     border-radius: 5px;
     cursor: pointer;
     color: white;
-    background: #00438b;    
+    background: #00438b;
     margin-left: 25px;
     width: 60%;
 }
@@ -529,12 +537,19 @@ body{
     width: 40%;
 }
 
-input.text, input.title, input[type=email], input[type=password], input[type=tel], input[type=text], select, textarea {
+input.text,
+input.title,
+input[type=email],
+input[type=password],
+input[type=tel],
+input[type=text],
+select,
+textarea {
     background-color: #fff;
     border: 1px solid #bbb;
     padding: 2px;
     color: #4e4e4e;
-    font-family: 'Poppins',sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .payment-gateway .info-message {
@@ -561,8 +576,8 @@ input.text, input.title, input[type=email], input[type=password], input[type=tel
 
 .payment-gateway .card-verification-info {
     margin: 30px 0;
-    background: rgb(93,127,164);
-    background: linear-gradient(90deg, rgba(93,127,164,1) 0%, rgba(105,141,179,1) 25%, rgba(133,163,195,1) 60%, rgba(139,167,199,1) 90%, rgba(139,167,199,1) 100%);
+    background: rgb(93, 127, 164);
+    background: linear-gradient(90deg, rgba(93, 127, 164, 1) 0%, rgba(105, 141, 179, 1) 25%, rgba(133, 163, 195, 1) 60%, rgba(139, 167, 199, 1) 90%, rgba(139, 167, 199, 1) 100%);
     padding: 20px;
     border-radius: 10px;
     color: white;
@@ -620,7 +635,7 @@ input.text, input.title, input[type=email], input[type=password], input[type=tel
     list-style: none;
     padding-left: 12px;
 }
-  
+
 .package-details-container ul li:before {
     content: '✓';
     margin-right: 10px;
@@ -701,7 +716,7 @@ input.text, input.title, input[type=email], input[type=password], input[type=tel
     padding: 5px 0;
     font-size: 15px;
 }
-  
+
 .condition-container ul li:before {
     content: '✓';
     margin-right: 10px;
@@ -712,37 +727,37 @@ input.text, input.title, input[type=email], input[type=password], input[type=tel
 
 .select-plan-container {
     padding-left: 65px;
-  }
-  
-  .main-title {
+}
+
+.main-title {
     padding-bottom: 20px;
-  }
-  
-  .tab-container {
+}
+
+.tab-container {
     display: flex;
     justify-content: flex-start;
     padding-bottom: 10px;
-  }
-  
-  .tab {
+}
+
+.tab {
     cursor: pointer;
     color: #555;
     padding: 5px 10px;
     margin-right: 10px;
     position: relative;
-  }
-  
-  .tab.active {
+}
+
+.tab.active {
     color: #00438b;
     font-weight: 600;
-  }
+}
 
-.team-cloud-container li, 
+.team-cloud-container li,
 .team-individual-container li {
     padding: 5px 0;
 }
-  
-  .tab.active::after {
+
+.tab.active::after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -750,28 +765,29 @@ input.text, input.title, input[type=email], input[type=password], input[type=tel
     width: 100%;
     height: 2px;
     background-color: #00438b;
-  }
-  
-  .tab-content {
-    margin-top: 20px;
-  }
+}
 
-  .tab-content ul {
-    list-style-type:none;
+.tab-content {
+    margin-top: 20px;
+}
+
+.tab-content ul {
+    list-style-type: none;
     padding-left: 10px;
-  }
-  
-  .tab-content ul li:before {
+}
+
+.tab-content ul li:before {
     content: '✓';
     margin-right: 10px;
 }
 
 .tab-content ul li.cross:before {
-    content: '✕'; /* Cross symbol */
+    content: '✕';
+    /* Cross symbol */
     margin-right: 10px;
-  }
+}
 
-  .enable-backups-container {
+.enable-backups-container {
     width: fit-content;
     padding: 15px 10px;
     background-color: #f8f9fa;
@@ -783,7 +799,18 @@ input.text, input.title, input[type=email], input[type=password], input[type=tel
     align-items: center;
     margin-top: 25px;
 }
-  
+
+.backups-checbox-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.upgrade-plans-message {
+    color: #495057;
+    font-size: 12px;
+}
 
 .business-card {
     color: #003875;
@@ -821,28 +848,49 @@ input.text, input.title, input[type=email], input[type=password], input[type=tel
 .pricing-card {
     width: 25%;
     border: 1px solid #e9ecef;
-    padding: 10px 20px 20px 20px;
+    padding: 20px;
     border-radius: 10px;
     font-size: 13px;
+    margin-top: 35px;
+    font-family: 'Roboto' !important;
 }
 
 .pricing-card.selected {
     background-color: #003875;
-    color: white  
+    color: white
+}
+
+.pricing-card.selected .pricing-card-title,
+.pricing-card.selected .amount,
+.pricing-card.selected .month{
+    color: white
+}
+
+.pricing-card.selected .custom-hr{
+    border-top: 1px solid #00438b;
+}
+
+.pricing-card.selected .monthly-title-check{
+    border-bottom: 1px solid #00438b;
 }
 
 .pricing-card-title {
     margin: 5px 0;
     font-size: 20px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    color: #212529;
 }
 
 .no-of-users {
     width: max-content;
     background-color: #dee2e6;
     padding: 5px 8px;
-    font-size: 12px;
     border-radius: 20px;
     margin: 10px 0;
+    font-size: 12px;
+    line-height: 120%;
 }
 
 .no-of-users.selected {
@@ -851,11 +899,21 @@ input.text, input.title, input[type=email], input[type=password], input[type=tel
 
 .pricing-card-features {
     padding-left: 0px;
+    margin: 15px 0px;
 }
 
-.pricing-card-features li{
+.pricing-card-features li {
     list-style: none;
     padding: 3px 0px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    color: #495057;
+}
+
+.pricing-card-features.selected li {
+    color: #fff;
 }
 
 .pricing-card-features li:before {
@@ -864,14 +922,15 @@ input.text, input.title, input[type=email], input[type=password], input[type=tel
 }
 
 .custom-hr {
-    width: 50px; /* Adjust the width as desired */
+    width: 50px;
+    /* Adjust the width as desired */
     margin: 0;
     border: none;
     border-top: 1px solid #dee2e6;
     align-self: flex-start;
-  }
+}
 
-  .monthly-title-check {
+.monthly-title-check {
     display: flex;
     align-items: flex-start;
     border-bottom: 1px solid #dee2e6;
@@ -880,8 +939,10 @@ input.text, input.title, input[type=email], input[type=password], input[type=tel
 
 .monthly-title {
     color: #00438b;
+    padding-bottom: 5px;
     font-weight: 600;
-    padding-bottom: 3px;
+    font-size: 14px;
+    width: 140px;
 }
 
 .monthly-title-check.selected .monthly-title {
@@ -895,12 +956,17 @@ input.text, input.title, input[type=email], input[type=password], input[type=tel
 }
 
 .pricing-card-price .amount {
-    font-size: 26px;
-    font-weight: 600;
+    font-size: 32px;
+    font-weight: 500;
+    color: #212529;
+    line-height: 32px;
 }
 
 .pricing-card-price .month {
     color: #adb5bd;
+    font-size: 16px;
+    line-height: 120%;
+    font-weight: 400;
 }
 
 .annual-title-check {
@@ -911,8 +977,10 @@ input.text, input.title, input[type=email], input[type=password], input[type=tel
 
 .annual-title {
     color: #00438b;
-    font-weight: 600;    
     padding-bottom: 3px;
+    font-weight: 600;
+    font-size: 14px;
+    width: 132px;
 }
 
 .annual-title-check.selected .annual-title {
@@ -932,7 +1000,7 @@ input.text, input.title, input[type=email], input[type=password], input[type=tel
     padding: 4px 8px;
     border-radius: 25px;
     color: #027a48;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .select-plan-container .action-btn {
@@ -964,7 +1032,50 @@ input.text, input.title, input[type=email], input[type=password], input[type=tel
     background: #00438b;
     margin-left: 25px;
 }
-  
+
 .users-message-box {
     font-size: 12px;
+}
+
+.popular-badge {
+    background-color: #ff8000;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.pricing-card.popular-container{
+    border: 1px solid #ff8000;
+    margin-top: 0;
+}
+
+.pricing-card.selected.popular-container{
+    background-color: #ff9900; 
+}
+
+.pricing-card.selected.popular-container .no-of-users.selected{
+    background-color: #ffa500;
+}
+
+.pricing-card.selected.popular-container .monthly-title-check.selected .monthly-title{
+    color: #fff;
+}
+
+.pricing-card.selected.popular-container .annual-title{
+    color: #fff;
+}
+
+.pricing-card.selected.popular-container .popular-badge{
+    border: 1px solid white;
+}
+
+.pricing-card.selected.popular-container .custom-hr{
+    border-top: 1px solid #fff;
+}
+
+.pricing-card.selected.popular-container .monthly-title-check{
+    border-bottom: 1px solid #fff;
 }

@@ -24,21 +24,22 @@ const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offerval
     };
 
     const handleAnnualSelection = (event) => {
-        event.stopPropagation(); // Prevents event bubbling to the parent card
+        event.stopPropagation();
         setIsAnnualSelected(!isAnnualSelected);
         setIsMonthlySelected(false);
     };
 
     return (
-        <div className={`pricing-card ${isSelected ? "selected" : ""}`}
+        <div className={`pricing-card ${isSelected ? "selected" : ""} ${isPopular ? "popular-container" : "" }`}
             onClick={handleCardSelection}
         >
+            {isPopular && <div className="popular-badge">Most Popular</div>}
 
             <h3 className="pricing-card-title">{title}</h3>
             <div className={`no-of-users ${isSelected ? "selected" : ""}`}>
                 {users} users*</div>
             <hr className="custom-hr" />
-            <ul className="pricing-card-features">
+            <ul className={`pricing-card-features ${isSelected ? "selected" : ""}`}>
                 {features.map((feature, index) => (
                     <li key={index}>{feature}</li>
                 ))}
@@ -85,9 +86,7 @@ const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offerval
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     );
 

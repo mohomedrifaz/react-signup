@@ -10,39 +10,44 @@ const SelectPlan = () => {
             monthlyprice: '$25',
             yearlyprice: '$20',
             offervalue: '$60',
-            features: ['2 CPU core', '4 GB Memory RAM', '50 GB Storage']
+            features: ['2 CPU core', '4 GB Memory RAM', '50 GB Storage'],
+            isPopular: false
         },
         {
             title: 'The Startup',
-            users: '2-4',
+            users: '2 - 4',
             monthlyprice: '$55',
             yearlyprice: '$45',
             offervalue: '$120',
-            features: ['2 CPU core', '8 GB Memory RAM', '50 GB Storage']
+            features: ['2 CPU core', '8 GB Memory RAM', '50 GB Storage'],
+            isPopular: true
         },
         {
             title: 'The SMB',
-            users: '5-9',
+            users: '5 - 9',
             monthlyprice: '$85',
             yearlyprice: '$65',
             offervalue: '$240',
-            features: ['4 CPU core', '16 GB Memory RAM', '50 GB Storage']
+            features: ['4 CPU core', '16 GB Memory RAM', '50 GB Storage'],
+            isPopular: false
         },
         {
             title: 'The Firm',
-            users: '10-16',
+            users: '10 - 16',
             monthlyprice: '$125',
             yearlyprice: '$100',
             offervalue: '$350',
-            features: ['8 CPU core', '32 GB Memory RAM', '50 GB Storage']
+            features: ['8 CPU core', '32 GB Memory RAM', '50 GB Storage'],
+            isPopular: false
         },
         {
             title: 'The Company',
-            users: '17-32',
+            users: '17 - 32',
             monthlyprice: '$150',
             yearlyprice: '$120',
             offervalue: '$420',
-            features: ['16 CPU core', '64 GB Memory RAM', '50 GB Storage']
+            features: ['16 CPU core', '64 GB Memory RAM', '50 GB Storage'],
+            isPopular: false
         },
 
     ];
@@ -93,20 +98,25 @@ const SelectPlan = () => {
                 </div>}
             </div>
 
-            <div className="enable-backups-container">
-                <label className="checkbox-label">
-                    <input type="checkbox" className="checkbox-input" />
-                </label>
-                <div className="info-box">
-                    Enable Daily Backups and a Professional Antivirus <span className="business-card"> Business Plan </span>
-                    <span className="recommended-card"> Recommended </span>
+            <div className="backups-checbox-container">
+                <div className="enable-backups-container">
+                    <label className="checkbox-label">
+                        <input type="checkbox" className="checkbox-input" />
+                    </label>
+                    <div className="info-box">
+                        Enable Daily Backups and a Professional Antivirus <span className="business-card"> Business Plan </span>
+                        <span className="recommended-card"> Recommended </span>
+                    </div>
+                </div>
+                <div className="upgrade-plans-message">
+                    - Upgrade available for all plans
                 </div>
             </div>
 
             <div className="pricing-cards">
                 {pricingPlans.map((plan, index) => (
                     <PlanCards key={index} title={plan.title} monthlyprice={plan.monthlyprice} yearlyprice={plan.yearlyprice}
-                    features={plan.features} offervalue={plan.offervalue} users={plan.users}/>
+                        features={plan.features} offervalue={plan.offervalue} users={plan.users} isPopular={plan.isPopular} />
                 ))}
             </div>
 
