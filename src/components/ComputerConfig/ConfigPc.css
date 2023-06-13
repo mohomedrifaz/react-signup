@@ -59,7 +59,7 @@
     border-color: #e9ecef;
     box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
     border-radius: 4px 0 0 4px;
-    padding: 12.5px 14px;
+    padding: 14px;
     font-size: 15px;
     line-height: 1.2;
     height: 15px;
@@ -122,4 +122,248 @@
     font-size: 20px;
     line-height: 120%;
     color: #ADB5BD;
+}
+
+/* Config Cards */
+
+.windows-cards-container {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.config-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border: 2px solid #E9ECEF;
+    border-radius: 10px;
+    width: 15%;
+    position: relative;
+    min-height: 220px;
+    cursor: pointer;
+}
+
+.config-card.selected {
+    border: 2px solid #003373;
+}
+
+.networking-container {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.config-card .logo {
+    margin-top: 20px;
+}
+
+.config-card .main-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 120%;
+    text-align: center;
+    color: #212529;
+    margin-top: 15px;
+    padding-bottom: 0;
+}
+
+.config-card .sub-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 120%;
+    text-align: center;
+    color: #212529;
+}
+
+.config-card .content {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    text-align: center;
+    color: #495057;
+}
+
+.config-card .checkbox-icon {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+.config-card .checkbox-icon.selected {
+    display: none;
+}
+
+.config-card.selected .checkbox-icon.selected {
+    display: block;
+}
+
+.config-card.selected .checkbox-icon {
+    display: none;
+}
+
+.networking-container .config-card .sub-title {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 120%;
+    color: #00438B;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.backups-container {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.backups-container .config-card .sub-title {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 120%;
+    color: #00438B;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.recommended-box {
+    position: absolute;
+    left: 0;
+    top: -19px;
+    background: #00438B;
+    border-radius: 10px 10px 0px 0px;
+    padding: 3px 10px 0px;
+    color: white;
+    font-size: 14px;
+    line-height: 120%;
+}
+
+.antivirus-container {
+    display: flex;
+    align-items: center;
+    border: 2px solid #E9ECEF;
+    padding: 16px;
+    border-radius: 8px;
+    width: 25%;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 120%;
+    color: #212529;
+    justify-content: flex-start;
+    margin-bottom: 50px;
+}
+
+.antivirus-container .anitivirus-logo {
+    margin-left: 25px;
+}
+
+.antivirus-container.selected {
+    border: 2px solid #003373;
+}
+
+.config-pc-container .action-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.config-pc-container .action-btn .back-btn {
+    width: 130px;
+    height: 50px;
+    margin: 0;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #adb5bd;
+    background: none;
+}
+
+.config-pc-container .action-btn .verify-btn {
+    width: 150px;
+    height: 50px;
+    margin: 0;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background: #00438b;
+    margin-left: 25px;
+}
+
+.line-with-text {
+    display: flex;
+    align-items: center;
+    margin: -10px 0 25px 0;
+    width: 40%;
+}
+
+.line {
+    flex: 1;
+    height: 1px;
+    background-color: #00438B;
+}
+
+.text {
+    margin: 0 10px;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 120%;
+    color: #00438B;
+}
+
+.config-pc-container .action-btn {
+    padding: 30px 0;
+}
+
+.enable-businessplan-infobox {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: #D1E9FF;
+    border-radius: 6px;
+    width: 57%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.content-container {
+    width: 70%;
+}
+
+.content-container .main-text {
+    font-family: 'Roboto';
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 16px;
+    color: #121417;
+}
+
+.content-container .sub-text {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #121417;
+    padding-top: 10px;
+}
+
+.enable-businessplan-infobox .button {
+    display: flex;
+    gap: 7px;
+    padding: 8px 16px;
+    background: #00438B;
+    border: 1px solid #00438B;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    border-radius: 4px;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
 }

@@ -7,7 +7,8 @@ import Password from './components/Password/Password';
 import ChangeEmail from './components/changeEmail/ChangeEmail';
 import PaymentGateway from './components/PaymentGateway/PaymentGateway';
 import SelectPlan from './components/SelectPlan/SelectPlan';
-import ConfigPc from './components/ComputerConfig/ConfigPc';
+import ConfigPcTeam from './components/ComputerConfig/ConfigPcTeam';
+import ConfigPcIndividual from './components/ComputerConfig/ConfigPcIndividual';
 
 const App = () => {
   
@@ -21,8 +22,9 @@ const App = () => {
             {/* <Password /> */}
             {/* <ChangeEmail /> */}
             {/* <PaymentGateway /> */}
-            {/* <SelectPlan /> */}
-            <ConfigPc />
+            <SelectPlan />
+            {/* <ConfigPcIndividual /> */}
+            {/* {<ConfigPcTeam />} */}
         </div>
     </div>
   );

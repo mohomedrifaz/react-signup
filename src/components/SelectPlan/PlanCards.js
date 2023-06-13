@@ -10,7 +10,7 @@ const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offerval
 
     const monthlyPrice = parseInt(monthlyprice.replace('$', ''), 10);
     const yearlyPrice = parseInt(yearlyprice.replace('$', ''), 10);
-    
+
     const handleCardSelection = () => {
         if (isSelected) {
             setIsSelected(false);
@@ -41,6 +41,8 @@ const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offerval
     const handleMouseLeave = () => {
         setIsHovered(false);
     };
+
+    
 
     return (
         <div
@@ -91,7 +93,7 @@ const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offerval
                         <div className="monthly-title"> Monthly Commitment </div>
                         <div className="monthly-amount">
                             <div className="pricing-card-price">
-                                <span className="amount"> {isBackup ? '$' + (monthlyPrice + 10) : monthlyprice} </span> 
+                                <span className="amount"> {isBackup ? '$' + (monthlyPrice + 10) : monthlyprice} </span>
                                 <span className="month">/mo </span>
                             </div>
                         </div>
@@ -124,7 +126,7 @@ const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offerval
                 </div>
             </div>
         </div>
-        
+
     );
 
 }

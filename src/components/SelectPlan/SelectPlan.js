@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PlanCards from './PlanCards';
 import SpecialCard from "./SpecialCard";
 import './selectPlan.css';
@@ -106,8 +106,15 @@ const SelectPlan = () => {
 
     const [isBackup, setIsBackup] = useState(false);
 
-    const handleCheckboxChange = () => {
+    const handleCheckboxChange = (event) => {
         setIsBackup(!isBackup);
+
+        const isChecked = event.target.checked;
+        if (isChecked) {
+            document.body.classList.add("overlayed");
+        } else {
+            document.body.classList.remove("overlayed");
+        }
     }
 
     return (
@@ -153,7 +160,10 @@ const SelectPlan = () => {
             <div className="backups-checbox-container">
                 <div className="enable-backups-container">
                     <label className="checkbox-label">
-                        <input type="checkbox" className="checkbox-input" checked={isBackup} onChange={handleCheckboxChange} />
+                        <input type="checkbox"
+                            className="checkbox-input"
+                            checked={isBackup}
+                            onChange={handleCheckboxChange} />
                     </label>
                     <div className="info-box">
                         Enable Daily Backups and a Professional Antivirus <span className="business-card"> Business Plan </span>
@@ -163,13 +173,32 @@ const SelectPlan = () => {
                 <div className="upgrade-plans-message">
                     - Upgrade available for all plans
                 </div>
+                <div className="tooltip">
+                    <div className="tooltip-title">
+                        Enhance Your Data Security
+                    </div>
+                    <div className="tooltip-content">
+                        Your Current Plan May Not Provide Adequate protection.<br />
+                        Lack of Antivirus or Daily Backups Leaves Your Business <br />at Risk: Data Breach,
+                        Financial Strain, and Reputational Damage.<br /> Are you sure you want to proceed without
+                        upgrading to <br /> Our Business Plan?
+                    </div>
+                    <div className="cta-btns">
+                        <button className="skip-btn">
+                            Skip &gt;&gt;
+                        </button>
+                        <button className="upgrade-btn">
+                            Upgrade to Business Plan
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <div className="pricing-cards">
                 {activeTab === 1 && <div className="team-cloud-pricing-container">
                     {pricingPlans.map((plan, index) => (
                         <PlanCards key={index} title={plan.title} monthlyprice={plan.monthlyprice} yearlyprice={plan.yearlyprice}
-                            features={plan.features} offervalue={plan.offervalue} users={plan.users} isPopular={plan.isPopular} isBackup = {isBackup} />
+                            features={plan.features} offervalue={plan.offervalue} users={plan.users} isPopular={plan.isPopular} isBackup={isBackup} />
                     ))}
                 </div>
                 }
