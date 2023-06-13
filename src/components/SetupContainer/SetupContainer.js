@@ -72,6 +72,7 @@ const SetupContainer = () => {
                         onChange={(e) => handleChange(e, 3)}
                     />
                 </div>
+                <div className="invalid-verification-box hidden"> Verification code invalid </div>
                 <button 
                     className="verify-btn"
                     style={{ backgroundColor: isButtonDisabled ? '#a3bbd5' : '#00438b' }}

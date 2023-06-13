@@ -105,20 +105,31 @@ const SelectPlan = () => {
     };
 
     const [isBackup, setIsBackup] = useState(false);
+    const [showOverlay, setShowOverlay] = useState(false); 
 
-    const handleCheckboxChange = (event) => {
+    const handleCheckboxChange = (vent) => {
         setIsBackup(!isBackup);
-
-        const isChecked = event.target.checked;
-        if (isChecked) {
-            document.body.classList.add("overlayed");
-        } else {
-            document.body.classList.remove("overlayed");
-        }
     }
 
+    const handleOverlayClick = () => {
+        setShowOverlay(false);
+    }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowOverlay(true);
+        }, 3000);
+
+        return () => {
+            clearTimeout(timer);
+        };
+    }, []);
+
     return (
-        <div className="select-plan-container">
+        <div
+            className={`select-plan-container ${showOverlay ? 'overlayed' : ''}`}
+            onClick={handleOverlayClick}
+        >
 
             <div className="main-title">
                 <h2> Compare our plans and find yours </h2>
@@ -158,7 +169,7 @@ const SelectPlan = () => {
             </div>
 
             <div className="backups-checbox-container">
-                <div className="enable-backups-container">
+                <div className={`enable-backups-container ${showOverlay ? 'overlayed' : ''}`}>
                     <label className="checkbox-label">
                         <input type="checkbox"
                             className="checkbox-input"
@@ -173,7 +184,7 @@ const SelectPlan = () => {
                 <div className="upgrade-plans-message">
                     - Upgrade available for all plans
                 </div>
-                <div className="tooltip">
+                <div className={`tooltip ${showOverlay ? 'overlayed' : ''}`}>
                     <div className="tooltip-title">
                         Enhance Your Data Security
                     </div>

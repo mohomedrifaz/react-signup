@@ -12,6 +12,7 @@ const Password = () => {
     const [repassword, setRePassword] = useState("");
     const [ConfirmPassword, setConfirmPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
@@ -19,6 +20,9 @@ const Password = () => {
 
     const handleConfirmPasswordChange = (e) => {
         setRePassword(e.target.value);
+        const confirmPassword = e.target.value;
+        setRePassword(confirmPassword);
+        setPasswordError(password !== confirmPassword);
     }
 
     const togglePasswordVisibility = () => {
@@ -45,9 +49,11 @@ const Password = () => {
 
             <div className="account-description">
                 <div className="account-img">
-                    <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8 9C8 6.79086 9.79086 5 12 5C14.2091 5 16 6.79086 16 9C16 11.2091 14.2091 13 12 13C9.79086 13 8 11.2091 8 9ZM15.8243 13.6235C17.1533 12.523 18 10.8604 18 9C18 5.68629 15.3137 3 12 3C8.68629 3 6 5.68629 6 9C6 10.8604 6.84668 12.523 8.17572 13.6235C4.98421 14.7459 3 17.2474 3 20C3 20.5523 3.44772 21 4 21C4.55228 21 5 20.5523 5 20C5 17.7306 7.3553 15 12 15C16.6447 15 19 17.7306 19 20C19 20.5523 19.4477 21 20 21C20.5523 21 21 20.5523 21 20C21 17.2474 19.0158 14.7459 15.8243 13.6235Z" fill="#000000" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="56" height="56" rx="28" fill="#E6ECF3" />
+                        <path d="M38.6673 40V37.3333C38.6673 35.9188 38.1054 34.5623 37.1052 33.5621C36.105 32.5619 34.7485 32 33.334 32H22.6673C21.2528 32 19.8963 32.5619 18.8961 33.5621C17.8959 34.5623 17.334 35.9188 17.334 37.3333V40M33.334 21.3333C33.334 24.2789 30.9462 26.6667 28.0007 26.6667C25.0551 26.6667 22.6673 24.2789 22.6673 21.3333C22.6673 18.3878 25.0551 16 28.0007 16C30.9462 16 33.334 18.3878 33.334 21.3333Z" stroke="#00438B" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
+
                 </div>
                 <div className="account-name-email">
                     <div className="account-name"> Tharaka Nilpul </div>
@@ -80,7 +86,7 @@ const Password = () => {
                     <div className="password-title"> Confirm Password* </div>
                     <div className="input-container">
                         <input
-                            className="custom-input"
+                            className={`custom-input ${passwordError ? "error" : ""}`}
                             type={ConfirmPassword ? "text" : "password"}
                             placeholder="Enter account password"
                             value={repassword}
@@ -97,6 +103,7 @@ const Password = () => {
                             )}
                         </span>
                     </div>
+                    {passwordError && <div className="error-message">Passwords do not match</div>}
                 </div>
                 <div className="password-requirements">
                     <div className="title"> Password Requirements </div>
@@ -120,7 +127,7 @@ const Password = () => {
                                     type="checkbox"
                                     checked={hasSpecialChar}
                                     readOnly
-                                /> 
+                                />
                                 <span className={`checkbox-custom ${hasSpecialChar ? "active" : ""}`}>
                                     <FontAwesomeIcon icon="check" className="checkbox-icon" />
                                 </span>

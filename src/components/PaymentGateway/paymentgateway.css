@@ -1,4 +1,12 @@
 /* Payment Gateway */
+
+.payment-gateway .main-title {
+    padding-bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .payment-gateway .form-row {
     display: flex;
     margin-bottom: 20px;
@@ -101,7 +109,7 @@
     width: 150px;
     height: 50px;
     margin: 0px auto 0px auto;
-    font-size: 18px;
+    font-size: 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -165,16 +173,27 @@ textarea {
     margin: 30px 0;
     background: rgb(93, 127, 164);
     background: linear-gradient(90deg, rgba(93, 127, 164, 1) 0%, rgba(105, 141, 179, 1) 25%, rgba(133, 163, 195, 1) 60%, rgba(139, 167, 199, 1) 90%, rgba(139, 167, 199, 1) 100%);
-    padding: 20px;
+    padding: 15px 20px;
     border-radius: 10px;
     color: white;
     font-size: 14px;
     line-height: 1.5;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.payment-gateway .info-img {
+    text-align: right;
+}
+
+.payment-gateway .support-card-images {
+    margin-bottom: 20px;
 }
 
 .asset-details-container {
     padding-left: 70px;
-    padding-right: 10px;
+    padding-right: 40px;
     width: 45%;
     margin-top: 20px;
 }
@@ -308,4 +327,22 @@ textarea {
     content: '✓';
     margin-right: 10px;
     color: #32ab75;
+}
+
+.form-row-col-long {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    padding-right: 15px;
+}
+
+.form-row-col-short {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-title img{
+    height: 38px;
+    width: 115px;
 }

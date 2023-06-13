@@ -457,11 +457,11 @@
     border-bottom: 1px solid #fff;
 }
 
-body.overlayed {
+.select-plan-container.overlayed {
     position: relative;
 }
 
-body.overlayed::before {
+.select-plan-container.overlayed::before {
     content: "";
     position: fixed;
     top: 0;

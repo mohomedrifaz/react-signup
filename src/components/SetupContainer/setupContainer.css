@@ -14,7 +14,9 @@
 
 .verification-instructions {
     margin-top: 25px;
+    font-size: 16px;
     color: #495057;
+    line-height: 120%;
 }
 
 .verficiation-content p {
@@ -22,8 +24,9 @@
 }
 
 .verficiation-content .email-address-verification {
-    font-size: 19px;
     font-weight: 700;
+    font-size: 18px;
+    color: #212529;
 }
 
 .verficiation-instructions {
@@ -36,7 +39,7 @@
 .otp-container .userInput {
     display: flex;
     justify-content: flex-start;
-    margin: 25px 0 30px 0;
+    margin: 25px 0 10px 0;
 }
 
 .otp-container .userInput .single-input {
@@ -66,7 +69,7 @@
 .verify-btn {
     width: 150px;
     height: 50px;
-    margin: 0px auto 0px auto;
+    margin: 20px auto 0px auto;
     font-size: 18px;
     border: none;
     border-radius: 5px;
@@ -91,8 +94,18 @@
 .change-email {
     color: #00438b;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .resend-code .resend-icon {
     margin-right: 5px;
+}
+
+.invalid-verification-box.hidden{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #B42318;
+    display: none;
 }

@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import './paymentgateway.css';
+import paymentImage from "./securessl.png"; 
+import securityImage from "./security-system.png";
+import paymentCardsImage from "./payment.png";
 
 const PaymentGateway = () => {
 
@@ -15,6 +18,7 @@ const PaymentGateway = () => {
 
                 <div className="main-title">
                     <h2> Enter payment info </h2>
+                    <img src= {paymentImage} /> 
                 </div>
 
                 <div className="card-verification-info">
@@ -24,33 +28,33 @@ const PaymentGateway = () => {
                        misusing our cloud services
                     </div>
                     <div className="info-img">
-                        
+                        <img src= {securityImage} /> 
                     </div>
                 </div>
 
                 <div id="signup-form">
                     <div className="support-card-images">
-
+                    <img src={paymentCardsImage} />
                     </div>
                     <div className="form-row form-row-1">
-                        <div className="form-row-col1">
+                        <div className="form-row-col-long">
                             <label className="label row2-label" for="card_number"> Card number* </label>
                             <input required type="text" name="card_number" className="input row1-input" placeholder="Enter card number" />
                             <span className="card-verification-note">  </span>
                         </div>
-                        <div className="form-row-col2">
+                        <div className="form-row-col-short">
                             <label className="label row2-label" for="expiry_date"> Expiry* </label>
                             <input required type="text" name="expiry_date" className="input row1-input" placeholder="MM/YY" />
                         </div>
                     </div>
 
                     <div className="form-row form-row-2">
-                        <div className="form-row-col1">
+                        <div className="form-row-col-long">
                             <label className="label row2-label" for="card_name"> Name on Card * </label>
                             <input required type="text" name="card_name" className="input row2-input" placeholder="Enter card name" />
                             <span className="name-verification-note">  </span>
                         </div>
-                        <div className="form-row-col2">
+                        <div className="form-row-col-short">
                             <label className="label row2-label" for="expiry_date"> CCV* </label>
                             <input required type="text" name="ccv" className="input row1-input" placeholder="..." />
                         </div>
@@ -64,11 +68,11 @@ const PaymentGateway = () => {
                     </div>
 
                     <div className="form-row form-row-4">
-                        <div className="form-row-col1">
+                        <div className="form-row-col-long">
                             <label className="label row4-label" for="city"> City* </label>
                             <input required className="input row4-input" type="text" name="city" placeholder="Enter City" />
                         </div>
-                        <div className="form-row-col2">
+                        <div className="form-row-col-short">
                             <label className="label row4-label" for="state"> State/Province* </label>
                             <select className="select row4-select" name="state" >
                                 <option value="" disabled> Select State </option>
@@ -78,11 +82,11 @@ const PaymentGateway = () => {
                     </div>
 
                     <div className="form-row form-row-5">
-                        <div className="form-row-col1">
+                        <div className="form-row-col-long">
                             <label className="label row4-label" for="zip"> Zip/Postal* </label>
                             <input required className="input row4-input" type="text" name="zip" placeholder="Enter zip/postal code" />
                         </div>
-                        <div className="form-row-col2">
+                        <div className="form-row-col-short">
                             <label className="label row4-label" for="state"> Country* </label>
                             <select class="select row3-select" name="country" id="country-list" >
                                 <option value="" disabled> Select Country </option>
