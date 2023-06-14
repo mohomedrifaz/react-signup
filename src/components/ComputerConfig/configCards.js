@@ -1,16 +1,11 @@
 import React, {useState} from "react";
 
-const configCards = ({ logo, mainTitle, subTitle, content, logoSelected, recommended }) => {
-
-    const [isSelected, setIsSelected] = useState(false);
+const configCards = ({ logo, mainTitle, subTitle, content, logoSelected, recommended,isSelected, onClick }) => {
 
     const handleCardSelection = () => {
-        if (isSelected) {
-            setIsSelected(false);
-        } else {
-            setIsSelected(true);
-        }
-    };
+        onClick();
+      };
+    
 
     return (
         <div className={`config-card ${isSelected ? "selected" : ""}`}

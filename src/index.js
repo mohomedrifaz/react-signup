@@ -21,7 +21,7 @@ const App = () => {
             {/* <SetupContainer /> */}
             {/* <Password /> */}
             {/* <ChangeEmail /> */}
-            <PaymentGateway />
+            {/* <PaymentGateway /> */}
             {/* <SelectPlan /> */}
             {/* <ConfigPcIndividual /> */}
             {/* {<ConfigPcTeam />} */}

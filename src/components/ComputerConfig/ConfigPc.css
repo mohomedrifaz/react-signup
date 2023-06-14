@@ -94,6 +94,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .form-row-colfull.col2 .password-container {
@@ -366,4 +367,8 @@
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
+}
+
+.antivirus-container .checkbox-label input {
+    display: block !important;
 }

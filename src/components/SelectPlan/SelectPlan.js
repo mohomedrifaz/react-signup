@@ -1,10 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PlanCards from './PlanCards';
 import SpecialCard from "./SpecialCard";
+// import SpecialCardImg from "./special-card-img.png";
 import './selectPlan.css';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const SelectPlan = () => {
 
+    const sliderRef = useRef(null);
+
+    useEffect(() => {
+        // Optionally, configure any settings for the slider
+        // For example, if you want to show multiple cards at a time:
+        // sliderRef.current.slickSetOption({
+        //   slidesToShow: 3,
+        //   slidesToScroll: 1,
+        // });
+      }, []);
+      
     const pricingPlans = [
         {
             title: 'The Founder',
@@ -105,9 +120,9 @@ const SelectPlan = () => {
     };
 
     const [isBackup, setIsBackup] = useState(false);
-    const [showOverlay, setShowOverlay] = useState(false); 
+    const [showOverlay, setShowOverlay] = useState(false);
 
-    const handleCheckboxChange = (vent) => {
+    const handleCheckboxChange = () => {
         setIsBackup(!isBackup);
     }
 
@@ -205,7 +220,7 @@ const SelectPlan = () => {
                 </div>
             </div>
 
-            <div className="pricing-cards">
+            <div className="pricing-cards" >
                 {activeTab === 1 && <div className="team-cloud-pricing-container">
                     {pricingPlans.map((plan, index) => (
                         <PlanCards key={index} title={plan.title} monthlyprice={plan.monthlyprice} yearlyprice={plan.yearlyprice}
@@ -221,7 +236,7 @@ const SelectPlan = () => {
                     <SpecialCard
                         title="The Enterprise"
                         buttonText="Talk to an Expert"
-                        imageUrl="./src/components/SelectPlan/special-card-img.png"
+                        imageUrl=""
                     />
                 </div>}
             </div>

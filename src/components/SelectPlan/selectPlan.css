@@ -565,3 +565,7 @@
     color: #FFFFFF;
     cursor: pointer;
 }
+
+.enable-backups-container .checkbox-label input {
+    display: block !important;
+}
