@@ -13,6 +13,7 @@
     margin: 20px 0;
     display: flex;
     justify-content: flex-start;
+    align-items: center;
 }
 
 .sidebar .nav-bullet {
@@ -51,10 +52,59 @@
     color: #c0c7cd;
 }
 
+.sidebar .nav-subtopic-done {
+    font-size: 14px;
+    margin-top: 3px;
+    color: #039855;
+}
+
+.sidebar .nav-subtopic-complete {
+    font-size: 14px;
+    margin-top: 3px;
+    color: #c0c7cd;
+}
+
 .sidebar .nav-bullet p {
     margin: 10px;
 }
 
 .sidebar .nav-bullet svg {
     margin: -4px;
+}
+
+.sidebar .single-nav .nav-bullet.active {
+    display: none;
+}
+
+.sidebar .single-nav.active .nav-bullet,
+.sidebar .single-nav.completed .nav-bullet {
+    display: none;
+}
+
+.sidebar .single-nav.active .nav-bullet.active {
+    display: block;
+}
+
+.sidebar .single-nav.active .nav-topic {
+    color: #00438b;
+}
+
+.sidebar .nav-bullet-completed {
+    margin-right: 27px;
+}
+
+.sidebar .nav-bullet-completed p{
+    margin: 0;
+}
+
+.sidebar .single-nav.completed .nav-subtopic {
+    display: none;
+}
+
+.sidebar .single-nav.active .nav-subtopic {
+    display: none;
+}
+
+.sidebar .single-nav.active .nav-subtopic.current {
+    display: block;
 }

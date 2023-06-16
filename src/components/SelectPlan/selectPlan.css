@@ -147,6 +147,7 @@
     font-size: 13px;
     margin-top: 35px;
     font-family: 'Roboto' !important;
+    cursor: pointer;
 }
 
 .team-individual-pricing-container .pricing-card {

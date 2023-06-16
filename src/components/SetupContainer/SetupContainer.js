@@ -18,7 +18,7 @@ const SetupContainer = () => {
     };
 
     const handleVerify = () => {
-        // Perform verification logic here
+       
     };
 
     const isButtonDisabled = otp.some(value => value === "");

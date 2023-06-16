@@ -38,6 +38,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "react-router-dom": "^6.13.0",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1"
   }

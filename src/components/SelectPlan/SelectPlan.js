@@ -8,17 +8,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const SelectPlan = () => {
-
-    const sliderRef = useRef(null);
-
-    useEffect(() => {
-        // Optionally, configure any settings for the slider
-        // For example, if you want to show multiple cards at a time:
-        // sliderRef.current.slickSetOption({
-        //   slidesToShow: 3,
-        //   slidesToScroll: 1,
-        // });
-      }, []);
       
     const pricingPlans = [
         {
@@ -140,6 +129,19 @@ const SelectPlan = () => {
         };
     }, []);
 
+    const [selectedCardIndex, setSelectedCardIndex] = useState({
+        teamCloud : null,
+        individualCloud : null
+    });
+
+    const handleCardSelection = (index, category) => {
+        setSelectedCardIndex((prevSelectedCardIndex) => {
+            const newSelectedCardIndex = {...prevSelectedCardIndex};
+            newSelectedCardIndex[category] = index;
+            return newSelectedCardIndex;
+        });
+    }
+
     return (
         <div
             className={`select-plan-container ${showOverlay ? 'overlayed' : ''}`}
@@ -224,14 +226,18 @@ const SelectPlan = () => {
                 {activeTab === 1 && <div className="team-cloud-pricing-container">
                     {pricingPlans.map((plan, index) => (
                         <PlanCards key={index} title={plan.title} monthlyprice={plan.monthlyprice} yearlyprice={plan.yearlyprice}
-                            features={plan.features} offervalue={plan.offervalue} users={plan.users} isPopular={plan.isPopular} isBackup={isBackup} />
+                            features={plan.features} offervalue={plan.offervalue} users={plan.users} isPopular={plan.isPopular} isBackup={isBackup}
+                            isSelected={index === selectedCardIndex.teamCloud}
+                            onClick={ () => handleCardSelection(index, "teamCloud")} />
                     ))}
                 </div>
                 }
                 {activeTab === 2 && <div className="team-individual-pricing-container">
                     {pricingPlansIndividual.map((plan, index) => (
                         <PlanCards key={index} title={plan.title} monthlyprice={plan.monthlyprice} yearlyprice={plan.yearlyprice}
-                            features={plan.features} offervalue={plan.offervalue} users={plan.users} isPopular={plan.isPopular} functions={plan.functions} />
+                            features={plan.features} offervalue={plan.offervalue} users={plan.users} isPopular={plan.isPopular} functions={plan.functions}
+                            isSelected={index === selectedCardIndex.teamIndividual}
+                            onClick={ () => handleCardSelection(index, "teamIndividual")} />
                     ))}
                     <SpecialCard
                         title="The Enterprise"
