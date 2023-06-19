@@ -3,9 +3,9 @@ import PlanCards from './PlanCards';
 import SpecialCard from "./SpecialCard";
 // import SpecialCardImg from "./special-card-img.png";
 import './selectPlan.css';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+// import Slider from 'react-slick';
+// import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick-theme.css';
 
 const SelectPlan = ( {onNext} ) => {
       

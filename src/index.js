@@ -32,7 +32,6 @@ const App = () => {
 
   const handlePlanStats = (selectedPlan) => {
     setSelectedPlanTitle(selectedPlan.title);
-    setSelectedOption(selectedOption);
     handleNextStep();
   }
 

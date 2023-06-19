@@ -184,6 +184,7 @@ const Password = ( {onNext} ) => {
                     </ul>
                 </div>
             </div>
+            
             <div className="confirm-btn">
                 <button 
                 className="verify-btn"

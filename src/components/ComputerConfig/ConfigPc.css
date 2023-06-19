@@ -2,373 +2,376 @@
 
 .config-pc-container {
     padding: 0 65px;
-}
 
-.name-password-container {
-    display: flex;
-    flex-direction: row;
-}
+        & .name-password-container {
+            display: flex;
+            flex-direction: row;
 
-.name-password-input-fields {
-    width: 50%;
-    gap: 15px;
-    display: flex;
-    flex-direction: column;
-    margin-right: 50px;
-}
+            & .name-password-input-fields {
+                width: 50%;
+                gap: 15px;
+                display: flex;
+                flex-direction: column;
+                margin-right: 50px;
 
-.notice {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background: #F8F9FA;
-    padding: 10px 16px;
-    border-left: 2px solid #FFA500;
-}
+                & .form-row-colfull {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
 
-.title {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 120%;
-    color: #212529;
-}
+                    & .label {
+                        font-size: 14px;
+                        line-height: 1.2;
+                        color: #495057;
+                        font-weight: 600;
+                    }
 
-.content {
-    padding-top: 10px;
-    font-size: 15px;
-    line-height: 140%;
-}
+                    & .input {
+                        margin-bottom: 0;
+                        margin-top: 5px;
+                        border-color: #e9ecef;
+                        box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+                        border-radius: 4px 0 0 4px;
+                        padding: 14px;
+                        font-size: 15px;
+                        line-height: 1.2;
+                        height: 15px;
+                    }
 
-.name-password-input-fields .form-row-colfull {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
+                    &.col2 {
+                        margin-top: 20px;
 
-.name-password-input-fields .form-row-colfull .label {
-    font-size: 14px;
-    line-height: 1.2;
-    color: #495057;
-    font-weight: 600;
-}
+                        & .copy-button {
+                            background: #fff;
+                            border-radius: 0 4px 4px 0;
+                            padding: 12px 14px;
+                            font-size: 14px;
+                            cursor: pointer;
+                            color: #101828;
+                            font-weight: 600;
+                            border: 1px solid #e9ecef;
+                            margin-right: 20px;
 
-.name-password-input-fields .form-row-colfull .input {
-    margin-bottom: 0;
-    margin-top: 5px;
-    border-color: #e9ecef;
-    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-    border-radius: 4px 0 0 4px;
-    padding: 14px;
-    font-size: 15px;
-    line-height: 1.2;
-    height: 15px;
-}
+                            & svg {
+                                margin-right: 10px;
+                            }
+                        }
+                        
+                        & .regenerate-pass {
+                            background: #E6ECF3;
+                            border: 1px solid #E6ECF3;
+                            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+                            border-radius: 4px;
+                            padding: 11px 16px;
+                            font-weight: 600;
+                            font-size: 14px;
+                            line-height: 120%;
+                            color: #003875;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            cursor: pointer;
 
-.form-row-colfull.col2 {
-    margin-top: 20px;
-}
+                            & svg {
+                                margin-right: 5px;
+                            }
+                        }
 
-.copy-button {
-    background: #fff;
-    border-radius: 0 4px 4px 0;
-    padding: 12px 14px;
-    font-size: 14px;
-    cursor: pointer;
-    color: #101828;
-    font-weight: 600;
-    border: 1px solid #e9ecef;
-    margin-right: 20px;
-}
+                        & .password-container {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: flex-end;
+                        }
+                    }
 
-.regenerate-pass {
-    background: #E6ECF3;
-    border: 1px solid #E6ECF3;
-    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-    border-radius: 4px;
-    padding: 11px 16px;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 120%;
-    color: #003875;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
 
-.form-row-colfull.col2 .password-container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-}
+                }
+            }
 
-.form-row-colfull.col2 .regenerate-pass svg {
-    margin-right: 5px;
-}
+            & .notice {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                background: #F8F9FA;
+                padding: 10px 16px;
+                border-left: 2px solid #FFA500;
 
-.form-row-colfull.col2 .copy-button svg {
-    margin-right: 10px;
-}
+                & .title {
+                    font-weight: 600;
+                    font-size: 16px;
+                    line-height: 120%;
+                    color: #212529;
+                }
+                
+                & .content {
+                    padding-top: 10px;
+                    font-size: 15px;
+                    line-height: 140%;
+                }
+            }
+        }
 
-.config-pc-container .main-title {
-    margin-top: 50px;
-    font-weight: 600;
-    font-size: 19px;
-    line-height: 120%;
-    color: #212529;
-}
+        & .main-title {
+            margin-top: 50px;
+            font-weight: 600;
+            font-size: 19px;
+            line-height: 120%;
+            color: #212529;
 
-.config-pc-container .main-title .sub-topic {
-    font-size: 20px;
-    line-height: 120%;
-    color: #ADB5BD;
-}
+            & .sub-topic {
+                font-size: 20px;
+                line-height: 120%;
+                color: #ADB5BD;
+            }
+        }
 
-/* Config Cards */
+        & .windows-cards-container {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+        }
 
-.windows-cards-container {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-}
+        & .networking-container {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
 
-.config-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    border: 2px solid #E9ECEF;
-    border-radius: 10px;
-    width: 15%;
-    position: relative;
-    min-height: 220px;
-    cursor: pointer;
-}
+            & .config-card {
+                & .sub-title {
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 120%;
+                    color: #00438B;
+                    text-align: center;
+                    margin-top: 5px;
+                }
+            }
+        }
 
-.config-card.selected {
-    border: 2px solid #003373;
-}
+        & .backups-container {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
 
-.networking-container {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-}
+            & .config-card {
+                & .sub-title {
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 120%;
+                    color: #00438B;
+                    text-align: center;
+                    margin-top: 5px;
+                }
+            } 
+        }
 
-.config-card .logo {
-    margin-top: 20px;
-}
+        & .antivirus-container {
+            display: flex;
+            align-items: center;
+            border: 2px solid #E9ECEF;
+            padding: 16px;
+            border-radius: 8px;
+            width: 40%;
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 120%;
+            color: #212529;
+            justify-content: flex-start;
+            margin-bottom: 50px;
 
-.config-card .main-title {
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 120%;
-    text-align: center;
-    color: #212529;
-    margin-top: 15px;
-    padding-bottom: 0;
-}
+            &.selected {
+                border: 2px solid #003373;
+            }
 
-.config-card .sub-title {
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 120%;
-    text-align: center;
-    color: #212529;
-}
+            & .anitivirus-logo {
+                margin-left: 25px;
+            }
 
-.config-card .content {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 120%;
-    text-align: center;
-    color: #495057;
-}
+            & .checkbox-label {
+                & input {
+                    display: block !important;
+                }
+            }
+            
+        }
 
-.config-card .checkbox-icon {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-}
+        & .action-btn {
+            display: flex;
+            justify-content: center;
+            padding: 30px 0;
 
-.config-card .checkbox-icon.selected {
-    display: none;
-}
+            & .back-btn {
+                width: 130px;
+                height: 50px;
+                margin: 0;
+                font-size: 18px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                color: #adb5bd;
+                background: none;
+            }
 
-.config-card.selected .checkbox-icon.selected {
-    display: block;
-}
+            & .verify-btn {
+                width: 150px;
+                height: 50px;
+                margin: 0;
+                font-size: 18px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                color: white;
+                background: #00438b;
+                margin-left: 25px;
+            }
+        }
 
-.config-card.selected .checkbox-icon {
-    display: none;
-}
+        & .line-with-text {
+            display: flex;
+            align-items: center;
+            margin: -10px 0 25px 0;
+            width: 40%;
 
-.networking-container .config-card .sub-title {
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 120%;
-    color: #00438B;
-    text-align: center;
-    margin-top: 5px;
-}
+            & .line {
+                flex: 1;
+                height: 1px;
+                background-color: #00438B;
+            }
 
-.backups-container {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-}
+            & .text {
+                margin: 0 10px;
+                font-family: 'Helvetica Neue';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 120%;
+                color: #00438B;
+            }
+        }
 
-.backups-container .config-card .sub-title {
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 120%;
-    color: #00438B;
-    text-align: center;
-    margin-top: 5px;
-}
+        & .enable-businessplan-infobox {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: #D1E9FF;
+            border-radius: 6px;
+            width: 75%;
+            justify-content: space-between;
+            margin-bottom: 20px;
 
-.recommended-box {
-    position: absolute;
-    left: 0;
-    top: -19px;
-    background: #00438B;
-    border-radius: 10px 10px 0px 0px;
-    padding: 3px 10px 0px;
-    color: white;
-    font-size: 14px;
-    line-height: 120%;
-}
+            & .content-container {
+                width: 70%;
+                & .main-text {
+                    font-family: 'Roboto';
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 16px;
+                    color: #121417;
+                }
 
-.antivirus-container {
-    display: flex;
-    align-items: center;
-    border: 2px solid #E9ECEF;
-    padding: 16px;
-    border-radius: 8px;
-    width: 25%;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 120%;
-    color: #212529;
-    justify-content: flex-start;
-    margin-bottom: 50px;
-}
+                & .sub-text {
+                    font-family: 'Roboto';
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 20px;
+                    color: #121417;
+                    padding-top: 10px;
+                }
+            }
 
-.antivirus-container .anitivirus-logo {
-    margin-left: 25px;
-}
+            & .button {
+                display: flex;
+                gap: 7px;
+                padding: 8px 16px;
+                background: #00438B;
+                border: 1px solid #00438B;
+                box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+                border-radius: 4px;
+                color: white;
+                align-items: center;
+                justify-content: space-between;
+                cursor: pointer;
+            }
+        }
 
-.antivirus-container.selected {
-    border: 2px solid #003373;
-}
+        & .config-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border: 2px solid #E9ECEF;
+            border-radius: 10px;
+            width: 15%;
+            position: relative;
+            min-height: 220px;
+            cursor: pointer;
 
-.config-pc-container .action-btn {
-    display: flex;
-    justify-content: center;
-}
+            &.selected {
+                border: 2px solid #003373;
+                & .checkbox-icon.selected {
+                    display: block;
+                }
 
-.config-pc-container .action-btn .back-btn {
-    width: 130px;
-    height: 50px;
-    margin: 0;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #adb5bd;
-    background: none;
-}
+                & .checkbox-icon {
+                    display: none;
+                }
+            }
 
-.config-pc-container .action-btn .verify-btn {
-    width: 150px;
-    height: 50px;
-    margin: 0;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-    background: #00438b;
-    margin-left: 25px;
-}
+            & .logo {
+                margin-top: 20px;
+            }
 
-.line-with-text {
-    display: flex;
-    align-items: center;
-    margin: -10px 0 25px 0;
-    width: 40%;
-}
+            & .main-title {
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 120%;
+                text-align: center;
+                color: #212529;
+                margin-top: 15px;
+                padding-bottom: 0;
+            }
 
-.line {
-    flex: 1;
-    height: 1px;
-    background-color: #00438B;
-}
+            & .sub-title {
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 120%;
+                text-align: center;
+                color: #212529;
+            }
 
-.text {
-    margin: 0 10px;
-    font-family: 'Helvetica Neue';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 120%;
-    color: #00438B;
-}
+            & .content {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 120%;
+                text-align: center;
+                color: #495057;
+                padding-top: 5px;
+            }
 
-.config-pc-container .action-btn {
-    padding: 30px 0;
-}
+            & .checkbox-icon {
+                position: absolute;
+                right: 15px;
+                top: 15px;
 
-.enable-businessplan-infobox {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    background: #D1E9FF;
-    border-radius: 6px;
-    width: 57%;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
+                &.selected {
+                    display: none;
+                }
+            }
 
-.content-container {
-    width: 70%;
-}
-
-.content-container .main-text {
-    font-family: 'Roboto';
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 16px;
-    color: #121417;
-}
-
-.content-container .sub-text {
-    font-family: 'Roboto';
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
-    color: #121417;
-    padding-top: 10px;
-}
-
-.enable-businessplan-infobox .button {
-    display: flex;
-    gap: 7px;
-    padding: 8px 16px;
-    background: #00438B;
-    border: 1px solid #00438B;
-    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-    border-radius: 4px;
-    color: white;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-}
-
-.antivirus-container .checkbox-label input {
-    display: block !important;
+            & .recommended-box {
+                position: absolute;
+                left: 0;
+                top: -19px;
+                background: #00438B;
+                border-radius: 10px 10px 0px 0px;
+                padding: 3px 10px 0px;
+                color: white;
+                font-size: 14px;
+                line-height: 120%;
+            }
+        }
 }
