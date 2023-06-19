@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import ConfigCards from './configCards';
 import './ConfigPc.css';
 
-const ConfigPcTeam = () => {
+const ConfigPcTeam = ( {onNext} ) => {
 
     const inputRef = useRef(null);
     const [password, setPassword] = useState('')
@@ -63,6 +63,10 @@ const ConfigPcTeam = () => {
             return newSelectedCardIndex;
         });
     };
+
+    const configVerification = () => {
+        onNext();
+    }
 
     const configcards = [
         {
@@ -410,7 +414,9 @@ const ConfigPcTeam = () => {
                 <button className="back-btn">
                     Previous Step
                 </button>
-                <button className="verify-btn">
+                <button 
+                className="verify-btn"
+                onClick={configVerification}>
                     Next
                 </button>
             </div>

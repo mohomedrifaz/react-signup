@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offervalue, isPopular, functions, isBackup, isSelected, onClick }) => {
 
-    // const [isSelected, setIsSelected] = useState(false);
     const [isMonthlySelected, setIsMonthlySelected] = useState(false);
     const [isAnnualSelected, setIsAnnualSelected] = useState(false);
+
 
     const [isHovered, setIsHovered] = useState(false);
 
@@ -12,8 +12,8 @@ const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offerval
     const yearlyPrice = parseInt(yearlyprice.replace('$', ''), 10);
 
     const handleCardSelection = () => {
-        onClick(); // Call the onClick function passed from the parent component
-        setIsMonthlySelected(isSelected); // Update the monthly selection based on the isSelected prop
+        onClick(); 
+        setIsMonthlySelected(isSelected);
         setIsAnnualSelected(false);
     };
 

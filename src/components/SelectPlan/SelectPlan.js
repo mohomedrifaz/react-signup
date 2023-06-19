@@ -7,7 +7,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const SelectPlan = () => {
+const SelectPlan = ( {onNext} ) => {
       
     const pricingPlans = [
         {
@@ -134,12 +134,22 @@ const SelectPlan = () => {
         individualCloud : null
     });
 
+    const [selectedPlan, setSelectedPlan] = useState(null);
+
     const handleCardSelection = (index, category) => {
         setSelectedCardIndex((prevSelectedCardIndex) => {
             const newSelectedCardIndex = {...prevSelectedCardIndex};
             newSelectedCardIndex[category] = index;
             return newSelectedCardIndex;
         });
+
+        const selectedPlan = category === "teamCloud" ? pricingPlans[index] : pricingPlansIndividual[index];
+        setSelectedPlan(selectedPlan)
+    
+    }
+
+    const planVerification = () => {
+        onNext(selectedPlan);
     }
 
     return (
@@ -228,7 +238,8 @@ const SelectPlan = () => {
                         <PlanCards key={index} title={plan.title} monthlyprice={plan.monthlyprice} yearlyprice={plan.yearlyprice}
                             features={plan.features} offervalue={plan.offervalue} users={plan.users} isPopular={plan.isPopular} isBackup={isBackup}
                             isSelected={index === selectedCardIndex.teamCloud}
-                            onClick={ () => handleCardSelection(index, "teamCloud")} />
+                            onClick={ () => handleCardSelection(index, "teamCloud")} 
+                             />
                     ))}
                 </div>
                 }
@@ -237,7 +248,8 @@ const SelectPlan = () => {
                         <PlanCards key={index} title={plan.title} monthlyprice={plan.monthlyprice} yearlyprice={plan.yearlyprice}
                             features={plan.features} offervalue={plan.offervalue} users={plan.users} isPopular={plan.isPopular} functions={plan.functions}
                             isSelected={index === selectedCardIndex.teamIndividual}
-                            onClick={ () => handleCardSelection(index, "teamIndividual")} />
+                            onClick={ () => handleCardSelection(index, "teamIndividual")} 
+                           />
                     ))}
                     <SpecialCard
                         title="The Enterprise"
@@ -255,7 +267,9 @@ const SelectPlan = () => {
                 <button className="back-btn">
                     Previous Step
                 </button>
-                <button className="verify-btn">
+                <button 
+                className="verify-btn"
+                onClick={planVerification}>
                     Next
                 </button>
             </div>

@@ -109,3 +109,7 @@
     color: #B42318;
     display: none;
 }
+
+.userInput .single-input.filled.invalid-input{
+    outline: 1px solid #ff0000;
+}

@@ -3,7 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import './changeEmail.css';
 
-const ChangeEmail = () => {
+const ChangeEmail = ( {onNext} ) => {
+
+    const emailChangeVerification = () => {
+        onNext();
+    }
 
     return (
         <div className="change-email-container">
@@ -24,7 +28,9 @@ const ChangeEmail = () => {
                 <button className="back-btn">
                     Back
                 </button>
-                <button className="verify-btn">
+                <button 
+                className="verify-btn"
+                onClick={emailChangeVerification}>
                     Continue
                 </button>
             </div>

@@ -1,0 +1,29 @@
+.action-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.action-btn .back-btn {
+    width: 130px;
+    height: 50px;
+    margin: 0;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #adb5bd;
+    background: none;
+}
+
+.action-btn .verify-btn {
+    width: 150px;
+    height: 50px;
+    margin: 0;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background: #00438b;
+    margin-left: 25px;
+}

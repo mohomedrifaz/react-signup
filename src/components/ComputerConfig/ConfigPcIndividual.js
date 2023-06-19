@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import ConfigCards from './configCards';
 import './ConfigPc.css';
 
-const ConfigPcIndividual = () => {
+const ConfigPcIndividual = ({ onNext }) => {
 
     const inputRef = useRef(null);
     const [password, setPassword] = useState('')
@@ -53,6 +53,8 @@ const ConfigPcIndividual = () => {
         backups: null,
     });
 
+    const [selectedPlan, setSelectedPlan] = useState(null);
+
     const handleCardSelection = (index, category) => {
         setSelectedCardIndex((prevSelectedCardIndex) => {
             const newSelectedCardIndex = { ...prevSelectedCardIndex };
@@ -63,6 +65,50 @@ const ConfigPcIndividual = () => {
             }
             return newSelectedCardIndex;
         });
+
+        const selectedPlan = {
+            category,
+            index,
+            title: null
+        };
+
+        switch (category) {
+            case 'windows':
+                selectedPlan.title = configcards[index].mainTitle;
+                break;
+            case 'networking':
+                selectedPlan.title = networkcards[index].mainTitle;
+                break;
+            case 'backups':
+                selectedPlan.title = backups[index].mainTitle;
+                break;
+            default:
+                break;
+        }
+
+        setSelectedPlan(selectedPlan);
+
+        console.log("Selected Cards", selectedPlan);
+    };
+
+    const configVerification = () => {
+        const selectedTitles = {
+            windows: null,
+            networking: null,
+            backups: null,
+        };
+
+        if (selectedCardIndex.windows !== null) {
+            selectedTitles.windows = configcards[selectedCardIndex.windows].mainTitle;
+        }
+        if (selectedCardIndex.networking !== null) {
+            selectedTitles.networking = networkcards[selectedCardIndex.networking].mainTitle;
+        }
+        if (selectedCardIndex.backups !== null) {
+            selectedTitles.backups = backups[selectedCardIndex.backups].mainTitle;
+        }
+
+        onNext(selectedTitles);
     };
 
     const configcards = [
@@ -308,10 +354,10 @@ const ConfigPcIndividual = () => {
 
             <div className="windows-cards-container">
                 {configcards.map((key, index) => (
-                    <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle} 
-                    logoSelected={key.logoSelected} 
-                    isSelected={index === selectedCardIndex.windows}
-                    onClick={() => handleCardSelection(index, "windows")}/>
+                    <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle}
+                        logoSelected={key.logoSelected}
+                        isSelected={index === selectedCardIndex.windows}
+                        onClick={() => handleCardSelection(index, "windows")} />
                 ))}
             </div>
 
@@ -337,7 +383,7 @@ const ConfigPcIndividual = () => {
                     <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle} subTitle={key.subTitle}
                         content={key.content} logoSelected={key.logoSelected}
                         isSelected={index === selectedCardIndex.backups}
-                        onClick={() => handleCardSelection(index, "backups")}  />
+                        onClick={() => handleCardSelection(index, "backups")} />
                 ))}
             </div>
 
@@ -389,7 +435,9 @@ const ConfigPcIndividual = () => {
                 <button className="back-btn">
                     Previous Step
                 </button>
-                <button className="verify-btn">
+                <button
+                    className="verify-btn"
+                    onClick={configVerification}>
                     Next
                 </button>
             </div>

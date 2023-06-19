@@ -6,7 +6,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import './password.css';
 
-const Password = () => {
+const Password = ( {onNext} ) => {
 
     const [password, setPassword] = useState("");
     const [repassword, setRePassword] = useState("");
@@ -40,6 +40,14 @@ const Password = () => {
     const hasNumber = /\d/.test(password);
 
     const isPasswordValid = hasMinLength && hasSpecialChar && hasLowercase && hasUppercase && hasNumber;
+
+    const passwordVerification = () => {
+        if (isPasswordValid && password === repassword) {
+            onNext();
+        } else {
+            console.log('Password Verification Failed')
+        }
+    }
 
     return (
         <div className="password choose-password-container">
@@ -177,7 +185,9 @@ const Password = () => {
                 </div>
             </div>
             <div className="confirm-btn">
-                <button className="verify-btn">
+                <button 
+                className="verify-btn"
+                onClick={passwordVerification}>
                     Next
                 </button>
             </div>
