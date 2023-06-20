@@ -1,5 +1,30 @@
 /* Change Email */
 
+@define-mixin verifyBtn {
+    width: 150px;
+    height: 50px;
+    margin: 0px auto 0px auto;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background: var(--buttonBlue);
+    margin-left: 25px;
+}
+
+@define-mixin PrevBtn {
+    width: 75px;
+    height: 50px;
+    margin: 0px auto 0px auto;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--backButton);
+    background: none;
+}
+
 .change-email-container {
     padding-left: 65px;
     
@@ -29,6 +54,7 @@
             line-height: 1.2;
             height: 15px;
             font-weight: 600;
+            border: 1px solid #e9ecef;
         }
 
         & .email-verification-note {
@@ -53,29 +79,11 @@
         padding-top: 30px;
 
         & .verify-btn {
-            width: 150px;
-            height: 50px;
-            margin: 0px auto 0px auto;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            color: white;
-            background: #00438b;
-            margin-left: 25px;
-        
+            @mixin verifyBtn;
         }
 
         & .back-btn {
-            width: 75px;
-            height: 50px;
-            margin: 0px auto 0px auto;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            color: #adb5bd;
-            background: none;
+            @mixin PrevBtn
         }
 
     }

@@ -242,6 +242,13 @@
             }
 
             & .list-content {
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 150%;
+                letter-spacing: -0.011em;
+                color: #495057;
                 & ul {
                     list-style: none;
                     padding-left: 12px;

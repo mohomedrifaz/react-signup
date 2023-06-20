@@ -1,110 +1,122 @@
 /* Sidebar Content CSS */
 
-.sidebar .sidebar-container {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    flex-wrap: wrap;
-    width: 100%;
+.sidebar {
+    &.sidebar-container {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    & .single-nav {
+        padding: 12px 0;
+        margin: 20px 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        & .nav-bullet {
+            height: 35px;
+            width: 35px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            text-align: center;
+            color: #abb1b6;
+            margin-right: 30px;
+        }
+
+        & .nav-bullet.active {
+            height: 35px;
+            width: 35px;
+            border-radius: 50%;
+            background-color: #00438b;
+            text-align: center;
+            color: white;
+            margin-right: 30px;
+        }
+
+        & .nav-topic {
+            font-size: 18px;
+            color: black;
+            font-weight: 600;
+            &.active {
+                color: #00438b;
+            }
+        }
+
+        & .nav-subtopic {
+            font-size: 14px;
+            margin-top: 3px;
+            color: #c0c7cd;
+        }
+
+        & .nav-subtopic-done {
+            font-size: 14px;
+            margin-top: 3px;
+            color: #039855;
+        }
+
+        & .nav-subtopic-complete {
+            font-size: 14px;
+            margin-top: 3px;
+            color: #c0c7cd;
+        }
+
+        & .nav-bullet {
+            & p {
+                margin: 10px;
+            }
+
+            & svg {
+                margin: -4px;
+            }
+
+            &.active {
+                display: none;
+            }
+        }
+        
+        &.active {
+            & .nav-bullet {
+                display: none;
+
+                &.active {
+                    display: block;
+                }
+            }
+
+            & .nav-topic {
+                color: #00438b;
+            }
+
+            & .nav-subtopic {
+                display: none;
+
+                &.current {
+                    display: block;
+                }
+            }
+        }
+
+        &.completed{
+            & .nav-bullet {
+                display: none;
+            }
+
+            & .nav-subtopic {
+                display: none;
+            }
+        }
+        
+        & .nav-bullet-completed {
+            margin-right: 27px;
+
+            & p {
+                margin: 0;
+            }
+        }
+    }
 }
 
-.sidebar .single-nav {
-    padding: 12px 0;
-    margin: 20px 0;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
 
-.sidebar .nav-bullet {
-    height: 35px;
-    width: 35px;
-    border-radius: 50%;
-    background-color: #e9ecef;
-    text-align: center;
-    color: #abb1b6;
-    margin-right: 30px;
-}
-
-.sidebar .nav-bullet.active {
-    height: 35px;
-    width: 35px;
-    border-radius: 50%;
-    background-color: #00438b;
-    text-align: center;
-    color: white;
-    margin-right: 30px;
-}
-
-.sidebar .nav-topic {
-    font-size: 18px;
-    color: black;
-    font-weight: 600;
-}
-
-.sidebar .nav-topic.active {
-    color: #00438b;
-}
-
-.sidebar .nav-subtopic {
-    font-size: 14px;
-    margin-top: 3px;
-    color: #c0c7cd;
-}
-
-.sidebar .nav-subtopic-done {
-    font-size: 14px;
-    margin-top: 3px;
-    color: #039855;
-}
-
-.sidebar .nav-subtopic-complete {
-    font-size: 14px;
-    margin-top: 3px;
-    color: #c0c7cd;
-}
-
-.sidebar .nav-bullet p {
-    margin: 10px;
-}
-
-.sidebar .nav-bullet svg {
-    margin: -4px;
-}
-
-.sidebar .single-nav .nav-bullet.active {
-    display: none;
-}
-
-.sidebar .single-nav.active .nav-bullet,
-.sidebar .single-nav.completed .nav-bullet {
-    display: none;
-}
-
-.sidebar .single-nav.active .nav-bullet.active {
-    display: block;
-}
-
-.sidebar .single-nav.active .nav-topic {
-    color: #00438b;
-}
-
-.sidebar .nav-bullet-completed {
-    margin-right: 27px;
-}
-
-.sidebar .nav-bullet-completed p{
-    margin: 0;
-}
-
-.sidebar .single-nav.completed .nav-subtopic {
-    display: none;
-}
-
-.sidebar .single-nav.active .nav-subtopic {
-    display: none;
-}
-
-.sidebar .single-nav.active .nav-subtopic.current {
-    display: block;
-}

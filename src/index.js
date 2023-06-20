@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import './styles/styles.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SetupContainer from './components/SetupContainer/SetupContainer';
-import './styles/styles.css';
 import Sidebar from './components/Sidebar/Sidebar';
 import Password from './components/Password/Password';
 import ChangeEmail from './components/changeEmail/ChangeEmail';
