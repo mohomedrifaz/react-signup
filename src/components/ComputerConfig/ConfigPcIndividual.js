@@ -296,7 +296,7 @@ const ConfigPcIndividual = ({ onNext }) => {
         <div className="config-pc-container">
 
             <div className="main-title">
-                <h2> Your Windows Computer </h2>
+                <h3> Your Windows Computer </h3>
             </div>
 
             <div className="name-password-container">

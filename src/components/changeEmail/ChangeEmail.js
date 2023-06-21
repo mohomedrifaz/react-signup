@@ -12,7 +12,7 @@ const ChangeEmail = ( {onNext} ) => {
     return (
         <div className="change-email-container">
             <div className="main-title">
-                <h2> Change Email Address </h2>
+                <h3> Change Email Address </h3>
             </div>
 
             <div className="form-row-colfull form-row">

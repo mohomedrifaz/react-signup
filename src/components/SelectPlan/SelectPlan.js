@@ -3,9 +3,9 @@ import PlanCards from './PlanCards';
 import SpecialCard from "./SpecialCard";
 // import SpecialCardImg from "./special-card-img.png";
 import './selectPlan.css';
-// import Slider from 'react-slick';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 const SelectPlan = ( {onNext} ) => {
       
@@ -152,6 +152,12 @@ const SelectPlan = ( {onNext} ) => {
         onNext(selectedPlan);
     }
 
+    const sliderSettings = {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        infinite: true,
+    }
+
     return (
         <div
             className={`select-plan-container ${showOverlay ? 'overlayed' : ''}`}
@@ -159,7 +165,7 @@ const SelectPlan = ( {onNext} ) => {
         >
 
             <div className="main-title">
-                <h2> Compare our plans and find yours </h2>
+                <h3> Compare our plans and find yours </h3>
             </div>
 
             <div className="tab-container">
@@ -234,13 +240,13 @@ const SelectPlan = ( {onNext} ) => {
 
             <div className="pricing-cards" >
                 {activeTab === 1 && <div className="team-cloud-pricing-container">
-                    {pricingPlans.map((plan, index) => (
-                        <PlanCards key={index} title={plan.title} monthlyprice={plan.monthlyprice} yearlyprice={plan.yearlyprice}
-                            features={plan.features} offervalue={plan.offervalue} users={plan.users} isPopular={plan.isPopular} isBackup={isBackup}
-                            isSelected={index === selectedCardIndex.teamCloud}
-                            onClick={ () => handleCardSelection(index, "teamCloud")} 
-                             />
-                    ))}
+                        {pricingPlans.map((plan, index) => (
+                            <PlanCards key={index} title={plan.title} monthlyprice={plan.monthlyprice} yearlyprice={plan.yearlyprice}
+                                features={plan.features} offervalue={plan.offervalue} users={plan.users} isPopular={plan.isPopular} isBackup={isBackup}
+                                isSelected={index === selectedCardIndex.teamCloud}
+                                onClick={ () => handleCardSelection(index, "teamCloud")} 
+                                />
+                        ))}
                 </div>
                 }
                 {activeTab === 2 && <div className="team-individual-pricing-container">

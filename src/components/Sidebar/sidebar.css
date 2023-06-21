@@ -30,18 +30,18 @@
             height: 35px;
             width: 35px;
             border-radius: 50%;
-            background-color: #00438b;
+            background-color: var(--primary-color);
             text-align: center;
             color: white;
             margin-right: 30px;
         }
 
         & .nav-topic {
-            font-size: 18px;
+            font-size: var(--font-sm);
             color: black;
-            font-weight: 600;
+            font-weight: var(--font-semi-bold);
             &.active {
-                color: #00438b;
+                color: var(--primary-color);
             }
         }
 
@@ -87,7 +87,7 @@
             }
 
             & .nav-topic {
-                color: #00438b;
+                color: var(--primary-color);
             }
 
             & .nav-subtopic {

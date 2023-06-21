@@ -17,7 +17,7 @@ const PaymentGateway = () => {
             <div className="form-container">
 
                 <div className="main-title">
-                    <h2> Enter payment info </h2>
+                    <h3> Enter payment info </h3>
                     <img src= {paymentImage} /> 
                 </div>
 

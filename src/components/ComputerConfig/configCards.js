@@ -4,7 +4,7 @@ const configCards = ({ logo, mainTitle, subTitle, content, logoSelected, recomme
 
     const handleCardSelection = () => {
         onClick();
-      };
+    };
     
 
     return (

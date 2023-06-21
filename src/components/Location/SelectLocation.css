@@ -1,29 +1,111 @@
-.action-btn {
-    display: flex;
-    justify-content: center;
+.data-centers-container {
+    padding-left: 65px;
+    width: 90%;
+
+    & .country-select-container {
+        display: flex;
+        gap: 25px;
+        padding-bottom: 50px;
+
+        & .country-select {
+            display: flex;
+            flex-direction: row;
+            padding: 10px;
+            border: 2px solid #E9ECEF;
+            border-radius: 10px;
+            width: 33%;
+            position: relative;
+            cursor: pointer;
+            align-items: center;
+            gap: 15px;
+            justify-content: space-between;
+
+            & .section-1 {
+                display: flex;
+                align-items: center;
+                width: 80%;
+                gap: 10px;
+            }
+
+            & .section-2 {
+                display: flex;
+                align-items: center;
+                width: 20%;
+                gap: 15px;
+                justify-content: flex-end;
+            }
+
+            & .checkbox-icon.selected {
+                display: none;
+            }
+
+            & .country-data {
+                width: 80%;
+
+                & .city {
+                    font-family:var(--font-family-secondary);
+                    font-style: normal;
+                    font-weight: var(--font-medium);
+                    font-size: var(--font-xs);
+                    line-height: 120%;
+                    color: #343A40;
+                }
+                & .country {
+                    font-family: var(--font-family-secondary);
+                    font-style: normal;
+                    font-weight: var(--font-normal;);
+                    font-size: 14px;
+                    line-height: 120%;
+                    color: #6C757D;
+                    padding-top: 5px;
+                }
+            }
+
+            &.selected {
+                border: 2px solid var(--primary-color);
+
+                & .select-checkbox {
+                    & .checkbox-icon.selected {
+                        display: block;
+                    }
+    
+                    & .checkbox-icon {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    & .action-btn {
+        display: flex;
+        justify-content: center;
+
+        & .back-btn {
+            width: 130px;
+            height: 50px;
+            margin: 0;
+            font-size: var(--font-sm);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #adb5bd;
+            background: none;
+        }
+
+        & .verify-btn {
+            width: 150px;
+            height: 50px;
+            margin: 0;
+            font-size: var(--font-sm);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            background: var(--primary-color);
+            margin-left: 25px;
+        }
+    }
 }
 
-.action-btn .back-btn {
-    width: 130px;
-    height: 50px;
-    margin: 0;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #adb5bd;
-    background: none;
-}
 
-.action-btn .verify-btn {
-    width: 150px;
-    height: 50px;
-    margin: 0;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-    background: #00438b;
-    margin-left: 25px;
-}

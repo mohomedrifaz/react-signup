@@ -35,7 +35,9 @@ const SetupContainer = ({ onNext }) => {
 
     return (
         <div className="content-title">
-            <h2>Verify Your Email Address</h2>
+            <div className="main-title">
+                <h3> Verify Your email address </h3>
+            </div>
             <div className="verficiation-content">
                 <p>A verification code has been sent to </p>
                 <p className="email-address-verification">sample@gmail.com</p>

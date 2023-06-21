@@ -8,20 +8,20 @@
 
         & p {
             margin: 5px 0;
-            color: #495057;
+            color: var(--neutral-color);
         }
 
         & .email-address-verification {
-            font-weight: 700;
-            font-size: 18px;
+            font-weight: var(--font-bold);
+            font-size: var(--font-sm);
             color: #212529;
         }
     }
 
     & .verification-instructions {
         /* margin-top: 25px; */
-        font-size: 16px;
-        color: #495057;
+        font-size: var(--font-xs);
+        color: var(--neutral-color);
         line-height: 120%;
         display: -webkit-box;
         -webkit-line-clamp: 4;
@@ -44,14 +44,14 @@
                 text-align: center;
                 font-size: 3rem;
                 background: #ffffff;
-                color: #00438b;
+                color: var(--primary-color);
 
                 &:focus-visible {
-                    outline: 1px solid #00438b;
+                    outline: 1px solid var(--primary-color);
                 }
 
                 &.filled {
-                    outline: 1px solid #00438b;
+                    outline: 1px solid var(--primary-color);
 
                     &.invalid-input{
                         outline: 1px solid #ff0000;
@@ -68,19 +68,19 @@
             width: 150px;
             height: 50px;
             margin: 20px auto 0px auto;
-            font-size: 18px;
+            font-size: var(--font-sm);
             border: none;
             border-radius: 5px;
             cursor: pointer;
             color: white;
-            background: #00438b;
+            background: var(--primary-color);
         }
 
         & .invalid-verification-box{
             &.hidden{
-                font-family: 'Roboto';
+                font-family:var(--font-family-secondary) ;
                 font-style: normal;
-                font-weight: 400;
+                font-weight: var(--font-normal);
                 font-size: 14px;
                 color: #B42318;
                 display: none;
@@ -105,8 +105,8 @@
 
         & .resend-code,
         & .change-email {
-            color: #00438b;
-            font-weight: 600;
+            color: var(--primary-color);
+            font-weight: var(--font-semi-bold);
             cursor: pointer;
         }
     }

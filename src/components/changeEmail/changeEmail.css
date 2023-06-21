@@ -1,27 +1,27 @@
 /* Change Email */
 
-@define-mixin verifyBtn {
+@define-mixin verify-btn {
     width: 150px;
     height: 50px;
     margin: 0px auto 0px auto;
-    font-size: 18px;
+    font-size: var(--font-sm);
     border: none;
     border-radius: 5px;
     cursor: pointer;
     color: white;
-    background: var(--buttonBlue);
+    background: var(--primary-color);
     margin-left: 25px;
 }
 
-@define-mixin PrevBtn {
+@define-mixin prev-btn {
     width: 75px;
     height: 50px;
     margin: 0px auto 0px auto;
-    font-size: 18px;
+    font-size: var(--font-sm);
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    color: var(--backButton);
+    color: var(--back-button);
     background: none;
 }
 
@@ -36,8 +36,8 @@
         & .label {
             font-size: 14px;
             line-height: 1.2;
-            color: #495057;
-            font-weight: 600;
+            color: var(--neutral-color);
+            font-weight: var(--font-semi-bold);
             padding-bottom: 20px;
         }
 
@@ -53,7 +53,7 @@
             font-size: 15px;
             line-height: 1.2;
             height: 15px;
-            font-weight: 600;
+            font-weight: var(--font-semi-bold);
             border: 1px solid #e9ecef;
         }
 
@@ -63,7 +63,7 @@
             border-radius: 0px 0px 6px 6px;
             font-size: 14px;
             line-height: 20px;
-            font-weight: 400;
+            font-weight: var(--font-normal);
             display: block;
             width: 100%;
             color: #6c757d;
@@ -79,11 +79,11 @@
         padding-top: 30px;
 
         & .verify-btn {
-            @mixin verifyBtn;
+            @mixin verify-btn;
         }
 
         & .back-btn {
-            @mixin PrevBtn
+            @mixin prev-btn;
         }
 
     }

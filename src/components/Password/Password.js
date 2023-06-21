@@ -42,17 +42,18 @@ const Password = ( {onNext} ) => {
     const isPasswordValid = hasMinLength && hasSpecialChar && hasLowercase && hasUppercase && hasNumber;
 
     const passwordVerification = () => {
-        if (isPasswordValid && password === repassword) {
-            onNext();
-        } else {
-            console.log('Password Verification Failed')
-        }
+        // if (isPasswordValid && password === repassword) {
+        //     onNext();
+        // } else {
+        //     console.log('Password Verification Failed')
+        // }
+        onNext();
     }
 
     return (
         <div className="password choose-password-container">
             <div className="main-title">
-                <h2> Choose a Password </h2>
+                <h3> Choose a Password </h3>
             </div>
 
             <div className="account-description">

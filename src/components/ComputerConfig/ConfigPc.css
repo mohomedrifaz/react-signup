@@ -22,8 +22,8 @@
                     & .label {
                         font-size: 14px;
                         line-height: 1.2;
-                        color: #495057;
-                        font-weight: 600;
+                        color: var(--neutral-color);
+                        font-weight: var(--font-semi-bold);
                     }
 
                     & .input {
@@ -48,7 +48,7 @@
                             font-size: 14px;
                             cursor: pointer;
                             color: #101828;
-                            font-weight: 600;
+                            font-weight: var(--font-semi-bold);
                             border: 1px solid #e9ecef;
                             margin-right: 20px;
 
@@ -63,7 +63,7 @@
                             box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
                             border-radius: 4px;
                             padding: 11px 16px;
-                            font-weight: 600;
+                            font-weight: var(--font-semi-bold);
                             font-size: 14px;
                             line-height: 120%;
                             color: #003875;
@@ -98,8 +98,8 @@
                 border-left: 2px solid #FFA500;
 
                 & .title {
-                    font-weight: 600;
-                    font-size: 16px;
+                    font-weight: var(--font-semi-bold);
+                    font-size: var(--font-xs);
                     line-height: 120%;
                     color: #212529;
                 }
@@ -114,13 +114,13 @@
 
         & .main-title {
             margin-top: 50px;
-            font-weight: 600;
+            font-weight: var(--font-semi-bold);
             font-size: 19px;
             line-height: 120%;
             color: #212529;
 
             & .sub-topic {
-                font-size: 20px;
+                font-size: var(--font-md);
                 line-height: 120%;
                 color: #ADB5BD;
             }
@@ -139,10 +139,10 @@
 
             & .config-card {
                 & .sub-title {
-                    font-weight: 700;
-                    font-size: 16px;
+                    font-weight: var(--font-bold);
+                    font-size: var(--font-xs);
                     line-height: 120%;
-                    color: #00438B;
+                    color: var(--primary-color);
                     text-align: center;
                     margin-top: 5px;
                 }
@@ -156,10 +156,10 @@
 
             & .config-card {
                 & .sub-title {
-                    font-weight: 700;
-                    font-size: 16px;
+                    font-weight: var(--font-bold);
+                    font-size: var(--font-xs);
                     line-height: 120%;
-                    color: #00438B;
+                    color: var(--primary-color);
                     text-align: center;
                     margin-top: 5px;
                 }
@@ -173,10 +173,10 @@
             padding: 16px;
             border-radius: 8px;
             width: 40%;
-            font-family: 'Roboto';
+            font-family:var(--font-family-secondary) ;
             font-style: normal;
-            font-weight: 500;
-            font-size: 16px;
+            font-weight: var(--font-medium);
+            font-size: var(--font-xs);
             line-height: 120%;
             color: #212529;
             justify-content: flex-start;
@@ -207,7 +207,7 @@
                 width: 130px;
                 height: 50px;
                 margin: 0;
-                font-size: 18px;
+                font-size: var(--font-sm);
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;
@@ -219,12 +219,12 @@
                 width: 150px;
                 height: 50px;
                 margin: 0;
-                font-size: 18px;
+                font-size: var(--font-sm);
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;
                 color: white;
-                background: #00438b;
+                background: var(--primary-color);
                 margin-left: 25px;
             }
         }
@@ -238,17 +238,17 @@
             & .line {
                 flex: 1;
                 height: 1px;
-                background-color: #00438B;
+                background-color: var(--primary-color);
             }
 
             & .text {
                 margin: 0 10px;
                 font-family: 'Helvetica Neue';
                 font-style: normal;
-                font-weight: 500;
-                font-size: 16px;
+                font-weight: var(--font-medium);
+                font-size: var(--font-xs);
                 line-height: 120%;
-                color: #00438B;
+                color: var(--primary-color);
             }
         }
 
@@ -265,17 +265,17 @@
             & .content-container {
                 width: 70%;
                 & .main-text {
-                    font-family: 'Roboto';
-                    font-weight: 600;
-                    font-size: 18px;
+                    font-family:var(--font-family-secondary) ;
+                    font-weight: var(--font-semi-bold);
+                    font-size: var(--font-sm);
                     line-height: 16px;
                     color: #121417;
                 }
 
                 & .sub-text {
-                    font-family: 'Roboto';
-                    font-weight: 400;
-                    font-size: 16px;
+                    font-family:var(--font-family-secondary) ;
+                    font-weight: var(--font-normal);
+                    font-size: var(--font-xs);
                     line-height: 20px;
                     color: #121417;
                     padding-top: 10px;
@@ -286,8 +286,8 @@
                 display: flex;
                 gap: 7px;
                 padding: 8px 16px;
-                background: #00438B;
-                border: 1px solid #00438B;
+                background: var(--primary-color);
+                border: 1px solid var(--primary-color);
                 box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
                 border-radius: 4px;
                 color: white;
@@ -326,8 +326,8 @@
             }
 
             & .main-title {
-                font-weight: 600;
-                font-size: 20px;
+                font-weight: var(--font-semi-bold);
+                font-size: var(--font-md);
                 line-height: 120%;
                 text-align: center;
                 color: #212529;
@@ -336,19 +336,19 @@
             }
 
             & .sub-title {
-                font-weight: 600;
-                font-size: 20px;
+                font-weight: var(--font-semi-bold);
+                font-size: var(--font-md);
                 line-height: 120%;
                 text-align: center;
                 color: #212529;
             }
 
             & .content {
-                font-weight: 400;
+                font-weight: var(--font-normal);
                 font-size: 14px;
                 line-height: 120%;
                 text-align: center;
-                color: #495057;
+                color: var(--neutral-color);
                 padding-top: 5px;
             }
 
@@ -366,7 +366,7 @@
                 position: absolute;
                 left: 0;
                 top: -19px;
-                background: #00438B;
+                background: var(--primary-color);
                 border-radius: 10px 10px 0px 0px;
                 padding: 3px 10px 0px;
                 color: white;

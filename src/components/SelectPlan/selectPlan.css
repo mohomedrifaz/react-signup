@@ -6,6 +6,15 @@
     &.overlayed {
         position: relative;
 
+        & .backups-checbox-container {
+                & .tooltip {
+                    &.overlayed {
+                        display: block;
+                        padding: 20px;
+                    }   
+                }
+            }
+
         &::before {
             content: "";
             position: fixed;
@@ -17,12 +26,7 @@
             z-index: 9999;
         }
 
-        & .backups-checkbox-container {
-            & .tooltip {
-                display: block;
-                padding: 20px;
-            }
-        }
+       
     }
 
     & .main-title {
@@ -42,8 +46,8 @@
             position: relative;
             
             &.active {
-                color: #00438b;
-                font-weight: 600;
+                color: var(--primary-color);
+                font-weight: var(--font-semi-bold);
 
                 &::after {
                     content: '';
@@ -52,7 +56,7 @@
                     left: 0;
                     width: 100%;
                     height: 2px;
-                    background-color: #00438b;
+                    background-color: var(--primary-color);
                 }
             }
         }
@@ -95,7 +99,7 @@
 
     & .backups-checbox-container {
         position: relative;
-        z-index: 1;        
+        z-index: 10000;        
         display: flex;
         flex-direction: row;
         align-items: flex-end;
@@ -127,21 +131,21 @@
             }
 
             & .tooltip-title {
-                font-family: 'Roboto';
+                font-family:var(--font-family-secondary) ;
                 font-style: normal;
-                font-weight: 500;
-                font-size: 20px;
+                font-weight: var(--font-medium);
+                font-size: var(--font-md);
                 line-height: 120%;
                 color: #212529;
             }
             
             & .tooltip-content {
-                font-family: 'Roboto';
+                font-family:var(--font-family-secondary) ;
                 font-style: normal;
-                font-weight: 400;
+                font-weight: var(--font-normal);
                 font-size: 14px;
                 line-height: 1.5;
-                color: #495057;
+                color: var(--neutral-color);
                 padding-top: 10px;
             }
 
@@ -158,23 +162,23 @@
                     border-radius: 4px;
                     padding: 8px 16px;
                     cursor: pointer;
-                    font-family: 'Roboto';
+                    font-family:var(--font-family-secondary) ;
                     font-style: normal;
-                    font-weight: 500;
+                    font-weight: var(--font-medium);
                     font-size: 14px;
                     line-height: 120%;
-                    color: #495057;
+                    color: var(--neutral-color);
                 }
 
                 & .upgrade-btn {
-                    background: #00438B;
-                    border: 1px solid #00438B;
+                    background: var(--primary-color);
+                    border: 1px solid var(--primary-color);
                     box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
                     border-radius: 4px;
                     padding: 10px 16px;
-                    font-family: 'Roboto';
+                    font-family:var(--font-family-secondary) ;
                     font-style: normal;
-                    font-weight: 500;
+                    font-weight: var(--font-medium);
                     font-size: 14px;
                     line-height: 120%;
                     color: #FFFFFF;
@@ -189,7 +193,7 @@
             background-color: #f8f9fa;
             border: 1px solid #e9ecef;
             border-radius: 10px;
-            color: #495057;
+            color: var(--neutral-color);
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -230,14 +234,14 @@
         }
 
         & .upgrade-plans-message {
-            color: #495057;
+            color: var(--neutral-color);
             font-size: 12px;
         }
     }
 
     & .pricing-cards {
-        display: flex;
-        position: relative;
+        /* display: flex; */
+        /* position: relative; */
 
         & .pricing-card {
             width: 25%;
@@ -266,10 +270,10 @@
 
             & .pricing-card-title {
                 margin: 5px 0;
-                font-size: 20px;
-                font-family: 'Roboto';
+                font-size: var(--font-md);
+                font-family:var(--font-family-secondary) ;
                 font-style: normal;
-                font-weight: 500;
+                font-weight: var(--font-medium);
                 color: #212529;
             }
 
@@ -299,11 +303,11 @@
                 }
 
                 & .custom-hr {
-                    border-top: 1px solid #00438b;
+                    border-top: 1px solid var(--primary-color);
                 }
 
                 & .monthly-title-check {
-                    border-bottom: 1px solid #00438b;
+                    border-bottom: 1px solid var(--primary-color);
                 }
 
                 &.popular-container {
@@ -359,10 +363,10 @@
                     list-style: none;
                     padding: 3px 0px;
                     font-style: normal;
-                    font-weight: 400;
+                    font-weight: var(--font-normal);
                     font-size: 14px;
                     line-height: 120%;
-                    color: #495057;
+                    color: var(--neutral-color);
 
                     &::before {
                         content: '✓';
@@ -400,9 +404,9 @@
                     padding-left: 5px;
                     
                     & .monthly-title {
-                        color: #00438b;
+                        color: var(--primary-color);
                         padding-bottom: 5px;
-                        font-weight: 600;
+                        font-weight: var(--font-semi-bold);
                         font-size: 14px;
                         width: 140px;
                     }
@@ -410,16 +414,16 @@
                     & .pricing-card-price {
                         & .amount {
                             font-size: 32px;
-                            font-weight: 500;
+                            font-weight: var(--font-medium);
                             color: #212529;
                             line-height: 32px;
                         }
 
                         & .month {
                             color: #adb5bd;
-                            font-size: 16px;
+                            font-size: var(--font-xs);
                             line-height: 120%;
-                            font-weight: 400;
+                            font-weight: var(--font-normal);
                         }
                     }
                 }
@@ -445,23 +449,23 @@
                         & .pricing-card-price {
                             & .amount {
                                 font-size: 32px;
-                                font-weight: 500;
+                                font-weight: var(--font-medium);
                                 color: #212529;
                                 line-height: 32px;
                             }
     
                             & .month {
                                 color: #adb5bd;
-                                font-size: 16px;
+                                font-size: var(--font-xs);
                                 line-height: 120%;
-                                font-weight: 400;
+                                font-weight: var(--font-normal);
                             }
                         }
 
                         & .annual-title {
-                            color: #00438b;
+                            color: var(--primary-color);
                             padding-bottom: 3px;
-                            font-weight: 600;
+                            font-weight: var(--font-semi-bold);
                             font-size: 14px;
                             width: 132px;
                         }
@@ -483,7 +487,7 @@
 
             & .tooltip-container {
                 position: relative;
-                z-index: 1;
+                z-index: 999999;
                 top: -125px;
 
                 & .tooltip {
@@ -503,17 +507,16 @@
                     & .tooltip-tip {
                         display: block;
                         margin-bottom: 5px;
+                    }
 
-                        & ul {
-                            list-style: disc;
-                            margin: 0;
-                            padding: 0 25px;
+                    & ul {
+                        list-style: disc;
+                        margin: 0;
+                        padding: 0 25px;
 
-                            & li {
-                                margin-bottom: 5px;
-                            }
-                            
-                        }
+                    & li {
+                        margin-bottom: 5px;
+                    }
                     }
                 }
             }
@@ -522,11 +525,11 @@
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
-                background: conic-gradient(from 140.15deg at 53.17% 67.14%, #00438B 0deg, #252530 360deg);
+                background: conic-gradient(from 140.15deg at 53.17% 67.14%, var(--primary-color) 0deg, #252530 360deg);
 
                 & .pricing-card-title {
-                    font-weight: 500;
-                    font-size: 20px;
+                    font-weight: var(--font-medium);
+                    font-size: var(--font-md);
                     line-height: 120%;
                     color: #FFFFFF;
                 }
@@ -551,7 +554,7 @@
                     padding: 10px 16px;
                     color: #003875;
                     font-size: 14px;
-                    font-weight: 600;
+                    font-weight: var(--font-semi-bold);
                     cursor: pointer;
                 }
             }
@@ -589,12 +592,13 @@
     & .action-btn {
         display: flex;
         justify-content: center;
+        padding-top: 50px;
 
         & .back-btn {
             width: 130px;
             height: 50px;
             margin: 0;
-            font-size: 18px;
+            font-size: var(--font-sm);
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -606,12 +610,12 @@
             width: 150px;
             height: 50px;
             margin: 0;
-            font-size: 18px;
+            font-size: var(--font-sm);
             border: none;
             border-radius: 5px;
             cursor: pointer;
             color: white;
-            background: #00438b;
+            background: var(--primary-color);
             margin-left: 25px;
         }
     }

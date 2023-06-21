@@ -26,12 +26,20 @@ const App = () => {
   const [completionStatus, setCompletionStatus] = useState([false, false, false, false, false]);
 
   const [selectedPlanTitle, setSelectedPlanTitle] = useState("");
+  const [selectedLocationCity, setSelectedLocationCity] = useState("");
+  const [selectedLocationCountry, setSelectedLocationCountry] = useState("");
   const [windowsMainTitle, setWindowsMainTitle] = useState("");
   const [networkingMainTitle, setNetworkingMainTitle] = useState("");
   const [backupsMainTitle, setBackupsMainTitle] = useState("");
 
   const handlePlanStats = (selectedPlan) => {
     setSelectedPlanTitle(selectedPlan.title);
+    handleNextStep();
+  }
+
+  const handleLocationStats = (selectedLocation) => {
+    setSelectedLocationCity(selectedLocation.city);
+    setSelectedLocationCountry(selectedLocation.country);
     handleNextStep();
   }
 
@@ -44,7 +52,7 @@ const App = () => {
 
   const completionStats = [
     "Password Created",
-    "Montreal (Canada East)",
+    `${selectedLocationCity} (${selectedLocationCountry})`,
     `${selectedPlanTitle}/ "Yearly commitment"`,
     `${windowsMainTitle}/ ${networkingMainTitle}/ ${backupsMainTitle}`,
   ]
@@ -139,7 +147,7 @@ const App = () => {
       case 3:
         return <Password onNext={handleNextStep} onPrevious={handlePreviousStep} />;
       case 4:
-        return <SelectLocation onNext={handleNextStep} onPrevious={handlePreviousStep} />;
+        return <SelectLocation onNext={handleLocationStats} onPrevious={handlePreviousStep} />;
       case 5:
         return <SelectPlan onNext={handlePlanStats} onPrevious={handlePreviousStep} />;
       case 6:

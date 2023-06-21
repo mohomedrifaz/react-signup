@@ -14,7 +14,7 @@
         border: 1px solid #bbb;
         padding: 2px;
         color: #4e4e4e;
-        font-family: 'Poppins', sans-serif;
+        font-family:var(--font-family-primary) ;
     }
 
     &.payment-container {
@@ -62,8 +62,8 @@
             & .label {
                 font-size: 14px;
                 line-height: 1.2;
-                color: #495057;
-                font-weight: 600;
+                color: var(--neutral-color);
+                font-weight: var(--font-semi-bold);
             }
 
             & .input, 
@@ -118,7 +118,7 @@
                 border-radius: 0px 0px 6px 6px;
                 font-size: 14px;
                 line-height: 20px;
-                font-weight: 400;
+                font-weight: var(--font-normal);
                 display: block;
                 width: 100%;
                 color: #6c757d;
@@ -160,7 +160,7 @@
                 border-radius: 5px;
                 cursor: pointer;
                 color: white;
-                background: #00438b;
+                background: var(--primary-color);
                 margin-left: 25px;
                 width: 60%;
             }
@@ -169,7 +169,7 @@
                 width: 75px;
                 height: 50px;
                 margin: 0px auto 0px auto;
-                font-size: 18px;
+                font-size: var(--font-sm);
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;
@@ -223,8 +223,8 @@
                 align-items: center;
 
                 & .package-title {
-                    font-size: 20px;
-                    font-weight: 700;
+                    font-size: var(--font-md);
+                    font-weight: var(--font-bold);
                     width: 50%;
                 }
 
@@ -237,18 +237,18 @@
                     color: #027143;
                     padding: 6px;
                     font-size: 15px;
-                    font-weight: 600;
+                    font-weight: var(--font-semi-bold);
                 }
             }
 
             & .list-content {
-                font-family: 'Roboto';
+                font-family:var(--font-family-secondary) ;
                 font-style: normal;
-                font-weight: 400;
+                font-weight: var(--font-normal);
                 font-size: 14px;
                 line-height: 150%;
                 letter-spacing: -0.011em;
-                color: #495057;
+                color: var(--neutral-color);
                 & ul {
                     list-style: none;
                     padding-left: 12px;
@@ -291,12 +291,12 @@
                     color: #7e868d;
                     font-size: 15px;
                     padding-bottom: 8px;
-                    font-weight: 400;
+                    font-weight: var(--font-normal);
                     width: 100%;
                 }
 
                 & .package-value {
-                    font-weight: 600;
+                    font-weight: var(--font-semi-bold);
                 }
             }
 
@@ -321,13 +321,13 @@
             justify-content: space-between;
 
             & .total-title {
-                font-size: 22px;
-                font-weight: 600;
+                font-size: var(--font-lg);
+                font-weight: var(--font-semi-bold);
             }
 
             & .total-price {
-                font-size: 22px;
-                font-weight: 600;
+                font-size: var(--font-lg);
+                font-weight: var(--font-semi-bold);
             }
         }
 
