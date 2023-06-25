@@ -56,7 +56,7 @@ body {
     font-family: var(--font-family-primary) ;
 }
 
-.container {
+.steps-container {
     display: flex;
 }
 
@@ -69,16 +69,10 @@ body {
     color: #333;
 }
 
-.sidebar {
-    min-width: 320px;
-    width: 25%;
-    background-color: #f8f9fa;
-    height: 100vh;
-}
-
 .main {
     display: flex;
     width: 75%;
     align-items: flex-start;
     background-color: white;
+    padding-top: 70px;
 }

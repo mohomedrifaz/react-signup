@@ -29,7 +29,7 @@ const CompletedIcon = () => (
 const Sidebar = ({ currentStep, completionStatus, stepTitles, completionStats }) => {
 
     return (
-        <div className="sidebar sidebar-container">
+        <div className="sidebar-container">
             <div className="sidebar-navbar">
                 {completionStatus.map((isCompleted, index) => (
                     <div

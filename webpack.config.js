@@ -51,5 +51,9 @@ module.exports = {
   devServer: {
     static: './dist',
     hot: true,
+    devMiddleware: {
+      writeToDisk: true,
+    },
+    allowedHosts: ['v2cloud.live', 'v2cloud.local'],
   },
 };
