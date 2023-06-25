@@ -8,7 +8,7 @@
     position: sticky;
     top: var(--wp-admin--admin-bar--height, 0);
     left: 0;
-    padding-top: 70px;
+    padding-top: calc(70px - var(--wp-admin--admin-bar--height, 0px));
 
     & .sidebar-container {
         padding: 0 40px;
@@ -27,57 +27,49 @@
         }
 
         & .nav-bullet {
-            height: 35px;
-            width: 35px;
+            height: 32px;
+            width: 32px;
             border-radius: 50%;
             background-color: #e9ecef;
             text-align: center;
             color: #abb1b6;
-            margin-right: 30px;
-        }
+            margin-right: 16px;
+            line-height: 32px;  /* align text vertically */
 
-        & .nav-bullet.active {
-            height: 35px;
-            width: 35px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            text-align: center;
-            color: white;
-            margin-right: 30px;
+            &.active {
+                background-color: var(--primary-color);
+                color: white;
+            }
         }
 
         & .nav-topic {
-            font-size: var(--font-sm);
+            font-size: var(--font-xs);
             color: black;
-            font-weight: var(--font-semi-bold);
+            font-weight: var(--font-medium);
             &.active {
                 color: var(--primary-color);
             }
         }
 
         & .nav-subtopic {
-            font-size: 14px;
+            font-size: var(--font-xxxs);
             margin-top: 3px;
             color: #c0c7cd;
         }
 
         & .nav-subtopic-done {
-            font-size: 14px;
+            font-size: var(--font-xxxs);
             margin-top: 3px;
             color: #039855;
         }
 
         & .nav-subtopic-complete {
-            font-size: 14px;
+            font-size: var(--font-xxxs);
             margin-top: 3px;
             color: #c0c7cd;
         }
 
         & .nav-bullet {
-            & p {
-                margin: 10px;
-            }
-
             & svg {
                 margin: -4px;
             }

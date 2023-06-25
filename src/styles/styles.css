@@ -8,6 +8,8 @@
     --neutral-color : #495057;
 
     /* Font Size */
+    --font-xxxs : 12px;
+    --font-xxs : 14px;
     --font-xs : 16px;
     --font-sm : 18px;
     --font-md : 20px;
@@ -23,8 +25,11 @@
     --font-bold: 700;
 
     /* Font Family */
-    --font-family-primary: 'Poppins', sans-serif;
-    --font-family-secondary: 'Roboto';
+    --font-family-primary: 'Roboto';
+    --font-family-secondary: 'Poppins', sans-serif;
+
+    /* Line height */
+    --line-height-body: 1.2;
 
 }
 
@@ -54,6 +59,7 @@
 body {
     margin: 0;
     font-family: var(--font-family-primary) ;
+    line-height: var(--line-height-body);
 }
 
 .steps-container {
@@ -74,5 +80,5 @@ body {
     width: 75%;
     align-items: flex-start;
     background-color: white;
-    padding-top: 70px;
+    padding-top: calc(70px - var(--wp-admin--admin-bar--height, 0px));
 }
