@@ -52,6 +52,8 @@ const ConfigPcTeam = ({ onNext, isBackup }) => {
         backups: null,
     });
 
+    const [selectedPlan, setSelectedPlan] = useState(null);
+
     const handleCardSelection = (index, category) => {
         setSelectedCardIndex((prevSelectedCardIndex) => {
             const newSelectedCardIndex = { ...prevSelectedCardIndex };
@@ -62,10 +64,50 @@ const ConfigPcTeam = ({ onNext, isBackup }) => {
             }
             return newSelectedCardIndex;
         });
+
+        const selectedPlan = {
+            category,
+            index,
+            title: null
+        };
+
+        switch (category) {
+            case 'windows':
+                selectedPlan.title = configcards[index].mainTitle;
+                break;
+            case 'networking':
+                selectedPlan.title = networkcards[index].mainTitle;
+                break;
+            case 'backups':
+                selectedPlan.title = backups[index].mainTitle;
+                break;
+            default:
+                break;
+        }
+
+        setSelectedPlan(selectedPlan);
+
+        console.log("Selected Cards", selectedPlan);
     };
 
     const configVerification = () => {
-        onNext();
+        const selectedTitles = {
+            windows: null,
+            networking: null,
+            backups: null,
+        };
+
+        if (selectedCardIndex.windows !== null) {
+            selectedTitles.windows = configcards[selectedCardIndex.windows].mainTitle + "" + configcards[selectedCardIndex.windows].subTitle;
+        }
+        if (selectedCardIndex.networking !== null) {
+            selectedTitles.networking = networkcards[selectedCardIndex.networking].mainTitle;
+        }
+        if (selectedCardIndex.backups !== null) {
+            selectedTitles.backups = backups[selectedCardIndex.backups].mainTitle;
+        }
+
+        onNext(selectedTitles);
     }
 
     const configcards = [
@@ -275,6 +317,10 @@ const ConfigPcTeam = ({ onNext, isBackup }) => {
         },
     ];
 
+    const gotoPlans = () => {
+        console.log('redirect to selectPlan');
+    }
+
     return (
         <div className="config-pc-container">
 
@@ -396,7 +442,7 @@ const ConfigPcTeam = ({ onNext, isBackup }) => {
                 </div>
             </div>
 
-            <div className="enable-businessplan-infobox">
+            { !isBackup && <div className="enable-businessplan-infobox">
                 <div className="content-container">
                     <div className="main-text">
                         Select the Business Plan to enable backup & antivirus
@@ -411,7 +457,7 @@ const ConfigPcTeam = ({ onNext, isBackup }) => {
                         <path d="M8.76562 0.982422L14.6094 6.56055C14.7754 6.72656 14.875 6.92578 14.875 7.1582C14.875 7.35742 14.7754 7.55664 14.6094 7.72266L8.76562 13.3008C8.4668 13.5996 7.93555 13.5996 7.63672 13.2676C7.33789 12.9688 7.33789 12.4375 7.66992 12.1387L12.0859 7.95508H0.796875C0.332031 7.95508 0 7.58984 0 7.1582C0 6.69336 0.332031 6.36133 0.796875 6.36133H12.0859L7.66992 2.14453C7.33789 1.8457 7.33789 1.31445 7.63672 1.01562C7.93555 0.683594 8.43359 0.683594 8.76562 0.982422Z" fill="white" />
                     </svg>
                 </button>
-            </div>
+            </div> }
 
             <div className="action-btn">
                 <button className="back-btn">

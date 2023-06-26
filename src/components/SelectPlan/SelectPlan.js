@@ -366,7 +366,7 @@ const SelectPlan = ({ onNext, backupState }) => {
             return newSelectedCardIndex;
         });
 
-        const selectedPlan = category === "teamCloud" ? pricingPlans[index] : pricingPlansIndividual[index];
+        const selectedPlan = category === "teamCloud" ? teamPlans[index] : personalPlans[index];
         setSelectedPlan(selectedPlan)
 
     }

@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import './paymentgateway.css';
-import paymentImage from "./securessl.png"; 
-import securityImage from "./security-system.png";
-import paymentCardsImage from "./payment.png";
+import paymentImage from "../../assets/images/securessl.png";
+import securityImage from "../../assets/images/security-system.png";
+import paymentCardsImage from "../../assets/images/payment.png";
+import alertsvg from "../../assets/svg/cardAlert.svg";
 
-const PaymentGateway = () => {
+const PaymentGateway = ({ selectedCity, selectedCountry, planTitle, planConfig, planUsers, windowsTitle, networkTitle, backupsTitle }) => {
 
     const [totalPrice, setTotalPrice] = useState('$120');
-
+    const configItems = planConfig.split(' ');
 
     return (
         <div className="payment-gateway payment-container" >
@@ -18,23 +19,23 @@ const PaymentGateway = () => {
 
                 <div className="main-title">
                     <h3> Enter payment info </h3>
-                    <img src= {paymentImage} /> 
+                    <img src={paymentImage} />
                 </div>
 
                 <div className="card-verification-info">
                     <div className="info-content">
-                       Credit card identify verification by our clients
-                       plays a crucial role in preventing bad actors from
-                       misusing our cloud services
+                        Credit card identify verification by our clients
+                        plays a crucial role in preventing bad actors from
+                        misusing our cloud services
                     </div>
                     <div className="info-img">
-                        <img src= {securityImage} /> 
+                        <img src={securityImage} />
                     </div>
                 </div>
 
                 <div id="signup-form">
                     <div className="support-card-images">
-                    <img src={paymentCardsImage} />
+                        <img src={paymentCardsImage} />
                     </div>
                     <div className="form-row form-row-1">
                         <div className="form-row-col-long">
@@ -98,6 +99,15 @@ const PaymentGateway = () => {
 
                     <div className="form-row form-row-6">
                         <div className="form-row-colfull">
+                            <div className="alert-message">
+                                <div className="alert-svg">
+                                    <img src={alertsvg} alt="Card Alert" />
+                                </div>
+                                <div className="alert-content">
+                                    We were unable to charge your card. Please verify information and call your
+                                    bank to authorize foreign transactions
+                                </div>
+                            </div>
                             <div className="info-message">
                                 <div className="info-svg">
                                     <FontAwesomeIcon icon={faCircleInfo} />
@@ -124,42 +134,45 @@ const PaymentGateway = () => {
             </div>
 
             <div className="asset-details-container">
-                <div className="package-details-container">
-                    <div className="title-message">
-                        <div className="package-title"> The Startup </div>
-                        <div className="message-content"> 7 Day No-Risk Trial* </div>
-                    </div>
-                    <div className="list-content">
-                        <ul>
-                            <li>2 CPU Cores</li>
-                            <li>8 GB Memory (RAM)</li>
-                            <li>50 GB Storage</li>
-                            <li>1 Admin included, $10 for additional users</li>
-                            <li>2 to 4 Users - Recommended</li>
-                            <li>Team Cloud Desktop</li>
-                        </ul>
-                    </div>
-                    <div className="trial-message">
-                        *Try our no-risk trial! Cancel in 7 days, nocharge and fees. Continue & we bill from Day 1.
+                <div className="packages-details-container-bg">
+                    <div className="package-details-container">
+                        <div className="title-message">
+                            <div className="package-title"> {planTitle} </div>
+                            <div className="message-content"> 7 Day No-Risk Trial* </div>
+                        </div>
+                        <div className="list-content">
+                            <ul>
+                                {configItems.map((item, index) => (
+                                    <li key={index}>{item}</li>
+                                ))}
+                                <li>1 Admin included, $10 for additional users</li>
+                                <li>{planUsers} Users - Recommended</li>
+                                <li>Team Cloud Desktop</li>
+                            </ul>
+                        </div>
+                        <div className="trial-message">
+                            *Try our no-risk trial! Cancel in 7 days, nocharge and fees. Continue & we bill from Day 1.
+                        </div>
                     </div>
                 </div>
-                
+
+
                 <div className="pricing-container">
-                    
+
                     <div className="pricing-single-pack">
                         <div className="package-details">
                             <div className="package-title"> Location </div>
-                            <div className="package-value"> Montreal (Canada East) </div>
+                            <div className="package-value">  {selectedCity} ({selectedCountry}) </div>
                         </div>
                         <div className="link">
-                          
+
                         </div>
                     </div>
 
                     <div className="pricing-single-pack">
                         <div className="package-details">
                             <div className="package-title"> Template </div>
-                            <div className="package-value"> Windows 11 Multi-User </div>
+                            <div className="package-value"> {windowsTitle} </div>
                         </div>
                         <div className="link">
                             <a href="#"> Change </a>
@@ -180,7 +193,7 @@ const PaymentGateway = () => {
                     <div className="pricing-single-pack">
                         <div className="package-details">
                             <div className="package-title"> Backup Retention </div>
-                            <div className="package-value"> 2 Weeks backup </div>
+                            <div className="package-value"> {backupsTitle} backup </div>
                         </div>
                         <div className="link">
                             <a href="#"> Change </a>
@@ -191,7 +204,7 @@ const PaymentGateway = () => {
                     <div className="pricing-single-pack">
                         <div className="package-details">
                             <div className="package-title"> IP Address </div>
-                            <div className="package-value"> Public IP Address </div>
+                            <div className="package-value"> {networkTitle} </div>
                         </div>
                         <div className="link">
                             <a href="#"> Change </a>

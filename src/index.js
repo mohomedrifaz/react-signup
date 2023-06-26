@@ -26,6 +26,8 @@ const App = () => {
   const [completionStatus, setCompletionStatus] = useState([false, false, false, false, false]);
 
   const [selectedPlanTitle, setSelectedPlanTitle] = useState("");
+  const [selectedPlanConfig, setSelectedPlanConfig] = useState("");
+  const [selectedPlanUsers, setSelectedPlanUsers] = useState("");
   const [selectedLocationCity, setSelectedLocationCity] = useState("");
   const [selectedLocationCountry, setSelectedLocationCountry] = useState("");
   const [windowsMainTitle, setWindowsMainTitle] = useState("");
@@ -34,6 +36,8 @@ const App = () => {
 
   const handlePlanStats = (selectedPlan) => {
     setSelectedPlanTitle(selectedPlan.title);
+    setSelectedPlanConfig(selectedPlan.config);
+    setSelectedPlanUsers(selectedPlan.users);
     handleNextStep();
   }
 
@@ -63,7 +67,7 @@ const App = () => {
     "Password Created",
     `${selectedLocationCity} (${selectedLocationCountry})`,
     `${selectedPlanTitle}/ "Yearly commitment"`,
-    `${windowsMainTitle}/ ${networkingMainTitle}/ ${backupsMainTitle}`,
+    `${windowsMainTitle ? `${windowsMainTitle} /` : ''} ${networkingMainTitle ? `${networkingMainTitle} /` : ''} ${backupsMainTitle ? `${backupsMainTitle}` : ''}`,
   ]
 
   const [currentStepB, setCurrentStepB] = useState(1);
@@ -162,9 +166,17 @@ const App = () => {
       case 6:
         return <ConfigPcIndividual onNext={handleConfigStats} onPrevious={handlePreviousStep} isBackup={isBackup} />;
       case 7:
-        return <ConfigPcTeam onNext={handleNextStep} onPrevious={handlePreviousStep} isBackup={isBackup} />;
+        return <ConfigPcTeam onNext={handleConfigStats} onPrevious={handlePreviousStep} isBackup={isBackup} />;
       case 8:
-        return <PaymentGateway onPrevious={handlePreviousStep} />;
+        return <PaymentGateway onPrevious={handlePreviousStep}
+        planTitle={selectedPlanTitle}
+        selectedCity={selectedLocationCity} 
+        selectedCountry={selectedLocationCountry}
+        windowsTitle={windowsMainTitle}
+        networkTitle={networkingMainTitle}
+        backupsTitle={backupsMainTitle} 
+        planConfig={selectedPlanConfig} 
+        planUsers={selectedPlanUsers} />;
       default:
         return null;
     }
