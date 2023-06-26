@@ -28,6 +28,10 @@ module.exports = {
         ]
       },
       {
+        test: /\.(png|jp(e*)g|svg|gif)$/,
+        type: "asset/resource",
+      },
+      {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {

@@ -308,6 +308,26 @@
 
                 & .monthly-title-check {
                     border-bottom: 1px solid var(--primary-color);
+
+                    & .monthly-amount {
+                        & .pricing-card-price {
+                            & .amount {
+                                color: white;
+                            }
+                        }
+                    }
+                }
+
+                & .annual-title-check {
+                    & .annual-title-box {
+                        & .annual-amount {
+                            & .pricing-card-price {
+                                & .amount {
+                                    color: white;
+                                }
+                            }
+                        }
+                    }
                 }
 
                 &.popular-container {
@@ -436,8 +456,10 @@
                     align-items: flex-start;
 
                     &.selected{
-                        & .annual-title {
-                            color: #7a9dc3;
+                        & .annual-title-box {
+                            & .annual-title {
+                                color: #7a9dc3 !important;
+                            }
                         }
                     }
                     

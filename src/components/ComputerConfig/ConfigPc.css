@@ -149,22 +149,39 @@
             }
         }
 
-        & .backups-container {
-            display: flex;
-            flex-direction: row;
-            gap: 30px;
+        & .backups-antivirus-container {
 
-            & .config-card {
-                & .sub-title {
-                    font-weight: var(--font-bold);
-                    font-size: var(--font-xs);
-                    line-height: 120%;
-                    color: var(--primary-color);
-                    text-align: center;
-                    margin-top: 5px;
+            &.disabled {
+                filter: blur(0px);
+                pointer-events: none;
+                opacity: 0.5;
+
+                & .config-card {
+                    cursor: not-allowed;
+                    opacity: 1;
                 }
-            } 
-        }
+            }
+                
+            }
+
+            & .backups-container {
+                display: flex;
+                flex-direction: row;
+                gap: 30px;
+    
+                & .config-card {
+                    & .sub-title {
+                        font-weight: var(--font-bold);
+                        font-size: var(--font-xs);
+                        line-height: 120%;
+                        color: var(--primary-color);
+                        text-align: center;
+                        margin-top: 5px;
+                    }
+                } 
+            }
+        
+        
 
         & .antivirus-container {
             display: flex;
@@ -191,6 +208,7 @@
             }
 
             & .checkbox-label {
+                padding-right: 5px;
                 & input {
                     display: block !important;
                 }

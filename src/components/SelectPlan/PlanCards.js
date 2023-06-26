@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offervalue, isPopular, functions, isBackup, isSelected, onClick }) => {
+const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offervalue, isPopular,
+    functions, isBackup, isSelected, onClick, hardwareId }) => {
 
     const [isMonthlySelected, setIsMonthlySelected] = useState(false);
     const [isAnnualSelected, setIsAnnualSelected] = useState(false);
@@ -12,7 +13,7 @@ const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offerval
     const yearlyPrice = parseInt(yearlyprice.replace('$', ''), 10);
 
     const handleCardSelection = () => {
-        onClick(); 
+        onClick();
         setIsMonthlySelected(isSelected);
         setIsAnnualSelected(false);
     };
@@ -35,6 +36,10 @@ const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offerval
     const handleMouseLeave = () => {
         setIsHovered(false);
     };
+
+    const configItems = features.slice(0, 3);
+    const customString = ['core', 'Memory RAM', 'Storage'];
+    const UpdatedconfigItems = configItems.map( (val, index) => `${val} ${customString[index]}`);
 
     return (
         <div
@@ -68,10 +73,14 @@ const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offerval
             </div>
 
             <hr className="custom-hr" />
+
             <ul className={`pricing-card-features ${isSelected ? "selected" : ""}`}>
-                {features.map((feature, index) => (
-                    <li key={index}>{feature}</li>
-                ))}
+            {console.log("config Items", configItems)}
+                {
+                    UpdatedconfigItems.map((part, index) => (
+                        <li key={index}>{part}</li>
+                    ))
+                }
             </ul>
             <div className="pricing-monthly">
                 <div className={`monthly-title-check ${isMonthlySelected ? "selected" : ""}`}>

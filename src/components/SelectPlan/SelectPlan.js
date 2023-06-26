@@ -7,8 +7,8 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
-const SelectPlan = ( {onNext} ) => {
-      
+const SelectPlan = ({ onNext, backupState }) => {
+
     const pricingPlans = [
         {
             title: 'The Founder',
@@ -102,6 +102,229 @@ const SelectPlan = ( {onNext} ) => {
 
     ];
 
+    const teamPlans = [
+        {
+            "title": "The Founder",
+            "config": "2CPU 4GB RAM 50GB NVMe",
+            "description": "User",
+            "users": "1",
+            "price_user_month": "",
+            "price_user_year": "",
+            "hardware_id": 36,
+            "cpus": 2,
+            "memory_display": "4 GB",
+            "memory_total": 4096,
+            "storage1_display": "50 GB",
+            "ref": "",
+            "price_yearly_contract_plan_1": "40.00",
+            "price_monthly_contract_plan_1": "46.00",
+            "yearly_contract_saving_plan_1": "72.00",
+            "price_year_1": "600",
+            "storage_price_1": "0.15",
+            "price_yearly_contract_plan_2": "60.00",
+            "price_monthly_contract_plan_2": "69.00",
+            "yearly_contract_saving_plan_2": "108.00",
+            "price_year_2": "900",
+            "storage_price_2": "0.225"
+        },
+        {
+            "title": "The Startup",
+            "config": "2CPU 8GB RAM 50GB NVMe",
+            "description": "Users",
+            "users": "2 to 4",
+            "price_user_month": "10",
+            "price_user_year": "8",
+            "hardware_id": 37,
+            "cpus": 2,
+            "memory_display": "8 GB",
+            "memory_total": 8192,
+            "storage1_display": "50 GB",
+            "ref": "",
+            "price_yearly_contract_plan_1": "70.00",
+            "price_monthly_contract_plan_1": "80.50",
+            "yearly_contract_saving_plan_1": "126.00",
+            "price_year_1": "1020",
+            "storage_price_1": "0.15",
+            "price_yearly_contract_plan_2": "105.00",
+            "price_monthly_contract_plan_2": "120.74",
+            "yearly_contract_saving_plan_2": "188.87",
+            "price_year_2": "1530",
+            "storage_price_2": "0.225",
+            "isPopular": true
+        },
+        {
+            "title": "The SMB",
+            "config": "4CPU 16GB RAM 50GB NVMe",
+            "description": "Users",
+            "users": "5 to 9",
+            "price_user_month": "10",
+            "price_user_year": "8",
+            "hardware_id": 38,
+            "cpus": 4,
+            "memory_display": "16 GB",
+            "memory_total": 16384,
+            "storage1_display": "50 GB",
+            "ref": "",
+            "price_yearly_contract_plan_1": "140.00",
+            "price_monthly_contract_plan_1": "161.00",
+            "yearly_contract_saving_plan_1": "252.00",
+            "price_year_1": "2100",
+            "storage_price_1": "0.15",
+            "price_yearly_contract_plan_2": "210.00",
+            "price_monthly_contract_plan_2": "241.49",
+            "yearly_contract_saving_plan_2": "377.88",
+            "price_year_2": "3150",
+            "storage_price_2": "0.225"
+        },
+        {
+            "title": "The Firm",
+            "config": "8CPU 32GB RAM 50GB NVMe",
+            "description": "Users",
+            "users": "10 to 16",
+            "price_user_month": "10",
+            "price_user_year": "8",
+            "hardware_id": 39,
+            "cpus": 8,
+            "memory_display": "32 GB",
+            "memory_total": 32768,
+            "storage1_display": "50 GB",
+            "ref": "",
+            "price_yearly_contract_plan_1": "280.00",
+            "price_monthly_contract_plan_1": "322.00",
+            "yearly_contract_saving_plan_1": "504.00",
+            "price_year_1": "4200",
+            "storage_price_1": "0.15",
+            "price_yearly_contract_plan_2": "420.00",
+            "price_monthly_contract_plan_2": "482.99",
+            "yearly_contract_saving_plan_2": "755.88",
+            "price_year_2": "6300",
+            "storage_price_2": "0.225"
+        },
+        {
+            "title": "The Company",
+            "config": "16CPU 64GB RAM 50GB NVMe",
+            "description": "Users",
+            "users": "17 to 32",
+            "price_user_month": "10",
+            "price_user_year": "8",
+            "hardware_id": 40,
+            "cpus": 16,
+            "memory_display": "64 GB",
+            "memory_total": 65536,
+            "storage1_display": "50 GB",
+            "ref": "",
+            "price_yearly_contract_plan_1": "560.00",
+            "price_monthly_contract_plan_1": "644.00",
+            "yearly_contract_saving_plan_1": "1008.00",
+            "price_year_1": "8400",
+            "storage_price_1": "0.15",
+            "price_yearly_contract_plan_2": "840.00",
+            "price_monthly_contract_plan_2": "965.99",
+            "yearly_contract_saving_plan_2": "1511.88",
+            "price_year_2": "12600",
+            "storage_price_2": "0.225"
+        }
+    ];
+
+    const personalPlans = [
+        {
+            "title": "The Intern",
+            "config": "2CPU 4GB 50GB NVMe",
+            "description": "Data-entry, word-processing, Quickbooks, light multi-task",
+            "users": "1",
+            "price_user_month": "10",
+            "price_user_year": "8",
+            "hardware_id": 47,
+            "cpus": 2,
+            "memory_display": "4 GB",
+            "memory_total": 4096,
+            "storage1_display": "50 GB",
+            "ref": "",
+            "price_yearly_contract_plan_1": "35.00",
+            "price_monthly_contract_plan_1": "40.25",
+            "yearly_contract_saving_plan_1": "63.00",
+            "price_year_1": "600",
+            "storage_price_1": "0.15",
+            "price_yearly_contract_plan_2": "52.50",
+            "price_monthly_contract_plan_2": "60.37",
+            "yearly_contract_saving_plan_2": "94.43",
+            "price_year_2": "900",
+            "storage_price_2": "0.225"
+        },
+        {
+            "title": "The Doer",
+            "config": "2CPU 8GB 50GB NVMe",
+            "description": "Business applications, Photoshop design, medium",
+            "users": "2 to 4",
+            "price_user_month": "10",
+            "price_user_year": "8",
+            "hardware_id": 50,
+            "cpus": 2,
+            "memory_display": "8 GB",
+            "memory_total": 8192,
+            "storage1_display": "50 GB",
+            "ref": "",
+            "price_yearly_contract_plan_1": "60.00",
+            "price_monthly_contract_plan_1": "69.00",
+            "yearly_contract_saving_plan_1": "108.00",
+            "price_year_1": "1020",
+            "storage_price_1": "0.15",
+            "price_yearly_contract_plan_2": "90.00",
+            "price_monthly_contract_plan_2": "103.49",
+            "yearly_contract_saving_plan_2": "161.87",
+            "price_year_2": "1530",
+            "storage_price_2": "0.225"
+        },
+        {
+            "title": "The Workaholic",
+            "config": "4CPU 16GB 50GB NVMe",
+            "description": "Intensive applications, software development, heavy multi-task",
+            "users": "5 to 9",
+            "price_user_month": "10",
+            "price_user_year": "8",
+            "hardware_id": 53,
+            "cpus": 4,
+            "memory_display": "16 GB",
+            "memory_total": 16384,
+            "storage1_display": "50 GB",
+            "ref": "",
+            "price_yearly_contract_plan_1": "120.00",
+            "price_monthly_contract_plan_1": "138.00",
+            "yearly_contract_saving_plan_1": "216.00",
+            "price_year_1": "2100",
+            "storage_price_1": "0.15",
+            "price_yearly_contract_plan_2": "180.00",
+            "price_monthly_contract_plan_2": "206.99",
+            "yearly_contract_saving_plan_2": "323.88",
+            "price_year_2": "3150",
+            "storage_price_2": "0.225"
+        },
+        {
+            "title": "The Magnate",
+            "config": "8CPU 32GB 50GB NVMe",
+            "description": "Ultimate multi-task, multiple heavy apps, jet flying speed",
+            "users": "10 to 16",
+            "price_user_month": "10",
+            "price_user_year": "8",
+            "hardware_id": 56,
+            "cpus": 8,
+            "memory_display": "32 GB",
+            "memory_total": 32768,
+            "storage1_display": "50 GB",
+            "ref": "",
+            "price_yearly_contract_plan_1": "240.00",
+            "price_monthly_contract_plan_1": "276.00",
+            "yearly_contract_saving_plan_1": "432.00",
+            "price_year_1": "4200",
+            "storage_price_1": "0.15",
+            "price_yearly_contract_plan_2": "360.00",
+            "price_monthly_contract_plan_2": "413.99",
+            "yearly_contract_saving_plan_2": "647.88",
+            "price_year_2": "6300",
+            "storage_price_2": "0.225"
+        }
+    ];
+
     const [activeTab, setActiveTab] = useState(1);
 
     const handleTabChange = (tabNumber) => {
@@ -130,25 +353,26 @@ const SelectPlan = ( {onNext} ) => {
     }, []);
 
     const [selectedCardIndex, setSelectedCardIndex] = useState({
-        teamCloud : null,
-        individualCloud : null
+        teamCloud: null,
+        individualCloud: null
     });
 
     const [selectedPlan, setSelectedPlan] = useState(null);
 
     const handleCardSelection = (index, category) => {
         setSelectedCardIndex((prevSelectedCardIndex) => {
-            const newSelectedCardIndex = {...prevSelectedCardIndex};
+            const newSelectedCardIndex = { ...prevSelectedCardIndex };
             newSelectedCardIndex[category] = index;
             return newSelectedCardIndex;
         });
 
         const selectedPlan = category === "teamCloud" ? pricingPlans[index] : pricingPlansIndividual[index];
         setSelectedPlan(selectedPlan)
-    
+
     }
 
     const planVerification = () => {
+        backupState(isBackup);
         onNext(selectedPlan);
     }
 
@@ -240,23 +464,43 @@ const SelectPlan = ( {onNext} ) => {
 
             <div className="pricing-cards" >
                 {activeTab === 1 && <div className="team-cloud-pricing-container">
-                        {pricingPlans.map((plan, index) => (
-                            <PlanCards key={index} title={plan.title} monthlyprice={plan.monthlyprice} yearlyprice={plan.yearlyprice}
-                                features={plan.features} offervalue={plan.offervalue} users={plan.users} isPopular={plan.isPopular} isBackup={isBackup}
-                                isSelected={index === selectedCardIndex.teamCloud}
-                                onClick={ () => handleCardSelection(index, "teamCloud")} 
-                                />
-                        ))}
+                    {teamPlans.map((plan, index) => {
+                        const configParts = plan.config.split(' ');
+
+                        return <PlanCards key={index}
+                            hardwareId={plan.hardware_id}
+                            title={plan.title}
+                            monthlyprice={plan.price_monthly_contract_plan_1}
+                            yearlyprice={plan.price_yearly_contract_plan_1}
+                            features={configParts}
+                            offervalue={plan.yearly_contract_saving_plan_1}
+                            users={plan.users}
+                            isPopular={plan.isPopular}
+                            isBackup={isBackup}
+                            isSelected={index === selectedCardIndex.teamCloud}
+                            onClick={() => handleCardSelection(index, "teamCloud")}
+                        />
+                    })}
                 </div>
                 }
                 {activeTab === 2 && <div className="team-individual-pricing-container">
-                    {pricingPlansIndividual.map((plan, index) => (
-                        <PlanCards key={index} title={plan.title} monthlyprice={plan.monthlyprice} yearlyprice={plan.yearlyprice}
-                            features={plan.features} offervalue={plan.offervalue} users={plan.users} isPopular={plan.isPopular} functions={plan.functions}
+                    {personalPlans.map((plan, index) => {
+                        const configParts = plan.config.split(' ');
+
+                        return <PlanCards key={index}
+                            hardwareId={plan.hardware_id}
+                            title={plan.title}
+                            monthlyprice={plan.price_monthly_contract_plan_1}
+                            yearlyprice={plan.price_yearly_contract_plan_1}
+                            features={configParts}
+                            offervalue={plan.yearly_contract_saving_plan_1}
+                            users={plan.users}
+                            isPopular={plan.isPopular}
+                            functions={plan.description}
                             isSelected={index === selectedCardIndex.teamIndividual}
-                            onClick={ () => handleCardSelection(index, "teamIndividual")} 
-                           />
-                    ))}
+                            onClick={() => handleCardSelection(index, "teamIndividual")}
+                        />
+                    })}
                     <SpecialCard
                         title="The Enterprise"
                         buttonText="Talk to an Expert"
@@ -273,9 +517,9 @@ const SelectPlan = ( {onNext} ) => {
                 <button className="back-btn">
                     Previous Step
                 </button>
-                <button 
-                className="verify-btn"
-                onClick={planVerification}>
+                <button
+                    className="verify-btn"
+                    onClick={planVerification}>
                     Next
                 </button>
             </div>

@@ -9,7 +9,9 @@ const SelectCountry = ({ flag, city, country, signal, onClick, isSelected }) => 
             onClick={onClick} >
 
             <div className="section-1">
-                <div className="country-flag" dangerouslySetInnerHTML={{ __html: flag }}></div>
+                <div className="country-flag">
+                    <img src={flag} alt="Flag" />
+                </div>
                 <div className="country-data">
                     <div className="city">
                         {city}

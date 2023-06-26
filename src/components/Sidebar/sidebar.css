@@ -65,11 +65,11 @@
 
         & .nav-bullet {
             & p {
-                margin: 10px;
+                margin: 7px 0 0px 0;;
             }
 
             & svg {
-                margin: -4px;
+                margin: -5px;
             }
 
             &.active {

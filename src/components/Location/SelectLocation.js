@@ -1,28 +1,117 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { Helmet } from 'react-helmet';
 import './SelectLocation.css';
 import SelectCountry from "./SelectCountry";
+import SG from "../../assets/svg/SG.svg";
+import sydney from "../../assets/svg/AUSSYDNEY.svg";
+import montreal from "../../assets/svg/CAMON.svg";
+import london from "../../assets/svg/UKLONDON.svg";
+import washington from "../../assets/svg/USWASH.svg";
+import frankfurt from "../../assets/svg/GEFRANK.svg";
+import france from "../../assets/svg/FR.svg";
+import mumbai from "../../assets/svg/IN.svg";
 
 const SelectLocation = ({ onNext }) => {
 
+    const regions = [
+        {
+            "id": 1,
+            "name": "lucy",
+            "display": "Montreal (Canada East)",
+            "ping_url": "51.222.82.69"
+        },
+        {
+            "id": 2,
+            "name": "lydia",
+            "display": "Roubaix (France)",
+            "ping_url": "146.59.149.201"
+        },
+        {
+            "id": 4,
+            "name": "mia",
+            "display": "Washington DC (USA East)",
+            "ping_url": "15.204.163.125"
+        },
+        {
+            "id": 5,
+            "name": "julia",
+            "display": "Singapore (Singapore)",
+            "ping_url": "51.79.228.38"
+        },
+        {
+            "id": 7,
+            "name": "kate",
+            "display": "London (UK)",
+            "ping_url": "51.89.218.130"
+        },
+        {
+            "id": 10,
+            "name": "mali",
+            "display": "Portland (USA West)",
+            "ping_url": "15.204.52.98"
+        },
+        {
+            "id": 14,
+            "name": "amanda",
+            "display": "Sydney 2 (Australia)",
+            "ping_url": "117.120.15.196"
+        },
+        {
+            "id": 22,
+            "name": "angela",
+            "display": "Frankfurt (Germany)",
+            "ping_url": "162.19.234.32"
+        },
+        {
+            "id": 30,
+            "name": "rani",
+            "display": "Mumbai (India)",
+            "ping_url": "148.113.0.138"
+        }
+    ];
+
+    const region_flags = [
+        {
+            "id": 1,
+            "flag": montreal,
+        },
+        {
+            "id": 2,
+            "flag": france,
+        },
+        {
+            "id": 4,
+            "flag": washington,
+        },
+        {
+            "id": 5,
+            "flag": SG,
+        },
+        {
+            "id": 7,
+            "flag": london,
+        },
+        {
+            "id": 10,
+            "flag": washington,
+        },
+        {
+            "id": 14,
+            "flag": sydney,
+        },
+        {
+            "id": 22,
+            "flag": frankfurt,
+        },
+        {
+            "id": 30,
+            "flag": mumbai,
+        }
+    ]
+
     const countries = [
         {
-            flag: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_3150_15677)">
-            <path d="M16 32C24.8366 32 32 24.8366 32 16C32 7.16344 24.8366 0 16 0C7.16344 0 0 7.16344 0 16C0 24.8366 7.16344 32 16 32Z" fill="#F0F0F0"/>
-            <path d="M0 16.0001C0 7.1635 7.1635 0 16 0C24.8365 0 32 7.1635 32 16.0001" fill="#D80027"/>
-            <path d="M9.73934 8.34802C9.73934 6.01689 11.3777 4.06952 13.5654 3.5917C13.2292 3.51833 12.8803 3.47852 12.5219 3.47852C9.83247 3.47852 7.65234 5.65864 7.65234 8.34808C7.65234 11.0375 9.83247 13.2176 12.5219 13.2176C12.8802 13.2176 13.2291 13.1778 13.5654 13.1044C11.3777 12.6266 9.73934 10.6792 9.73934 8.34802Z" fill="#F0F0F0"/>
-            <path d="M16 3.82666L16.3454 4.88947H17.4629L16.5587 5.54641L16.9041 6.60923L16 5.95241L15.0959 6.60923L15.4412 5.54641L14.5371 4.88947H15.6546L16 3.82666Z" fill="#F0F0F0"/>
-            <path d="M13.2892 5.91284L13.6345 6.97572H14.752L13.8479 7.63259L14.1933 8.6954L13.2892 8.03859L12.3849 8.6954L12.7304 7.63259L11.8262 6.97572H12.9437L13.2892 5.91284Z" fill="#F0F0F0"/>
-            <path d="M18.7109 5.91284L19.0564 6.97572H20.1739L19.2697 7.63259L19.6151 8.6954L18.7109 8.03859L17.8068 8.6954L18.1522 7.63259L17.248 6.97572H18.3656L18.7109 5.91284Z" fill="#F0F0F0"/>
-            <path d="M17.668 9.04443L18.0133 10.1073H19.1308L18.2267 10.7642L18.5721 11.827L17.668 11.1702L16.7638 11.827L17.1092 10.7642L16.2051 10.1073H17.3225L17.668 9.04443Z" fill="#F0F0F0"/>
-            <path d="M14.3321 9.04443L14.6774 10.1073H15.795L14.8908 10.7642L15.2363 11.827L14.3321 11.1702L13.4279 11.827L13.7733 10.7642L12.8691 10.1073H13.9867L14.3321 9.04443Z" fill="#F0F0F0"/>
-            </g>
-            <defs>
-            <clipPath id="clip0_3150_15677">
-            <rect width="32" height="32" fill="white"/>
-            </clipPath>
-            </defs>
-            </svg>`,
+            flag: SG,
             city: 'Singapore',
             country: 'Singapore',
             signal: `<svg width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,22 +119,7 @@ const SelectLocation = ({ onNext }) => {
             </svg>`,
         },
         {
-            flag: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_3150_15316)">
-            <path d="M16 32C24.8366 32 32 24.8366 32 16C32 7.16344 24.8366 0 16 0C7.16344 0 0 7.16344 0 16C0 24.8366 7.16344 32 16 32Z" fill="#F0F0F0"/>
-            <path d="M15.3047 16.0001H32.0003C32.0003 14.556 31.8078 13.157 31.4491 11.8262H15.3047V16.0001Z" fill="#D80027"/>
-            <path d="M15.3047 7.65148H29.6519C28.6725 6.05323 27.4202 4.64054 25.9601 3.47754H15.3047V7.65148Z" fill="#D80027"/>
-            <path d="M15.9988 32.0002C19.7644 32.0002 23.2254 30.6987 25.9586 28.522H6.03906C8.77219 30.6987 12.2332 32.0002 15.9988 32.0002Z" fill="#D80027"/>
-            <path d="M2.34797 24.3465H29.6512C30.4375 23.0635 31.0473 21.661 31.4484 20.1726H0.550781C0.951844 21.661 1.56166 23.0635 2.34797 24.3465Z" fill="#D80027"/>
-            <path d="M7.4115 2.49863H8.86956L7.51331 3.48394L8.03137 5.07825L6.67519 4.09294L5.319 5.07825L5.7665 3.70094C4.57237 4.69562 3.52575 5.861 2.66325 7.1595H3.13044L2.26712 7.78669C2.13262 8.01106 2.00362 8.239 1.88 8.47031L2.29225 9.73913L1.52313 9.18031C1.33194 9.58537 1.15706 9.99956 0.999875 10.4224L1.45406 11.8204H3.13044L1.77419 12.8057L2.29225 14.4L0.936063 13.4147L0.123687 14.0049C0.042375 14.6586 0 15.3243 0 16H16C16 7.1635 16 6.12175 16 0C12.8393 0 9.89281 0.916875 7.4115 2.49863ZM8.03137 14.4L6.67519 13.4147L5.319 14.4L5.83706 12.8057L4.48081 11.8204H6.15719L6.67519 10.2261L7.19319 11.8204H8.86956L7.51331 12.8057L8.03137 14.4ZM7.51331 8.14481L8.03137 9.73913L6.67519 8.75381L5.319 9.73913L5.83706 8.14481L4.48081 7.1595H6.15719L6.67519 5.56519L7.19319 7.1595H8.86956L7.51331 8.14481ZM13.7705 14.4L12.4143 13.4147L11.0581 14.4L11.5762 12.8057L10.2199 11.8204H11.8963L12.4143 10.2261L12.9323 11.8204H14.6087L13.2524 12.8057L13.7705 14.4ZM13.2524 8.14481L13.7705 9.73913L12.4143 8.75381L11.0581 9.73913L11.5762 8.14481L10.2199 7.1595H11.8963L12.4143 5.56519L12.9323 7.1595H14.6087L13.2524 8.14481ZM13.2524 3.48394L13.7705 5.07825L12.4143 4.09294L11.0581 5.07825L11.5762 3.48394L10.2199 2.49863H11.8963L12.4143 0.904312L12.9323 2.49863H14.6087L13.2524 3.48394Z" fill="#0052B4"/>
-            </g>
-            <defs>
-            <clipPath id="clip0_3150_15316">
-            <rect width="32" height="32" fill="white"/>
-            </clipPath>
-            </defs>
-            </svg>
-            `,
+            flag: washington,
             city: 'Washington DC',
             country: 'USA East',
             signal: `<svg width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,20 +128,7 @@ const SelectLocation = ({ onNext }) => {
             `,
         },
         {
-            flag: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_3150_17880)">
-            <path d="M16 32C24.8366 32 32 24.8366 32 16C32 7.16344 24.8366 0 16 0C7.16344 0 0 7.16344 0 16C0 24.8366 7.16344 32 16 32Z" fill="#F0F0F0"/>
-            <path d="M32.0005 16.0015C32.0005 9.65811 28.309 4.17711 22.957 1.58911V30.4138C28.309 27.8259 32.0005 22.3449 32.0005 16.0015Z" fill="#D80027"/>
-            <path d="M0 16.0005C0 22.3439 3.69156 27.8249 9.0435 30.4129V1.58813C3.69156 4.17613 0 9.65713 0 16.0005Z" fill="#D80027"/>
-            <path d="M18.7834 18.0883L21.5659 16.697L20.1747 16.0014V14.6101L17.392 16.0014L18.7834 13.2188H17.392L16.0007 11.1318L14.6094 13.2188H13.2181L14.6094 16.0014L11.8268 14.6101V16.0014L10.4355 16.697L13.2181 18.0883L12.5225 19.4796H15.3051V21.5666H16.6964V19.4796H19.479L18.7834 18.0883Z" fill="#D80027"/>
-            </g>
-            <defs>
-            <clipPath id="clip0_3150_17880">
-            <rect width="32" height="32" fill="white"/>
-            </clipPath>
-            </defs>
-            </svg>
-            `,
+            flag: montreal,
             city: 'Montreal',
             country: 'Canada East',
             signal: `<svg width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -76,18 +137,7 @@ const SelectLocation = ({ onNext }) => {
             `,
         },
         {
-            flag: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_3165_15554)">
-            <path d="M0.994141 21.5665C3.25483 27.6593 9.11951 32.0013 15.999 32.0013C22.8784 32.0013 28.7431 27.6593 31.0038 21.5665L15.999 20.1753L0.994141 21.5665Z" fill="#FFDA44"/>
-            <path d="M15.999 0.000976562C9.11951 0.000976562 3.25483 4.34298 0.994141 10.4358L15.999 11.827L31.0038 10.4357C28.7431 4.34298 22.8784 0.000976562 15.999 0.000976562Z" fill="black"/>
-            <path d="M0.995188 10.4343C0.352063 12.1676 0 14.0424 0 15.9995C0 17.9566 0.352063 19.8314 0.995188 21.5647H31.0049C31.648 19.8314 32 17.9566 32 15.9995C32 14.0424 31.648 12.1676 31.0048 10.4343H0.995188Z" fill="#D80027"/>
-            </g>
-            <defs>
-            <clipPath id="clip0_3165_15554">
-            <rect width="32" height="32" fill="white"/>
-            </clipPath>
-            </defs>
-            </svg>`,
+            flag: frankfurt,
             city: 'Frankfurt',
             country: 'Germany',
             signal: `<svg width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -96,26 +146,7 @@ const SelectLocation = ({ onNext }) => {
             `,
         },
         {
-            flag: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_3165_15390)">
-            <path d="M32 16C32 24.8365 24.8365 32 16 32C7.1635 32 0 24.8365 0 16C0 16.0037 16 0.0018125 16 0C24.8365 0 32 7.1635 32 16Z" fill="#0052B4"/>
-            <path d="M15.957 16.0007H15.9999C15.9999 15.9861 15.9999 15.9722 15.9999 15.9578C15.9857 15.9721 15.9714 15.9864 15.957 16.0007Z" fill="#F0F0F0"/>
-            <path d="M16 8.34903C16 5.53372 16 3.68891 16 0.0012207H15.9973C7.162 0.0026582 0 7.16547 0 16.0012H8.34781V11.3004L13.0486 16.0012H15.9572C15.9716 15.9869 15.9858 15.9727 16.0001 15.9583C16.0001 14.8804 16.0001 13.9186 16.0001 13.0498L11.2992 8.34903H16Z" fill="#F0F0F0"/>
-            <path d="M8.09564 2.08765C5.5932 3.51258 3.51283 5.59296 2.08789 8.0954V16.0007H6.26183V6.26165V6.26158H16.001C16.001 4.94515 16.001 3.69102 16.001 2.08765H8.09564Z" fill="#D80027"/>
-            <path d="M16.0017 14.0332L10.3172 8.34866H8.34961C8.34961 8.3486 8.34961 8.34866 8.34961 8.34866L16.0017 16.0007H16.0017C16.0017 16.0007 16.0017 14.6442 16.0017 14.0332Z" fill="#D80027"/>
-            <path d="M9.64972 18.782L10.5278 20.6181L12.5108 20.1598L11.6228 21.9912L13.2174 23.2557L11.232 23.7032L11.2375 25.7385L9.64972 24.4652L8.06197 25.7385L8.06753 23.7032L6.08203 23.2557L7.67672 21.9912L6.78859 20.1598L8.77166 20.6181L9.64972 18.782Z" fill="#F0F0F0"/>
-            <path d="M23.9557 22.2605L24.3947 23.1786L25.3862 22.9494L24.9422 23.8651L25.7396 24.4974L24.7468 24.7211L24.7496 25.7387L23.9557 25.1021L23.1618 25.7387L23.1646 24.7211L22.1719 24.4974L22.9692 23.8651L22.5252 22.9494L23.5166 23.1786L23.9557 22.2605Z" fill="#F0F0F0"/>
-            <path d="M19.8718 12.5217L20.3108 13.4399L21.3023 13.2106L20.8583 14.1263L21.6556 14.7586L20.6629 14.9824L20.6656 16L19.8718 15.3633L19.0779 16L19.0806 14.9824L18.0879 14.7586L18.8852 14.1263L18.4412 13.2106L19.4327 13.4399L19.8718 12.5217Z" fill="#F0F0F0"/>
-            <path d="M23.9557 6.95679L24.3947 7.87491L25.3862 7.64573L24.9422 8.56141L25.7395 9.19366L24.7468 9.41748L24.7496 10.4351L23.9557 9.79841L23.1618 10.4351L23.1646 9.41748L22.1719 9.19366L22.9691 8.56141L22.5252 7.64573L23.5166 7.87491L23.9557 6.95679Z" fill="#F0F0F0"/>
-            <path d="M27.5222 11.1304L27.9612 12.0485L28.9527 11.8192L28.5087 12.7349L29.306 13.3672L28.3132 13.5911L28.316 14.6086L27.5222 13.972L26.7283 14.6086L26.731 13.5911L25.7383 13.3672L26.5356 12.7349L26.0916 11.8192L27.083 12.0485L27.5222 11.1304Z" fill="#F0F0F0"/>
-            <path d="M24.9727 16.0005L25.318 17.0634H26.4356L25.5315 17.7203L25.8769 18.7831L24.9727 18.1262L24.0686 18.7831L24.4139 17.7203L23.5098 17.0634H24.6273L24.9727 16.0005Z" fill="#F0F0F0"/>
-            </g>
-            <defs>
-            <clipPath id="clip0_3165_15390">
-            <rect width="32" height="32" fill="white"/>
-            </clipPath>
-            </defs>
-            </svg>`,
+            flag: sydney,
             city: 'Sydney',
             country: 'Australia',
             signal: `<svg width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -124,30 +155,7 @@ const SelectLocation = ({ onNext }) => {
             `,
         },
         {
-            flag: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_3165_15428)">
-            <path d="M16 32C24.8366 32 32 24.8366 32 16C32 7.16344 24.8366 0 16 0C7.16344 0 0 7.16344 0 16C0 24.8366 7.16344 32 16 32Z" fill="#F0F0F0"/>
-            <path d="M3.30709 6.25732C2.05028 7.89251 1.10259 9.7772 0.550781 11.8246H8.8744L3.30709 6.25732Z" fill="#0052B4"/>
-            <path d="M31.4485 11.8248C30.8967 9.77744 29.9489 7.89276 28.6922 6.25757L23.125 11.8248H31.4485Z" fill="#0052B4"/>
-            <path d="M0.550781 20.1736C1.10266 22.221 2.05034 24.1056 3.3071 25.7408L8.87422 20.1736H0.550781Z" fill="#0052B4"/>
-            <path d="M25.7411 3.30643C24.1059 2.04961 22.2213 1.10192 20.1738 0.550049V8.87362L25.7411 3.30643Z" fill="#0052B4"/>
-            <path d="M6.25781 28.6904C7.893 29.9472 9.77769 30.8949 11.8251 31.4468V23.1233L6.25781 28.6904Z" fill="#0052B4"/>
-            <path d="M11.825 0.550049C9.77763 1.10192 7.89294 2.04961 6.25781 3.30636L11.825 8.87354V0.550049Z" fill="#0052B4"/>
-            <path d="M20.1738 31.4468C22.2212 30.8949 24.1059 29.9472 25.741 28.6905L20.1738 23.1233V31.4468Z" fill="#0052B4"/>
-            <path d="M23.125 20.1736L28.6922 25.7408C29.9489 24.1057 30.8967 22.221 31.4485 20.1736H23.125Z" fill="#0052B4"/>
-            <path d="M31.8646 13.9131H18.0871H18.087V0.135438C17.4038 0.0465 16.7073 0 16 0C15.2926 0 14.5962 0.0465 13.9131 0.135438V13.9129V13.913H0.135438C0.0465 14.5962 0 15.2927 0 16C0 16.7074 0.0465 17.4038 0.135438 18.0869H13.9129H13.913V31.8646C14.5962 31.9535 15.2926 32 16 32C16.7073 32 17.4038 31.9536 18.0869 31.8646V18.0871V18.087H31.8646C31.9535 17.4038 32 16.7074 32 16C32 15.2927 31.9535 14.5962 31.8646 13.9131Z" fill="#D80027"/>
-            <path d="M20.1738 20.1751L27.3136 27.3149C27.642 26.9866 27.9552 26.6434 28.2541 26.2877L22.1415 20.175H20.1738V20.1751Z" fill="#D80027"/>
-            <path d="M11.8254 20.175H11.8252L4.68555 27.3147C5.0138 27.6431 5.35698 27.9564 5.71273 28.2552L11.8254 22.1425V20.175Z" fill="#D80027"/>
-            <path d="M11.8263 11.8255V11.8254L4.68659 4.68555C4.35822 5.0138 4.04497 5.35698 3.74609 5.71273L9.85878 11.8254H11.8263V11.8255Z" fill="#D80027"/>
-            <path d="M20.1738 11.8269L27.3136 4.68702C26.9854 4.35864 26.6422 4.04539 26.2865 3.74658L20.1738 9.85927V11.8269Z" fill="#D80027"/>
-            </g>
-            <defs>
-            <clipPath id="clip0_3165_15428">
-            <rect width="32" height="32" fill="white"/>
-            </clipPath>
-            </defs>
-            </svg>
-            `,
+            flag: london,
             city: 'London',
             country: 'UK',
             signal: `<svg width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -166,15 +174,15 @@ const SelectLocation = ({ onNext }) => {
 
     const handleCardSelection = (index, category) => {
         setSelectedCardIndex((prevSelectedCardIndex) => {
-            const newSelectedCardIndex = {...prevSelectedCardIndex};
+            const newSelectedCardIndex = { ...prevSelectedCardIndex };
             newSelectedCardIndex[category] = index;
             return newSelectedCardIndex;
         });
 
-        const selectedPlan = countries[index] ;
+        const selectedPlan = regions[index];
         setSelectedPlan(selectedPlan)
 
-        console.log("Selected Country - ", selectedPlan.country , "Selected City - ", selectedPlan.city);
+        console.log("Selected Country - ", selectedPlan.display);
     };
 
 
@@ -194,13 +202,24 @@ const SelectLocation = ({ onNext }) => {
             </div>
 
             <div className="country-select-container">
-                {countries.map(( country, index ) => (
-                    <SelectCountry key={index} flag={country.flag} city={country.city} country={country.country}
-                    signal={country.signal}
-                    isSelected={index === selectedCardIndex.country}
-                    onClick={() => handleCardSelection(index, "country")}
-                        />
-                ))}
+                {regions.map((country, index) => {
+
+                    const flag = region_flags.find(flag => flag.id === country.id);
+                    const flag_logo = flag ? flag.flag : null;
+
+                    const countryName = country.display;
+                    const [city, Country] = countryName.split(" (").map(str => str.replace(")", ""));
+
+                    return <SelectCountry key={index}
+                        flag={flag_logo}
+                        city={city}
+                        country={Country}
+                        signal={country.ping_url}
+                        id={country.id}
+                        isSelected={index === selectedCardIndex.country}
+                        onClick={() => handleCardSelection(index, "country")}
+                    />
+                })}
             </div>
 
             <div className="action-btn">

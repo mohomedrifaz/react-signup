@@ -38,8 +38,11 @@ const App = () => {
   }
 
   const handleLocationStats = (selectedLocation) => {
-    setSelectedLocationCity(selectedLocation.city);
-    setSelectedLocationCountry(selectedLocation.country);
+    console.log(selectedLocation);
+    const countryName = selectedLocation.display;
+    const [city, Country] = countryName.split(" (").map(str => str.replace(")", ""));
+    setSelectedLocationCity(city);
+    setSelectedLocationCountry(Country);
     handleNextStep();
   }
 
@@ -48,6 +51,12 @@ const App = () => {
     setNetworkingMainTitle(selectedTitles.networking)
     setBackupsMainTitle(selectedTitles.backups)
     handleNextStep();
+  };
+
+  const [isBackup, setIsBackup] = useState(false);
+
+  const handleBackup = (backup) => {
+    setIsBackup(backup);
   };
 
   const completionStats = [
@@ -149,11 +158,11 @@ const App = () => {
       case 4:
         return <SelectLocation onNext={handleLocationStats} onPrevious={handlePreviousStep} />;
       case 5:
-        return <SelectPlan onNext={handlePlanStats} onPrevious={handlePreviousStep} />;
+        return <SelectPlan onNext={handlePlanStats} onPrevious={handlePreviousStep} backupState={handleBackup} />;
       case 6:
-        return <ConfigPcIndividual onNext={handleConfigStats} onPrevious={handlePreviousStep} />;
+        return <ConfigPcIndividual onNext={handleConfigStats} onPrevious={handlePreviousStep} isBackup={isBackup} />;
       case 7:
-        return <ConfigPcTeam onNext={handleNextStep} onPrevious={handlePreviousStep} />;
+        return <ConfigPcTeam onNext={handleNextStep} onPrevious={handlePreviousStep} isBackup={isBackup} />;
       case 8:
         return <PaymentGateway onPrevious={handlePreviousStep} />;
       default:

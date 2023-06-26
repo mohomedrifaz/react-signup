@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import ConfigCards from './configCards';
 import './ConfigPc.css';
 
-const ConfigPcIndividual = ({ onNext }) => {
+const ConfigPcIndividual = ({ onNext, isBackup }) => {
 
     const inputRef = useRef(null);
     const [password, setPassword] = useState('')
@@ -292,6 +292,9 @@ const ConfigPcIndividual = ({ onNext }) => {
         },
     ];
 
+    const gotoPlans = () => {
+        console.log('redirect to selectPlan');
+    }
     return (
         <div className="config-pc-container">
 
@@ -374,47 +377,51 @@ const ConfigPcIndividual = ({ onNext }) => {
                 ))}
             </div>
 
-            <div className="main-title">
-                <h2> Backup Retention </h2>
-            </div>
+            <div className={`backups-antivirus-container ${isBackup ? "enabled" : "disabled"}` }>
 
-            <div className="backups-container">
-                {backups.map((key, index) => (
-                    <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle} subTitle={key.subTitle}
-                        content={key.content} logoSelected={key.logoSelected}
-                        isSelected={index === selectedCardIndex.backups}
-                        onClick={() => handleCardSelection(index, "backups")} />
-                ))}
-            </div>
-
-            <div className="main-title">
-                <h2> Antivirus </h2>
-            </div>
-
-            <div className={`antivirus-container ${isChecked ? 'selected' : ''}`}>
-                <label className="checkbox-label">
-                    <input type="checkbox"
-                        className="checkbox-input"
-                        checked={isChecked}
-                        onChange={handleCheckbox}
-                    />
-                </label>
-                <div className="info-box">
-                    Install Antivirus (Malwarebytes)
+                <div className="main-title">
+                    <h2> Backup Retention </h2>
                 </div>
-                <span className="anitivirus-logo"> <svg width="31" height="32" viewBox="0 0 31 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4.5625 7.9375C4.1875 8.125 4 8.4375 4 8.75C4 14.5 6.375 24.3125 15.625 28.75C15.8125 28.875 16.125 28.875 16.3125 28.75C25.5625 24.375 27.9375 14.5 28 8.75C28 8.4375 27.75 8.125 27.4375 7.9375L16 3.125L4.5625 7.9375ZM28.5625 5.1875C29.9375 5.8125 31 7.125 31 8.75C30.9375 15 28.375 26.3125 17.625 31.5C16.5625 32 15.375 32 14.3125 31.5C3.5625 26.3125 1 15 1 8.75C0.9375 7.125 2 5.8125 3.375 5.1875L15.125 0.1875C15.375 0.0625 15.6875 0 16 0C16.25 0 16.5625 0.0625 16.8125 0.1875L28.5625 5.1875ZM23.0625 13.0625L15.0625 21.0625C14.4375 21.6875 13.5 21.6875 12.9375 21.0625L8.9375 17.0625C8.3125 16.5 8.3125 15.5625 8.9375 15C9.5 14.375 10.4375 14.375 11.0625 15L14 17.9375L20.9375 11C21.5 10.375 22.4375 10.375 23.0625 11C23.625 11.5625 23.625 12.5 23.0625 13.0625Z" fill="url(#paint0_linear_2820_8940)" />
-                    <defs>
-                        <linearGradient id="paint0_linear_2820_8940" x1="32.0033" y1="-0.00738019" x2="-6.93329" y2="21.4114" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#116FE6" />
-                            <stop offset="1" stop-color="#003373" />
-                        </linearGradient>
-                    </defs>
-                </svg>
-                </span>
+
+                <div className="backups-container">
+                    {backups.map((key, index) => (
+                        <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle} subTitle={key.subTitle}
+                            content={key.content} logoSelected={key.logoSelected}
+                            isSelected={index === selectedCardIndex.backups}
+                            onClick={() => handleCardSelection(index, "backups")} />
+                    ))}
+                </div>
+
+                <div className="main-title">
+                    <h2> Antivirus </h2>
+                </div>
+
+                <div className={`antivirus-container ${isChecked ? 'selected' : ''}`}>
+                    <label className="checkbox-label">
+                        <input type="checkbox"
+                            className="checkbox-input"
+                            checked={isChecked}
+                            onChange={handleCheckbox}
+                        />
+                    </label>
+                    <div className="info-box">
+                        Install Antivirus (Malwarebytes)
+                    </div>
+                    <span className="anitivirus-logo"> <svg width="31" height="32" viewBox="0 0 31 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4.5625 7.9375C4.1875 8.125 4 8.4375 4 8.75C4 14.5 6.375 24.3125 15.625 28.75C15.8125 28.875 16.125 28.875 16.3125 28.75C25.5625 24.375 27.9375 14.5 28 8.75C28 8.4375 27.75 8.125 27.4375 7.9375L16 3.125L4.5625 7.9375ZM28.5625 5.1875C29.9375 5.8125 31 7.125 31 8.75C30.9375 15 28.375 26.3125 17.625 31.5C16.5625 32 15.375 32 14.3125 31.5C3.5625 26.3125 1 15 1 8.75C0.9375 7.125 2 5.8125 3.375 5.1875L15.125 0.1875C15.375 0.0625 15.6875 0 16 0C16.25 0 16.5625 0.0625 16.8125 0.1875L28.5625 5.1875ZM23.0625 13.0625L15.0625 21.0625C14.4375 21.6875 13.5 21.6875 12.9375 21.0625L8.9375 17.0625C8.3125 16.5 8.3125 15.5625 8.9375 15C9.5 14.375 10.4375 14.375 11.0625 15L14 17.9375L20.9375 11C21.5 10.375 22.4375 10.375 23.0625 11C23.625 11.5625 23.625 12.5 23.0625 13.0625Z" fill="url(#paint0_linear_2820_8940)" />
+                        <defs>
+                            <linearGradient id="paint0_linear_2820_8940" x1="32.0033" y1="-0.00738019" x2="-6.93329" y2="21.4114" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#116FE6" />
+                                <stop offset="1" stop-color="#003373" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    </span>
+                </div>
+
             </div>
 
-            <div className="enable-businessplan-infobox">
+            { !isBackup && <div className="enable-businessplan-infobox">
                 <div className="content-container">
                     <div className="main-text">
                         Select the Business Plan to enable backup & antivirus
@@ -423,13 +430,13 @@ const ConfigPcIndividual = ({ onNext }) => {
                         Selecting the Business Plan will provide you with the option to enable backup, antivirus, and VPN
                     </div>
                 </div>
-                <button className="button">
+                <button className="button" onClick={gotoPlans}>
                     <span>Go to plans</span>
                     <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.76562 0.982422L14.6094 6.56055C14.7754 6.72656 14.875 6.92578 14.875 7.1582C14.875 7.35742 14.7754 7.55664 14.6094 7.72266L8.76562 13.3008C8.4668 13.5996 7.93555 13.5996 7.63672 13.2676C7.33789 12.9688 7.33789 12.4375 7.66992 12.1387L12.0859 7.95508H0.796875C0.332031 7.95508 0 7.58984 0 7.1582C0 6.69336 0.332031 6.36133 0.796875 6.36133H12.0859L7.66992 2.14453C7.33789 1.8457 7.33789 1.31445 7.63672 1.01562C7.93555 0.683594 8.43359 0.683594 8.76562 0.982422Z" fill="white" />
                     </svg>
                 </button>
-            </div>
+            </div> }
 
             <div className="action-btn">
                 <button className="back-btn">
