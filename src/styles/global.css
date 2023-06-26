@@ -2,6 +2,7 @@
 
     /* colors */
     --primary-color : #00438B;
+    --secondary-color : #FFA500;
     --neutral-color : #495057;
     --neutral-200: #E9ECEF;
     --neutral-500: #ADB5BD;
@@ -22,6 +23,7 @@
 
     /** Headings **/
     --font-h1: 40px;
+    --font-h2: 32px;
 
     /* Font weight */
     --font-light : 300;
@@ -36,6 +38,7 @@
 
     /* Line height */
     --line-height-body: 1.2;
+    --line-height-fancy: 1.5;
 
 }
 

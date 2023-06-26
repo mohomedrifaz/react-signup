@@ -1,5 +1,12 @@
-h1 {
-	font-size: var(--font-h1);
+h1, h2, h3, h4, h5, h7 {
 	font-family: var(--font-family-primary);
 	line-height: var(--line-height-body);
+}
+
+h1 {
+	font-size: var(--font-h1);
+}
+
+h2 {
+	font-size: var(--font-h2);
 }
