@@ -6,6 +6,8 @@ import axios from 'axios';
 import './style.css';
 import countries from './../../data/countries.json';
 
+import RegisterSlider from './slider';
+
 export default function RegistrationForm() {
 
 	const [ userCountry, setUserCountry ] = useState('');
@@ -129,8 +131,8 @@ export default function RegistrationForm() {
 				<p>By signing up you agree to our <a href="#">Terms of Service</a></p>
 			</div>
 		</div>
-		<div className="slide-panel">
-
+		<div className="slider-panel">
+			<RegisterSlider />
 		</div>
 	</div>
   );

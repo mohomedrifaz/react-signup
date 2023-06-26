@@ -28,13 +28,14 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.svg$/,
+        type: 'asset',
+      },
+      {
+        test: /\.(png|jpe?g|gif|webp)$/i,
         use: [
           {
             loader: 'url-loader',
-            options: {
-              limit: 8192,
-            },
           },
         ],
       },
