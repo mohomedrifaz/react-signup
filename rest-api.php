@@ -82,47 +82,38 @@ function create_hubspot_contact( $request ) {
 	$body_data = wp_json_encode([
 		'fields' => [
 			[
-				'objectTypeId'  => '0-1',
 				'name' 			=> 'firstname',
 				'value'			=> $request['firstname']
 			],
 			[
-				'objectTypeId'  => '0-1',
 				'name' 			=> 'lastname',
 				'value'			=> $request['lastname']
 			],
 			[
-				'objectTypeId'  => '0-1',
 				'name' 			=> 'email',
 				'value'			=> $request['email']
 			],
 			[
-				'objectTypeId'  => '0-1',
 				'name' 			=> 'phone',
 				'value'			=> $request['phone']
 			],
 			[
-				'objectTypeId'  => '0-1',
 				'name' 			=> 'company',
 				'value'			=> $request['company']
 			],
 			[
-				'objectTypeId'  => '0-1',
 				'name' 			=> 'numemployees',
-				'value'			=> $request['companysize'],
+				'value'			=> isset( $request['companysize'] ) ? $request['companysize'] : '',
 			],
 			[
-				'objectTypeId'  => '0-1',
 				'name' 			=> 'use_case',
 				'value'			=> $request['usecase'],
 			],
 			[
-				'objectTypeId'  => '0-1',
 				'name' 			=> 'i_agree_to_receive_information_about_your_products__promotions__and_awards_through_email_and_sms',
-				'value'			=> filter_var( $request['promotion'], FILTER_VALIDATE_BOOLEAN ),
+				'value'			=> (string) filter_var( $request['promotion'], FILTER_VALIDATE_BOOLEAN ),
 			],
 			[
-				'objectTypeId'  => '0-1',
 				'name' 			=> 'hs_lead_status',
 				'value'			=> 'register_account'
 			],
