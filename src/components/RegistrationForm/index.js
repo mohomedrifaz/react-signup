@@ -1,22 +1,27 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
-import { useForm } from 'react-hook-form';
-import { useEffect } from 'react';
+import { set, useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import './style.css';
+import countries from './../../data/countries.json';
 
 export default function RegistrationForm() {
+
+	const [ userCountry, setUserCountry ] = useState('');
 
 	const { register, handleSubmit, formState: { errors } } = useForm({
 		mode: "onTouched"
 	});
 
-	useEffect(() => {
-		console.log(errors);
-	}, [errors]);
-
 	const requiredConfig = {
 		required: "Please complete this required field."
 	};
+
+	useEffect( () => {
+		axios.get( 'https://geo.easydigitaldownloads.com/v3/geolocate/json' )
+			.then( ( response ) => setUserCountry( response.data?.country_iso ) );
+	}, []);
 
   return (
 	<div className="registration-form-container">
@@ -59,10 +64,19 @@ export default function RegistrationForm() {
 					<div className="form-row">
 						<div className="form-group">
 							<label htmlFor="phone">Phone Number*</label>
-							<input
-								type="tel" name="phone" id="phone" className="form-control"
-								{ ...register("phone", requiredConfig) }
-							/>
+							<div className="phone-number-wrapper">
+								<select name="country-code" id="country-code" className="form-control" value={ userCountry } onChange={ ( e ) => setUserCountry( e.target.value ) }>
+									{
+										Object.entries( countries ).map( ( [ countryCode, { name: countryName, code: phoneCode } ] ) => (
+											<option key={ countryCode } value={ countryCode }>{ countryName } ({ phoneCode })</option>
+										))
+									}
+								</select>
+								<input
+									type="tel" name="phone" id="phone" className="form-control"
+									{ ...register("phone", requiredConfig) }
+								/>
+							</div>
 							{ errors.phone && <div className="error-message">{ errors.phone.message }</div> }
 						</div>
 					</div>

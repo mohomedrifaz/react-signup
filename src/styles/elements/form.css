@@ -62,6 +62,26 @@
 		font-size: var(--font-xxxs);
 		margin-top: 6px;
 	}
+
+	& .phone-number-wrapper {
+		display: flex;
+		align-items: stretch;
+
+		& select {
+			box-shadow: none !important;
+			border-top-right-radius: 0 !important;
+			border-bottom-right-radius: 0 !important;
+			border-right: none !important;
+			width: 200px !important;
+		}
+
+		& input {
+			box-shadow: none !important;
+			border-top-left-radius: 0 !important;
+			border-bottom-left-radius: 0 !important;
+			border-left: none !important;
+		}
+	}
 }
 
 button[type="submit"],
