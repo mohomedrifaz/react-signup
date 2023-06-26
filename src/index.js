@@ -11,6 +11,7 @@ import PaymentGateway from './components/PaymentGateway/PaymentGateway';
 import SelectPlan from './components/SelectPlan/SelectPlan';
 import ConfigPcTeam from './components/ComputerConfig/ConfigPcTeam';
 import ConfigPcIndividual from './components/ComputerConfig/ConfigPcIndividual';
+import RegistrationForm from './components/RegistrationForm';
 
 
 const App = () => {
@@ -57,7 +58,7 @@ const App = () => {
 		`${windowsMainTitle}/ ${networkingMainTitle}/ ${backupsMainTitle}`,
 	]
 
-	const [currentStepB, setCurrentStepB] = useState(1);
+	const [currentStepB, setCurrentStepB] = useState(0);
 
 	const handleNextStep = () => {
 		setCurrentStepB(currentStepB + 1);
@@ -109,7 +110,7 @@ const App = () => {
 		}
 	}, [currentStepB]);
 
-	const [currentStep, setCurrentStep] = useState(1);
+	const [currentStep, setCurrentStep] = useState(0);
 	useEffect(() => {
 		switch (currentStepB) {
 			case 1:
@@ -162,19 +163,24 @@ const App = () => {
 	};
 
 	return (
-		<div className="steps-container">
-			<div className="sidebar">
-				<Sidebar
-					currentStep={currentStep}
-					completionStatus={completionStatus}
-					stepTitles={stepTitles}
-					completionStats={completionStats}
-				/>
-			</div>
-			<div className="main">
-				{renderCurrentStepComponent()}
-			</div>
-		</div>
+		<>
+			<RegistrationForm />
+			{ currentStep > 0 && (
+				<div className="steps-container">
+					<div className="sidebar">
+						<Sidebar
+							currentStep={currentStep}
+							completionStatus={completionStatus}
+							stepTitles={stepTitles}
+							completionStats={completionStats}
+						/>
+					</div>
+					<div className="main">
+						{renderCurrentStepComponent()}
+					</div>
+				</div>
+			) }
+		</>
 	);
 };
 

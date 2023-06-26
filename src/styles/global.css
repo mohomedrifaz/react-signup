@@ -1,0 +1,91 @@
+:root {
+
+    /* colors */
+    --primary-color : #00438B;
+    --neutral-color : #495057;
+    --neutral-200: #E9ECEF;
+    --neutral-500: #ADB5BD;
+    --neutral-600: #6C757D;
+    --border-color: #DEE2E6;
+    --alert-info-600: #1570EF;
+    --alert-error-600: #D92D20;
+
+    /* Font Size */
+    --font-xxxs : 12px;
+    --font-xxs : 14px;
+    --font-xs : 16px;
+    --font-sm : 18px;
+    --font-md : 20px;
+    --font-lg : 22px;
+    --font-xl : 24px;
+    --font-xxl: 26px;
+
+    /** Headings **/
+    --font-h1: 40px;
+
+    /* Font weight */
+    --font-light : 300;
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semi-bold: 600;
+    --font-bold: 700;
+
+    /* Font Family */
+    --font-family-primary: 'Roboto';
+    --font-family-secondary: 'Poppins', sans-serif;
+
+    /* Line height */
+    --line-height-body: 1.2;
+
+}
+
+@define-mixin verify-btn {
+    width: 150px;
+    height: 50px;
+    margin: 0px auto 0px auto;
+    font-size: var(--font-sm);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background: #00438b;
+    margin-left: 25px;
+}
+
+@define-mixin main-title {
+    font-family:var(--font-family-secondary) ;
+    font-style: normal;
+    font-weight: var(--font-medium);
+    font-size: var(--font-xxl);
+    line-height: 120%;
+    color: #212529;
+    padding-bottom: 0;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family-primary) ;
+    line-height: var(--line-height-body);
+    font-weight: var(--font-normal);
+}
+
+.steps-container {
+    display: flex;
+}
+
+.main-title{
+    @mixin main-title;
+}
+
+.title {
+    font-size: 24px;
+    color: #333;
+}
+
+.main {
+    display: flex;
+    width: 75%;
+    align-items: flex-start;
+    background-color: white;
+    padding-top: calc(70px - var(--wp-admin--admin-bar--height, 0px));
+}

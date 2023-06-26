@@ -21,7 +21,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    color: var(--back-button);
+    color: var(--neutral-500);
     background: none;
 }
 
