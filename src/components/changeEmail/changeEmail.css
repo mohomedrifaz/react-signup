@@ -29,9 +29,6 @@
     padding-left: 65px;
     
     & .form-row {
-        &.form-row-colfull {
-            padding-top: 15px;
-        }
 
         & .label {
             font-size: 14px;

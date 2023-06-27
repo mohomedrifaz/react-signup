@@ -71,51 +71,25 @@ const Password = ( {onNext} ) => {
             </div>
 
             <div className="password-form-container">
-                <div className="password-fields">
-                    <div className="password-title"> Password* </div>
-                    <div className="input-container">
-                        <input
-                            className="custom-input"
-                            type={showPassword ? "text" : "password"}
-                            placeholder="Enter account password"
-                            value={password}
-                            onChange={handlePasswordChange}
-                        />
-                        <span
-                            className={`password-toggle ${showPassword ? "visible" : ""}`}
-                            onClick={togglePasswordVisibility}
-                        >
-                            {showPassword ? (
-                                <FontAwesomeIcon icon={faEye} />
-                            ) : (
-                                <FontAwesomeIcon icon={faEyeSlash} />
-                            )}
-                        </span>
-                    </div>
-                    <div className="password-title"> Confirm Password* </div>
-                    <div className="input-container">
-                        <input
-                            className={`custom-input ${passwordError ? "error" : ""}`}
-                            type={ConfirmPassword ? "text" : "password"}
-                            placeholder="Enter account password"
-                            value={repassword}
-                            onChange={handleConfirmPasswordChange}
-                        />
-                        <span
-                            className={`password-toggle ${showPassword ? "visible" : ""}`}
-                            onClick={toggleConfirmPasswordVisibility}
-                        >
-                            {ConfirmPassword ? (
-                                <FontAwesomeIcon icon={faEye} />
-                            ) : (
-                                <FontAwesomeIcon icon={faEyeSlash} />
-                            )}
-                        </span>
-                    </div>
-                    {passwordError && <div className="error-message">Passwords do not match</div>}
+                <div className="form-row form-group">
+                    <label for="password">Password*</label>
+                    <input
+                        className="form-control" id="password" placeholder="Enter account password" value={password}
+                        type={showPassword ? "text" : "password"}
+                        onChange={handlePasswordChange}
+                    />
+                </div>
+                <div className="form-row form-group">
+                    <label for="confirm-password">Confirm Password*</label>
+                    <input
+                        className="form-control" id="confirm-password" placeholder="Enter account password"
+                        type={showPassword ? "text" : "password"}
+                        value={repassword}
+                        onChange={handleConfirmPasswordChange}
+                    />
                 </div>
                 <div className="password-requirements">
-                    <div className="title"> Password Requirements </div>
+                    <div className="title">Password Requirements</div>
                     <ul>
                         <li>
                             <label className="checkbox-label">

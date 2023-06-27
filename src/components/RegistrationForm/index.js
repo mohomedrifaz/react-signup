@@ -58,7 +58,7 @@ export default function RegistrationForm() {
 								{ ...register("email", { ...requiredConfig, validate: ( value ) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test( value ) || "Please enter a valid email." }) }
 							/>
 							<p className="help-text">
-								<FontAwesomeIcon icon={faCircleInfo} /> We will send a verification to this email ID
+								<FontAwesomeIcon icon={faCircleInfo} />We will send a verification to this email ID
 							</p>
 							{ errors.email && <div className="error-message">{ errors.email.message }</div> }
 						</div>
