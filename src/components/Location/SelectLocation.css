@@ -1,11 +1,11 @@
 .data-centers-container {
-    padding-left: 65px;
     width: 90%;
 
     & .country-select-container {
         display: flex;
         gap: 25px;
         padding-bottom: 50px;
+        padding-top: 20px;
         flex-wrap: wrap;
 
         & .country-select {
@@ -14,7 +14,7 @@
             padding: 10px;
             border: 2px solid #E9ECEF;
             border-radius: 10px;
-            width: 28%;
+            width: 30%;
             position: relative;
             cursor: pointer;
             align-items: center;
@@ -44,7 +44,7 @@
                 width: 80%;
 
                 & .city {
-                    font-family:var(--font-family-secondary);
+                    font-family:var(--font-family-primary);
                     font-style: normal;
                     font-weight: var(--font-medium);
                     font-size: var(--font-xs);
@@ -52,7 +52,7 @@
                     color: #343A40;
                 }
                 & .country {
-                    font-family: var(--font-family-secondary);
+                    font-family: var(--font-family-primary);
                     font-style: normal;
                     font-weight: var(--font-normal;);
                     font-size: 14px;

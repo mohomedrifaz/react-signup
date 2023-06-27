@@ -25,7 +25,6 @@
     }
 
     & .form-container {
-        padding-left: 65px;
         width: 50%;
 
         & .main-title {
@@ -268,7 +267,7 @@
                 }
     
                 & .list-content {
-                    font-family:var(--font-family-secondary) ;
+                    font-family:var(--font-family-primary) ;
                     font-style: normal;
                     font-weight: var(--font-normal);
                     font-size: 14px;

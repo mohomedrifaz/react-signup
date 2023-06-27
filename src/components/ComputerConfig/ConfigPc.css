@@ -192,7 +192,7 @@
             padding: 16px;
             border-radius: 8px;
             width: 40%;
-            font-family:var(--font-family-secondary) ;
+            font-family:var(--font-family-primary) ;
             font-style: normal;
             font-weight: var(--font-medium);
             font-size: var(--font-xs);
@@ -285,7 +285,7 @@
             & .content-container {
                 width: 70%;
                 & .main-text {
-                    font-family:var(--font-family-secondary) ;
+                    font-family:var(--font-family-primary) ;
                     font-weight: var(--font-semi-bold);
                     font-size: var(--font-sm);
                     line-height: 16px;
@@ -293,7 +293,7 @@
                 }
 
                 & .sub-text {
-                    font-family:var(--font-family-secondary) ;
+                    font-family:var(--font-family-primary) ;
                     font-weight: var(--font-normal);
                     font-size: var(--font-xs);
                     line-height: 20px;

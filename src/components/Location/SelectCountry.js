@@ -23,7 +23,7 @@ const SelectCountry = ({ flag, city, country, signal, onClick, isSelected }) => 
             </div>
 
             <div className="section-2">
-                <div className="signal-bar" dangerouslySetInnerHTML={{ __html: signal }}></div>
+                {/* <div className="signal-bar" dangerouslySetInnerHTML={{ __html: signal }}></div> */}
                 <div className="select-checkbox">
                     <div className="checkbox-icon selected">
                         <svg width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,14 +1,14 @@
 /* Setup Account */
 
 .content-title {
-    padding-left: 65px;
 
     & .verficiation-content {
-        margin-top: 30px;
 
         & p {
-            margin: 5px 0;
+            margin: 0;
             color: var(--neutral-color);
+            padding-bottom: 0;
+            font-size: var(--font-xs);
         }
 
         & .email-address-verification {
@@ -19,7 +19,7 @@
     }
 
     & .verification-instructions {
-        /* margin-top: 25px; */
+        margin-top: 20px;
         font-size: var(--font-xs);
         color: var(--neutral-color);
         line-height: 120%;
@@ -78,7 +78,7 @@
 
         & .invalid-verification-box{
             &.hidden{
-                font-family:var(--font-family-secondary) ;
+                font-family:var(--font-family-primary) ;
                 font-style: normal;
                 font-weight: var(--font-normal);
                 font-size: 14px;

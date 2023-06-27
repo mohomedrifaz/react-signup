@@ -1,6 +1,7 @@
 /* Sidebar Content CSS */
 
 .sidebar {
+    margin-right: 80px;
     min-width: 320px;
     width: 25%;
     background-color: #f8f9fa;
