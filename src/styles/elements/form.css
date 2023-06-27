@@ -9,6 +9,15 @@
 		width: 50%;
 	}
 
+	&.form-group--70 {
+		width: 70%;
+		margin-right: 10px;
+	}
+
+	&.form-group--30 {
+		width: 30%;
+	}
+
 	& label {
 		font-size: var(--font-xxs);
 		color: var(--neutral-color);

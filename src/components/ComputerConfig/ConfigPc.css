@@ -1,7 +1,7 @@
 /* Config PC  */
 
 .config-pc-container {
-    padding: 0 65px;
+    padding: 0;
 
         & .name-password-container {
             display: flex;
@@ -29,12 +29,13 @@
                     & .input {
                         margin-bottom: 0;
                         margin-top: 5px;
+                        border-color: var(--border-color);
                         box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
                         border-radius: 4px 0 0 4px;
                         padding: 14px;
                         font-size: 15px;
                         line-height: 1.2;
-                        height: 15px;
+                        min-height: 44px;
                         border: 1px solid #e9ecef;
                     }
 
@@ -44,7 +45,7 @@
                         & .copy-button {
                             background: #fff;
                             border-radius: 0 4px 4px 0;
-                            padding: 13.5px 14px;
+                            padding: 14.5px 14px;
                             font-size: 14px;
                             cursor: pointer;
                             color: #101828;
@@ -52,6 +53,7 @@
                             border: 1px solid #e9ecef;
                             margin-right: 20px;
                             display:flex;
+                            min-height:44px;
 
                             & svg {
                                 margin-right: 10px;
@@ -63,7 +65,7 @@
                             border: 1px solid #E6ECF3;
                             box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
                             border-radius: 4px;
-                            padding: 11px 16px;
+                            padding: 15px 16px;
                             font-weight: var(--font-semi-bold);
                             font-size: 14px;
                             line-height: 120%;
@@ -72,6 +74,7 @@
                             align-items: center;
                             justify-content: center;
                             cursor: pointer;
+                            min-height: 44px;
 
                             & svg {
                                 margin-right: 5px;
@@ -131,6 +134,7 @@
             display: flex;
             flex-direction: row;
             gap: 30px;
+            margin-top: 10px;
         }
 
         & .networking-container {
@@ -138,6 +142,7 @@
             flex-direction: row;
             gap: 30px;
             padding-top: 10px;
+            margin-top: 10px;
 
             & .config-card {
                 & .sub-title {
@@ -170,6 +175,7 @@
                 display: flex;
                 flex-direction: row;
                 gap: 30px;
+                margin-top: 10px;
     
                 & .config-card {
                     & .sub-title {
@@ -200,6 +206,7 @@
             color: #212529;
             justify-content: flex-start;
             margin-bottom: 50px;
+            margin-top: 10px;
 
             &.selected {
                 border: 2px solid #003373;
@@ -252,7 +259,7 @@
         & .line-with-text {
             display: flex;
             align-items: center;
-            margin: -10px 0 25px 0;
+            margin: 10px 0 25px 0;
             width: 40%;
 
             & .line {
@@ -325,7 +332,7 @@
             padding: 20px;
             border: 2px solid #E9ECEF;
             border-radius: 10px;
-            width: 15%;
+            width: 20%;
             position: relative;
             min-height: 220px;
             cursor: pointer;
@@ -353,6 +360,7 @@
                 color: #212529;
                 margin-top: 15px;
                 padding-bottom: 0;
+                font-family:var(--font-family-primary);
             }
 
             & .sub-title {

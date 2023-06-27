@@ -33,6 +33,10 @@
             justify-content: space-between;
             align-items: center;
 
+            & h3 {
+                margin-bottom: 0;
+            }
+
             & img{
                 height: 38px;
                 width: 115px;
@@ -104,7 +108,6 @@
             &.form-row-5 {
                 & select {
                     margin-bottom: 0;
-                    margin-top: 5px;
                     border-color: #e9ecef;
                     box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
                     border-radius: 4px;
@@ -197,7 +200,7 @@
         }
 
         & .card-verification-info {
-            margin: 30px 0;
+            margin: 20px 0;
             background: rgb(93, 127, 164);
             background: linear-gradient(90deg, rgba(93, 127, 164, 1) 0%, rgba(105, 141, 179, 1) 25%, rgba(133, 163, 195, 1) 60%, rgba(139, 167, 199, 1) 90%, rgba(139, 167, 199, 1) 100%);
             padding: 15px 20px;

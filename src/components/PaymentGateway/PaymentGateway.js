@@ -52,44 +52,42 @@ const PaymentGateway = ({ selectedCity, selectedCountry, plan, planTitle, planCo
                         <img src={paymentCardsImage} />
                     </div>
                     <div className="form-row form-row-1">
-                        <div className="form-row-col-long">
-                            <label className="label row2-label" for="card_number"> Card number* </label>
-                            <input required type="text" name="card_number" className="input row1-input" placeholder="Enter card number" />
-                            <span className="card-verification-note">  </span>
+                        <div className="form-group form-group--70">
+                            <label for="card_number"> Card number* </label>
+                            <input required type="text" name="card_name" placeholder="Enter card number" className="form-control"></input>
                         </div>
-                        <div className="form-row-col-short">
-                            <label className="label row2-label" for="expiry_date"> Expiry* </label>
-                            <input required type="text" name="expiry_date" className="input row1-input" placeholder="MM/YY" />
+                        <div className="form-group form-group--30">
+                            <label for="expiry_date"> Expiry* </label>
+                            <input required type="text" name="expiry_date" placeholder="MM/YY" className="form-control"></input>
                         </div>
                     </div>
 
                     <div className="form-row form-row-2">
-                        <div className="form-row-col-long">
-                            <label className="label row2-label" for="card_name"> Name on Card * </label>
-                            <input required type="text" name="card_name" className="input row2-input" placeholder="Enter card name" />
-                            <span className="name-verification-note">  </span>
+                        <div className="form-group form-group--70">
+                            <label for="card_name" >Name on Card * </label>
+                            <input required type="text" name="card_name" placeholder="Enter card name" className="form-control"></input>
                         </div>
-                        <div className="form-row-col-short">
-                            <label className="label row2-label" for="expiry_date"> CCV* </label>
-                            <input required type="text" name="ccv" className="input row1-input" placeholder="..." />
+                        <div className="form-group form-group--30">
+                            <label for="ccv"> CCV* </label>
+                            <input required type="text" name="ccv" placeholder="..." className="form-control"></input>
                         </div>
                     </div>
 
                     <div className="form-row form-row-3">
-                        <div className="form-row-colfull">
-                            <label className="label row3-label" for="address"> Billing address* </label>
-                            <input required class="input row3-input" type="text" name="address" placeholder="Street Address (Apartment or Suite number)" />
+                        <div className="form-group">
+                            <label for="address"> Billing address* </label>
+                            <input required type="text" name="address" placeholder="Street Address (Apartment or Suite number)" className="form-control"></input>
                         </div>
                     </div>
 
                     <div className="form-row form-row-4">
-                        <div className="form-row-col-long">
-                            <label className="label row4-label" for="city"> City* </label>
-                            <input required className="input row4-input" type="text" name="city" placeholder="Enter City" />
+                        <div className="form-group form-group--70">
+                            <label for="city" >City* </label>
+                            <input required type="text" name="city" placeholder="Enter City" className="form-control"></input>
                         </div>
-                        <div className="form-row-col-short">
-                            <label className="label row4-label" for="state"> State/Province* </label>
-                            <select className="select row4-select" name="state" >
+                        <div className="form-group form-group--30">
+                            <label for="state"> State/Province* </label>
+                            <select className="form-control" name="state" >
                                 <option value="" disabled> Select State </option>
                                 <option>1-4</option>
                             </select>
@@ -97,13 +95,13 @@ const PaymentGateway = ({ selectedCity, selectedCountry, plan, planTitle, planCo
                     </div>
 
                     <div className="form-row form-row-5">
-                        <div className="form-row-col-long">
-                            <label className="label row4-label" for="zip"> Zip/Postal* </label>
-                            <input required className="input row4-input" type="text" name="zip" placeholder="Enter zip/postal code" />
+                        <div className="form-group form-group--70">
+                            <label for="zip" > Zip/Postal* </label>
+                            <input required type="text" name="zip" placeholder="Enter zip/postal code" className="form-control"></input>
                         </div>
-                        <div className="form-row-col-short">
-                            <label className="label row4-label" for="state"> Country* </label>
-                            <select class="select row3-select" name="country" id="country-list" >
+                        <div className="form-group form-group--30">
+                            <label for="state"> Country* </label>
+                            <select className="form-control" name="country"  id="country-list">
                                 <option value="" disabled> Select Country </option>
                                 <option>SL</option>
                                 <option>US</option>

@@ -315,9 +315,9 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
 
             <div className="name-password-container">
                 <div className="name-password-input-fields">
-                    <div className="form-row-colfull">
-                        <label className="label"> Computer name </label>
-                        <input required class="input" type="text" name="pc_name" placeholder="Eg: Tharaka's PC" />
+                    <div className="form-group">
+                        <label for="computerName"> Computer name </label>
+                        <input required type="text" name="pc_name" placeholder="Eg: Tharaka's PC" className="form-control"></input>
                     </div>
                     <div className="form-row-colfull col2">
                         <label className="label"> Windows administrator password </label>
@@ -369,7 +369,7 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
             <div className="windows-cards-container">
                 {configcards.map((key, index) => (
                     <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle}
-                    subTitle={key.subTitle}
+                        subTitle={key.subTitle}
                         logoSelected={key.logoSelected}
                         isSelected={index === selectedCardIndex.windows}
                         onClick={() => handleCardSelection(index, "windows")} />
@@ -382,13 +382,13 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
 
             <div className="networking-container">
                 {networkcards.map((key, index) => (
-                    <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle} 
-                    subTitle={ key.id === 1 ? "INCLUDED" : publicIp[0].monthly_contract }
+                    <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle}
+                        subTitle={key.id === 1 ? "INCLUDED" : publicIp[0].monthly_contract}
                         content={key.content} logoSelected={key.logoSelected} recommended={key.recommended}
                         isSelected={index === selectedCardIndex.networking}
                         onClick={() => handleCardSelection(index, "networking")} />
                 ))}
-                
+
             </div>
 
             <div className={`backups-antivirus-container ${isBackup ? "enabled" : "disabled"}`}>
@@ -399,8 +399,8 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
 
                 <div className="backups-container">
                     {backups.map((key, index) => (
-                        <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle} 
-                        subTitle={key.subTitle}
+                        <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle}
+                            subTitle={key.subTitle}
                             content={key.content} logoSelected={key.logoSelected}
                             isSelected={index === selectedCardIndex.backups}
                             onClick={() => handleCardSelection(index, "backups")} />
