@@ -70,9 +70,6 @@
         }
 
         & .nav-bullet {
-            & p {
-                margin: 7px 0 0px 0;
-            }
 
             & svg {
                 margin: -5px;

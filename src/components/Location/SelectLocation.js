@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Helmet } from 'react-helmet';
 import './SelectLocation.css';
 import SelectCountry from "./SelectCountry";
 import SG from "../../assets/svg/SG.svg";
