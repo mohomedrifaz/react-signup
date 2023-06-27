@@ -53,7 +53,7 @@
 
 body {
     margin: 0;
-    font-family: var(--font-family-primary) ;
+    font-family: var(--font-family-secondary) ;
 }
 
 .container {

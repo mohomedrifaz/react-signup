@@ -77,6 +77,10 @@
                 font-size: 15px;
                 line-height: 1.2;
                 height: 15px;
+
+                &.error {
+                    border-color: red;
+                }
             }
 
             & .form-row-col1 {

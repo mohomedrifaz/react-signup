@@ -126,6 +126,7 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
             </defs>
           </svg>`,
             mainTitle: 'Windows 11',
+            subTitle: '',
         },
         {
             logo: `<svg width="53" height="54" viewBox="0 0 53 54" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -143,11 +144,13 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
           </svg>
             `,
             mainTitle: 'Windows 10',
+            subTitle: '',
         },
     ];
 
     const networkcards = [
         {
+            id: 1,
             logo: `<svg width="76" height="54" viewBox="0 0 76 54" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M45.5 4.5H8C5.89062 4.5 4.25 6.25781 4.25 8.25V34.5C4.25 36.6094 5.89062 38.25 8 38.25H20.6562H22.0625H31.4375H32.7266H45.5C47.4922 38.25 49.25 36.6094 49.25 34.5V8.25C49.25 6.25781 47.4922 4.5 45.5 4.5ZM8 42C3.78125 42 0.5 38.7188 0.5 34.5V8.25C0.5 4.14844 3.78125 0.75 8 0.75H45.5C49.6016 0.75 53 4.14844 53 8.25V34.5C53 38.7188 49.6016 42 45.5 42H34.0156L36.4766 49.5H43.625C44.5625 49.5 45.5 50.4375 45.5 51.375C45.5 52.4297 44.5625 53.25 43.625 53.25H37.7656H35.1875H18.3125H15.6172H9.875C8.82031 53.25 8 52.4297 8 51.375C8 50.4375 8.82031 49.5 9.875 49.5H16.9062L19.3672 42H8ZM20.8906 49.5H32.4922L30.0312 42H23.3516L20.8906 49.5ZM62.375 4.5C61.3203 4.5 60.5 5.4375 60.5 6.375V12H71.75V6.375C71.75 5.4375 70.8125 4.5 69.875 4.5H62.375ZM60.5 15.75V19.5H71.75V15.75H60.5ZM60.5 47.625C60.5 48.6797 61.3203 49.5 62.375 49.5H69.875C70.8125 49.5 71.75 48.6797 71.75 47.625V23.25H60.5V47.625ZM56.75 6.375C56.75 3.32812 59.2109 0.75 62.375 0.75H69.875C72.9219 0.75 75.5 3.32812 75.5 6.375V47.625C75.5 50.7891 72.9219 53.25 69.875 53.25H62.375C59.2109 53.25 56.75 50.7891 56.75 47.625V6.375ZM66.125 39.1875C64.4844 39.1875 63.3125 38.0156 63.3125 36.375C63.3125 34.8516 64.4844 33.5625 66.125 33.5625C67.6484 33.5625 68.9375 34.8516 68.9375 36.375C68.9375 38.0156 67.6484 39.1875 66.125 39.1875Z" fill="#343A40"/>
             </svg>`,
@@ -166,6 +169,7 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
             recommended: true,
         },
         {
+            id: 2,
             logo: `<svg width="68" height="61" viewBox="0 0 68 61" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M41.25 4.25C33.8672 4.25 27.0703 6.94531 21.9141 11.3984C21.0938 11.9844 19.9219 11.8672 19.2188 11.1641C18.5156 10.3438 18.6328 9.17188 19.4531 8.46875C25.3125 3.54688 32.9297 0.5 41.25 0.5C49.4531 0.5 57.0703 3.54688 62.9297 8.46875C63.75 9.17188 63.8672 10.3438 63.1641 11.1641C62.4609 11.8672 61.2891 11.9844 60.5859 11.3984C55.3125 6.94531 48.5156 4.25 41.25 4.25ZM43.125 28.625V38H60C64.1016 38 67.5 41.3984 67.5 45.5V53C67.5 57.2188 64.1016 60.5 60 60.5H7.5C3.28125 60.5 0 57.2188 0 53V45.5C0 41.3984 3.28125 38 7.5 38H39.375V28.625C39.375 27.6875 40.1953 26.75 41.25 26.75C42.1875 26.75 43.125 27.6875 43.125 28.625ZM7.5 41.75C5.39062 41.75 3.75 43.5078 3.75 45.5V53C3.75 55.1094 5.39062 56.75 7.5 56.75H60C61.9922 56.75 63.75 55.1094 63.75 53V45.5C63.75 43.5078 61.9922 41.75 60 41.75H7.5ZM12.1875 52.0625C10.5469 52.0625 9.375 50.8906 9.375 49.25C9.375 47.7266 10.5469 46.4375 12.1875 46.4375C13.7109 46.4375 15 47.7266 15 49.25C15 50.8906 13.7109 52.0625 12.1875 52.0625ZM24.375 49.25C24.375 50.8906 23.0859 52.0625 21.5625 52.0625C19.9219 52.0625 18.75 50.8906 18.75 49.25C18.75 47.7266 19.9219 46.4375 21.5625 46.4375C23.0859 46.4375 24.375 47.7266 24.375 49.25ZM29.2969 19.8359C28.4766 20.5391 27.3047 20.4219 26.6016 19.6016C26.0156 18.7812 26.1328 17.6094 26.8359 16.9062C30.8203 13.7422 35.7422 11.75 41.25 11.75C46.6406 11.75 51.6797 13.7422 55.5469 16.9062C56.3672 17.6094 56.3672 18.7812 55.7812 19.6016C55.0781 20.4219 53.9062 20.5391 53.0859 19.8359C49.9219 17.1406 45.7031 15.5 41.25 15.5C36.6797 15.5 32.4609 17.1406 29.2969 19.8359Z" fill="#343A40"/>
             </svg>
@@ -187,6 +191,13 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
         }
     ];
 
+    const publicIp = [
+        {
+            "monthly_contract": 5.75,
+            "yearly_contract": 5,
+            "yearly_contract_saving": 9
+        }
+    ]
     const backups = [
         {
             logo: `<svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -252,7 +263,7 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
             </svg>                     
             `,
             mainTitle: '2 Weeks',
-            subTitle: '$7.50/month',
+            subTitle: '$7.50',
             content: '50GB included, $0.15 per additional GB',
             recommended: false,
         },
@@ -286,7 +297,7 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
             </svg>                      
             `,
             mainTitle: '3 Weeks',
-            subTitle: '$12.50/month',
+            subTitle: '$12.50',
             content: '50GB included, $0.25 per additional GB',
             recommended: false,
         },
@@ -358,6 +369,7 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
             <div className="windows-cards-container">
                 {configcards.map((key, index) => (
                     <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle}
+                    subTitle={key.subTitle}
                         logoSelected={key.logoSelected}
                         isSelected={index === selectedCardIndex.windows}
                         onClick={() => handleCardSelection(index, "windows")} />
@@ -370,14 +382,16 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
 
             <div className="networking-container">
                 {networkcards.map((key, index) => (
-                    <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle} subTitle={key.subTitle}
+                    <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle} 
+                    subTitle={ key.id === 1 ? "INCLUDED" : publicIp[0].monthly_contract }
                         content={key.content} logoSelected={key.logoSelected} recommended={key.recommended}
                         isSelected={index === selectedCardIndex.networking}
                         onClick={() => handleCardSelection(index, "networking")} />
                 ))}
+                
             </div>
 
-            <div className={`backups-antivirus-container ${isBackup ? "enabled" : "disabled"}` }>
+            <div className={`backups-antivirus-container ${isBackup ? "enabled" : "disabled"}`}>
 
                 <div className="main-title">
                     <h2> Backup Retention </h2>
@@ -385,7 +399,8 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
 
                 <div className="backups-container">
                     {backups.map((key, index) => (
-                        <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle} subTitle={key.subTitle}
+                        <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle} 
+                        subTitle={key.subTitle}
                             content={key.content} logoSelected={key.logoSelected}
                             isSelected={index === selectedCardIndex.backups}
                             onClick={() => handleCardSelection(index, "backups")} />
@@ -421,7 +436,7 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
 
             </div>
 
-            { !isBackup && <div className="enable-businessplan-infobox">
+            {!isBackup && <div className="enable-businessplan-infobox">
                 <div className="content-container">
                     <div className="main-text">
                         Select the Business Plan to enable backup & antivirus
@@ -436,7 +451,7 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
                         <path d="M8.76562 0.982422L14.6094 6.56055C14.7754 6.72656 14.875 6.92578 14.875 7.1582C14.875 7.35742 14.7754 7.55664 14.6094 7.72266L8.76562 13.3008C8.4668 13.5996 7.93555 13.5996 7.63672 13.2676C7.33789 12.9688 7.33789 12.4375 7.66992 12.1387L12.0859 7.95508H0.796875C0.332031 7.95508 0 7.58984 0 7.1582C0 6.69336 0.332031 6.36133 0.796875 6.36133H12.0859L7.66992 2.14453C7.33789 1.8457 7.33789 1.31445 7.63672 1.01562C7.93555 0.683594 8.43359 0.683594 8.76562 0.982422Z" fill="white" />
                     </svg>
                 </button>
-            </div> }
+            </div>}
 
             <div className="action-btn">
                 <button className="back-btn">

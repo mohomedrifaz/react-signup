@@ -7,10 +7,24 @@ import securityImage from "../../assets/images/security-system.png";
 import paymentCardsImage from "../../assets/images/payment.png";
 import alertsvg from "../../assets/svg/cardAlert.svg";
 
-const PaymentGateway = ({ selectedCity, selectedCountry, planTitle, planConfig, planUsers, windowsTitle, networkTitle, backupsTitle }) => {
+const PaymentGateway = ({ selectedCity, selectedCountry, plan, planTitle, planConfig, planUsers, windowsTitle, networkTitle, backupsTitle }) => {
 
     const [totalPrice, setTotalPrice] = useState('$120');
-    const configItems = planConfig.split(' ');
+    // const configItems = planConfig.split(' ');
+
+    const configParts = planConfig.split(' ');
+    const configItems = configParts.slice(0, 4);
+    const customString = ['core', 'Memory RAM', 'Storage'];
+    const updatedConfigItems = configItems.map((val, index) => {
+    if (index === 2) {
+        return `${configItems[3]} ${customString[index]}`;
+    } else {
+        return `${val} ${customString[index]}`;
+    }
+    });
+
+    const finalConfigItems = updatedConfigItems.slice(0, -1);
+
 
     return (
         <div className="payment-gateway payment-container" >
@@ -142,12 +156,12 @@ const PaymentGateway = ({ selectedCity, selectedCountry, planTitle, planConfig, 
                         </div>
                         <div className="list-content">
                             <ul>
-                                {configItems.map((item, index) => (
+                                {finalConfigItems.map((item, index) => (
                                     <li key={index}>{item}</li>
                                 ))}
                                 <li>1 Admin included, $10 for additional users</li>
                                 <li>{planUsers} Users - Recommended</li>
-                                <li>Team Cloud Desktop</li>
+                                <li>{plan === "teamCloud" ? "Team Cloud Desktop" : "Team Individual Desktop"}</li>
                             </ul>
                         </div>
                         <div className="trial-message">

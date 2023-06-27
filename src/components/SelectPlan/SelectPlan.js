@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import PlanCards from './PlanCards';
 import SpecialCard from "./SpecialCard";
-// import SpecialCardImg from "./special-card-img.png";
 import './selectPlan.css';
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
@@ -367,7 +366,7 @@ const SelectPlan = ({ onNext, backupState }) => {
         });
 
         const selectedPlan = category === "teamCloud" ? teamPlans[index] : personalPlans[index];
-        setSelectedPlan(selectedPlan)
+        setSelectedPlan(selectedPlan, category)
 
     }
 

@@ -28,16 +28,21 @@ const App = () => {
   const [selectedPlanTitle, setSelectedPlanTitle] = useState("");
   const [selectedPlanConfig, setSelectedPlanConfig] = useState("");
   const [selectedPlanUsers, setSelectedPlanUsers] = useState("");
+  const [selectedPlan, setSelectedPlan] = useState("");
+
+
   const [selectedLocationCity, setSelectedLocationCity] = useState("");
   const [selectedLocationCountry, setSelectedLocationCountry] = useState("");
+
   const [windowsMainTitle, setWindowsMainTitle] = useState("");
   const [networkingMainTitle, setNetworkingMainTitle] = useState("");
   const [backupsMainTitle, setBackupsMainTitle] = useState("");
 
-  const handlePlanStats = (selectedPlan) => {
+  const handlePlanStats = (selectedPlan, category) => {
     setSelectedPlanTitle(selectedPlan.title);
     setSelectedPlanConfig(selectedPlan.config);
     setSelectedPlanUsers(selectedPlan.users);
+    setSelectedPlan(category);
     handleNextStep();
   }
 
@@ -169,6 +174,7 @@ const App = () => {
         return <ConfigPcTeam onNext={handleConfigStats} onPrevious={handlePreviousStep} isBackup={isBackup} />;
       case 8:
         return <PaymentGateway onPrevious={handlePreviousStep}
+        plan={selectedPlan}
         planTitle={selectedPlanTitle}
         selectedCity={selectedLocationCity} 
         selectedCountry={selectedLocationCountry}
