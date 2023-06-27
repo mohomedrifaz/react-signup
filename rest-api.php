@@ -70,6 +70,18 @@ function register_rest_api_endpoints() {
 			],
 		]
 	);
+
+	register_rest_route(
+		$namespace,
+		'/access-token',
+		[
+			[
+				'callback'            => __NAMESPACE__ . '\get_access_token',
+				'methods'             => \WP_REST_Server::READABLE,
+				'permission_callback' => '__return_true',
+			],
+		]
+	);
 }
 
 /**
@@ -142,4 +154,29 @@ function create_hubspot_contact( $request ) {
 	}
 
 	return new \WP_REST_Response( wp_remote_retrieve_body( $api_request ) , 200);
+}
+
+/**
+ * Get access token.
+ * 
+ * @param WP_REST_Request $request Request Data.
+ */
+function get_access_token( $request ) {
+
+	$auth    = base64_encode( 'NcMzEL2NUagPiI7axkFbVZ6VD3LdnPQ3pqXsOH7p' . ':' . 'lZ3aKY73Lh1xcFqFpOUQPOPGzH4Gij0AFXSY7CyRmL65G1htv0yeJJEvL26WgdQmQSgEB1iM5eanrVnQQ3dLpSJA0oXoMdTSkOr30LPWzwUSlubRI97NBCNnh1z3jCNZ' );
+	$response = wp_remote_post(
+		'https://dash.v2cloud.com/o/token/',
+		[
+			'headers' => [
+				'Authorization' => 'Basic ' . $auth, 
+			],
+			'body' => wp_json_encode( [ 'grant_type'    => 'client_credentials' ] ),
+		]
+	);
+
+	if ( is_wp_error( $response ) ) {
+		return $response;
+	}
+
+	return new \WP_REST_Response( json_decode( wp_remote_retrieve_body( $response ), true ) , 200);
 }
