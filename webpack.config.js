@@ -15,7 +15,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
+            presets: ['@babel/preset-env', ["@babel/preset-react", {"runtime": "automatic"}]],
           },
         },
       },
@@ -28,8 +28,16 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jp(e*)g|svg|gif)$/,
-        type: "asset/resource",
+        test: /\.svg$/,
+        type: 'asset',
+      },
+      {
+        test: /\.(png|jpe?g|gif|webp)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+          },
+        ],
       },
       // {
       //   test: /\.(png|jpe?g|gif)$/i,
@@ -55,5 +63,9 @@ module.exports = {
   devServer: {
     static: './dist',
     hot: true,
+    devMiddleware: {
+      writeToDisk: true,
+    },
+    allowedHosts: ['v2cloud.live', 'v2cloud.local'],
   },
 };

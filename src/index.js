@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './styles/styles.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SetupContainer from './components/SetupContainer/SetupContainer';
@@ -11,19 +11,20 @@ import PaymentGateway from './components/PaymentGateway/PaymentGateway';
 import SelectPlan from './components/SelectPlan/SelectPlan';
 import ConfigPcTeam from './components/ComputerConfig/ConfigPcTeam';
 import ConfigPcIndividual from './components/ComputerConfig/ConfigPcIndividual';
+import RegistrationForm from './components/RegistrationForm';
 
 
 const App = () => {
 
-  const stepTitles = [
-    "Setup Account",
-    "Select Location",
-    "Select Plan",
-    "Computer Configuration",
-    "Billing & Payment"
-  ];
+	const stepTitles = [
+		"Setup Account",
+		"Select Location",
+		"Select Plan",
+		"Computer Configuration",
+		"Billing & Payment"
+	];
 
-  const [completionStatus, setCompletionStatus] = useState([false, false, false, false, false]);
+	const [completionStatus, setCompletionStatus] = useState([false, false, false, false, false]);
 
   const [selectedPlanTitle, setSelectedPlanTitle] = useState("");
   const [selectedPlanConfig, setSelectedPlanConfig] = useState("");
@@ -55,12 +56,12 @@ const App = () => {
     handleNextStep();
   }
 
-  const handleConfigStats = (selectedTitles) => {
-    setWindowsMainTitle(selectedTitles.windows)
-    setNetworkingMainTitle(selectedTitles.networking)
-    setBackupsMainTitle(selectedTitles.backups)
-    handleNextStep();
-  };
+	const handleConfigStats = (selectedTitles) => {
+		setWindowsMainTitle(selectedTitles.windows)
+		setNetworkingMainTitle(selectedTitles.networking)
+		setBackupsMainTitle(selectedTitles.backups)
+		handleNextStep();
+	};
 
   const [isBackup, setIsBackup] = useState(false);
 
@@ -75,85 +76,85 @@ const App = () => {
     `${windowsMainTitle ? `${windowsMainTitle} /` : ''} ${networkingMainTitle ? `${networkingMainTitle} /` : ''} ${backupsMainTitle ? `${backupsMainTitle}` : ''}`,
   ]
 
-  const [currentStepB, setCurrentStepB] = useState(1);
+	const [currentStepB, setCurrentStepB] = useState(0);
 
-  const handleNextStep = () => {
-    setCurrentStepB(currentStepB + 1);
-  };
+	const handleNextStep = () => {
+		setCurrentStepB(currentStepB + 1);
+	};
 
-  const handlePreviousStep = () => {
-    setCurrentStepB(currentStepB - 1);
-  };
+	const handlePreviousStep = () => {
+		setCurrentStepB(currentStepB - 1);
+	};
 
-  useEffect(() => {
-    switch (currentStepB) {
-      case 4:
-        setCompletionStatus((prevCompletionStatus) => {
-          const updatedStatus = [...prevCompletionStatus];
-          updatedStatus[0] = true;
-          return updatedStatus;
-        });
-        break;
-      case 5:
-        setCompletionStatus((prevCompletionStatus) => {
-          const updatedStatus = [...prevCompletionStatus];
-          updatedStatus[1] = true;
-          return updatedStatus;
-        });
-        break;
-      case 6:
-        setCompletionStatus((prevCompletionStatus) => {
-          const updatedStatus = [...prevCompletionStatus];
-          updatedStatus[2] = true;
-          return updatedStatus;
-        });
-        break;
-      case 7:
-        setCompletionStatus((prevCompletionStatus) => {
-          const updatedStatus = [...prevCompletionStatus];
-          updatedStatus[2] = true;
-          return updatedStatus;
-        });
-        break;
-      case 8:
-        setCompletionStatus((prevCompletionStatus) => {
-          const updatedStatus = [...prevCompletionStatus];
-          updatedStatus[3] = true;
-          return updatedStatus;
-        });
-        break;
-      default:
-        break;
-    }
-  }, [currentStepB]);
+	useEffect(() => {
+		switch (currentStepB) {
+			case 4:
+				setCompletionStatus((prevCompletionStatus) => {
+					const updatedStatus = [...prevCompletionStatus];
+					updatedStatus[0] = true;
+					return updatedStatus;
+				});
+				break;
+			case 5:
+				setCompletionStatus((prevCompletionStatus) => {
+					const updatedStatus = [...prevCompletionStatus];
+					updatedStatus[1] = true;
+					return updatedStatus;
+				});
+				break;
+			case 6:
+				setCompletionStatus((prevCompletionStatus) => {
+					const updatedStatus = [...prevCompletionStatus];
+					updatedStatus[2] = true;
+					return updatedStatus;
+				});
+				break;
+			case 7:
+				setCompletionStatus((prevCompletionStatus) => {
+					const updatedStatus = [...prevCompletionStatus];
+					updatedStatus[2] = true;
+					return updatedStatus;
+				});
+				break;
+			case 8:
+				setCompletionStatus((prevCompletionStatus) => {
+					const updatedStatus = [...prevCompletionStatus];
+					updatedStatus[3] = true;
+					return updatedStatus;
+				});
+				break;
+			default:
+				break;
+		}
+	}, [currentStepB]);
 
-  const [currentStep, setCurrentStep] = useState(1);
-  useEffect(() => {
-    switch (currentStepB) {
-      case 1:
-      case 2:
-      case 3:
-        setCurrentStep(1);
-        break;
-      case 4:
-        setCurrentStep(2);
-        break;
-      case 5:
-        setCurrentStep(3);
-        break;
-      case 6:
-        setCurrentStep(4);
-        break;
-      case 7:
-        setCurrentStep(4);
-        break;
-      case 8:
-        setCurrentStep(5);
-        break;
-      default:
-        break;
-    }
-  }, [currentStepB]);
+	const [currentStep, setCurrentStep] = useState(0);
+	useEffect(() => {
+		switch (currentStepB) {
+			case 1:
+			case 2:
+			case 3:
+				setCurrentStep(1);
+				break;
+			case 4:
+				setCurrentStep(2);
+				break;
+			case 5:
+				setCurrentStep(3);
+				break;
+			case 6:
+				setCurrentStep(4);
+				break;
+			case 7:
+				setCurrentStep(4);
+				break;
+			case 8:
+				setCurrentStep(5);
+				break;
+			default:
+				break;
+		}
+	}, [currentStepB]);
 
 
   const renderCurrentStepComponent = () => {
@@ -188,21 +189,27 @@ const App = () => {
     }
   };
 
-  return (
-    <div className="container">
-      <div className="sidebar">
-        <Sidebar
-          currentStep={currentStep}
-          completionStatus={completionStatus}
-          stepTitles={stepTitles}
-          completionStats={completionStats}
-        />
-      </div>
-      <div className="main">
-        {renderCurrentStepComponent()}
-      </div>
-    </div>
-  );
+	return (
+		<>
+			<RegistrationForm />
+			{ currentStep > 0 && (
+				<div className="steps-container">
+					<div className="sidebar">
+						<Sidebar
+							currentStep={currentStep}
+							completionStatus={completionStatus}
+							stepTitles={stepTitles}
+							completionStats={completionStats}
+						/>
+					</div>
+					<div className="main">
+						{renderCurrentStepComponent()}
+					</div>
+				</div>
+			) }
+		</>
+	);
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const root = createRoot( document.getElementById( 'root' ) );
+root.render(<App />);
