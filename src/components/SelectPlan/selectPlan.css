@@ -107,7 +107,9 @@
         & .tooltip {
             position: absolute;
             top: 110%;
-            left: 20%;
+            left: 18%;
+            bottom: unset;
+            right: unset;
             width: 35%;
             transform: translateX(-50%);
             background-color: #ffffff;
@@ -129,6 +131,18 @@
                 border-color: transparent transparent #ffffff transparent;
             }
 
+            &::after {
+                content: "";
+                position: absolute;
+                top: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                border-style: solid;
+                border-width: 10px;
+                border-color: transparent transparent #ffffff transparent;
+                display:none;
+            }
+
             & .tooltip-title {
                 font-family:var(--font-family-primary) ;
                 font-style: normal;
@@ -146,6 +160,7 @@
                 line-height: 1.5;
                 color: var(--neutral-color);
                 padding-top: 10px;
+                text-align: left;
             }
 
             & .cta-btns {

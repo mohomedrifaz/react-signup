@@ -73,6 +73,10 @@ body {
     font-weight: var(--font-normal);
 }
 
+.et_fixed_nav.et_show_nav #page-container {
+    padding-top: 0;
+}
+
 .steps-container {
     display: flex;
 }

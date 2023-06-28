@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import ReactDOM from 'react-dom';
 import './SetupContainer.css';
 
@@ -6,6 +6,7 @@ const SetupContainer = ({ onNext }) => {
 
     const [otp, setOtp] = useState(["", "", "", ""]);
     const [isVerificationSuccessful, setVerificationSuccessful] = useState(true);
+    const inputRefs = useRef([]);
 
     const handleChange = (event, index) => {
         const { value } = event.target;
@@ -14,7 +15,7 @@ const SetupContainer = ({ onNext }) => {
         setOtp(updatedOtp);
 
         if (value !== "" && index < 3) {
-            document.getElementById(`input${index + 1}`).focus();
+            inputRefs.current[index + 1].focus();
         } else {
             setVerificationSuccessful(true);
         }
@@ -55,33 +56,57 @@ const SetupContainer = ({ onNext }) => {
                         type="text"
                         className={`single-input ${otp[0] ? 'filled' : ''} ${!isVerificationSuccessful ? "invalid-input" : ""}`}
                         id='ist'
-                        maxlength="1"
+                        ref={ref => (inputRefs.current[0] = ref)}
+                        maxlength={1}
                         value={otp[0] || ""}
                         onChange={(e) => handleChange(e, 0)}
+                        onKeyDown={(e) => {
+                            if (!/\d/.test(e.key)) {
+                                e.preventDefault();
+                            }
+                        }}
                     />
                     <input
                         type="text"
                         className={`single-input ${otp[1] ? 'filled' : ''} ${!isVerificationSuccessful ? "invalid-input" : ""}`}
                         id="sec"
-                        maxlength="1"
+                        ref={ref => (inputRefs.current[1] = ref)}
+                        maxlength={1}
                         value={otp[1] || ""}
                         onChange={(e) => handleChange(e, 1)}
+                        onKeyDown={(e) => {
+                            if (!/\d/.test(e.key)) {
+                                e.preventDefault();
+                            }
+                        }}
                     />
                     <input
                         type="text"
                         className={`single-input ${otp[2] ? 'filled' : ''} ${!isVerificationSuccessful ? "invalid-input" : ""}`}
                         id="third"
-                        maxlength="1"
+                        ref={ref => (inputRefs.current[2] = ref)}
+                        maxlength={1}
                         value={otp[2] || ""}
                         onChange={(e) => handleChange(e, 2)}
+                        onKeyDown={(e) => {
+                            if (!/\d/.test(e.key)) {
+                                e.preventDefault();
+                            }
+                        }}
                     />
                     <input
                         type="text"
                         className={`single-input ${otp[3] ? 'filled' : ''} ${!isVerificationSuccessful ? "invalid-input" : ""}`}
                         id="fourth"
-                        maxlength="1"
+                        ref={ref => (inputRefs.current[3] = ref)}
+                        maxlength={1}
                         value={otp[3] || ""}
                         onChange={(e) => handleChange(e, 3)}
+                        onKeyDown={(e) => {
+                            if (!/\d/.test(e.key)) {
+                                e.preventDefault();
+                            }
+                        }}
                     />
                 </div>
                 <div className="invalid-verification-box hidden"> Verification code invalid </div>

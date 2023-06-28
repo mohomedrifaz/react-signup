@@ -6,7 +6,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import './password.css';
 
-const Password = ( {onNext} ) => {
+const Password = ({ onNext }) => {
 
     const [password, setPassword] = useState("");
     const [repassword, setRePassword] = useState("");
@@ -74,19 +74,30 @@ const Password = ( {onNext} ) => {
                 <div className="form-row form-group">
                     <label for="password">Password*</label>
                     <input
-                        className="form-control" id="password" placeholder="Enter account password" value={password}
+                        className="form-control" id="password" placeholder="Enter account password"
+                        value={password}
                         type={showPassword ? "text" : "password"}
                         onChange={handlePasswordChange}
                     />
+                    <div className="input-group-append">
+                        <span className="input-group-text" onClick={togglePasswordVisibility}>
+                            <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+                        </span>
+                    </div>
                 </div>
                 <div className="form-row form-group">
                     <label for="confirm-password">Confirm Password*</label>
                     <input
                         className="form-control" id="confirm-password" placeholder="Enter account password"
-                        type={showPassword ? "text" : "password"}
+                        type={ConfirmPassword ? "text" : "password"}
                         value={repassword}
                         onChange={handleConfirmPasswordChange}
                     />
+                    <div className="input-group-append">
+                        <span className="input-group-text" onClick={toggleConfirmPasswordVisibility}>
+                            <FontAwesomeIcon icon={ConfirmPassword ? faEye : faEyeSlash} />
+                        </span>
+                    </div>
                 </div>
                 <div className="password-requirements">
                     <div className="title">Password Requirements</div>
@@ -159,11 +170,11 @@ const Password = ( {onNext} ) => {
                     </ul>
                 </div>
             </div>
-            
+
             <div className="confirm-btn">
-                <button 
-                className="verify-btn"
-                onClick={passwordVerification}>
+                <button
+                    className="verify-btn"
+                    onClick={passwordVerification}>
                     Next
                 </button>
             </div>

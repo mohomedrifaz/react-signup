@@ -29,7 +29,7 @@ const configCards = ({ logo, mainTitle, subTitle, content, logoSelected, recomme
                 {mainTitle}
             </div>
             <div className="sub-title">
-                { subTitle === "" ? "" : subTitle === "INCLUDED" ? subTitle : subTitle + "/month"} 
+                { subTitle === "" ? "" : subTitle === "Multi-user" ? "" : subTitle === "INCLUDED" ? subTitle : subTitle + "/month"} 
             </div>
             <div className="content">
                 {content}

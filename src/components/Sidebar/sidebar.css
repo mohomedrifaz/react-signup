@@ -114,10 +114,11 @@
         }
         
         & .nav-bullet-completed {
-            margin-right: 27px;
+            margin-right: 10px;
 
             & p {
                 margin: 0;
+                margin-left: -4px;
             }
         }
     }

@@ -445,10 +445,10 @@ const SelectPlan = ({ onNext, backupState }) => {
                         Enhance Your Data Security
                     </div>
                     <div className="tooltip-content">
-                        Your Current Plan May Not Provide Adequate protection.<br />
-                        Lack of Antivirus or Daily Backups Leaves Your Business <br />at Risk: Data Breach,
-                        Financial Strain, and Reputational Damage.<br /> Are you sure you want to proceed without
-                        upgrading to <br /> Our Business Plan?
+                        Your Current Plan May Not Provide Adequate protection.
+                        Lack of Antivirus or Daily Backups Leaves Your Business at Risk: Data Breach,
+                        Financial Strain, and Reputational Damage. Are you sure you want to proceed without
+                        upgrading to Our Business Plan?
                     </div>
                     <div className="cta-btns">
                         <button className="skip-btn">

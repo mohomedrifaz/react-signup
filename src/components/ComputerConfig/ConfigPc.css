@@ -100,6 +100,7 @@
                 background: #F8F9FA;
                 padding: 10px 16px;
                 border-left: 2px solid #FFA500;
+                margin-right: 20px;
 
                 & .title {
                     font-weight: var(--font-semi-bold);
