@@ -267,6 +267,37 @@
             font-family: 'Roboto' !important;
             cursor: pointer;
 
+            & input[type="checkbox"] {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                width: 16px;
+                height: 16px;
+                border: 2px solid #333;
+                border-radius: 50%;
+                outline: none;
+                transition: border-color 0.3s ease-in-out;
+                position: relative;
+              }
+              
+              & input[type="checkbox"]:checked {
+                border-color: var(--primary-color);
+                background-color: var(--primary-color);
+              }
+              
+              & input[type="checkbox"]:checked::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 4px;
+                height: 8px;
+                border: solid #fff;
+                border-width: 0 2px 2px 0;
+                transform: translate(-50%, -50%) rotate(45deg);
+              }
+              
+
             &.popular-container {
                 border: 1px solid #ff8000;
                 margin-top: 0;
@@ -320,6 +351,24 @@
                     border-top: 1px solid var(--primary-color);
                 }
 
+                & input[type="checkbox"]:checked {
+                    border-color: #fff;
+                    background-color: #fff;
+                }
+                  
+                & input[type="checkbox"]:checked::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 4px;
+                    height: 8px;
+                    border: var(--primary-color);
+                    border: 1px solid var(--primary-color);
+                    border-width: 0 2px 2px 0;
+                    transform: translate(-50%, -50%) rotate(45deg);
+                }
+
                 & .monthly-title-check {
                     border-bottom: 1px solid var(--primary-color);
 
@@ -363,10 +412,16 @@
                         }
                     }
 
-                    & .annual-title {
-                        color: #fff;
+                    & .annual-title-box {
+                        & .annual-title-check {
+                            &.selected {
+                                & .annual-title {
+                                    color: #fff !important;
+                                }
+                            }
+                        }
                     }
-
+                    
                     & .popular-badge {
                         border: 1px solid white;
                     }
