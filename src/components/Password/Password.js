@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import useRegistrationData from "../../hooks/useRegistrationData";
 import './password.css';
 
 const Password = ({ onNext }) => {
@@ -13,6 +14,7 @@ const Password = ({ onNext }) => {
     const [ConfirmPassword, setConfirmPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
+    const [registrationData, setRegistrationData] = useRegistrationData();
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
@@ -47,6 +49,7 @@ const Password = ({ onNext }) => {
         // } else {
         //     console.log('Password Verification Failed')
         // }
+        setRegistrationData({...registrationData, user_password: password});
         onNext();
     }
 
