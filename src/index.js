@@ -12,19 +12,11 @@ import SelectPlan from './components/SelectPlan/SelectPlan';
 import ConfigPcTeam from './components/ComputerConfig/ConfigPcTeam';
 import ConfigPcIndividual from './components/ComputerConfig/ConfigPcIndividual';
 import RegistrationForm from './components/RegistrationForm';
-
+import useSteps from './hooks/useSteps';
 
 const App = () => {
 
-	const stepTitles = [
-		"Setup Account",
-		"Select Location",
-		"Select Plan",
-		"Computer Configuration",
-		"Billing & Payment"
-	];
-
-	const [completionStatus, setCompletionStatus] = useState([false, false, false, false, false]);
+	const { currentStep, nextStep, prevStep, currentChildStep, nextChildStep, prevChildStep  } = useSteps();
 
   const [selectedPlanTitle, setSelectedPlanTitle] = useState("");
   const [selectedPlanConfig, setSelectedPlanConfig] = useState("");
@@ -44,7 +36,7 @@ const App = () => {
     setSelectedPlanConfig(selectedPlan.config);
     setSelectedPlanUsers(selectedPlan.users);
     setSelectedPlan(category);
-    handleNextStep();
+    nextStep();
   }
 
   const handleLocationStats = (selectedLocation) => {
@@ -53,14 +45,14 @@ const App = () => {
     const [city, Country] = countryName.split(" (").map(str => str.replace(")", ""));
     setSelectedLocationCity(city);
     setSelectedLocationCountry(Country);
-    handleNextStep();
+    nextStep();
   }
 
 	const handleConfigStats = (selectedTitles) => {
 		setWindowsMainTitle(selectedTitles.windows)
 		setNetworkingMainTitle(selectedTitles.networking)
 		setBackupsMainTitle(selectedTitles.backups)
-		handleNextStep();
+		nextStep();
 	};
 
   const [isBackup, setIsBackup] = useState(false);
@@ -76,105 +68,27 @@ const App = () => {
     `${windowsMainTitle ? `${windowsMainTitle} /` : ''} ${networkingMainTitle ? `${networkingMainTitle} /` : ''} ${backupsMainTitle ? `${backupsMainTitle}` : ''}`,
   ]
 
-	const [currentStepB, setCurrentStepB] = useState(0);
-
-	const handleNextStep = () => {
-		setCurrentStepB(currentStepB + 1);
-	};
-
-	const handlePreviousStep = () => {
-		setCurrentStepB(currentStepB - 1);
-	};
-
-	useEffect(() => {
-		switch (currentStepB) {
-			case 4:
-				setCompletionStatus((prevCompletionStatus) => {
-					const updatedStatus = [...prevCompletionStatus];
-					updatedStatus[0] = true;
-					return updatedStatus;
-				});
-				break;
-			case 5:
-				setCompletionStatus((prevCompletionStatus) => {
-					const updatedStatus = [...prevCompletionStatus];
-					updatedStatus[1] = true;
-					return updatedStatus;
-				});
-				break;
-			case 6:
-				setCompletionStatus((prevCompletionStatus) => {
-					const updatedStatus = [...prevCompletionStatus];
-					updatedStatus[2] = true;
-					return updatedStatus;
-				});
-				break;
-			case 7:
-				setCompletionStatus((prevCompletionStatus) => {
-					const updatedStatus = [...prevCompletionStatus];
-					updatedStatus[2] = true;
-					return updatedStatus;
-				});
-				break;
-			case 8:
-				setCompletionStatus((prevCompletionStatus) => {
-					const updatedStatus = [...prevCompletionStatus];
-					updatedStatus[3] = true;
-					return updatedStatus;
-				});
-				break;
-			default:
-				break;
-		}
-	}, [currentStepB]);
-
-	const [currentStep, setCurrentStep] = useState(0);
-	useEffect(() => {
-		switch (currentStepB) {
-			case 1:
-			case 2:
-			case 3:
-				setCurrentStep(1);
-				break;
-			case 4:
-				setCurrentStep(2);
-				break;
-			case 5:
-				setCurrentStep(3);
-				break;
-			case 6:
-				setCurrentStep(4);
-				break;
-			case 7:
-				setCurrentStep(4);
-				break;
-			case 8:
-				setCurrentStep(5);
-				break;
-			default:
-				break;
-		}
-	}, [currentStepB]);
-
 
   const renderCurrentStepComponent = () => {
-    switch (currentStepB) {
+    switch (currentStep) {
       case 1:
-        return <ChangeEmail onNext={handleNextStep} onPrevious={handlePreviousStep} />;
+		switch (currentChildStep) {
+			case 2:
+				return <SetupContainer onNext={nextChildStep} />;
+			case 3:
+				return <Password onNext={nextStep} onPrevious={prevChildStep} />;
+		}
+        return <ChangeEmail onNext={nextChildStep} onPrevious={null} />;
       case 2:
-        return <SetupContainer onNext={handleNextStep} />;
+        return <SelectLocation onNext={handleLocationStats} onPrevious={prevStep} />;
       case 3:
-        return <Password onNext={handleNextStep} onPrevious={handlePreviousStep} />;
+        return <SelectPlan onNext={handlePlanStats} onPrevious={prevStep} backupState={handleBackup} />;
       case 4:
-        return <SelectLocation onNext={handleLocationStats} onPrevious={handlePreviousStep} />;
+        return <ConfigPcIndividual onNext={handleConfigStats} onPrevious={prevStep} isBackup={isBackup} />;
       case 5:
-        return <SelectPlan onNext={handlePlanStats} onPrevious={handlePreviousStep} backupState={handleBackup} />;
+		return <ConfigPcTeam onNext={handleConfigStats} onPrevious={prevStep} isBackup={isBackup} />;
       case 6:
-        return <ConfigPcIndividual onNext={handleConfigStats} onPrevious={handlePreviousStep} isBackup={isBackup} />;
-      case 7:
-        return <ConfigPcTeam onNext={handleConfigStats} onPrevious={handlePreviousStep} isBackup={isBackup} />;
-      case 8:
-        return <PaymentGateway onPrevious={handlePreviousStep}
+		return <PaymentGateway onPrevious={prevStep}
         plan={selectedPlan}
         planTitle={selectedPlanTitle}
         selectedCity={selectedLocationCity} 
@@ -197,8 +111,14 @@ const App = () => {
 					<div className="sidebar">
 						<Sidebar
 							currentStep={currentStep}
-							completionStatus={completionStatus}
-							stepTitles={stepTitles}
+							completionStatus={[false, false, false, false, false]}
+							stepTitles={[
+								"Setup Account",
+								"Select Location",
+								"Select Plan",
+								"Computer Configuration",
+								"Billing & Payment"
+							]}
 							completionStats={completionStats}
 						/>
 					</div>
