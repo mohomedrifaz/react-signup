@@ -55,8 +55,8 @@ const Sidebar = ({ currentStep, completionStatus, stepTitles, completionStats })
                                 <div className="nav-topic">{stepTitles[index]}</div>
                                 <div className="nav-subtopic">Step {currentIndex}</div>
                                 {currentStep === currentIndex && <div className="nav-subtopic current">Current</div>}
-                                {/* {isCompleted && <div className="nav-subtopic-complete">{completionStats[index]}</div>}
-                                {isCompleted && <div className="nav-subtopic-done">Complete</div>} */}
+                                {/* {isCompleted && <div className="nav-subtopic-complete">{completionStats[index]}</div>} */}
+                                {currentIndex < currentStep && <div className="nav-subtopic-done">Complete</div>}
                             </div>
                         </div>
                     )
