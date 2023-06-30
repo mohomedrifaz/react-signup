@@ -82,6 +82,30 @@ function register_rest_api_endpoints() {
 			],
 		]
 	);
+
+	register_rest_route(
+		$namespace,
+		'/verify-email',
+		[
+			[
+				'callback'            => __NAMESPACE__ . '\verify_email',
+				'methods'             => \WP_REST_Server::CREATABLE,
+				'permission_callback' => '__return_true',
+				'args'                => [
+					'email' => [
+						'required'          => true,
+						'validate_callback' => 'is_email'
+					],
+					'firstname' => [
+						'required' => true,
+					],
+					'token' => [
+						'required' => true,
+					],
+				],
+			],
+		]
+	);
 }
 
 /**
@@ -179,4 +203,21 @@ function get_access_token( $request ) {
 	}
 
 	return new \WP_REST_Response( json_decode( wp_remote_retrieve_body( $response ), true ) , 200);
+}
+
+function verify_email() {
+	$from         = 'V2Cloud <no-reply@v2cloud.com>';
+	$to           = sprintf( '%1$s <%2$s>', $_POST['firstname'], $_POST['email'] );
+	$subject      = esc_html__( 'Verify your email address - V2Cloud', 'v2cloud' );
+	$content_type = 'text/html';
+
+	$content = sprintf(
+		'Hello %1$s,<br /><br />Thank you for creating your V2 Cloud account. Please use this verification code to complete your registration process <br /><b><strong style="font-size: 20px">%2$s</strong></b><br /><br />Thanks,<br />V2Cloud.',
+		$_POST['firstname'],
+		$_POST['token']
+	);
+
+	return new \WP_REST_Response(
+		wp_mail( $to, $subject, $content, [ 'from:' . $from, 'content-type:' . $content_type, 'to:' . $to ], [] )
+	);
 }
