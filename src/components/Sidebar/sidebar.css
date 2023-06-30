@@ -37,7 +37,7 @@
             margin-right: 16px;
             line-height: 32px;  /* align text vertically */
 
-            &.active {
+            &:where(.active > *) {
                 background-color: var(--primary-color);
                 color: white;
             }
@@ -75,20 +75,9 @@
             & svg {
                 margin: -5px;
             }
-
-            &.active {
-                display: none;
-            }
         }
         
         &.active {
-            & .nav-bullet {
-                display: none;
-
-                &.active {
-                    display: block;
-                }
-            }
 
             & .nav-topic {
                 color: var(--primary-color);

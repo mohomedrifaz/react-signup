@@ -31,35 +31,36 @@ const Sidebar = ({ currentStep, completionStatus, stepTitles, completionStats })
     return (
         <div className="sidebar-container">
             <div className="sidebar-navbar">
-                {completionStatus.map((isCompleted, index) => (
-                    <div
-                        key={index}
-                        className={`single-nav ${currentStep === index + 1 ? 'active' : ''} ${isCompleted ? 'completed' : ''}`}
-                    >
-                        {isCompleted && (
-                            <div className="nav-bullet-completed">
-                                <p>
-                                    <CompletedIcon />
-                                </p>
+                {completionStatus.map((isCompleted, index) => {
+
+                    const currentIndex = index + 1;
+
+                    return (
+                        <div
+                            key={currentIndex}
+                            className={`single-nav ${currentStep === currentIndex ? 'active' : ''} ${isCompleted ? 'completed' : ''}`}
+                        >
+                            {isCompleted && (
+                                <div className="nav-bullet-completed">
+                                    <p>
+                                        <CompletedIcon />
+                                    </p>
+                                </div>
+                            )}
+                            <div className="nav-bullet">
+                                { currentIndex === currentStep && <BulletIcon /> }
+                                { currentIndex !== currentStep && ( currentIndex ) }
                             </div>
-                        )}
-                        <div className="nav-bullet active">
-                            <p>
-                                <BulletIcon />
-                            </p>
+                            <div className="nav-content">
+                                <div className="nav-topic">{stepTitles[index]}</div>
+                                <div className="nav-subtopic">Step {currentIndex}</div>
+                                {currentStep === currentIndex && <div className="nav-subtopic current">Current</div>}
+                                {/* {isCompleted && <div className="nav-subtopic-complete">{completionStats[index]}</div>}
+                                {isCompleted && <div className="nav-subtopic-done">Complete</div>} */}
+                            </div>
                         </div>
-                        <div className="nav-bullet">
-                            <p> {index + 1} </p>
-                        </div>
-                        <div className="nav-content">
-                            <div className="nav-topic">{stepTitles[index]}</div>
-                            <div className="nav-subtopic">Step {index + 1}</div>
-                            {currentStep === index + 1 && <div className="nav-subtopic current">Current</div>}
-                            {isCompleted && <div className="nav-subtopic-complete">{completionStats[index]}</div>}
-                            {isCompleted && <div className="nav-subtopic-done">Complete</div>}
-                        </div>
-                    </div>
-                ))}
+                    )
+                })}
             </div>
         </div>
     )
