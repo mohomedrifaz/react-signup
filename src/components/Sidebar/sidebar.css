@@ -41,6 +41,11 @@
                 background-color: var(--primary-color);
                 color: white;
             }
+
+            &:where(.completed > *) {
+                background-color: var(--alert-success-600);
+                color: white;
+            }
         }
 
         & .nav-topic {
@@ -56,18 +61,10 @@
             font-size: var(--font-xxxs);
             margin-top: 3px;
             color: #c0c7cd;
-        }
 
-        & .nav-subtopic-done {
-            font-size: var(--font-xxxs);
-            margin-top: 3px;
-            color: #039855;
-        }
-
-        & .nav-subtopic-complete {
-            font-size: var(--font-xxxs);
-            margin-top: 3px;
-            color: #c0c7cd;
+            &:last-of-type:where(.completed *) {
+                color: var(--alert-success-600);
+            }
         }
 
         & .nav-bullet {
@@ -81,24 +78,6 @@
 
             & .nav-topic {
                 color: var(--primary-color);
-            }
-
-            & .nav-subtopic {
-                display: none;
-
-                &.current {
-                    display: block;
-                }
-            }
-        }
-
-        &.completed{
-            & .nav-bullet {
-                display: none;
-            }
-
-            & .nav-subtopic {
-                display: none;
             }
         }
         

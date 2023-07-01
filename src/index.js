@@ -111,15 +111,6 @@ const App = () => {
 					<div className="sidebar">
 						<Sidebar
 							currentStep={currentStep}
-							completionStatus={[false, false, false, false, false]}
-							stepTitles={[
-								"Setup Account",
-								"Select Location",
-								"Select Plan",
-								"Computer Configuration",
-								"Billing & Payment"
-							]}
-							completionStats={completionStats}
 						/>
 					</div>
 					<div className="main">
