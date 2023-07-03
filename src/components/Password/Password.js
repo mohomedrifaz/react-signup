@@ -6,7 +6,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import './password.css';
 
-const Password = ({ onNext, formData, setFormData }) => {
+const Password = ({ setFormData, stepData: { nextStep } }) => {
 
     const [password, setPassword] = useState("");
     const [repassword, setRePassword] = useState("");
@@ -42,19 +42,14 @@ const Password = ({ onNext, formData, setFormData }) => {
     const isPasswordValid = hasMinLength && hasSpecialChar && hasLowercase && hasUppercase && hasNumber;
 
     const passwordVerification = () => {
-        // if (isPasswordValid && password === repassword) {
-        //     onNext();
-        // } else {
-        //     console.log('Password Verification Failed')
-        // }
         setFormData({user_password: password});
-        onNext();
+        nextStep();
     }
 
     return (
         <div className="password choose-password-container">
             <div className="main-title">
-                <h3> Choose a Password </h3>
+                <h3>Choose a Password</h3>
             </div>
 
             <div className="account-description">
@@ -66,8 +61,8 @@ const Password = ({ onNext, formData, setFormData }) => {
 
                 </div>
                 <div className="account-name-email">
-                    <div className="account-name"> Tharaka Nilpul </div>
-                    <div className="account-email"> tharaka@v2cloud.com </div>
+                    <div className="account-name">Tharaka Nilpul</div>
+                    <div className="account-email">tharaka@v2cloud.com</div>
                 </div>
             </div>
 

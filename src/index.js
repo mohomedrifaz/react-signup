@@ -40,7 +40,7 @@ const App = () => {
     });
 
 	// helper function set only the data that is passed in
-	const setFormData = (data) => setUserRegistrationData({ ...userRegistrationData, data });
+	const setFormData = (data) => setUserRegistrationData({ ...userRegistrationData, ...data });
 
 	const CurrentStepComponent = (props) => {
 		switch (currentStep) {
