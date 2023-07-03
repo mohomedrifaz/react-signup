@@ -95,7 +95,8 @@ const PlanCards = ({
                         </div>
                         <div className="annual-amount">
                             <div className="pricing-card-price">
-                                <span className="amount"> {`$${isBusiness ? businessYearlyPlan : basicYearlyPlan}`} </span> <span className="month">/mo </span>
+                                <span className="amount">{`$${isBusiness ? businessYearlyPlan : basicYearlyPlan}`}</span> 
+                                <span className="month">/mo</span>
                             </div>
                             <div className="offer-infobox">
                                 Save {`$${isBusiness ? businessYearlySaving : yearlySaving}`} per year

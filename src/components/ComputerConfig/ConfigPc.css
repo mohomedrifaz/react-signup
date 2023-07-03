@@ -136,6 +136,10 @@
             flex-direction: row;
             gap: 30px;
             margin-top: 10px;
+
+            &.team {
+                padding-top: 10px;
+            }
         }
 
         & .networking-container {

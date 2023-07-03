@@ -198,6 +198,7 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
             "yearly_contract_saving": 9
         }
     ]
+
     const backups = [
         {
             logo: `<svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -303,9 +304,73 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
         },
     ];
 
+    const configcardsTeam = [
+        {
+            logo: `<svg width="53" height="54" viewBox="0 0 53 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.5 0.75H25.5781V25.9453H0.5V0.75ZM27.8047 0.75H53V25.9453H27.8047V0.75ZM0.5 28.1719H25.5781V53.25H0.5V28.1719ZM27.8047 28.1719H53V53.25H27.8047V28.1719Z" fill="#343A40"/>
+          </svg>`,
+            logoSelected: `<svg width="53" height="54" viewBox="0 0 53 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.5 0.75H25.5781V25.9453H0.5V0.75ZM27.8047 0.75H53V25.9453H27.8047V0.75ZM0.5 28.1719H25.5781V53.25H0.5V28.1719ZM27.8047 28.1719H53V53.25H27.8047V28.1719Z" fill="url(#paint0_linear_2801_2279)"/>
+            <defs>
+              <linearGradient id="paint0_linear_2801_2279" x1="53.5055" y1="-9.51661" x2="-18.6642" y2="19.7071" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#116FE6"/>
+                <stop offset="1" stop-color="#003373"/>
+              </linearGradient>
+            </defs>
+          </svg>`,
+            mainTitle: 'Windows 11',
+            subTitle: 'Multi-user',
+            content: 'Based on Server 2022',
+            recommended: false,
+        },
+        {
+            logo: `<svg width="53" height="54" viewBox="0 0 53 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.5 8.01562V25.8281H21.9453V5.08594L0.5 8.01562ZM0.5 46.1016V28.5234H21.9453V49.0312L0.5 46.1016ZM24.2891 49.3828V28.5234H53V53.25L24.2891 49.3828ZM24.2891 4.73438L53 0.75V25.8281H24.2891V4.73438Z" fill="#343A40"/>
+            </svg>
+            `,
+            logoSelected: `<svg width="53" height="54" viewBox="0 0 53 54" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#116FE6" />
+                <stop offset="100%" stop-color="#003373" />
+              </linearGradient>
+            </defs>
+            <path d="M0.5 8.01562V25.8281H21.9453V5.08594L0.5 8.01562ZM0.5 46.1016V28.5234H21.9453V49.0312L0.5 46.1016ZM24.2891 49.3828V28.5234H53V53.25L24.2891 49.3828ZM24.2891 4.73438L53 0.75V25.8281H24.2891V4.73438Z" fill="url(#gradient)" />
+          </svg>
+            `,
+            mainTitle: 'Windows 10',
+            subTitle: 'Multi-user',
+            content: 'Based on Server 2019',
+            recommended: false,
+        },
+        {
+            logo: `<svg width="53" height="54" viewBox="0 0 53 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.5 8.01562V25.8281H21.9453V5.08594L0.5 8.01562ZM0.5 46.1016V28.5234H21.9453V49.0312L0.5 46.1016ZM24.2891 49.3828V28.5234H53V53.25L24.2891 49.3828ZM24.2891 4.73438L53 0.75V25.8281H24.2891V4.73438Z" fill="#343A40"/>
+            </svg>
+            `,
+            logoSelected: `<svg width="53" height="54" viewBox="0 0 53 54" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#116FE6" />
+                <stop offset="100%" stop-color="#003373" />
+              </linearGradient>
+            </defs>
+            <path d="M0.5 8.01562V25.8281H21.9453V5.08594L0.5 8.01562ZM0.5 46.1016V28.5234H21.9453V49.0312L0.5 46.1016ZM24.2891 49.3828V28.5234H53V53.25L24.2891 49.3828ZM24.2891 4.73438L53 0.75V25.8281H24.2891V4.73438Z" fill="url(#gradient)" />
+          </svg>
+            `,
+            mainTitle: 'Windows 10',
+            subTitle: 'Multi-user',
+            content: 'Based on Server 2016',
+            recommended: false,
+        }
+    ];
+
     const gotoPlans = () => {
         console.log('redirect to selectPlan');
     }
+
+    const isIndividual = false;
+
     return (
         <div className="config-pc-container">
 
@@ -357,16 +422,17 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
             </div>
 
             <div className="main-title">
-                <h2> Select Operating System <span className="sub-topic"> For Individual Cloud Desktops </span></h2>
+                <h2> Select Operating System <span className="sub-topic"> {`${isIndividual ? "For Individual Cloud Desktops" : "For Team Cloud Desktops"}`} </span></h2>
             </div>
 
-            <div class="line-with-text">
+            {isIndividual && <div class="line-with-text">
                 <span class="line"></span>
                 <span class="text">Bring Your Own License</span>
                 <span class="line"></span>
-            </div>
+            </div>}
 
-            <div className="windows-cards-container">
+            {/* Individual */}
+            {isIndividual && <div className="windows-cards-container">
                 {configcards.map((key, index) => (
                     <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle}
                         subTitle={key.subTitle}
@@ -374,7 +440,17 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
                         isSelected={index === selectedCardIndex.windows}
                         onClick={() => handleCardSelection(index, "windows")} />
                 ))}
-            </div>
+            </div>}
+
+            {!isIndividual && <div className={`windows-cards-container ${isIndividual ? "" : "team"}`}>
+                {configcardsTeam.map((key, index) => (
+                    <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle} 
+                        subTitle={key.subTitle}
+                        content={key.content} logoSelected={key.logoSelected}
+                        isSelected={index === selectedCardIndex.windows}
+                        onClick={() => handleCardSelection(index, "windows")} />
+                ))}
+            </div>}
 
             <div className="main-title">
                 <h2> Select Networking </h2>
