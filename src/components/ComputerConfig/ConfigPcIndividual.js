@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import ConfigCards from './configCards';
 import './ConfigPc.css';
 
-const ConfigPcIndividual = ({ onNext, isBackup }) => {
+const ConfigPcIndividual = ({ formData, setFormData, stepData: { nextStep } }) => {
 
     const inputRef = useRef(null);
     const [password, setPassword] = useState('')
@@ -39,12 +39,6 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
             password += characters.charAt(randomIndex);
         }
         return password;
-    }
-
-    const [isChecked, setIsChecked] = useState(false)
-
-    const handleCheckbox = () => {
-        setIsChecked(!isChecked);
     }
 
     const [selectedCardIndex, setSelectedCardIndex] = useState({
@@ -369,7 +363,7 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
         console.log('redirect to selectPlan');
     }
 
-    const isIndividual = false;
+   const isBusiness = formData.plan === 2;
 
     return (
         <div className="config-pc-container">
@@ -422,17 +416,17 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
             </div>
 
             <div className="main-title">
-                <h2> Select Operating System <span className="sub-topic"> {`${isIndividual ? "For Individual Cloud Desktops" : "For Team Cloud Desktops"}`} </span></h2>
+                <h2> Select Operating System <span className="sub-topic"> {`${isBusiness ? "For Individual Cloud Desktops" : "For Team Cloud Desktops"}`} </span></h2>
             </div>
 
-            {isIndividual && <div class="line-with-text">
+            {isBusiness && <div class="line-with-text">
                 <span class="line"></span>
                 <span class="text">Bring Your Own License</span>
                 <span class="line"></span>
             </div>}
 
             {/* Individual */}
-            {isIndividual && <div className="windows-cards-container">
+            {isBusiness && <div className="windows-cards-container">
                 {configcards.map((key, index) => (
                     <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle}
                         subTitle={key.subTitle}
@@ -442,7 +436,7 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
                 ))}
             </div>}
 
-            {!isIndividual && <div className={`windows-cards-container ${isIndividual ? "" : "team"}`}>
+            {!isBusiness && <div className={`windows-cards-container team`}>
                 {configcardsTeam.map((key, index) => (
                     <ConfigCards key={index} logo={key.logo} mainTitle={key.mainTitle} 
                         subTitle={key.subTitle}
@@ -467,7 +461,7 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
 
             </div>
 
-            <div className={`backups-antivirus-container ${isBackup ? "enabled" : "disabled"}`}>
+            <div className={`backups-antivirus-container ${isBusiness ? "enabled" : "disabled"}`}>
 
                 <div className="main-title">
                     <h2> Backup Retention </h2>
@@ -487,12 +481,12 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
                     <h2> Antivirus </h2>
                 </div>
 
-                <div className={`antivirus-container ${isChecked ? 'selected' : ''}`}>
+                <div className={`antivirus-container ${!!formData.malwarebytes_install ? 'selected' : ''}`}>
                     <label className="checkbox-label">
                         <input type="checkbox"
                             className="checkbox-input"
-                            checked={isChecked}
-                            onChange={handleCheckbox}
+                            checked={!!formData.malwarebytes_install}
+                            onChange={(e) => setFormData({malwarebytes_install: e.target.checked})}
                         />
                     </label>
                     <div className="info-box">
@@ -512,7 +506,7 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
 
             </div>
 
-            {!isBackup && <div className="enable-businessplan-infobox">
+            {!isBusiness && <div className="enable-businessplan-infobox">
                 <div className="content-container">
                     <div className="main-text">
                         Select the Business Plan to enable backup & antivirus
@@ -535,7 +529,7 @@ const ConfigPcIndividual = ({ onNext, isBackup }) => {
                 </button>
                 <button
                     className="verify-btn"
-                    onClick={configVerification}>
+                    onClick={nextStep}>
                     Next
                 </button>
             </div>

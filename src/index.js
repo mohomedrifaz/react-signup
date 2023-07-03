@@ -36,7 +36,8 @@ const App = () => {
         password: '',
         ssd: 1,
         cycle: "month",
-        contract_type: ''
+        contract_type: '',
+		malwarebytes_install: false
     });
 
 	// helper function set only the data that is passed in
@@ -60,8 +61,6 @@ const App = () => {
 			case 4:
 				return <ConfigPcIndividual {...props} />;
 			case 5:
-				return <ConfigPcTeam {...props} />;
-			case 6:
 				return <PaymentGateway {...props} />;
 		}
 		// switch (currentStep) {
