@@ -1,55 +1,33 @@
 import React, { useState } from "react";
 
-const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offervalue, isPopular,
-    functions, isBackup, isSelected, onClick, hardwareId }) => {
-
-    const [isMonthlySelected, setIsMonthlySelected] = useState(false);
-    const [isAnnualSelected, setIsAnnualSelected] = useState(false);
-
-
-    const [isHovered, setIsHovered] = useState(false);
-
-    const monthlyPrice = parseInt(monthlyprice.replace('$', ''), 10);
-    const yearlyPrice = parseInt(yearlyprice.replace('$', ''), 10);
-
-    const handleCardSelection = () => {
-        onClick();
-        setIsMonthlySelected(isSelected);
-        setIsAnnualSelected(false);
-    };
-
-    const handleMonthlySelection = () => {
-        setIsMonthlySelected(!isMonthlySelected);
-        setIsAnnualSelected(false);
-    };
-
-    const handleAnnualSelection = (event) => {
-        event.stopPropagation();
-        setIsAnnualSelected(!isAnnualSelected);
-        setIsMonthlySelected(false);
-    };
-
-    const handleMouseEnter = () => {
-        setIsHovered(true);
-    };
-
-    const handleMouseLeave = () => {
-        setIsHovered(false);
-    };
-
-    const configItems = features.slice(0, 3);
+const PlanCards = ({
+	title,
+	hardware_id,
+	price_monthly_contract_plan_1: basicMonthlyPlan,
+	price_yearly_contract_plan_1: basicYearlyPlan,
+	yearly_contract_saving_plan_1: yearlySaving,
+	price_monthly_contract_plan_2: businessMonthlyPlan,
+	price_yearly_contract_plan_2: businessYearlyPlan,
+	yearly_contract_saving_plan_2: businessYearlySaving,
+	config,
+	users,
+	isPopular,
+	description,
+	isSelected,
+	onSelect,
+	isBusiness,
+	plan,
+	planType
+}) => {
+    const configItems = config.split(' ').slice(0, 3);
     const customString = ['core', 'Memory RAM', 'Storage'];
     const UpdatedconfigItems = configItems.map( (val, index) => `${val} ${customString[index]}`);
 
-    return (
-        <div
-            className={`pricing-card ${isSelected ? "selected" : ""} ${isPopular ? "popular-container" : ""}`}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onClick={handleCardSelection}
-        >
 
-            {isHovered && functions && (
+    return (
+        <div className={`pricing-card ${isSelected ? "selected" : ""} ${isPopular ? "popular-container" : ""}`}>
+
+            {/* {isHovered && functions && (
                 <div className="tooltip-container">
                     <div className="tooltip">
                         <span className="tooltip-tip">Best User of {title}</span>
@@ -60,7 +38,7 @@ const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offerval
                         </ul>
                     </div>
                 </div>
-            )}
+            )} */}
 
             {isPopular && <div className="popular-badge">Most Popular</div>}
 
@@ -69,32 +47,31 @@ const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offerval
                 {users} users*
             </div>
             <div className={`functions ${isSelected ? "selected" : ""}`}>
-                {functions}
+                {description}
             </div>
 
             <hr className="custom-hr" />
 
             <ul className={`pricing-card-features ${isSelected ? "selected" : ""}`}>
-            {console.log("config Items", configItems)}
                 {
                     UpdatedconfigItems.map((part, index) => (
                         <li key={index}>{part}</li>
                     ))
                 }
             </ul>
-            <div className="pricing-monthly">
-                <div className={`monthly-title-check ${isMonthlySelected ? "selected" : ""}`}>
+            <div className="pricing-monthly" onClick={() => onSelect('monthly')}>
+                <div className={`monthly-title-check ${planType === 'monthly' && plan === hardware_id ? "selected" : ""}`}>
                     <div>
                         <input type="checkbox"
                             className="checkbox-input"
-                            checked={isMonthlySelected}
-                            onChange={handleMonthlySelection} />
+                            checked={planType === 'monthly' && plan === hardware_id}
+                            onChange={() => onSelect('monthly')} />
                     </div>
                     <div className="monthly-title-box">
                         <div className="monthly-title"> Monthly Commitment </div>
                         <div className="monthly-amount">
                             <div className="pricing-card-price">
-                                <span className="amount"> {isBackup ? '$' + (monthlyPrice + 10) : monthlyprice} </span>
+                                <span className="amount">{`$${isBusiness ? businessMonthlyPlan : basicMonthlyPlan}` }</span>
                                 <span className="month">/mo </span>
                             </div>
                         </div>
@@ -103,13 +80,14 @@ const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offerval
 
             </div>
 
-            <div className="pricing-annual">
-                <div className={`annual-title-check ${isAnnualSelected ? "selected" : ""}`}>
+            <div className="pricing-annual" onClick={() => onSelect('yearly')}>
+                <div className={`annual-title-check ${planType === 'yearly' && plan === hardware_id ? "selected" : ""}`}>
                     <div>
                         <input type="checkbox"
                             className="checkbox-input"
-                            checked={isAnnualSelected}
-                            onChange={handleAnnualSelection} />
+                            checked={planType === 'yearly' && plan === hardware_id}
+							onChange={() => onSelect('yearly')}
+						/>
                     </div>
                     <div className="annual-title-box">
                         <div className="annual-title">
@@ -117,10 +95,10 @@ const PlanCards = ({ title, users, monthlyprice, yearlyprice, features, offerval
                         </div>
                         <div className="annual-amount">
                             <div className="pricing-card-price">
-                                <span className="amount"> {isBackup ? '$' + (yearlyPrice + 10) : yearlyprice} </span> <span className="month">/mo </span>
+                                <span className="amount"> {`$${isBusiness ? businessYearlyPlan : basicYearlyPlan}`} </span> <span className="month">/mo </span>
                             </div>
                             <div className="offer-infobox">
-                                Save {offervalue} per year
+                                Save {`$${isBusiness ? businessYearlySaving : yearlySaving}`} per year
                             </div>
                         </div>
                     </div>
