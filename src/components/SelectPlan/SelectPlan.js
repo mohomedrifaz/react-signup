@@ -5,7 +5,7 @@ import './selectPlan.css';
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
-const SelectPlan = ({ formData, setFormData }) => {
+const SelectPlan = ({ formData, setFormData, stepData: { nextStep } }) => {
 
     const teamPlans = [
         {
@@ -139,7 +139,6 @@ const SelectPlan = ({ formData, setFormData }) => {
             "memory_display": "4 GB",
             "memory_total": 4096,
             "storage1_display": "50 GB",
-            "ref": "",
             "price_yearly_contract_plan_1": "35.00",
             "price_monthly_contract_plan_1": "40.25",
             "yearly_contract_saving_plan_1": "63.00",
@@ -163,7 +162,6 @@ const SelectPlan = ({ formData, setFormData }) => {
             "memory_display": "8 GB",
             "memory_total": 8192,
             "storage1_display": "50 GB",
-            "ref": "",
             "price_yearly_contract_plan_1": "60.00",
             "price_monthly_contract_plan_1": "69.00",
             "yearly_contract_saving_plan_1": "108.00",
@@ -187,7 +185,6 @@ const SelectPlan = ({ formData, setFormData }) => {
             "memory_display": "16 GB",
             "memory_total": 16384,
             "storage1_display": "50 GB",
-            "ref": "",
             "price_yearly_contract_plan_1": "120.00",
             "price_monthly_contract_plan_1": "138.00",
             "yearly_contract_saving_plan_1": "216.00",
@@ -211,7 +208,6 @@ const SelectPlan = ({ formData, setFormData }) => {
             "memory_display": "32 GB",
             "memory_total": 32768,
             "storage1_display": "50 GB",
-            "ref": "",
             "price_yearly_contract_plan_1": "240.00",
             "price_monthly_contract_plan_1": "276.00",
             "yearly_contract_saving_plan_1": "432.00",
@@ -231,12 +227,8 @@ const SelectPlan = ({ formData, setFormData }) => {
         setActiveTab(tabNumber);
     };
 
-    const [isBackup, setIsBackup] = useState(false);
     const [showOverlay, setShowOverlay] = useState(false);
 
-    const handleCheckboxChange = () => {
-        setIsBackup(!isBackup);
-    }
 
     const handleOverlayClick = () => {
         setShowOverlay(false);
@@ -252,28 +244,10 @@ const SelectPlan = ({ formData, setFormData }) => {
     //     };
     // }, []);
 
-    const [selectedCardIndex, setSelectedCardIndex] = useState({
-        teamCloud: null,
-        individualCloud: null
-    });
 
-    const [selectedPlan, setSelectedPlan] = useState(null);
-
-    const handleCardSelection = (index, category) => {
-        setSelectedCardIndex((prevSelectedCardIndex) => {
-            const newSelectedCardIndex = { ...prevSelectedCardIndex };
-            newSelectedCardIndex[category] = index;
-            return newSelectedCardIndex;
-        });
-
-        const selectedPlan = category === "teamCloud" ? teamPlans[index] : personalPlans[index];
-        setSelectedPlan(selectedPlan, category)
-
-    }
 
     const planVerification = () => {
-        backupState(isBackup);
-        onNext(selectedPlan);
+        nextStep();
     }
 
     return (
@@ -359,8 +333,6 @@ const SelectPlan = ({ formData, setFormData }) => {
             <div className="pricing-cards" >
                 {activeTab === 1 && <div className="team-cloud-pricing-container">
                     {teamPlans.map((plan, index) => {
-                        const configParts = plan.config.split(' ');
-                        // console.log(plan.hardware_id, formData.hardware?.value);
                         return <PlanCards key={index}
                             {...plan}
                             isSelected={plan.hardware_id === formData.hardware?.value}
@@ -374,8 +346,6 @@ const SelectPlan = ({ formData, setFormData }) => {
                 }
                 {activeTab === 2 && <div className="team-individual-pricing-container">
                     {personalPlans.map((plan, index) => {
-                        const configParts = plan.config.split(' ');
-
                         return <PlanCards key={index}
                             {...plan}
                             isSelected={plan.hardware_id === formData.hardware?.value}
