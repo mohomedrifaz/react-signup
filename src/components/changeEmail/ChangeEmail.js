@@ -6,7 +6,7 @@ import './changeEmail.css';
 const ChangeEmail = ({ onNext }) => {
 
 	const emailChangeVerification = (data) => {
-		console.log(data);
+		setFormData({email: document.getElementById('email').value});
 		onNext();
 	};
 

@@ -5,7 +5,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { set, useForm } from 'react-hook-form';
 import './password.css';
 
-const Password = ({ onNext }) => {
+const Password = ({ setFormData, stepData: { nextStep } }) => {
 
     const [password, setPassword] = useState("");
     const [repassword, setRePassword] = useState("");
@@ -51,11 +51,16 @@ const Password = ({ onNext }) => {
     const hasNumber = (value) => {
         return /\d/.test(value)
     }
+    
+    const passwordVerification = () => {
+        setFormData({user_password: password});
+        nextStep();
+    }
 
     return (
         <div className="password choose-password-container">
             <div className="main-title">
-                <h3> Choose a Password </h3>
+                <h3>Choose a Password</h3>
             </div>
 
             <div className="account-description">
@@ -67,12 +72,12 @@ const Password = ({ onNext }) => {
 
                 </div>
                 <div className="account-name-email">
-                    <div className="account-name"> Tharaka Nilpul </div>
-                    <div className="account-email"> tharaka@v2cloud.com </div>
+                    <div className="account-name">Tharaka Nilpul</div>
+                    <div className="account-email">tharaka@v2cloud.com</div>
                 </div>
             </div>
 
-            <form id="password-verify" method="post" onSubmit={handleSubmit((data) => console.log(data))}>
+            <form id="password-verify" method="post" onSubmit={handleSubmit(passwordVerification)}>
                 <div className="password-form-container">
                     <div className={`form-row form-group ${errors.password ? 'password-error' : ''}`}>
                         <label for="password">Password*</label>

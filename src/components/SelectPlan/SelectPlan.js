@@ -2,104 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import PlanCards from './PlanCards';
 import SpecialCard from "./SpecialCard";
 import './selectPlan.css';
-import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
-const SelectPlan = ({ onNext, backupState }) => {
-
-    const pricingPlans = [
-        {
-            title: 'The Founder',
-            users: '1',
-            monthlyprice: '$25',
-            yearlyprice: '$20',
-            offervalue: '$60',
-            features: ['2 CPU core', '4 GB Memory RAM', '50 GB Storage'],
-            isPopular: false
-        },
-        {
-            title: 'The Startup',
-            users: '2 - 4',
-            monthlyprice: '$55',
-            yearlyprice: '$45',
-            offervalue: '$120',
-            features: ['2 CPU core', '8 GB Memory RAM', '50 GB Storage'],
-            isPopular: true
-        },
-        {
-            title: 'The SMB',
-            users: '5 - 9',
-            monthlyprice: '$85',
-            yearlyprice: '$65',
-            offervalue: '$240',
-            features: ['4 CPU core', '16 GB Memory RAM', '50 GB Storage'],
-            isPopular: false
-        },
-        {
-            title: 'The Firm',
-            users: '10 - 16',
-            monthlyprice: '$125',
-            yearlyprice: '$100',
-            offervalue: '$350',
-            features: ['8 CPU core', '32 GB Memory RAM', '50 GB Storage'],
-            isPopular: false
-        },
-        {
-            title: 'The Company',
-            users: '17 - 32',
-            monthlyprice: '$150',
-            yearlyprice: '$120',
-            offervalue: '$420',
-            features: ['16 CPU core', '64 GB Memory RAM', '50 GB Storage'],
-            isPopular: false
-        },
-
-    ];
-
-    const pricingPlansIndividual = [
-        {
-            title: 'The Intern',
-            users: '',
-            functions: 'Data-entry, word-processing, Quickbooks, light multi-task*',
-            monthlyprice: '$35',
-            yearlyprice: '$30',
-            offervalue: '$60',
-            features: ['2 CPU core', '4 GB Memory RAM', '50 GB Storage'],
-            isPopular: false
-        },
-        {
-            title: 'The Doer',
-            users: '',
-            functions: 'Business applications, Photoshop design, medium*',
-            monthlyprice: '$75',
-            yearlyprice: '$65',
-            offervalue: '$120',
-            features: ['2 CPU core', '8 GB Memory RAM', '50 GB Storage'],
-            isPopular: false
-        },
-        {
-            title: 'The Workholic',
-            users: '',
-            functions: 'Intensive applications, software development, heavy multi-task*',
-            monthlyprice: '$95',
-            yearlyprice: '$85',
-            offervalue: '$130',
-            features: ['4 CPU core', '16 GB Memory RAM', '50 GB Storage'],
-            isPopular: false
-        },
-        {
-            title: 'The Magnate',
-            users: '',
-            functions: 'Ultimate multi-task, multiple heavy apps, jet flying speed*',
-            monthlyprice: '$115',
-            yearlyprice: '$105',
-            offervalue: '$170',
-            features: ['8 CPU core', '32 GB Memory RAM', '50 GB Storage'],
-            isPopular: false
-        },
-
-    ];
+const SelectPlan = ({ formData, setFormData }) => {
 
     const teamPlans = [
         {
@@ -114,7 +20,6 @@ const SelectPlan = ({ onNext, backupState }) => {
             "memory_display": "4 GB",
             "memory_total": 4096,
             "storage1_display": "50 GB",
-            "ref": "",
             "price_yearly_contract_plan_1": "40.00",
             "price_monthly_contract_plan_1": "46.00",
             "yearly_contract_saving_plan_1": "72.00",
@@ -138,7 +43,6 @@ const SelectPlan = ({ onNext, backupState }) => {
             "memory_display": "8 GB",
             "memory_total": 8192,
             "storage1_display": "50 GB",
-            "ref": "",
             "price_yearly_contract_plan_1": "70.00",
             "price_monthly_contract_plan_1": "80.50",
             "yearly_contract_saving_plan_1": "126.00",
@@ -163,7 +67,6 @@ const SelectPlan = ({ onNext, backupState }) => {
             "memory_display": "16 GB",
             "memory_total": 16384,
             "storage1_display": "50 GB",
-            "ref": "",
             "price_yearly_contract_plan_1": "140.00",
             "price_monthly_contract_plan_1": "161.00",
             "yearly_contract_saving_plan_1": "252.00",
@@ -187,7 +90,6 @@ const SelectPlan = ({ onNext, backupState }) => {
             "memory_display": "32 GB",
             "memory_total": 32768,
             "storage1_display": "50 GB",
-            "ref": "",
             "price_yearly_contract_plan_1": "280.00",
             "price_monthly_contract_plan_1": "322.00",
             "yearly_contract_saving_plan_1": "504.00",
@@ -211,7 +113,6 @@ const SelectPlan = ({ onNext, backupState }) => {
             "memory_display": "64 GB",
             "memory_total": 65536,
             "storage1_display": "50 GB",
-            "ref": "",
             "price_yearly_contract_plan_1": "560.00",
             "price_monthly_contract_plan_1": "644.00",
             "yearly_contract_saving_plan_1": "1008.00",
@@ -341,15 +242,15 @@ const SelectPlan = ({ onNext, backupState }) => {
         setShowOverlay(false);
     }
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowOverlay(true);
-        }, 3000);
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         setShowOverlay(true);
+    //     }, 3000);
 
-        return () => {
-            clearTimeout(timer);
-        };
-    }, []);
+    //     return () => {
+    //         clearTimeout(timer);
+    //     };
+    // }, []);
 
     const [selectedCardIndex, setSelectedCardIndex] = useState({
         teamCloud: null,
@@ -373,12 +274,6 @@ const SelectPlan = ({ onNext, backupState }) => {
     const planVerification = () => {
         backupState(isBackup);
         onNext(selectedPlan);
-    }
-
-    const sliderSettings = {
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        infinite: true,
     }
 
     return (
@@ -429,8 +324,8 @@ const SelectPlan = ({ onNext, backupState }) => {
                     <label className="checkbox-label">
                         <input type="checkbox"
                             className="checkbox-input"
-                            checked={isBackup}
-                            onChange={handleCheckboxChange} />
+                            checked={formData.plan === 2}
+                            onChange={(e) => setFormData({plan: e.target.checked ? 2 : 1})} />
                     </label>
                     <div className="info-box">
                         Enable Daily Backups and a Professional Antivirus <span className="business-card"> Business Plan </span>
@@ -465,19 +360,14 @@ const SelectPlan = ({ onNext, backupState }) => {
                 {activeTab === 1 && <div className="team-cloud-pricing-container">
                     {teamPlans.map((plan, index) => {
                         const configParts = plan.config.split(' ');
-
+                        // console.log(plan.hardware_id, formData.hardware?.value);
                         return <PlanCards key={index}
-                            hardwareId={plan.hardware_id}
-                            title={plan.title}
-                            monthlyprice={plan.price_monthly_contract_plan_1}
-                            yearlyprice={plan.price_yearly_contract_plan_1}
-                            features={configParts}
-                            offervalue={plan.yearly_contract_saving_plan_1}
-                            users={plan.users}
-                            isPopular={plan.isPopular}
-                            isBackup={isBackup}
-                            isSelected={index === selectedCardIndex.teamCloud}
-                            onClick={() => handleCardSelection(index, "teamCloud")}
+                            {...plan}
+                            isSelected={plan.hardware_id === formData.hardware?.value}
+                            onSelect={(contract) => setFormData({hardware: { value: plan.hardware_id, display: plan.display }, contract_type: contract})}
+                            isBusiness={formData.plan === 2}
+                            plan={formData.hardware?.value}
+                            planType={formData.contract_type}
                         />
                     })}
                 </div>
@@ -487,17 +377,12 @@ const SelectPlan = ({ onNext, backupState }) => {
                         const configParts = plan.config.split(' ');
 
                         return <PlanCards key={index}
-                            hardwareId={plan.hardware_id}
-                            title={plan.title}
-                            monthlyprice={plan.price_monthly_contract_plan_1}
-                            yearlyprice={plan.price_yearly_contract_plan_1}
-                            features={configParts}
-                            offervalue={plan.yearly_contract_saving_plan_1}
-                            users={plan.users}
-                            isPopular={plan.isPopular}
-                            functions={plan.description}
-                            isSelected={index === selectedCardIndex.teamIndividual}
-                            onClick={() => handleCardSelection(index, "teamIndividual")}
+                            {...plan}
+                            isSelected={plan.hardware_id === formData.hardware?.value}
+                            onSelect={(contract) => setFormData({hardware: { value: plan.hardware_id, display: plan.display }, contract_type: contract})}
+                            isBusiness={formData.plan === 2}
+                            plan={formData.hardware?.value}
+                            planType={formData.contract_type}
                         />
                     })}
                     <SpecialCard

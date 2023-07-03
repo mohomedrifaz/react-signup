@@ -37,8 +37,13 @@
             margin-right: 16px;
             line-height: 32px;  /* align text vertically */
 
-            &.active {
+            &:where(.active > *) {
                 background-color: var(--primary-color);
+                color: white;
+            }
+
+            &:where(.completed > *) {
+                background-color: var(--alert-success-600);
                 color: white;
             }
         }
@@ -56,18 +61,10 @@
             font-size: var(--font-xxxs);
             margin-top: 3px;
             color: #c0c7cd;
-        }
 
-        & .nav-subtopic-done {
-            font-size: var(--font-xxxs);
-            margin-top: 3px;
-            color: #039855;
-        }
-
-        & .nav-subtopic-complete {
-            font-size: var(--font-xxxs);
-            margin-top: 3px;
-            color: #c0c7cd;
+            &:last-of-type:where(.completed *) {
+                color: var(--alert-success-600);
+            }
         }
 
         & .nav-bullet {
@@ -75,41 +72,12 @@
             & svg {
                 margin: -5px;
             }
-
-            &.active {
-                display: none;
-            }
         }
         
         &.active {
-            & .nav-bullet {
-                display: none;
-
-                &.active {
-                    display: block;
-                }
-            }
 
             & .nav-topic {
                 color: var(--primary-color);
-            }
-
-            & .nav-subtopic {
-                display: none;
-
-                &.current {
-                    display: block;
-                }
-            }
-        }
-
-        &.completed{
-            & .nav-bullet {
-                display: none;
-            }
-
-            & .nav-subtopic {
-                display: none;
             }
         }
         
