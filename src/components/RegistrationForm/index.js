@@ -8,7 +8,7 @@ import countries from './../../data/countries.json';
 
 import RegisterSlider from './slider';
 
-export default function RegistrationForm() {
+export default function RegistrationForm({ stepData: { nextStep } }) {
 
 	const [ userCountry, setUserCountry ] = useState('');
 
@@ -31,7 +31,7 @@ export default function RegistrationForm() {
 			<h1 className="page-title">Sign up</h1>
 			<p className="sub-title">(Not billed until your 7-Day trial is complete)</p>
 			<div className="form-wrapper">
-				<form id="registration-form" method="post" onSubmit={ handleSubmit( (data) => console.log(data) ) }>
+				<form id="registration-form" method="post" onSubmit={ handleSubmit( () => nextStep()  ) }>
 					<div className="form-row">
 						<div className="form-group form-group--half">
 							<label htmlFor="first-name">First Name*</label>

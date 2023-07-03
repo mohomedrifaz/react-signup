@@ -110,7 +110,7 @@ const App = () => {
 
 	return (
 		<>
-			{ currentStep === 0 && <RegistrationForm /> }
+			{ currentStep === 0 && <RegistrationForm {...stepProps} /> }
 			{ currentStep > 0 && (
 				<div className="steps-container">
 					<div className="sidebar">

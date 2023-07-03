@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 
 export default function useSteps() {
-	const [currentStep, setCurrentStep] = useState(1);
+	const [currentStep, setCurrentStep] = useState(0);
 	const [currentChildStep, setCurrentChildStep] = useState(1);
 	let previousStep = useRef(currentStep).current;
 
