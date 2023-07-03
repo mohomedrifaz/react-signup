@@ -10,7 +10,7 @@ import frankfurt from "../../assets/svg/GEFRANK.svg";
 import france from "../../assets/svg/FR.svg";
 import mumbai from "../../assets/svg/IN.svg";
 
-const SelectLocation = ({ onNext, formData, setFormData }) => {
+const SelectLocation = ({ formData, setFormData, stepData: { nextStep } }) => {
     const regions = [
         {
             "id": 1,
@@ -142,7 +142,7 @@ const SelectLocation = ({ onNext, formData, setFormData }) => {
 
 
     const locationVerification = () => {
-        onNext(selectedPlan);
+        nextStep();
     }
 
     return (
@@ -168,8 +168,8 @@ const SelectLocation = ({ onNext, formData, setFormData }) => {
                         country={country}
                         signal={countryData.ping_url}
                         id={countryData.id}
-                        isSelected={index === selectedCardIndex.country}
-                        onClick={() => setFormData({ region: { id: countryData.id, display: countryName } })}
+                        isSelected={countryData.id === formData.region.value}
+                        onClick={() => setFormData({ region: { value: countryData.id, display: countryName } })}
                     />
                 })}
             </div>
