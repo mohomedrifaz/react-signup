@@ -8,7 +8,7 @@ import paymentCardsImage from "../../assets/images/payment.png";
 import alertsvg from "../../assets/svg/cardAlert.svg";
 import { set, useForm } from 'react-hook-form';
 
-const PaymentGateway = ({ selectedCity, selectedCountry, plan, planTitle, planConfig, planUsers, windowsTitle, networkTitle, backupsTitle }) => {
+const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTitle, planConfig, planUsers, windowsTitle, networkTitle, backupsTitle }) => {
 
     const [totalPrice, setTotalPrice] = useState('$120');
     // const configItems = planConfig.split(' ');
@@ -215,8 +215,8 @@ const PaymentGateway = ({ selectedCity, selectedCountry, plan, planTitle, planCo
 
                     <div className="pricing-single-pack">
                         <div className="package-details">
-                            <div className="package-title"> Location </div>
-                            <div className="package-value">  {selectedCity} ({selectedCountry}) </div>
+                            <div className="package-title">Location</div>
+                            <div className="package-value">{formData.region?.display}</div>
                         </div>
                         <div className="link">
 
@@ -225,7 +225,7 @@ const PaymentGateway = ({ selectedCity, selectedCountry, plan, planTitle, planCo
 
                     <div className="pricing-single-pack">
                         <div className="package-details">
-                            <div className="package-title"> Template </div>
+                            <div className="package-title">Template</div>
                             <div className="package-value"> {windowsTitle} </div>
                         </div>
                         <div className="link">
