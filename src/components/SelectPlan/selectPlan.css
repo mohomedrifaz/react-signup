@@ -270,10 +270,11 @@
             & input[type="checkbox"] {
                 -webkit-appearance: none;
                 -moz-appearance: none;
+                margin: 0;
                 appearance: none;
                 width: 16px;
                 height: 16px;
-                border: 2px solid #333;
+                border: 2px solid #CED4DA;
                 border-radius: 50%;
                 outline: none;
                 transition: border-color 0.3s ease-in-out;
@@ -412,8 +413,9 @@
                         }
                     }
 
-                    & .annual-title-box {
+                    & .pricing-annual {
                         & .annual-title-check {
+                        
                             &.selected {
                                 & .annual-title {
                                     color: #fff !important;

@@ -271,7 +271,6 @@
 
             & .text {
                 margin: 0 10px;
-                font-family: 'Helvetica Neue';
                 font-style: normal;
                 font-weight: var(--font-medium);
                 font-size: var(--font-xs);

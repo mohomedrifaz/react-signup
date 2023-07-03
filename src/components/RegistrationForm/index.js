@@ -95,7 +95,7 @@ export default function RegistrationForm() {
 						</div>
 						<div className="form-group form-group--half">
 							<label htmlFor="company-size">Company Size</label>
-							<select name="company-size" id="company-size" className="form-control">
+							<select name="company-size" id="company-size" className={`form-control ${ errors.companySize ? "input-error" : ""} ` } { ...register("companySize", requiredConfig) }>
 								<option value="">Please Select</option>
 								<option value="1-4">1-4</option>
 								<option value="5-10">5-10</option>
