@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import './changeEmail.css';
 
-const ChangeEmail = ( {onNext} ) => {
+const ChangeEmail = ({ stepData: { prevChildStep } }) => {
 
 	const emailChangeVerification = () => {
-		onNext();
+		setFormData({email: document.getElementById('email').value});
 	}
 
 	return (
@@ -17,7 +17,7 @@ const ChangeEmail = ( {onNext} ) => {
 
 			<div className="form-group">
 				<label for="email"> Enter your new email address </label>
-				<input type="email" className="form-control"></input>
+				<input type="email" className="form-control" id="email"></input>
 				<p className="help-text"> 
 					<FontAwesomeIcon icon={faCircleInfo} />
 					we will send a verification code to this email ID 
@@ -25,7 +25,7 @@ const ChangeEmail = ( {onNext} ) => {
 			</div>
 
 			<div className="action-btn">
-				<button className="back-btn">
+				<button className="back-btn" onClick={prevChildStep}>
 					Back
 				</button>
 				<button 

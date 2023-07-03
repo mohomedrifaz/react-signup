@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './sidebar.css';
 
 const BulletIcon = () => (
@@ -24,7 +24,7 @@ const CompletedIcon = () => (
 	</svg>
 );
 
-const Sidebar = ({ currentStep }) => {
+const Sidebar = ({ currentStep, formData }) => {
 
 	const steps = [
 		{
@@ -33,7 +33,7 @@ const Sidebar = ({ currentStep }) => {
 		},
 		{
 			header: 'Select Location',
-			completedTitle: 'Data Center Selected',
+			completedTitle: (() => formData.region?.display || '')(),
 		},
 		{
 			header: 'Select Plan',

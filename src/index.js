@@ -16,92 +16,98 @@ import useSteps from './hooks/useSteps';
 
 const App = () => {
 
-	const { currentStep, nextStep, prevStep, currentChildStep, nextChildStep, prevChildStep  } = useSteps();
+	// Step data for global use
+	const { currentStep, currentChildStep, setCurrentStep, ...stepData  } = useSteps();
+	// Registration data for global use
+	const [userRegistrationData, setUserRegistrationData] = useState({
+        email: '',
+        stripeToken: '',
+        user_password: '',
+        first_name: '',
+        last_name: '',
+        phone: '',
+        company: '',
+        region: '',
+        software: '',
+        hardware: '',
+        plan: '',
+        ip: '',
+        description: '',
+        password: '',
+        ssd: 1,
+        cycle: "month",
+        contract_type: ''
+    });
 
-  const [selectedPlanTitle, setSelectedPlanTitle] = useState("");
-  const [selectedPlanConfig, setSelectedPlanConfig] = useState("");
-  const [selectedPlanUsers, setSelectedPlanUsers] = useState("");
-  const [selectedPlan, setSelectedPlan] = useState("");
+	// helper function set only the data that is passed in
+	const setFormData = (data) => setUserRegistrationData({ ...userRegistrationData, data });
 
-
-  const [selectedLocationCity, setSelectedLocationCity] = useState("");
-  const [selectedLocationCountry, setSelectedLocationCountry] = useState("");
-
-  const [windowsMainTitle, setWindowsMainTitle] = useState("");
-  const [networkingMainTitle, setNetworkingMainTitle] = useState("");
-  const [backupsMainTitle, setBackupsMainTitle] = useState("");
-
-  const handlePlanStats = (selectedPlan, category) => {
-    setSelectedPlanTitle(selectedPlan.title);
-    setSelectedPlanConfig(selectedPlan.config);
-    setSelectedPlanUsers(selectedPlan.users);
-    setSelectedPlan(category);
-    nextStep();
-  }
-
-  const handleLocationStats = (selectedLocation) => {
-    console.log(selectedLocation);
-    const countryName = selectedLocation.display;
-    const [city, Country] = countryName.split(" (").map(str => str.replace(")", ""));
-    setSelectedLocationCity(city);
-    setSelectedLocationCountry(Country);
-    nextStep();
-  }
-
-	const handleConfigStats = (selectedTitles) => {
-		setWindowsMainTitle(selectedTitles.windows)
-		setNetworkingMainTitle(selectedTitles.networking)
-		setBackupsMainTitle(selectedTitles.backups)
-		nextStep();
+	const CurrentStepComponent = (props) => {
+		switch (currentStep) {
+			case 1:
+				switch(currentChildStep) {
+					// case 1 is passed as 1 is always the parent step
+					case 2:
+						return <ChangeEmail {...props} />;
+					case 3:
+						return <Password {...props} />;
+				}
+				return <SetupContainer {...props} />;
+			case 2:
+				return <SelectLocation {...props} />;
+			case 3:
+				return <SelectPlan {...props} />;
+			case 4:
+				return <ConfigPcIndividual {...props} />;
+			case 5:
+				return <ConfigPcTeam {...props} />;
+			case 6:
+				return <PaymentGateway {...props} />;
+		}
+		// switch (currentStep) {
+		// 	case 1:
+		// 		switch (currentChildStep) {
+		// 			case 2:
+		// 				return <SetupContainer {...props} onNext={nextChildStep} />;
+		// 			case 3:
+		// 				return <Password {...props} onNext={nextStep} onPrevious={prevChildStep} />;
+		// 		}
+		// 	return <ChangeEmail {...props} onNext={nextChildStep} onPrevious={null} />;
+		// 	case 2:
+		// 		return <SelectLocation {...props} onNext={handleLocationStats} onPrevious={prevStep} />;
+		// 	case 3:
+		// 		return <SelectPlan {...props} onNext={handlePlanStats} onPrevious={prevStep} backupState={handleBackup} />;
+		// 	case 4:
+		// 		return <ConfigPcIndividual onNext={handleConfigStats} onPrevious={prevStep} isBackup={isBackup} />;
+		// 	case 5:
+		// 		return <ConfigPcTeam onNext={handleConfigStats} onPrevious={prevStep} isBackup={isBackup} />;
+		// 	case 6:
+		// 		return <PaymentGateway onPrevious={prevStep}
+		// 			plan={selectedPlan}
+		// 			planTitle={selectedPlanTitle}
+		// 			selectedCity={selectedLocationCity} 
+		// 			selectedCountry={selectedLocationCountry}
+		// 			windowsTitle={windowsMainTitle}
+		// 			networkTitle={networkingMainTitle}
+		// 			backupsTitle={backupsMainTitle} 
+		// 			planConfig={selectedPlanConfig} 
+		// 			planUsers={selectedPlanUsers}
+		// 		/>;
+		// 	default:
+		// 		return null;
+		// }
 	};
 
-  const [isBackup, setIsBackup] = useState(false);
-
-  const handleBackup = (backup) => {
-    setIsBackup(backup);
-  };
-
-  const completionStats = [
-    "Password Created",
-    `${selectedLocationCity} (${selectedLocationCountry})`,
-    `${selectedPlanTitle}/ "Yearly commitment"`,
-    `${windowsMainTitle ? `${windowsMainTitle} /` : ''} ${networkingMainTitle ? `${networkingMainTitle} /` : ''} ${backupsMainTitle ? `${backupsMainTitle}` : ''}`,
-  ]
-
-
-  const renderCurrentStepComponent = () => {
-    switch (currentStep) {
-      case 1:
-		switch (currentChildStep) {
-			case 2:
-				return <SetupContainer onNext={nextChildStep} />;
-			case 3:
-				return <Password onNext={nextStep} onPrevious={prevChildStep} />;
-		}
-        return <ChangeEmail onNext={nextChildStep} onPrevious={null} />;
-      case 2:
-        return <SelectLocation onNext={handleLocationStats} onPrevious={prevStep} />;
-      case 3:
-        return <SelectPlan onNext={handlePlanStats} onPrevious={prevStep} backupState={handleBackup} />;
-      case 4:
-        return <ConfigPcIndividual onNext={handleConfigStats} onPrevious={prevStep} isBackup={isBackup} />;
-      case 5:
-		return <ConfigPcTeam onNext={handleConfigStats} onPrevious={prevStep} isBackup={isBackup} />;
-      case 6:
-		return <PaymentGateway onPrevious={prevStep}
-        plan={selectedPlan}
-        planTitle={selectedPlanTitle}
-        selectedCity={selectedLocationCity} 
-        selectedCountry={selectedLocationCountry}
-        windowsTitle={windowsMainTitle}
-        networkTitle={networkingMainTitle}
-        backupsTitle={backupsMainTitle} 
-        planConfig={selectedPlanConfig} 
-        planUsers={selectedPlanUsers} />;
-      default:
-        return null;
-    }
-  };
+	const stepProps = {
+		stepData: {
+			currentStep,
+			currentChildStep,
+			setCurrentStep,
+			...stepData
+		},
+		formData: userRegistrationData,
+		setFormData
+	}
 
 	return (
 		<>
@@ -110,11 +116,13 @@ const App = () => {
 				<div className="steps-container">
 					<div className="sidebar">
 						<Sidebar
+							formData={userRegistrationData}
 							currentStep={currentStep}
+							setCurrentStep={setCurrentStep}
 						/>
 					</div>
 					<div className="main">
-						{renderCurrentStepComponent()}
+						<CurrentStepComponent {...stepProps} />
 					</div>
 				</div>
 			) }

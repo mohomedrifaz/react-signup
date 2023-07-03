@@ -10,103 +10,72 @@ import frankfurt from "../../assets/svg/GEFRANK.svg";
 import france from "../../assets/svg/FR.svg";
 import mumbai from "../../assets/svg/IN.svg";
 
-const SelectLocation = ({ onNext }) => {
-
+const SelectLocation = ({ onNext, formData, setFormData }) => {
     const regions = [
         {
             "id": 1,
             "name": "lucy",
             "display": "Montreal (Canada East)",
-            "ping_url": "51.222.82.69"
+            "ping_url": "51.222.82.69",
+            "flag": montreal,
         },
         {
             "id": 2,
             "name": "lydia",
             "display": "Roubaix (France)",
-            "ping_url": "146.59.149.201"
+            "ping_url": "146.59.149.201",
+            "flag": france,
         },
         {
             "id": 4,
             "name": "mia",
             "display": "Washington DC (USA East)",
-            "ping_url": "15.204.163.125"
+            "ping_url": "15.204.163.125",
+            "flag": washington,
         },
         {
             "id": 5,
             "name": "julia",
             "display": "Singapore (Singapore)",
-            "ping_url": "51.79.228.38"
+            "ping_url": "51.79.228.38",
+            "flag": SG,
         },
         {
             "id": 7,
             "name": "kate",
             "display": "London (UK)",
-            "ping_url": "51.89.218.130"
+            "ping_url": "51.89.218.130",
+            "flag": london,
         },
         {
             "id": 10,
             "name": "mali",
             "display": "Portland (USA West)",
-            "ping_url": "15.204.52.98"
+            "ping_url": "15.204.52.98",
+            "flag": washington,
         },
         {
             "id": 14,
             "name": "amanda",
             "display": "Sydney 2 (Australia)",
-            "ping_url": "117.120.15.196"
+            "ping_url": "117.120.15.196",
+            "flag": sydney,
         },
         {
             "id": 22,
             "name": "angela",
             "display": "Frankfurt (Germany)",
-            "ping_url": "162.19.234.32"
+            "ping_url": "162.19.234.32",
+            "flag": frankfurt,
         },
         {
             "id": 30,
             "name": "rani",
             "display": "Mumbai (India)",
-            "ping_url": "148.113.0.138"
-        }
-    ];
-
-    const region_flags = [
-        {
-            "id": 1,
-            "flag": montreal,
-        },
-        {
-            "id": 2,
-            "flag": france,
-        },
-        {
-            "id": 4,
-            "flag": washington,
-        },
-        {
-            "id": 5,
-            "flag": SG,
-        },
-        {
-            "id": 7,
-            "flag": london,
-        },
-        {
-            "id": 10,
-            "flag": washington,
-        },
-        {
-            "id": 14,
-            "flag": sydney,
-        },
-        {
-            "id": 22,
-            "flag": frankfurt,
-        },
-        {
-            "id": 30,
+            "ping_url": "148.113.0.138",
             "flag": mumbai,
         }
-    ]
+    ];
 
     const countries = [
         {
@@ -171,19 +140,6 @@ const SelectLocation = ({ onNext }) => {
 
     const [selectedPlan, setSelectedPlan] = useState(null);
 
-    const handleCardSelection = (index, category) => {
-        setSelectedCardIndex((prevSelectedCardIndex) => {
-            const newSelectedCardIndex = { ...prevSelectedCardIndex };
-            newSelectedCardIndex[category] = index;
-            return newSelectedCardIndex;
-        });
-
-        const selectedPlan = regions[index];
-        setSelectedPlan(selectedPlan)
-
-        console.log("Selected Country - ", selectedPlan.display);
-    };
-
 
     const locationVerification = () => {
         onNext(selectedPlan);
@@ -201,22 +157,19 @@ const SelectLocation = ({ onNext }) => {
             </div>
 
             <div className="country-select-container">
-                {regions.map((country, index) => {
+                {regions.map((countryData, index) => {
 
-                    const flag = region_flags.find(flag => flag.id === country.id);
-                    const flag_logo = flag ? flag.flag : null;
-
-                    const countryName = country.display;
-                    const [city, Country] = countryName.split(" (").map(str => str.replace(")", ""));
+                    const countryName = countryData.display;
+                    const [city, country] = countryName.split(" (").map(str => str.replace(")", ""));
 
                     return <SelectCountry key={index}
-                        flag={flag_logo}
+                        flag={countryData.flag}
                         city={city}
-                        country={Country}
-                        signal={country.ping_url}
-                        id={country.id}
+                        country={country}
+                        signal={countryData.ping_url}
+                        id={countryData.id}
                         isSelected={index === selectedCardIndex.country}
-                        onClick={() => handleCardSelection(index, "country")}
+                        onClick={() => setFormData({ region: { id: countryData.id, display: countryName } })}
                     />
                 })}
             </div>
