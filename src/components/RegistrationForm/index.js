@@ -36,7 +36,8 @@ export default function RegistrationForm() {
 						<div className="form-group form-group--half">
 							<label htmlFor="first-name">First Name*</label>
 							<input
-								type="text" name="first-name" id="first-name" className="form-control" placeholder="Enter first name"
+								type="text" name="first-name" id="first-name" className={ `form-control ${ errors.firstName ? "input-error" : ""} ` } 
+								placeholder="Enter first name"
 								{ ...register("firstName", requiredConfig) }
 							/>
 							{ errors.firstName && <div className="error-message">{ errors.firstName.message }</div> }
@@ -44,7 +45,8 @@ export default function RegistrationForm() {
 						<div className="form-group form-group--half">
 							<label htmlFor="last-name">Last Name*</label>
 							<input
-								type="text" name="last-name" id="last-name" className="form-control" placeholder="Enter last name"
+								type="text" name="last-name" id="last-name" className={`form-control ${ errors.lastName ? "input-error" : ""} ` }
+								placeholder="Enter last name"
 								{ ...register("lastName", requiredConfig) }
 							/>
 							{ errors.lastName && <div className="error-message">{ errors.lastName.message }</div> }
@@ -54,7 +56,7 @@ export default function RegistrationForm() {
 						<div className="form-group">
 							<label htmlFor="email">Email*</label>
 							<input
-								type="email" name="email" id="email" className="form-control" placeholder="Enter email"
+								type="email" name="email" id="email" className={`form-control ${ errors.email ? "input-error" : ""} ` } placeholder="Enter email"
 								{ ...register("email", { ...requiredConfig, validate: ( value ) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test( value ) || "Please enter a valid email." }) }
 							/>
 							<p className="help-text">
@@ -75,7 +77,7 @@ export default function RegistrationForm() {
 									}
 								</select>
 								<input
-									type="tel" name="phone" id="phone" className="form-control"
+									type="tel" name="phone" id="phone" className={`form-control ${ errors.lastName ? "input-error" : ""} ` }
 									{ ...register("phone", requiredConfig) }
 								/>
 							</div>
@@ -86,7 +88,7 @@ export default function RegistrationForm() {
 						<div className="form-group form-group--half">
 							<label htmlFor="company">Company Name*</label>
 							<input
-								type="text" name="company" id="company" className="form-control" placeholder="Enter company name"
+								type="text" name="company" id="company" className={`form-control ${ errors.company ? "input-error" : ""} ` } placeholder="Enter company name"
 								{ ...register("company", requiredConfig) }
 							/>
 							{ errors.company && <div className="error-message">{ errors.company.message }</div> }
@@ -109,7 +111,7 @@ export default function RegistrationForm() {
 						<div className="form-group">
 							<label htmlFor="problem">Explain the problem you’re trying to solve*</label>
 							<textarea
-								name="problem" id="problem" className="form-control" placeholder="Enter a description"
+								name="problem" id="problem" className={`form-control ${ errors.problem ? "input-error" : ""} ` } placeholder="Enter a description"
 								{ ...register("problem", requiredConfig) }
 							></textarea>
 							{ errors.problem && <div className="error-message">{ errors.problem.message }</div> }

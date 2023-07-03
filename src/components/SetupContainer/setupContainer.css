@@ -54,7 +54,7 @@
                     outline: 1px solid var(--primary-color);
 
                     &.invalid-input{
-                        outline: 1px solid #ff0000;
+                        outline: 1px solid var(--alert-error-600);
                     }
                 }
             }

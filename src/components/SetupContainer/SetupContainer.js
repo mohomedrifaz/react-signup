@@ -61,7 +61,7 @@ const SetupContainer = ({ onNext }) => {
                         value={otp[0] || ""}
                         onChange={(e) => handleChange(e, 0)}
                         onKeyDown={(e) => {
-                            if (!/\d/.test(e.key)) {
+                            if (!/\d/.test(e.key) && e.key !== "Backspace" && e.key !== "Delete") {
                                 e.preventDefault();
                             }
                         }}
@@ -75,7 +75,7 @@ const SetupContainer = ({ onNext }) => {
                         value={otp[1] || ""}
                         onChange={(e) => handleChange(e, 1)}
                         onKeyDown={(e) => {
-                            if (!/\d/.test(e.key)) {
+                            if (!/\d/.test(e.key) && e.key !== "Backspace" && e.key !== "Delete") {
                                 e.preventDefault();
                             }
                         }}
@@ -89,7 +89,7 @@ const SetupContainer = ({ onNext }) => {
                         value={otp[2] || ""}
                         onChange={(e) => handleChange(e, 2)}
                         onKeyDown={(e) => {
-                            if (!/\d/.test(e.key)) {
+                            if (!/\d/.test(e.key) && e.key !== "Backspace" && e.key !== "Delete") {
                                 e.preventDefault();
                             }
                         }}
@@ -103,7 +103,7 @@ const SetupContainer = ({ onNext }) => {
                         value={otp[3] || ""}
                         onChange={(e) => handleChange(e, 3)}
                         onKeyDown={(e) => {
-                            if (!/\d/.test(e.key)) {
+                            if (!/\d/.test(e.key) && e.key !== "Backspace" && e.key !== "Delete") {
                                 e.preventDefault();
                             }
                         }}

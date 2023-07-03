@@ -58,6 +58,10 @@
 			}
 		}
 
+		&.input-error{
+			border: 1px solid var(--alert-error-600) !important;
+		}
+
 		&.is([type="checkbox"]) {
 			margin-right: 10px;
 		}
@@ -77,7 +81,7 @@
 	}
 
 	& .error-message {
-		color: var(--alert-error-600);
+		color: var(--alert-error-700);
 		font-size: var(--font-xxxs);
 		margin-top: 6px;
 	}

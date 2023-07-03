@@ -47,7 +47,7 @@
             display: flex;
             margin-bottom: 20px;
             flex-direction: row;
-            align-items: center;
+            align-items: flex-start;
 
             & .form-row-col-long {
                 width: 70%;
@@ -387,14 +387,3 @@
         }
     }
 }
-
-
-/* .payment-gateway .form-row-colfull.form-row {
-    padding-top: 15px;
-} */
-
-/* .payment-gateway .form-row-4 .form-row-col2,
-.payment-gateway .form-row-5 .form-row-col2 {
-    display: flex;
-    flex-direction: column;
-} */
