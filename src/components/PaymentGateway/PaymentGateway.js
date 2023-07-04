@@ -13,18 +13,18 @@ const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTit
     const [totalPrice, setTotalPrice] = useState('$120');
     // const configItems = planConfig.split(' ');
 
-    const configParts = planConfig.split(' ');
-    const configItems = configParts.slice(0, 4);
-    const customString = ['core', 'Memory RAM', 'Storage'];
-    const updatedConfigItems = configItems.map((val, index) => {
-        if (index === 2) {
-            return `${configItems[3]} ${customString[index]}`;
-        } else {
-            return `${val} ${customString[index]}`;
-        }
-    });
+    // const configParts = planConfig.split(' ');
+    // const configItems = configParts.slice(0, 4);
+    // const customString = ['core', 'Memory RAM', 'Storage'];
+    // const updatedConfigItems = configItems.map((val, index) => {
+    //     if (index === 2) {
+    //         return `${configItems[3]} ${customString[index]}`;
+    //     } else {
+    //         return `${val} ${customString[index]}`;
+    //     }
+    // });
 
-    const finalConfigItems = updatedConfigItems.slice(0, -1);
+    // const finalConfigItems = updatedConfigItems.slice(0, -1);
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onTouched"
@@ -55,7 +55,7 @@ const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTit
                     </div>
                 </div>
 
-                <form id="payment-form" method="post" onSubmit={handleSubmit((data) => console.log(data))}>
+                <form id="payment" method="post" onSubmit={handleSubmit((data) => console.log(data))}>
                     <div id="signup-form">
                         <div className="support-card-images">
                             <img src={paymentCardsImage} />
@@ -196,9 +196,9 @@ const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTit
                         </div>
                         <div className="list-content">
                             <ul>
-                                {finalConfigItems.map((item, index) => (
+                                {/* {finalConfigItems.map((item, index) => (
                                     <li key={index}>{item}</li>
-                                ))}
+                                ))} */}
                                 <li>1 Admin included, $10 for additional users</li>
                                 <li>{planUsers} Users - Recommended</li>
                                 <li>{plan === "teamCloud" ? "Team Cloud Desktop" : "Team Individual Desktop"}</li>

@@ -177,7 +177,7 @@ const SelectLocation = ({ formData, setFormData, stepData: { nextStep, prevStep 
             <div className="action-btn">
                 <button 
                 className="back-btn"
-                onClick={prevStep()}>
+                >
                     Previous Step
                 </button>
                 <button
