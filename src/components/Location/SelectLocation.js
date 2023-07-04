@@ -10,7 +10,7 @@ import frankfurt from "../../assets/svg/GEFRANK.svg";
 import france from "../../assets/svg/FR.svg";
 import mumbai from "../../assets/svg/IN.svg";
 
-const SelectLocation = ({ formData, setFormData, stepData: { nextStep } }) => {
+const SelectLocation = ({ formData, setFormData, stepData: { nextStep, prevStep } }) => {
     const regions = [
         {
             "id": 1,
@@ -175,7 +175,9 @@ const SelectLocation = ({ formData, setFormData, stepData: { nextStep } }) => {
             </div>
 
             <div className="action-btn">
-                <button className="back-btn">
+                <button 
+                className="back-btn"
+                onClick={prevStep()}>
                     Previous Step
                 </button>
                 <button

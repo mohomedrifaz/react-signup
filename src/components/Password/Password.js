@@ -5,7 +5,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { set, useForm } from 'react-hook-form';
 import './password.css';
 
-const Password = ({formData, setFormData, stepData: { nextStep } }) => {
+const Password = ({formData, setFormData, stepData: { nextStep, setCurrentStep, nextChildStep } }) => {
 
     const [password, setPassword] = useState("");
     const [repassword, setRePassword] = useState("");
@@ -54,6 +54,8 @@ const Password = ({formData, setFormData, stepData: { nextStep } }) => {
     
     const passwordVerification = () => {
         setFormData({user_password: password});
+        // setCurrentStep(2);
+        // nextChildStep();
         nextStep();
     }
 
@@ -72,7 +74,7 @@ const Password = ({formData, setFormData, stepData: { nextStep } }) => {
 
                 </div>
                 <div className="account-name-email">
-                    <div className="account-name">{formData.first_name + '' + formData.last_name}</div>
+                    <div className="account-name">{formData.first_name} {formData.last_name}</div>
                     <div className="account-email">{formData.email}</div>
                 </div>
             </div>
