@@ -3,11 +3,11 @@ import { set, useForm } from 'react-hook-form';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import './changeEmail.css';
 
-const ChangeEmail = ({ onNext }) => {
+const ChangeEmail = ({ setFormData, stepData: { prevChildStep } }) => {
 
 	const emailChangeVerification = (data) => {
 		setFormData({email: document.getElementById('email').value});
-		onNext();
+		prevChildStep();
 	};
 
 	const { register, handleSubmit, formState: { errors } } = useForm({

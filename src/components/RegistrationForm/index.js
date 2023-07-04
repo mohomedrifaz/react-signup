@@ -8,7 +8,7 @@ import countries from './../../data/countries.json';
 
 import RegisterSlider from './slider';
 
-export default function RegistrationForm({ stepData: { nextStep } }) {
+export default function RegistrationForm({ setFormData, stepData: { nextStep } }) {
 
 	const [ userCountry, setUserCountry ] = useState('');
 
@@ -25,13 +25,24 @@ export default function RegistrationForm({ stepData: { nextStep } }) {
 			.then( ( response ) => setUserCountry( response.data?.country_iso ) );
 	}, []);
 
+	const setRegistrationForm = () => {
+		setFormData({
+			email: document.getElementById('email').value,
+			first_name: document.getElementById('first-name').value,
+			last_name: document.getElementById('last-name').value,
+			phone: document.getElementById('phone').value,
+			company: document.getElementById('company').value
+		});
+		nextStep();
+	}
+
   return (
 	<div className="registration-form-container">
 		<div className="form-panel">
 			<h1 className="page-title">Sign up</h1>
 			<p className="sub-title">(Not billed until your 7-Day trial is complete)</p>
 			<div className="form-wrapper">
-				<form id="registration-form" method="post" onSubmit={ handleSubmit( () => nextStep()  ) }>
+				<form id="registration-form" method="post" onSubmit={ handleSubmit( (e) => setRegistrationForm() ) }>
 					<div className="form-row">
 						<div className="form-group form-group--half">
 							<label htmlFor="first-name">First Name*</label>
