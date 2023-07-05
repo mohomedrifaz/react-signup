@@ -21,8 +21,8 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep } }
 	};
 
 	useEffect( () => {
-		axios.get( 'https://geo.easydigitaldownloads.com/v3/geolocate/json' )
-			.then( ( response ) => setUserCountry( response.data?.country_iso ) );
+		axios.get( 'https://ipinfo.io/json' )
+			.then( ( response ) => setUserCountry( response.data?.country ) );
 	}, []);
 
 	const setRegistrationForm = ({ email, firstName, lastName, phone, company }) => {
