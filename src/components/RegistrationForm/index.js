@@ -25,16 +25,18 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep } }
 			.then( ( response ) => setUserCountry( response.data?.country_iso ) );
 	}, []);
 
-	const setRegistrationForm = () => {
+	const setRegistrationForm = ({ email, firstName, lastName, phone, company }) => {
 		setFormData({
-			email: document.getElementById('email').value,
-			first_name: document.getElementById('first-name').value,
-			last_name: document.getElementById('last-name').value,
-			phone: document.getElementById('phone').value,
-			company: document.getElementById('company').value
+			email: email,
+			first_name: firstName,
+			last_name: lastName,
+			phone: countries[userCountry]?.code + phone,
+			company: company
 		});
 		nextStep();
 	}
+
+	console.log( errors );
 
   return (
 	<div className="registration-form-container">
@@ -42,7 +44,7 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep } }
 			<h1 className="page-title">Sign up</h1>
 			<p className="sub-title">(Not billed until your 7-Day trial is complete)</p>
 			<div className="form-wrapper">
-				<form id="registration-form" method="post" onSubmit={ handleSubmit( (e) => setRegistrationForm() ) }>
+				<form id="registration-form" method="post" onSubmit={ handleSubmit( setRegistrationForm ) }>
 					<div className="form-row">
 						<div className="form-group form-group--half">
 							<label htmlFor="first-name">First Name*</label>
@@ -88,8 +90,8 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep } }
 									}
 								</select>
 								<input
-									type="tel" name="phone" id="phone" className={`form-control ${ errors.lastName ? "input-error" : ""} ` }
-									{ ...register("phone", requiredConfig) }
+									type="tel" name="phone" id="phone" className={`form-control ${ errors.phone ? "input-error" : ""} ` }
+									{ ...register("phone", { ...requiredConfig, valueAsNumber: true, validate: ( value ) => /[0-9]{8,10}/.test( value ) || "Please enter a valid phone number." }) }
 								/>
 							</div>
 							{ errors.phone && <div className="error-message">{ errors.phone.message }</div> }
@@ -106,7 +108,7 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep } }
 						</div>
 						<div className="form-group form-group--half">
 							<label htmlFor="company-size">Company Size</label>
-							<select name="company-size" id="company-size" className={`form-control ${ errors.companySize ? "input-error" : ""} ` } { ...register("companySize", requiredConfig) }>
+							<select name="company-size" id="company-size" className="form-control">
 								<option value="">Please Select</option>
 								<option value="1-4">1-4</option>
 								<option value="5-10">5-10</option>
