@@ -1,138 +1,143 @@
 /* Setup Account */
-
-.content-title {
-
-    & .verficiation-content {
-
-        & p {
-            margin: 0;
-            color: var(--neutral-color);
-            padding-bottom: 0;
-            font-size: var(--font-xs);
-        }
-
-        & .email-address-verification {
-            font-weight: var(--font-bold);
-            font-size: var(--font-sm);
-            color: #212529;
-        }
-    }
-
-    & .verification-instructions {
-        margin-top: 20px;
-        font-size: var(--font-xs);
-        color: var(--neutral-color);
-        line-height: 120%;
-        display: -webkit-box;
-        -webkit-line-clamp: 4;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
-    & .verification-instructions-mobile {
-        display: none;
-    }
-
-    & .otp-container {
-        & .userInput {
-            display: flex;
-            justify-content: flex-start;
-            margin: 20px 0 10px 0;
-
-            & .single-input {
-                margin: 10px;
-                height: 65px;
-                width: 65px;
-                border: 1px solid #d1d1d1;
-                border-radius: 10px;
-                text-align: center;
-                font-size: 3rem;
-                background: #ffffff;
-                color: var(--primary-color);
-
-                &:focus-visible {
-                    outline: 1px solid var(--primary-color);
-                }
-
-                &.filled {
-                    outline: 1px solid var(--primary-color);
-
-                    &.invalid-input{
-                        outline: 1px solid #D92D20;
-                    }
-                }
-            }
-
-            & #ist {
-                margin-left: 0;
-            }
-        }
-
-        & .verify-btn {
-            width: 150px;
-            height: 50px;
-            margin: 20px auto 0px auto;
-            font-size: var(--font-sm);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            color: white;
-            background: var(--primary-color);
-        }
-
-        & .invalid-verification-box{
-            &.hidden{
-                font-family:var(--font-family-primary) ;
-                font-style: normal;
-                font-weight: var(--font-normal);
-                font-size: 14px;
-                color: #B42318;
-                display: none;
-            }
-        }
-    }
-
-    & .verification-actions {
-        margin: 25px 0;
-        display: flex;
-        gap: 70px;
-        align-items: center;
-
-        & .resend-code {
-            display: flex;
-            align-items: center;
-
-            & .resend-icon {
-                margin-right: 5px;
-            }
-        }
-
-        & .resend-code,
-        & .change-email {
-            color: var(--primary-color);
-            font-weight: var(--font-semi-bold);
-            cursor: pointer;
-        }
-    }
-
-    & .verification-actions-mobile {
-        display: none;
-    }
-}
-
-.verficiation-actions-mobile {
+.header-container {
     display: none;
 }
 
+.setup-container {
+    
+    & .verification-actions-mobile {
+        display: none;
+    }
+
+    & .content-title {
+
+        & .verficiation-content {
+    
+            & p {
+                margin: 0;
+                color: var(--neutral-color);
+                padding-bottom: 0;
+                font-size: var(--font-xs);
+            }
+    
+            & .email-address-verification {
+                font-weight: var(--font-bold);
+                font-size: var(--font-sm);
+                color: #212529;
+            }
+        }
+    
+        & .verification-instructions {
+            margin-top: 20px;
+            font-size: var(--font-xs);
+            color: var(--neutral-color);
+            line-height: 120%;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    
+        & .verification-instructions-mobile {
+            display: none;
+        }
+    
+        & .otp-container {
+            & .userInput {
+                display: flex;
+                justify-content: flex-start;
+                margin: 20px 0 10px 0;
+    
+                & .single-input {
+                    margin: 10px;
+                    height: 65px;
+                    width: 65px;
+                    border: 1px solid #d1d1d1;
+                    border-radius: 10px;
+                    text-align: center;
+                    font-size: 3rem;
+                    background: #ffffff;
+                    color: var(--primary-color);
+    
+                    &:focus-visible {
+                        outline: 1px solid var(--primary-color);
+                    }
+    
+                    &.filled {
+                        outline: 1px solid var(--primary-color);
+    
+                        &.invalid-input{
+                            outline: 1px solid #D92D20;
+                        }
+                    }
+                }
+    
+                & #ist {
+                    margin-left: 0;
+                }
+            }
+    
+            & .verify-btn {
+                width: 150px;
+                height: 50px;
+                margin: 20px auto 0px auto;
+                font-size: var(--font-sm);
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                color: white;
+                background: var(--primary-color);
+            }
+    
+            & .invalid-verification-box{
+                &.hidden{
+                    font-family:var(--font-family-primary) ;
+                    font-style: normal;
+                    font-weight: var(--font-normal);
+                    font-size: 14px;
+                    color: #B42318;
+                    display: none;
+                }
+            }
+        }
+    
+        & .verification-actions {
+            margin: 25px 0;
+            display: flex;
+            gap: 70px;
+            align-items: center;
+    
+            & .resend-code {
+                display: flex;
+                align-items: center;
+    
+                & .resend-icon {
+                    margin-right: 5px;
+                }
+            }
+    
+            & .resend-code,
+            & .change-email {
+                color: var(--primary-color);
+                font-weight: var(--font-semi-bold);
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+
+
 @media only screen and (max-width: 768px) {
+
     .setup-container {
 
         & .verification-instructions {
-            display: none; 
+            display: none !important; 
         }
 
         & .verification-instructions-mobile {
-            display: block;
+            display: block !important;
             overflow: visible;
             margin-top: 20px;
             font-size: var(--font-xs);
@@ -150,7 +155,7 @@
         }
 
         & .verification-actions {
-            display: none;
+            display: none !important;
         }
 
         & .verification-actions-mobile {

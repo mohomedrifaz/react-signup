@@ -213,6 +213,10 @@
             align-items: center;
             margin-top: 25px;
 
+            & .info-box-mobile {
+                display: none;
+            }
+
             & .checkbox-label {
                 & input {
                     display: block !important;
@@ -679,9 +683,15 @@
     }
     
     & .users-message-box {
-        font-size: 12px;
+        font-size: var(--font-xxxs);
     }
     
+    & .upgrade-plans-message-mobile{
+        display: none;
+        font-size: var(--font-xxxs);
+        margin-bottom: 5px;
+    }
+
     & .action-btn {
         display: flex;
         justify-content: center;
@@ -710,6 +720,106 @@
             color: white;
             background: var(--primary-color);
             margin-left: 25px;
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .select-plan-container {
+        width: 100%;
+
+        & .main-title {
+            display: none;
+        }
+
+        & .tab-container {
+            justify-content: space-between;
+            padding: 0 20px 10px 10px;
+            gap: 10px;
+
+            & .tab{
+                margin-right: 0;
+                padding: 5px 0;
+            }
+        }
+
+        & .tab-content {
+            margin-top: 10px;
+            & .team-cloud-container {
+                & li {
+                    line-height: 16.8px;
+                }
+            }
+
+            & .team-individual-container{
+                & li {
+                    line-height: 16.8px;
+                }
+            }
+        }
+
+        & .backups-checbox-container{
+
+            & .enable-backups-container {
+                margin-top: 0;
+                & .info-box{
+                    display: none;
+                }
+
+                & .info-box-mobile{
+                    display: block;
+                    display: flex;
+                    align-items: center;
+
+                    & .info-btns {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+
+                        & .recommended-card {
+                            padding: 3px;
+                            font-size: 12px;
+                            text-align: center;
+                        }
+
+                        & .business-card {
+                            padding: 3px;
+                            font-size: 12px;
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+            & .upgrade-plans-message{
+                display: none;
+            }
+        }
+
+        & .upgrade-plans-message-mobile{
+            display: block;
+        }
+
+        & .action-btn {
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+            z-index: 100;
+            margin-bottom: 0;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            background: #fff;
+            margin-left: -15px;
+            margin-right: -15px;
+            width: 100vw;
+            box-sizing: border-box;
+            margin-top: 30px;
+            & .back-btn {
+                display: none;
+            }
+            & .verify-btn {
+                width: 100%;
+                margin: 0 15px;
+            }
         }
     }
 }

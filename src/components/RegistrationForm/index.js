@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { set, useForm } from 'react-hook-form';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import './style.css';
 import countries from './../../data/countries.json';
@@ -36,6 +36,13 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep } }
 		nextStep();
 	}
 
+	const formRef = useRef();
+
+	const handleFormSubmit = () => {
+		// Access form validation logic and submit the form
+		formRef.current.requestSubmit();
+	};
+
 	return (
 		<div className="registration-form-container">
 			<div className="form-panel">
@@ -45,7 +52,7 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep } }
 				</div>
 				<p className="sub-title">(Not billed until your 7-Day trial is complete)</p>
 				<div className="form-wrapper">
-					<form id="registration-form" method="post" onSubmit={handleSubmit(setRegistrationForm)}>
+					<form id="registration-form" method="post"  ref={formRef} onSubmit={handleSubmit(setRegistrationForm)}>
 						<div className="form-row">
 							<div className="form-group form-group--half">
 								<label htmlFor="first-name">First Name*</label>
@@ -153,7 +160,9 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep } }
 				</div>
 			</div>
 			<div className="form-row mobile-sticky">
-				<button id="submit-registration" type="submit">Start Your 7-Day Risk Free Trial</button>
+				<button id="submit-registration" type="submit" onClick={handleFormSubmit}>
+					Start Your 7-Day Risk Free Trial
+				</button>
 				<p>Already have an account? <a href="#">Log In</a></p>
 			</div>
 			<div className="slider-panel">

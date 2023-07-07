@@ -7,6 +7,7 @@ import securityImage from "../../assets/images/security-system.png";
 import paymentCardsImage from "../../assets/images/payment.png";
 import alertsvg from "../../assets/svg/cardAlert.svg";
 import { set, useForm } from 'react-hook-form';
+import MobileHeader from "../mobileHeader";
 
 const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTitle, planConfig, planUsers, windowsTitle, networkTitle, backupsTitle }) => {
 
@@ -39,6 +40,9 @@ const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTit
     };
 
     return (
+        <>
+        <MobileHeader stepNo="Step 5" stepName="Billing & Payment" logo="step5" />
+
         <div className="payment-gateway payment-container" >
 
             <div className="form-container">
@@ -314,6 +318,7 @@ const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTit
             </div>
 
         </div>
+        </>
     )
 }
 
