@@ -99,3 +99,14 @@ body {
     background-color: white;
     padding-top: calc(70px - var(--wp-admin--admin-bar--height, 0px));
 }
+
+@media only screen and (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+
+    .main {
+        width: 100%;
+        padding: 70px 15px 15px 15px;
+    }
+}
