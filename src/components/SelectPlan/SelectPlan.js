@@ -1,10 +1,31 @@
 import React, { useState, useEffect, useRef } from "react";
+import { register } from 'swiper/element/bundle';
+
 import PlanCards from './PlanCards';
 import SpecialCard from "./SpecialCard";
 import MobileHeader from "../mobileHeader";
+
+import arrowRight from './../../assets/svg/chevron-right.svg';
+
 import './selectPlan.css';
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
+
+register();
+
+const PrevArrow = ({ onClick }) => {
+	return (
+		<div className="left-arrow" onClick={ onClick }>
+			<img src={arrowRight} width="44" height="44" />
+		</div>
+	)
+}
+
+const NextArrow = ({ onClick }) => {
+	return (
+		<div className="right-arrow" onClick={ onClick }>
+			<img src={arrowRight} width="44" height="44" />
+		</div>
+	)
+}
 
 const SelectPlan = ({ formData, setFormData, stepData: { nextStep } }) => {
 
@@ -278,7 +299,7 @@ const SelectPlan = ({ formData, setFormData, stepData: { nextStep } }) => {
                     </div>
                 </div>
                 <div className="tab-content">
-                    {activeTab === 1 && <div className="team-cloud-container">
+                    {activeTab === 1 && <div className="team-cloud-container" key="team-cloud">
                         <ul>
                             <li> Multi-User virtual machines based on Windows server </li>
                             <li> Good for general purpose computing </li>
@@ -286,7 +307,7 @@ const SelectPlan = ({ formData, setFormData, stepData: { nextStep } }) => {
                             <li className="cross"> Certain versions of Office 365 are not compatible </li>
                         </ul>
                     </div>}
-                    {activeTab === 2 && <div className="team-individual-container">
+                    {activeTab === 2 && <div className="team-individual-container" key="team-individual">
                         <ul>
                             <li> Single-User virtual machines based on Windows 10 desktop </li>
                             <li> This type of plan requires you to bring your own license for windows </li>
@@ -342,25 +363,33 @@ const SelectPlan = ({ formData, setFormData, stepData: { nextStep } }) => {
                 </div>
 
                 <div className="pricing-cards" >
-                    {activeTab === 1 && <div className="team-cloud-pricing-container">
-                        {teamPlans.map((plan, index) => {
-                            return <PlanCards key={index}
-                                {...plan}
-                                isSelected={plan.hardware_id === formData.hardware?.value}
-                                onSelect={(contract) => setFormData({ hardware: { value: plan.hardware_id, display: plan.display }, contract_type: contract })}
-                                isBusiness={formData.plan === 2}
-                                plan={formData.hardware?.value}
-                                planType={formData.contract_type}
-                            />
-                        })}
+                    {activeTab === 1 && <div className="team-cloud-pricing-container" key="team-cloud-pricing">
+                        <NextArrow />
+                        <PrevArrow />
+                        <swiper-container slides-per-view="4" free-mode="true" navigation='{"prevEl": ".left-arrow", "nextEl": ".right-arrow"}'>
+                            {teamPlans.map((plan, index) => {
+                                return (
+                                    <swiper-slide key={index}>
+                                        <PlanCards
+                                            {...plan}
+                                            isSelected={plan.hardware_id === formData.hardware?.value}
+                                            onSelect={(contract) => setFormData({ hardware: { value: plan.hardware_id, display: plan.title }, contract_type: contract }) }
+                                            isBusiness={formData.plan === 2}
+                                            plan={formData.hardware?.value}
+                                            planType={formData.contract_type}
+                                        />
+                                    </swiper-slide>
+                                )
+                            })}
+                        </swiper-container>
                     </div>
                     }
-                    {activeTab === 2 && <div className="team-individual-pricing-container">
+                    {activeTab === 2 && <div className="team-individual-pricing-container" key="team-individual-pricing">
                         {personalPlans.map((plan, index) => {
                             return <PlanCards key={index}
                                 {...plan}
                                 isSelected={plan.hardware_id === formData.hardware?.value}
-                                onSelect={(contract) => setFormData({ hardware: { value: plan.hardware_id, display: plan.display }, contract_type: contract })}
+                                onSelect={(contract) => setFormData({ hardware: { value: plan.hardware_id, display: plan.title }, contract_type: contract })}
                                 isBusiness={formData.plan === 2}
                                 plan={formData.hardware?.value}
                                 planType={formData.contract_type}

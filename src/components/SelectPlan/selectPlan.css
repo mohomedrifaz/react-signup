@@ -171,7 +171,7 @@
 
                 & .skip-btn {
                     background: #FFFFFF;
-                    border: 1px solid #DEE2E6;
+                    border: 1px solid var(--neutral-300);
                     box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
                     border-radius: 4px;
                     padding: 8px 16px;
@@ -258,11 +258,39 @@
     }
 
     & .pricing-cards {
-        /* display: flex; */
-        /* position: relative; */
+        position: relative;
+
+        & .right-arrow,
+        & .left-arrow {
+            height: 44px;
+            width: 44px;
+            padding: 10px 16px;
+            background: var(--neutral-300);
+            border-radius: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            z-index: 10;
+            cursor: pointer;
+            box-shadow: 0px 12px 16px -4px #10182829;
+            box-shadow: 0px 4px 6px -2px #1018280F;
+
+
+            &.swiper-button-disabled {
+                display: none;
+            }
+        }
+
+        & .right-arrow {
+            right: 60px;
+        }
+
+        & .left-arrow {
+            transform: rotate(180deg);
+        }
 
         & .pricing-card {
-            width: 25%;
             border: 1px solid #e9ecef;
             padding: 20px;
             border-radius: 10px;
@@ -270,6 +298,7 @@
             margin-top: 35px;
             cursor: pointer;
             min-width: 200px;
+            margin-right: 12px;
 
             & input[type="checkbox"] {
                 -webkit-appearance: none;
@@ -330,7 +359,7 @@
             
             & .no-of-users {
                 width: max-content;
-                background-color: #dee2e6;
+                background-color: var(--neutral-300);
                 padding: 5px 8px;
                 border-radius: 20px;
                 margin: 10px 0;
@@ -474,7 +503,7 @@
                 width: 50px;
                 margin: 0;
                 border: none;
-                border-top: 1px solid #dee2e6;
+                border-top: 1px solid var(--neutral-300);
                 align-self: flex-start;
             }
 
@@ -483,7 +512,7 @@
                 & .monthly-title-check {
                     display: flex;
                     align-items: flex-start;
-                    border-bottom: 1px solid #dee2e6;
+                    border-bottom: 1px solid var(--neutral-300);
                     padding-bottom: 10px;
 
                     &.selected {
@@ -634,7 +663,7 @@
                 & .special-pricing-card-content {
                     font-size: 14px;
                     line-height: 120%;
-                    color: #DEE2E6;
+                    color: var(--neutral-300);
                 }
 
                 & .special-card-image {
@@ -658,8 +687,6 @@
         }
 
         & .team-cloud-pricing-container  {
-            display: flex;
-            gap: 15px;
             margin: 25px 0;
 
             & .functions {
@@ -668,8 +695,6 @@
         }
 
         & .team-individual-pricing-container {
-            display: flex;
-            gap: 15px;
             margin: 25px 0;
 
             & .no-of-users {

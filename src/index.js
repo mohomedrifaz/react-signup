@@ -57,7 +57,7 @@ const App = () => {
 			case 2:
 				return <SelectLocation {...props} />;
 			case 3:
-				return <SelectPlan {...props} />;
+				return <SelectPlan {...props} key="plan" />;
 			case 4:
 				return <ConfigPcIndividual {...props} />;
 			case 5:
