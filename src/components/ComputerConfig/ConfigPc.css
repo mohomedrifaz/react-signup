@@ -158,6 +158,11 @@
                     text-align: center;
                     margin-top: 5px;
                 }
+
+                & .mobile-titles,
+                & .mobile-checkbox {
+                    display: none;
+                }
             }
         }
 
@@ -394,6 +399,11 @@
                 }
             }
 
+            & .mobile-titles,
+            & .mobile-checkbox {
+                display: none;
+            }
+
             & .recommended-box {
                 position: absolute;
                 left: 0;
@@ -407,3 +417,424 @@
             }
         }
 }
+
+@media only screen and (max-width: 768px) {
+    .config-pc-container {
+        width: 100%;
+        & .main-title {
+            & h3 {
+                margin-bottom: 20px;
+            }
+        }
+
+        & .name-password-container {
+            flex-direction: column;
+            gap: 30px;
+
+            & .name-password-input-fields {
+                width: 100%;
+                gap: 25px;
+
+                & .form-row-colfull {
+                    margin-top:0;
+
+                    & .password-container {
+                        & input {
+                            width: 40%;
+                        }
+
+                        & .copy-button {
+                            width:25;
+                        }
+                    }
+                }
+            }
+            
+
+            & .notice {
+                width: 100%;
+            }
+        }
+
+            & .main-title {
+                & h2 {
+                    display: flex;
+                    flex-direction: column;
+                    font-size: var(--font-xl);
+                }
+                
+                & .sub-topic {
+                    font-size: var(--font-xs);
+                }
+            }
+
+            & .line-with-text {
+                width: 100%;
+            }
+
+            & .windows-cards-container {
+                flex-direction: column;
+                gap: 10px;
+
+                & .config-card {
+                    width: 100%;
+                    flex-direction: row;
+                    min-height: fit-content;
+                    justify-content: flex-start;
+                    gap: 20px;
+                    padding: 10px;
+
+                    & .logo {
+                        margin-top: 0;
+
+                        & svg {
+                            width: 40px;
+                        }
+                    }
+
+                    & .main-title,
+                    & .sub-title,
+                    & .content {
+                        display: none;
+                    }
+
+                    & .checkbox-icon {
+                        display: none;
+
+                        &.selected {
+                            display: none;
+                        }
+                    }
+
+                    & .mobile-titles {
+                        display: flex;
+                        flex-direction: column;
+                        display: block;
+
+                        & .titles {
+                            & .sub-title {
+                                margin-left: 5px;
+                            }
+                        }
+
+                        & .main-title,
+                        & .sub-title,
+                        & .content {
+                            display: block;
+                        }
+
+                        & .main-title,
+                        & .sub-title {
+                            font-weight: var(--font-semi-bold);
+                            font-size: var(--font-md);
+                            line-height: 120%;
+                            text-align: center;
+                            color: #212529;
+                            padding-bottom: 0;
+                            font-family: var(--font-family-primary);
+                            margin-top: 0;
+                        }
+
+                        & .content{
+                            font-weight: var(--font-normal);
+                            font-size: var(--font-xxxs);
+                            line-height: 120%;
+                            text-align: center;
+                            color: var(--neutral-color);
+                            padding-top: 5px;
+                            text-align: left;
+                            width: 80%;
+                        }
+                    }
+
+                    & .mobile-checkbox {
+                        display: block;
+
+                        & .checkbox-icon {
+                            display: block;
+                            margin-top: 7px;
+
+                            &.selected{
+                                display: none;
+                            }
+                        }
+                    }
+
+                    &.selected {
+                        & .mobile-checkbox {
+                            & .checkbox-icon.selected {
+                                display: block;
+                                margin-top: 7px;
+                            }
+            
+                            & .checkbox-icon {
+                                display: none;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            & .networking-container {
+                flex-direction: column;
+                gap: 10px;
+
+                & .config-card {
+                    width: 100%;
+                    flex-direction: row;
+                    min-height: fit-content;
+                    justify-content: flex-start;
+                    gap: 20px;
+                    padding: 10px;
+
+                    & .logo {
+                        margin-top: 0;
+
+                        & svg {
+                            width: 40px;
+                        }
+                    }
+
+                    & .main-title,
+                    & .sub-title,
+                    & .content {
+                        display: none;
+                    }
+
+                    & .checkbox-icon {
+                        display: none;
+
+                        &.selected {
+                            display: none;
+                        }
+                    }
+
+                    & .mobile-titles {
+                        display: flex;
+                        flex-direction: column;
+                        display: block;
+                        
+                        & .titles {
+                            display: flex;
+
+                            & .sub-title {
+                                margin-left: 5px;
+                            }
+                        }
+
+                        & .main-title,
+                        & .sub-title,
+                        & .content {
+                            display: block;
+                        }
+
+                        & .main-title,
+                        & .sub-title {
+                            font-weight: var(--font-semi-bold);
+                            font-size: var(--font-xs);
+                            line-height: 120%;
+                            text-align: center;
+                            color: #212529;
+                            padding-bottom: 0;
+                            font-family: var(--font-family-primary);
+                            margin-top: 0;
+                        }
+
+                        & .sub-title {
+                            color: var(--primary-color)
+                        }
+
+                        & .content{
+                            font-weight: var(--font-normal);
+                            font-size: var(--font-xxxs);
+                            line-height: 120%;
+                            text-align: center;
+                            color: var(--neutral-color);
+                            padding-top: 5px;
+                            text-align:left;
+                            text-align: left;
+                            width: 80%;
+                        }
+                    }
+
+                    & .mobile-checkbox {
+                        display: block;
+
+                        & .checkbox-icon {
+                            display: block;
+                            margin-top: 7px;
+
+                            &.selected{
+                                display: none;
+                            }
+                        }
+                    }
+
+                    &.selected {
+                        & .mobile-checkbox {
+                            & .checkbox-icon.selected {
+                                display: block;
+                                margin-top: 7px;
+                            }
+            
+                            & .checkbox-icon {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            & .backups-container {
+                flex-direction: column;
+                gap: 10px;
+
+                & .config-card {
+                    width: 100%;
+                    flex-direction: row;
+                    min-height: fit-content;
+                    justify-content: flex-start;
+                    gap: 20px;
+                    padding: 10px;
+
+                    & .logo {
+                        margin-top: 0;
+
+                        & svg {
+                            width: 40px;
+                        }
+                    }
+
+                    & .main-title,
+                    & .sub-title,
+                    & .content {
+                        display: none;
+                    }
+
+                    & .checkbox-icon {
+                        display: none;
+
+                        &.selected {
+                            display: none;
+                        }
+                    }
+
+                    & .mobile-titles {
+                        display: flex;
+                        flex-direction: column;
+                        display: block;
+
+                        & .titles {
+                            display: flex;
+
+                            & .sub-title{
+                                margin-left: 5px;
+                            }
+                        }
+
+                        & .main-title,
+                        & .sub-title,
+                        & .content {
+                            display: block;
+                        }
+
+                        & .main-title,
+                        & .sub-title {
+                            font-weight: var(--font-semi-bold);
+                            font-size: var(--font-xs);
+                            line-height: 120%;
+                            text-align: center;
+                            color: #212529;
+                            padding-bottom: 0;
+                            font-family: var(--font-family-primary);
+                            margin-top: 0;
+                        }
+
+                        & .sub-title {
+                            color: var(--primary-color)
+                        }
+
+                        & .content{
+                            font-weight: var(--font-normal);
+                            font-size: var(--font-xxxs);
+                            line-height: 120%;
+                            text-align: center;
+                            color: var(--neutral-color);
+                            padding-top: 5px;
+                            text-align:left;
+                        }
+                    }
+
+                    & .mobile-checkbox {
+                        display: block;
+
+                        & .checkbox-icon {
+                            display: block;
+                            margin-top: 7px;
+
+                            &.selected{
+                                display: none;
+                            }
+                        }
+                    }
+
+                    &.selected {
+                        & .mobile-checkbox {
+                            & .checkbox-icon.selected {
+                                display: block;
+                                margin-top: 7px;
+                            }
+            
+                            & .checkbox-icon {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            & .antivirus-container {
+                width: 100%;
+            }
+
+            & .enable-businessplan-infobox {
+                width: 100%;
+                flex-direction: column;
+                align-content: flex-start;
+                flex-wrap: wrap;
+                align-items: flex-start;
+
+                & .content-container{
+                    width: 100%;
+                }
+
+                & .button{
+                    margin-top: 10px;
+                }
+            }
+
+            & .action-btn {
+                position: sticky;
+                bottom: 0;
+                width: 100%;
+                z-index: 100;
+                margin-bottom: 0;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                background: #fff;
+                margin-left: -15px;
+                margin-right: -15px;
+                width: 100vw;
+                box-sizing: border-box;
+                margin-top: 30px;
+                & .back-btn {
+                    display: none;
+                }
+                & .verify-btn {
+                    width: 100%;
+                    margin: 0 15px;
+                }
+            }
+        }
+    }

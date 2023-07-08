@@ -9,6 +9,7 @@ import washington from "../../assets/svg/USWASH.svg";
 import frankfurt from "../../assets/svg/GEFRANK.svg";
 import france from "../../assets/svg/FR.svg";
 import mumbai from "../../assets/svg/IN.svg";
+import MobileHeader from "../mobileHeader";
 
 const SelectLocation = ({ formData, setFormData, stepData: { nextStep, prevStep } }) => {
     const regions = [
@@ -146,48 +147,50 @@ const SelectLocation = ({ formData, setFormData, stepData: { nextStep, prevStep 
     }
 
     return (
-        <div className="data-centers-container">
+        <>
+            <MobileHeader stepNo="Step 2" stepName="Data Centers" logo="step2"/>
+            <div className="data-centers-container">
 
-            <div className="main-title">
-                <h2> Data Centers </h2>
+                <div className="main-title">
+                    <h2> Data Centers </h2>
+                </div>
+
+                <div className="data-map-container">
+
+                </div>
+
+                <div className="country-select-container">
+                    {regions.map((countryData, index) => {
+
+                        const countryName = countryData.display;
+                        const [city, country] = countryName.split(" (").map(str => str.replace(")", ""));
+
+                        return <SelectCountry key={index}
+                            flag={countryData.flag}
+                            city={city}
+                            country={country}
+                            signal={countryData.ping_url}
+                            id={countryData.id}
+                            isSelected={countryData.id === formData.region.value}
+                            onClick={() => setFormData({ region: { value: countryData.id, display: countryName } })}
+                        />
+                    })}
+                </div>
+
+                <div className="action-btn">
+                    <button
+                        className="back-btn"
+                    >
+                        Previous Step
+                    </button>
+                    <button
+                        className="verify-btn"
+                        onClick={locationVerification}>
+                        Next
+                    </button>
+                </div>
             </div>
-
-            <div className="data-map-container">
-
-            </div>
-
-            <div className="country-select-container">
-                {regions.map((countryData, index) => {
-
-                    const countryName = countryData.display;
-                    const [city, country] = countryName.split(" (").map(str => str.replace(")", ""));
-
-                    return <SelectCountry key={index}
-                        flag={countryData.flag}
-                        city={city}
-                        country={country}
-                        signal={countryData.ping_url}
-                        id={countryData.id}
-                        isSelected={countryData.id === formData.region.value}
-                        onClick={() => setFormData({ region: { value: countryData.id, display: countryName } })}
-                    />
-                })}
-            </div>
-
-            <div className="action-btn">
-                <button 
-                className="back-btn"
-                >
-                    Previous Step
-                </button>
-                <button
-                    className="verify-btn"
-                    onClick={locationVerification}>
-                    Next
-                </button>
-            </div>
-
-        </div>
+        </>
     );
 };
 

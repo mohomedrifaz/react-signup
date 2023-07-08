@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { set, useForm } from 'react-hook-form';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import './style.css';
 import countries from './../../data/countries.json';
@@ -10,7 +10,7 @@ import RegisterSlider from './slider';
 
 export default function RegistrationForm({ setFormData, stepData: { nextStep } }) {
 
-	const [ userCountry, setUserCountry ] = useState('');
+	const [userCountry, setUserCountry] = useState('');
 
 	const { register, handleSubmit, formState: { errors } } = useForm({
 		mode: "onTouched"
@@ -20,9 +20,9 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep } }
 		required: "Please complete this required field."
 	};
 
-	useEffect( () => {
-		axios.get( 'https://ipinfo.io/json' )
-			.then( ( response ) => setUserCountry( response.data?.country ) );
+	useEffect(() => {
+		axios.get('https://ipinfo.io/json')
+			.then((response) => setUserCountry(response.data?.country));
 	}, []);
 
 	const setRegistrationForm = ({ email, firstName, lastName, phone, company }) => {
@@ -36,73 +36,83 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep } }
 		nextStep();
 	}
 
+	const formRef = useRef();
+
+	const handleFormSubmit = () => {
+		// Access form validation logic and submit the form
+		formRef.current.requestSubmit();
+	};
+
 	return (
 		<div className="registration-form-container">
 			<div className="form-panel">
-				<h1 className="page-title">Sign up</h1>
+				<div className='title-container'>
+					<h1 className="page-title">Sign up</h1>
+					<div className="message-content">7 Day No-Risk Trial</div>
+				</div>
 				<p className="sub-title">(Not billed until your 7-Day trial is complete)</p>
 				<div className="form-wrapper">
-					<form id="registration-form" method="post" onSubmit={ handleSubmit( setRegistrationForm ) }>
+					<form id="registration-form" method="post"  ref={formRef} onSubmit={handleSubmit(setRegistrationForm)}>
 						<div className="form-row">
 							<div className="form-group form-group--half">
 								<label htmlFor="first-name">First Name*</label>
 								<input
-									type="text" name="first-name" id="first-name" className={ `form-control ${ errors.firstName ? "input-error" : ""} ` } 
+									type="text" name="first-name" id="first-name" className={`form-control ${errors.firstName ? "input-error" : ""} `}
 									placeholder="Enter first name"
-									{ ...register("firstName", requiredConfig) }
+									{...register("firstName", requiredConfig)}
 								/>
-								{ errors.firstName && <div className="error-message">{ errors.firstName.message }</div> }
+								{errors.firstName && <div className="error-message">{errors.firstName.message}</div>}
 							</div>
 							<div className="form-group form-group--half">
 								<label htmlFor="last-name">Last Name*</label>
 								<input
-									type="text" name="last-name" id="last-name" className={`form-control ${ errors.lastName ? "input-error" : ""} ` }
+									type="text" name="last-name" id="last-name" className={`form-control ${errors.lastName ? "input-error" : ""} `}
 									placeholder="Enter last name"
-									{ ...register("lastName", requiredConfig) }
+									{...register("lastName", requiredConfig)}
 								/>
-								{ errors.lastName && <div className="error-message">{ errors.lastName.message }</div> }
+								{errors.lastName && <div className="error-message">{errors.lastName.message}</div>}
 							</div>
 						</div>
 						<div className="form-row">
 							<div className="form-group">
 								<label htmlFor="email">Email*</label>
 								<input
-									type="email" name="email" id="email" className={`form-control ${ errors.email ? "input-error" : ""} ` } placeholder="Enter email"
-									{ ...register("email", { ...requiredConfig, validate: ( value ) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test( value ) || "Please enter a valid email." }) }
+									type="email" name="email" id="email" className={`form-control ${errors.email ? "input-error" : ""} `} placeholder="Enter email"
+									{...register("email", { ...requiredConfig, validate: (value) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value) || "Please enter a valid email." })}
 								/>
 								<p className="help-text">
 									<FontAwesomeIcon icon={faCircleInfo} />We will send a verification to this email ID
 								</p>
-								{ errors.email && <div className="error-message">{ errors.email.message }</div> }
+								{errors.email && <div className="error-message">{errors.email.message}</div>}
 							</div>
 						</div>
 						<div className="form-row">
 							<div className="form-group">
 								<label htmlFor="phone">Phone Number*</label>
 								<div className="phone-number-wrapper">
-									<select name="country-code" id="country-code" className="form-control" value={ userCountry } onChange={ ( e ) => setUserCountry( e.target.value ) }>
+									<select name="country-code" id="country-code" className="form-control country" value={userCountry} onChange={(e) => setUserCountry(e.target.value)}>
 										{
-											Object.entries( countries ).map( ( [ countryCode, { name: countryName, code: phoneCode } ] ) => (
-												<option key={ countryCode } value={ countryCode }>{ countryName } ({ phoneCode })</option>
+											Object.entries(countries).map(([countryCode, { name: countryName, code: phoneCode }]) => (
+												<option key={countryCode} value={countryCode}>{countryName} ({phoneCode})</option>
 											))
 										}
 									</select>
 									<input
-										type="tel" name="phone" id="phone" className={`form-control ${ errors.phone ? "input-error" : ""} ` }
-										{ ...register("phone", { ...requiredConfig, valueAsNumber: true, validate: ( value ) => /[0-9]{8,10}/.test( value ) || "Please enter a valid phone number." }) }
+										type="tel" name="phone" id="phone" className={`form-control phone-number ${errors.phone ? "input-error" : ""} `}
+										{...register("phone", { ...requiredConfig, valueAsNumber: true, validate: (value) => /[0-9]{8,10}/.test(value) || "Please enter a valid phone number." })}
 									/>
 								</div>
-								{ errors.phone && <div className="error-message">{ errors.phone.message }</div> }
+								{errors.phone && <div className="error-message">{errors.phone.message}</div>}
 							</div>
 						</div>
 						<div className="form-row">
 							<div className="form-group form-group--half">
 								<label htmlFor="company">Company Name*</label>
 								<input
-									type="text" name="company" id="company" className={`form-control ${ errors.company ? "input-error" : ""} ` } placeholder="Enter company name"
-									{ ...register("company", requiredConfig) }
+									type="text" name="company" id="company" className={`form-control ${errors.company ? "input-error" : ""} `} placeholder="Enter company name"
+									{...register("company", requiredConfig)}
 								/>
-								{ errors.company && <div className="error-message">{ errors.company.message }</div> }
+								{errors.company && <div className="error-message">{errors.company.message}</div>}
 							</div>
 							<div className="form-group form-group--half">
 								<label htmlFor="company-size">Company Size</label>
@@ -122,10 +132,10 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep } }
 							<div className="form-group">
 								<label htmlFor="problem">Explain the problem you’re trying to solve*</label>
 								<textarea
-									name="problem" id="problem" className={`form-control ${ errors.problem ? "input-error" : ""} ` } placeholder="Enter a description"
-									{ ...register("problem", requiredConfig) }
+									name="problem" id="problem" className={`form-control ${errors.problem ? "input-error" : ""} `} placeholder="Enter a description"
+									{...register("problem", requiredConfig)}
 								></textarea>
-								{ errors.problem && <div className="error-message">{ errors.problem.message }</div> }
+								{errors.problem && <div className="error-message">{errors.problem.message}</div>}
 							</div>
 						</div>
 						<div className="form-row">
@@ -137,12 +147,23 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep } }
 							</div>
 						</div>
 						<div className="form-row">
+							<div className="form-group privacy-mobile">
+								<p>By signing up you agree to our <a href="#">Terms of Service</a></p>
+							</div>
+						</div>
+						<div className="form-row hidden-mobile">
 							<button id="submit-registration" type="submit">Start Your 7-Day Risk Free Trial</button>
 						</div>
 					</form>
-					<p>Already have an account? <a href="#">Log In</a></p>
-					<p>By signing up you agree to our <a href="#">Terms of Service</a></p>
+					<p className="login-terms">Already have an account? <a href="#">Log In</a></p>
+					<p className="login-terms">By signing up you agree to our <a href="#">Terms of Service</a></p>
 				</div>
+			</div>
+			<div className="form-row mobile-sticky">
+				<button id="submit-registration" type="submit" onClick={handleFormSubmit}>
+					Start Your 7-Day Risk Free Trial
+				</button>
+				<p>Already have an account? <a href="#">Log In</a></p>
 			</div>
 			<div className="slider-panel">
 				<RegisterSlider />

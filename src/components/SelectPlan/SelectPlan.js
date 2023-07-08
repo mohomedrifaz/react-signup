@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import PlanCards from './PlanCards';
 import SpecialCard from "./SpecialCard";
+import MobileHeader from "../mobileHeader";
 import './selectPlan.css';
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -251,134 +252,147 @@ const SelectPlan = ({ formData, setFormData, stepData: { nextStep } }) => {
     }
 
     return (
-        <div
-            className={`select-plan-container ${showOverlay ? 'overlayed' : ''}`}
-            onClick={handleOverlayClick}
-        >
+        <>
+            <MobileHeader stepNo="Step 3" stepName="Select Plan" logo="step3" />
+            <div
+                className={`select-plan-container ${showOverlay ? 'overlayed' : ''}`}
+                onClick={handleOverlayClick}
+            >
 
-            <div className="main-title">
-                <h3> Compare our plans and find yours </h3>
-            </div>
-
-            <div className="tab-container">
-                <div
-                    className={`tab ${activeTab === 1 ? 'active' : ''}`}
-                    onClick={() => handleTabChange(1)}
-                >
-                    Team cloud desktop
+                <div className="main-title">
+                    <h3> Compare our plans and find yours </h3>
                 </div>
-                <div
-                    className={`tab ${activeTab === 2 ? 'active' : ''}`}
-                    onClick={() => handleTabChange(2)}
-                >
-                    Individual cloud desktops
-                </div>
-            </div>
-            <div className="tab-content">
-                {activeTab === 1 && <div className="team-cloud-container">
-                    <ul>
-                        <li> Multi-User virtual machines based on Windows server </li>
-                        <li> Good for general purpose computing </li>
-                        <li> One admin included, $10 for additional users </li>
-                        <li className="cross"> Certain versions of Office 365 are not compatible </li>
-                    </ul>
-                </div>}
-                {activeTab === 2 && <div className="team-individual-container">
-                    <ul>
-                        <li> Single-User virtual machines based on Windows 10 desktop </li>
-                        <li> This type of plan requires you to bring your own license for windows </li>
-                        <li> Good for apps not compatible with Windows server </li>
-                        <li> One admin included </li>
-                    </ul>
-                </div>}
-            </div>
 
-            <div className="backups-checbox-container">
-                <div className={`enable-backups-container ${showOverlay ? 'overlayed' : ''}`}>
-                    <label className="checkbox-label">
-                        <input type="checkbox"
-                            className="checkbox-input"
-                            checked={formData.plan === 2}
-                            onChange={(e) => setFormData({plan: e.target.checked ? 2 : 1})} />
-                    </label>
-                    <div className="info-box">
-                        Enable Daily Backups and a Professional Antivirus <span className="business-card"> Business Plan </span>
-                        <span className="recommended-card"> Recommended </span>
+                <div className="tab-container">
+                    <div
+                        className={`tab ${activeTab === 1 ? 'active' : ''}`}
+                        onClick={() => handleTabChange(1)}
+                    >
+                        Team cloud desktop
+                    </div>
+                    <div
+                        className={`tab ${activeTab === 2 ? 'active' : ''}`}
+                        onClick={() => handleTabChange(2)}
+                    >
+                        Individual cloud desktops
                     </div>
                 </div>
-                <div className="upgrade-plans-message">
+                <div className="tab-content">
+                    {activeTab === 1 && <div className="team-cloud-container">
+                        <ul>
+                            <li> Multi-User virtual machines based on Windows server </li>
+                            <li> Good for general purpose computing </li>
+                            <li> One admin included, $10 for additional users </li>
+                            <li className="cross"> Certain versions of Office 365 are not compatible </li>
+                        </ul>
+                    </div>}
+                    {activeTab === 2 && <div className="team-individual-container">
+                        <ul>
+                            <li> Single-User virtual machines based on Windows 10 desktop </li>
+                            <li> This type of plan requires you to bring your own license for windows </li>
+                            <li> Good for apps not compatible with Windows server </li>
+                            <li> One admin included </li>
+                        </ul>
+                    </div>}
+                </div>
+
+                <div className="backups-checbox-container">
+                    <div className={`enable-backups-container ${showOverlay ? 'overlayed' : ''}`}>
+                        <label className="checkbox-label">
+                            <input type="checkbox"
+                                className="checkbox-input"
+                                checked={formData.plan === 2}
+                                onChange={(e) => setFormData({ plan: e.target.checked ? 2 : 1 })} />
+                        </label>
+                        <div className="info-box">
+                            Enable Daily Backups and a Professional Antivirus
+                            <span className="business-card"> Business Plan </span>
+                            <span className="recommended-card"> Recommended </span>
+                        </div>
+                        <div className="info-box-mobile">
+                            <p>Enable Daily Backups and a Professional Antivirus </p>
+                            <div className="info-btns">
+                                <span className="recommended-card"> Recommended </span>
+                                <span className="business-card"> Business Plan </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="upgrade-plans-message">
+                        - Upgrade available for all plans
+                    </div>
+                    <div className={`tooltip ${showOverlay ? 'overlayed' : ''}`}>
+                        <div className="tooltip-title">
+                            Enhance Your Data Security
+                        </div>
+                        <div className="tooltip-content">
+                            Your Current Plan May Not Provide Adequate protection.
+                            Lack of Antivirus or Daily Backups Leaves Your Business at Risk: Data Breach,
+                            Financial Strain, and Reputational Damage. Are you sure you want to proceed without
+                            upgrading to Our Business Plan?
+                        </div>
+                        <div className="cta-btns">
+                            <button className="skip-btn">
+                                Skip &gt;&gt;
+                            </button>
+                            <button className="upgrade-btn">
+                                Upgrade to Business Plan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="pricing-cards" >
+                    {activeTab === 1 && <div className="team-cloud-pricing-container">
+                        {teamPlans.map((plan, index) => {
+                            return <PlanCards key={index}
+                                {...plan}
+                                isSelected={plan.hardware_id === formData.hardware?.value}
+                                onSelect={(contract) => setFormData({ hardware: { value: plan.hardware_id, display: plan.display }, contract_type: contract })}
+                                isBusiness={formData.plan === 2}
+                                plan={formData.hardware?.value}
+                                planType={formData.contract_type}
+                            />
+                        })}
+                    </div>
+                    }
+                    {activeTab === 2 && <div className="team-individual-pricing-container">
+                        {personalPlans.map((plan, index) => {
+                            return <PlanCards key={index}
+                                {...plan}
+                                isSelected={plan.hardware_id === formData.hardware?.value}
+                                onSelect={(contract) => setFormData({ hardware: { value: plan.hardware_id, display: plan.display }, contract_type: contract })}
+                                isBusiness={formData.plan === 2}
+                                plan={formData.hardware?.value}
+                                planType={formData.contract_type}
+                            />
+                        })}
+                        <SpecialCard
+                            title="The Enterprise"
+                            buttonText="Talk to an Expert"
+                            imageUrl=""
+                        />
+                    </div>}
+                </div>
+
+                <div className="upgrade-plans-message-mobile">
                     - Upgrade available for all plans
                 </div>
-                <div className={`tooltip ${showOverlay ? 'overlayed' : ''}`}>
-                    <div className="tooltip-title">
-                        Enhance Your Data Security
-                    </div>
-                    <div className="tooltip-content">
-                        Your Current Plan May Not Provide Adequate protection.
-                        Lack of Antivirus or Daily Backups Leaves Your Business at Risk: Data Breach,
-                        Financial Strain, and Reputational Damage. Are you sure you want to proceed without
-                        upgrading to Our Business Plan?
-                    </div>
-                    <div className="cta-btns">
-                        <button className="skip-btn">
-                            Skip &gt;&gt;
-                        </button>
-                        <button className="upgrade-btn">
-                            Upgrade to Business Plan
-                        </button>
-                    </div>
+                <div className="users-message-box">
+                    *Actual number of users can differ depending on resource consumption (CPU, RAM) of your applications
+                </div>
+
+                <div className="action-btn">
+                    <button className="back-btn">
+                        Previous Step
+                    </button>
+                    <button
+                        className="verify-btn"
+                        onClick={planVerification}>
+                        Next
+                    </button>
                 </div>
             </div>
-
-            <div className="pricing-cards" >
-                {activeTab === 1 && <div className="team-cloud-pricing-container">
-                    {teamPlans.map((plan, index) => {
-                        return <PlanCards key={index}
-                            {...plan}
-                            isSelected={plan.hardware_id === formData.hardware?.value}
-                            onSelect={(contract) => setFormData({hardware: { value: plan.hardware_id, display: plan.display }, contract_type: contract})}
-                            isBusiness={formData.plan === 2}
-                            plan={formData.hardware?.value}
-                            planType={formData.contract_type}
-                        />
-                    })}
-                </div>
-                }
-                {activeTab === 2 && <div className="team-individual-pricing-container">
-                    {personalPlans.map((plan, index) => {
-                        return <PlanCards key={index}
-                            {...plan}
-                            isSelected={plan.hardware_id === formData.hardware?.value}
-                            onSelect={(contract) => setFormData({hardware: { value: plan.hardware_id, display: plan.display }, contract_type: contract})}
-                            isBusiness={formData.plan === 2}
-                            plan={formData.hardware?.value}
-                            planType={formData.contract_type}
-                        />
-                    })}
-                    <SpecialCard
-                        title="The Enterprise"
-                        buttonText="Talk to an Expert"
-                        imageUrl=""
-                    />
-                </div>}
-            </div>
-
-            <div className="users-message-box">
-                *Actual number of users can differ depending on resource consumption (CPU, RAM) of your applications
-            </div>
-
-            <div className="action-btn">
-                <button className="back-btn">
-                    Previous Step
-                </button>
-                <button
-                    className="verify-btn"
-                    onClick={planVerification}>
-                    Next
-                </button>
-            </div>
-
-        </div>
+        </>
     );
 };
 

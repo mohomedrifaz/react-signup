@@ -386,4 +386,138 @@
             } 
         }
     }
+
+    & .info-message-mobile {
+        display: none;
+    }
+
+    & .verification-actions-mobile {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .payment-gateway {
+        &.payment-container {
+            flex-direction: column;
+
+            & .form-container{
+                width: 100%;
+
+                & .main-title{
+                    & h3 {
+                        font-size: var(--font-xl);
+                    }
+                    & img {
+                        display: none;
+                    }
+                }
+
+                & .card-verification-info{
+                    & .info-img{
+                        width: 70%;
+                    }
+
+                    & .info-content{ 
+                        font-size: 13px;
+                    }
+                }
+
+                & .action-btn{
+                    display: none;
+                }
+
+                & .form-row {
+                    & .form-row-colfull{
+                        display: none;
+                    }
+                }
+            }
+
+            & .asset-details-container {
+                width: 100%;
+                padding-left: 10px;
+                padding-right: 10px;
+
+                & .package-details-container{
+                    & .title-message {
+                        & .message-content{
+                            font-size: var(--font-xxs);
+                            width: 60%;
+                        }
+                    }
+
+                    & .list-content {
+                        padding-top: 10px;
+
+                        & ul {
+                            padding-left: 0;
+
+                            & li {
+                                padding: 0;
+                            }
+                        }
+                    }
+
+                    & .trial-message {
+                        padding-left: 0;
+                    }
+                }
+
+                & .total-pricing-container{
+                    margin-bottom: 20px;
+                }
+
+                & .condition-container {
+                    & li {
+                        font-size: 14px;
+                        line-height: 16.8px;
+                    }
+                }
+            }
+
+            & .info-message-mobile {
+                margin: 0 0 50px 0;
+                background-color: #d1e9ff;
+                padding: 20px;
+                font-size: 13px;
+                line-height: 1.5;
+                border-radius: 10px;
+                display: flex;
+
+                & .info-svg {
+                    margin-right: 10px;
+                    & svg {
+                        color: #1570ef;
+                    }
+                }
+
+                & span {
+                    font-weight: bold;
+                }
+            }
+
+            & .verification-actions-mobile{
+                display: block;
+                padding: 20px 0;
+                background-color: #fff;
+                position: sticky;
+                bottom: 0;
+                width: 100%;
+                z-index: 100;
+                margin-bottom: 0;
+
+                & .verify-btn {
+                    height: 50px;
+                    font-size: 15px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    color: white;
+                    background: var(--primary-color);
+                    width: 100%;
+                }
+            }
+        }
+    } 
 }

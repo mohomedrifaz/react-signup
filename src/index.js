@@ -111,7 +111,7 @@ const App = () => {
 	return (
 		<>
 			{ currentStep === 0 && <RegistrationForm {...stepProps} /> }
-			{ currentStep > 0 && (
+			{ currentStep > 0 && currentStep <= 5 && (
 				<div className="steps-container">
 					<div className="sidebar">
 						<Sidebar
@@ -125,6 +125,7 @@ const App = () => {
 					</div>
 				</div>
 			) }
+
 		</>
 	);
 };

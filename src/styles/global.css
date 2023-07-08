@@ -96,4 +96,24 @@ body {
     width: calc(100% - 400px);
     background-color: white;
     padding-top: calc(70px - var(--wp-admin--admin-bar--height, 0px));
+
+    & .header-container {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+
+    .main {
+        width: 100%;
+        padding: 15px 15px 15px 15px;
+        flex-direction: column;
+
+        & .header-container {
+            display: block;
+        }
+    }
 }
