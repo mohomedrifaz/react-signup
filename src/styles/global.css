@@ -93,9 +93,7 @@ body {
 }
 
 .main {
-    display: flex;
-    width: 75%;
-    align-items: flex-start;
+    width: calc(100% - 400px);
     background-color: white;
     padding-top: calc(70px - var(--wp-admin--admin-bar--height, 0px));
 }
