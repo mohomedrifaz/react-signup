@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import MobileHeader from "../mobileHeader";
 import './password.css';
 
@@ -143,9 +143,7 @@ const Password = ({ formData, setFormData, stepData: { nextStep } }) => {
                                             checked={hasMinLength(password)}
                                             readOnly
                                         />
-                                        <span className={`checkbox-custom ${hasMinLength(password) ? "active" : ""}`}>
-                                            <FontAwesomeIcon icon="check" className="checkbox-icon" />
-                                        </span>
+                                        <span className={`checkbox-custom ${hasMinLength(password) ? "active" : ""}`}></span>
                                         Be at least 12 characters
                                     </label>
                                 </li>
@@ -156,9 +154,7 @@ const Password = ({ formData, setFormData, stepData: { nextStep } }) => {
                                             checked={hasSpecialChar(password)}
                                             readOnly
                                         />
-                                        <span className={`checkbox-custom ${hasSpecialChar(password) ? "active" : ""}`}>
-                                            <FontAwesomeIcon icon="check" className="checkbox-icon" />
-                                        </span>
+                                        <span className={`checkbox-custom ${hasSpecialChar(password) ? "active" : ""}`}></span>
                                         1 allowed special character (! @ # % & + -)
                                     </label>
                                 </li>
@@ -169,9 +165,7 @@ const Password = ({ formData, setFormData, stepData: { nextStep } }) => {
                                             checked={hasLowercase(password)}
                                             readOnly
                                         />
-                                        <span className={`checkbox-custom ${hasLowercase(password) ? "active" : ""}`}>
-                                            <FontAwesomeIcon icon="check" className="checkbox-icon" />
-                                        </span>
+                                        <span className={`checkbox-custom ${hasLowercase(password) ? "active" : ""}`}></span>
                                         1 lowercase letter
                                     </label>
                                 </li>
@@ -182,9 +176,7 @@ const Password = ({ formData, setFormData, stepData: { nextStep } }) => {
                                             checked={hasUppercase(password)}
                                             readOnly
                                         />
-                                        <span className={`checkbox-custom ${hasUppercase(password) ? "active" : ""}`}>
-                                            <FontAwesomeIcon icon="check" className="checkbox-icon" />
-                                        </span>
+                                        <span className={`checkbox-custom ${hasUppercase(password) ? "active" : ""}`}></span>
                                         1 uppercase letter
                                     </label>
                                 </li>
@@ -195,9 +187,7 @@ const Password = ({ formData, setFormData, stepData: { nextStep } }) => {
                                             checked={hasNumber(password)}
                                             readOnly
                                         />
-                                        <span className={`checkbox-custom ${hasNumber(password) ? "active" : ""}`}>
-                                            <FontAwesomeIcon icon="check" className="checkbox-icon" />
-                                        </span>
+                                        <span className={`checkbox-custom ${hasNumber(password) ? "active" : ""}`}></span>
                                         1 number
                                     </label>
                                 </li>
