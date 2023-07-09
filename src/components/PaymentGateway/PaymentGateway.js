@@ -71,7 +71,7 @@ const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTit
                         <div className="form-row form-row-1">
 
                             <div className="form-group form-group--70">
-                                <label for="card_number"> Card number* </label>
+                                <label htmlFor="card_number"> Card number* </label>
                                 <input required type="text" name="card_name" placeholder="Enter card number"
                                     className={`form-control ${errors.cardNumber ? "input-error" : ""}`}
                                     {...register("cardNumber", requiredConfig)} />
@@ -80,7 +80,7 @@ const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTit
                             </div>
 
                             <div className="form-group form-group--30">
-                                <label for="expiry_date"> Expiry* </label>
+                                <label htmlFor="expiry_date"> Expiry* </label>
                                 <input required type="text" name="expiry_date" placeholder="MM/YY"
                                     className={`form-control ${errors.expiry ? "input-error" : ""}`}
                                     {...register("expiry", requiredConfig)} />
@@ -91,14 +91,14 @@ const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTit
 
                         <div className="form-row form-row-2">
                             <div className="form-group form-group--70">
-                                <label for="card_name" >Name on Card * </label>
+                                <label htmlFor="card_name" >Name on Card * </label>
                                 <input required type="text" name="card_name" placeholder="Enter card name"
                                     className={`form-control ${errors.nameOnCard ? "input-error" : ""}`}
                                     {...register("nameOnCard", requiredConfig)} />
                                 {errors.nameOnCard && <div className="error-message">{errors.nameOnCard.message}</div>}
                             </div>
                             <div className="form-group form-group--30">
-                                <label for="ccv"> CCV* </label>
+                                <label htmlFor="ccv"> CCV* </label>
                                 <input required type="text" name="ccv" placeholder="..."
                                     className={`form-control ${errors.ccv ? "input-error" : ""}`}
                                     {...register("ccv", requiredConfig)} />
@@ -108,7 +108,7 @@ const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTit
 
                         <div className="form-row form-row-3">
                             <div className="form-group">
-                                <label for="address"> Billing address* </label>
+                                <label htmlFor="address"> Billing address* </label>
                                 <input required type="text" name="address"
                                     placeholder="Street Address (Apartment or Suite number)"
                                     className={`form-control ${errors.billing ? "input-error" : ""}`}
@@ -119,14 +119,14 @@ const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTit
 
                         <div className="form-row form-row-4">
                             <div className="form-group form-group--70">
-                                <label for="city" >City* </label>
+                                <label htmlFor="city" >City* </label>
                                 <input required type="text" name="city" placeholder="Enter City"
                                     className={`form-control ${errors.city ? "input-error" : ""}`}
                                     {...register("city", requiredConfig)} />
                                 {errors.city && <div className="error-message">{errors.city.message}</div>}
                             </div>
                             <div className="form-group form-group--30">
-                                <label for="state"> State/Province* </label>
+                                <label htmlFor="state"> State/Province* </label>
                                 <select className={`form-control ${errors.state ? "input-error" : ""}`}
                                     name="state" {...register("state", requiredConfig)}>
                                     <option value="" disabled> Select State </option>
@@ -138,14 +138,14 @@ const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTit
 
                         <div className="form-row form-row-5">
                             <div className="form-group form-group--70">
-                                <label for="zip" > Zip/Postal* </label>
+                                <label htmlFor="zip" > Zip/Postal* </label>
                                 <input required type="text" name="zip" placeholder="Enter zip/postal code"
                                     className={`form-control ${errors.zip ? "input-error" : ""}`}
                                     {...register("zip", requiredConfig)} />
                                 {errors.zip && <div className="error-message">{errors.zip.message}</div>}
                             </div>
                             <div className="form-group form-group--30">
-                                <label for="state"> Country* </label>
+                                <label htmlFor="state"> Country* </label>
                                 <select className={`form-control ${errors.country ? "input-error" : ""}`}
                                     name="country" id="country-list" {...register("country", requiredConfig)}>
                                     <option value="" disabled> Select Country </option>

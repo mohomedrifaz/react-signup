@@ -68,7 +68,7 @@ const SetupContainer = ({ formData, stepData: { nextChildStep, setCurrentChildSt
                                 className={`single-input ${otp[0] ? 'filled' : ''} ${!isVerificationSuccessful ? "invalid-input" : ""}`}
                                 id='ist'
                                 ref={ref => (inputRefs.current[0] = ref)}
-                                maxlength={1}
+                                maxLength={1}
                                 value={otp[0] || ""}
                                 onChange={(e) => handleChange(e, 0)}
                                 onKeyDown={(e) => {
@@ -82,7 +82,7 @@ const SetupContainer = ({ formData, stepData: { nextChildStep, setCurrentChildSt
                                 className={`single-input ${otp[1] ? 'filled' : ''} ${!isVerificationSuccessful ? "invalid-input" : ""}`}
                                 id="sec"
                                 ref={ref => (inputRefs.current[1] = ref)}
-                                maxlength={1}
+                                maxLength={1}
                                 value={otp[1] || ""}
                                 onChange={(e) => handleChange(e, 1)}
                                 onKeyDown={(e) => {
@@ -96,7 +96,7 @@ const SetupContainer = ({ formData, stepData: { nextChildStep, setCurrentChildSt
                                 className={`single-input ${otp[2] ? 'filled' : ''} ${!isVerificationSuccessful ? "invalid-input" : ""}`}
                                 id="third"
                                 ref={ref => (inputRefs.current[2] = ref)}
-                                maxlength={1}
+                                maxLength={1}
                                 value={otp[2] || ""}
                                 onChange={(e) => handleChange(e, 2)}
                                 onKeyDown={(e) => {
@@ -110,7 +110,7 @@ const SetupContainer = ({ formData, stepData: { nextChildStep, setCurrentChildSt
                                 className={`single-input ${otp[3] ? 'filled' : ''} ${!isVerificationSuccessful ? "invalid-input" : ""}`}
                                 id="fourth"
                                 ref={ref => (inputRefs.current[3] = ref)}
-                                maxlength={1}
+                                maxLength={1}
                                 value={otp[3] || ""}
                                 onChange={(e) => handleChange(e, 3)}
                                 onKeyDown={(e) => {
