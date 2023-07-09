@@ -15,15 +15,43 @@
     }
 
     & .single-nav {
-        padding: 12px 0;
-        margin: 20px 0;
+        padding: 0;
+        margin-bottom: 40px;
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        position: relative;
 
-        &:first-of-type {
+
+        &:last-of-type {
             margin-top: 0;
             padding-top: 0;
+
+            &:after {
+                display: none;
+            }
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            height: 95%;
+            width: 1px;
+            background: var(--neutral-300);
+            left: 15px;
+            bottom: -85%;
+        }
+
+        &:not(.completed):not(.active):after {
+            bottom: -105%;
+        }
+
+        &.active {
+            padding-top: 8px;
+
+            &:after {
+                height: calc(95% - 8px);
+            }
         }
 
         & .nav-bullet {
