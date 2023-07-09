@@ -1,11 +1,30 @@
 .data-centers-container {
     width: 90%;
+    
+    & .main-title {
+        margin-bottom: 30px;
+    }
+
+    & .location-marker {
+        fill: var(--secondary-color);
+
+        &.active {
+            fill: var(--alert-error-600);
+            animation: pulse-dot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -.4s infinite;
+        }
+    }
+
+    & .active-ring {
+        r: 20;
+        fill: var(--alert-error-600);
+        animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
 
     & .country-select-container {
         display: flex;
         gap: 25px;
         padding-bottom: 50px;
-        padding-top: 20px;
+        padding-top: 30px;
         flex-wrap: wrap;
 
         & .country-select {
@@ -140,3 +159,23 @@
 }
 
 
+@keyframes pulse-dot {
+    0% {
+        r: 5;
+    }
+    50% {
+        r: 6;
+    }
+    100% {
+        r: 5;
+    }
+}
+  
+@keyframes pulse-ring {
+    0% {
+        r: 2;
+    }
+    80%, 100% {
+        opacity: 0;
+    }
+}

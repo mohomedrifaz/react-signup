@@ -10,6 +10,7 @@ import frankfurt from "../../assets/svg/GEFRANK.svg";
 import france from "../../assets/svg/FR.svg";
 import mumbai from "../../assets/svg/IN.svg";
 import MobileHeader from "../mobileHeader";
+import Map from "./Map";
 
 const SelectLocation = ({ formData, setFormData, stepData: { nextStep, prevStep } }) => {
     const regions = [
@@ -156,7 +157,7 @@ const SelectLocation = ({ formData, setFormData, stepData: { nextStep, prevStep 
                 </div>
 
                 <div className="data-map-container">
-
+                    <Map selected={formData.region?.value}/>
                 </div>
 
                 <div className="country-select-container">
