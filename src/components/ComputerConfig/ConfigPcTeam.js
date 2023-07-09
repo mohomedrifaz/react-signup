@@ -341,7 +341,7 @@ const ConfigPcTeam = ({ onNext, isBackup }) => {
             <div className="name-password-container">
                 <div className="name-password-input-fields">
                     <div className="form-group">
-                        <label for="computerName"> Computer name </label>
+                        <label htmlFor="computerName"> Computer name </label>
                         <input required type="text" name="pc_name" placeholder="Eg: Tharaka's PC" className="form-control"></input>
                     </div>
                     <div className="form-row-colfull col2">

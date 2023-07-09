@@ -29,7 +29,7 @@ const ChangeEmail = ({ setFormData, stepData: { prevChildStep } }) => {
 
 				<form id="change-email" method="post" onSubmit={handleSubmit(emailChangeVerification)}>
 					<div className="form-group">
-						<label for="email"> Enter your new email address </label>
+						<label htmlFor="email"> Enter your new email address </label>
 						<input
 							type="email" className={`form-control ${errors.email ? "input-error" : ""} `} name="email" id="email"
 							{...register("email", { ...requiredConfig, validate: (value) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value) || "Please enter a valid email." })}
