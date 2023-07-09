@@ -37,7 +37,7 @@ const Sidebar = ({ currentStep, formData }) => {
 		},
 		{
 			header: 'Select Plan',
-			completedTitle: 'Plan Selected',
+			completedTitle: `${formData.hardware?.display || ''} / ${formData.contract_type} Commitment`,
 		},
 		{
 			header: 'Computer Configuration',
