@@ -25,7 +25,18 @@ const PlanCards = ({
 
 
     return (
-        <div className={`pricing-card ${isSelected ? "selected" : ""} ${isPopular ? "popular-container" : ""}`}>
+        <div 
+            className={`pricing-card ${isSelected ? "selected" : ""} ${isPopular ? "popular-container" : ""}`}
+            onClick={(e) => {
+                // skip if the click is exactly on the monthly or annual plan
+                const target = e.target;
+                if ( target.closest('.pricing-monthly') || target.closest('.pricing-annual') ) {
+                    return;
+                }
+                // by default clicking on the card make the plan monthly
+                onSelect('monthly');
+            }}
+        >
 
             {/* {isHovered && functions && (
                 <div className="tooltip-container">

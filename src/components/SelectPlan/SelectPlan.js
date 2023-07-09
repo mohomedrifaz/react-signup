@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { register } from 'swiper/element/bundle';
 
 import PlanCards from './PlanCards';
@@ -27,8 +27,13 @@ const NextArrow = ({ onClick }) => {
 	)
 }
 
-const SelectPlan = ({ formData, setFormData, stepData: { nextStep } }) => {
+const TabNav = ({ title, isActive, handleTabChange }) => {
+    return (
+        <div className={ `tab ${isActive ? 'active' : ''}` } onClick={handleTabChange}>{ title }</div>
+    );
+}
 
+const SelectPlan = ({ formData, setFormData }) => {
     const teamPlans = [
         {
             "title": "The Founder",
@@ -243,12 +248,17 @@ const SelectPlan = ({ formData, setFormData, stepData: { nextStep } }) => {
         }
     ];
 
-    const [activeTab, setActiveTab] = useState(1);
+    const tabs = [
+        "Team cloud desktop",
+        "Individual cloud desktops"
+    ];
 
-    const handleTabChange = (tabNumber) => {
-        setActiveTab(tabNumber);
-    };
+    const tabPlans = [
+        teamPlans,
+        personalPlans
+    ];
 
+    const [activeTab, setActiveTab] = useState(0);
     const [showOverlay, setShowOverlay] = useState(false);
 
 
@@ -279,27 +289,18 @@ const SelectPlan = ({ formData, setFormData, stepData: { nextStep } }) => {
                 className={`select-plan-container ${showOverlay ? 'overlayed' : ''}`}
                 onClick={handleOverlayClick}
             >
-
                 <div className="main-title">
-                    <h3> Compare our plans and find yours </h3>
+                    <h3>Compare our plans and find yours</h3>
                 </div>
 
                 <div className="tab-container">
-                    <div
-                        className={`tab ${activeTab === 1 ? 'active' : ''}`}
-                        onClick={() => handleTabChange(1)}
-                    >
-                        Team cloud desktop
-                    </div>
-                    <div
-                        className={`tab ${activeTab === 2 ? 'active' : ''}`}
-                        onClick={() => handleTabChange(2)}
-                    >
-                        Individual cloud desktops
-                    </div>
+                    { tabs.map(( title, index ) =>  (
+                        <TabNav key={index} title={title} isActive={activeTab === index} handleTabChange={() => setActiveTab(index)} />
+                    ) ) }
                 </div>
+
                 <div className="tab-content">
-                    {activeTab === 1 && <div className="team-cloud-container" key="team-cloud">
+                    {activeTab === 0 && <div className="team-cloud-container">
                         <ul>
                             <li> Multi-User virtual machines based on Windows server </li>
                             <li> Good for general purpose computing </li>
@@ -307,7 +308,7 @@ const SelectPlan = ({ formData, setFormData, stepData: { nextStep } }) => {
                             <li className="cross"> Certain versions of Office 365 are not compatible </li>
                         </ul>
                     </div>}
-                    {activeTab === 2 && <div className="team-individual-container" key="team-individual">
+                    {activeTab === 1 && <div className="team-individual-container">
                         <ul>
                             <li> Single-User virtual machines based on Windows 10 desktop </li>
                             <li> This type of plan requires you to bring your own license for windows </li>
@@ -363,11 +364,11 @@ const SelectPlan = ({ formData, setFormData, stepData: { nextStep } }) => {
                 </div>
 
                 <div className="pricing-cards" >
-                    {activeTab === 1 && <div className="team-cloud-pricing-container" key="team-cloud-pricing">
+                    <div className={`team-${activeTab === 0 ? 'cloud' : 'individual'}-pricing-container`}>
                         <NextArrow />
                         <PrevArrow />
                         <swiper-container slides-per-view="4" free-mode="true" navigation='{"prevEl": ".left-arrow", "nextEl": ".right-arrow"}'>
-                            {teamPlans.map((plan, index) => {
+                            { tabPlans[activeTab].map((plan, index) => {
                                 return (
                                     <swiper-slide key={index}>
                                         <PlanCards
@@ -377,35 +378,28 @@ const SelectPlan = ({ formData, setFormData, stepData: { nextStep } }) => {
                                             isBusiness={formData.plan === 2}
                                             plan={formData.hardware?.value}
                                             planType={formData.contract_type}
+                                            showUsers={activeTab === 0}
                                         />
                                     </swiper-slide>
                                 )
                             })}
+                            { activeTab === 1 && (
+                                <swiper-slide key={tabPlans[activeTab].length}>
+                                    <SpecialCard
+                                        title="The Enterprise"
+                                        buttonText="Talk to an Expert"
+                                        imageUrl=""
+                                    />
+                                </swiper-slide>
+                            ) }
                         </swiper-container>
                     </div>
-                    }
-                    {activeTab === 2 && <div className="team-individual-pricing-container" key="team-individual-pricing">
-                        {personalPlans.map((plan, index) => {
-                            return <PlanCards key={index}
-                                {...plan}
-                                isSelected={plan.hardware_id === formData.hardware?.value}
-                                onSelect={(contract) => setFormData({ hardware: { value: plan.hardware_id, display: plan.title }, contract_type: contract })}
-                                isBusiness={formData.plan === 2}
-                                plan={formData.hardware?.value}
-                                planType={formData.contract_type}
-                            />
-                        })}
-                        <SpecialCard
-                            title="The Enterprise"
-                            buttonText="Talk to an Expert"
-                            imageUrl=""
-                        />
-                    </div>}
                 </div>
 
                 <div className="upgrade-plans-message-mobile">
                     - Upgrade available for all plans
                 </div>
+
                 <div className="users-message-box">
                     *Actual number of users can differ depending on resource consumption (CPU, RAM) of your applications
                 </div>
@@ -420,6 +414,7 @@ const SelectPlan = ({ formData, setFormData, stepData: { nextStep } }) => {
                         Next
                     </button>
                 </div>
+
             </div>
         </>
     );
