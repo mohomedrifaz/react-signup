@@ -253,16 +253,17 @@
             }
 
             & .verify-btn {
-                width: 150px;
+                width: 130px;
                 height: 50px;
                 margin: 0;
-                font-size: var(--font-sm);
+                font-size: var(--font-xs);
                 border: none;
-                border-radius: 5px;
+                border-radius: 4px;
                 cursor: pointer;
                 color: white;
                 background: var(--primary-color);
                 margin-left: 25px;
+                padding: 10px 24px;
             }
         }
 
