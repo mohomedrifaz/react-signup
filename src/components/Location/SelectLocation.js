@@ -83,12 +83,14 @@ const SelectLocation = ({ formData, setFormData, stepData: { nextStep, prevStep 
                         const countryName = countryData.display;
                         const [city, country] = countryName.split(" (").map(str => str.replace(")", ""));
 
+
                         return <SelectCountry key={index}
                             flag={countryData.flag}
                             city={city}
                             country={country}
                             signal={countryData.ping_url}
                             id={countryData.id}
+                            strength={countryData.strength}
                             isSelected={countryData.id === formData.region.value}
                             onClick={() => setFormData({ region: { value: countryData.id, display: countryName } })}
                         />

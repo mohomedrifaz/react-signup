@@ -1,16 +1,17 @@
 /* Change Email */
 
 @define-mixin verify-btn {
-    width: 150px;
+    width: 130px;
     height: 50px;
     margin: 0px auto 0px auto;
-    font-size: var(--font-sm);
+    font-size: var(--font-xs);
     border: none;
     border-radius: 5px;
     cursor: pointer;
     color: white;
     background: var(--primary-color);
     margin-left: 25px;
+    padding:10px 24px;
 }
 
 @define-mixin prev-btn {
@@ -27,6 +28,10 @@
 
 .change-email-container {
     
+    & .form-group {
+        width: 40%;
+    }
+
     & .form-row {
 
         & .label {
@@ -88,6 +93,11 @@
 
 @media only screen and (max-width: 768px) {
     .change-email-container{
+
+        & .form-group {
+            width: 100%;
+        }
+
         & .action-btn{
             padding: 20px 0;
             background-color: #fff;

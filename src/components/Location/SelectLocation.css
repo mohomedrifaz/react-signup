@@ -1,5 +1,5 @@
 .data-centers-container {
-    width: 90%;
+    width: 100%;
     
     & .main-title {
         margin-bottom: 30px;
@@ -22,7 +22,7 @@
 
     & .country-select-container {
         display: flex;
-        gap: 25px;
+        gap: 15px;
         padding-bottom: 50px;
         padding-top: 30px;
         flex-wrap: wrap;
@@ -32,8 +32,8 @@
             flex-direction: row;
             padding: 10px;
             border: 2px solid #E9ECEF;
-            border-radius: 10px;
-            width: 30%;
+            border-radius: 8px;
+            width: 32%;
             position: relative;
             cursor: pointer;
             align-items: center;
@@ -114,16 +114,17 @@
         }
 
         & .verify-btn {
-            width: 150px;
+            width: 130px;
             height: 50px;
             margin: 0;
-            font-size: var(--font-sm);
+            font-size: var(--font-xs);
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
             color: white;
             background: var(--primary-color);
             margin-left: 25px;
+            padding: 10px 24px;
         }
     }
 }
@@ -132,6 +133,11 @@
     .data-centers-container {
         width: 100%;
 
+        & svg {
+            width: 100%;
+            height: auto;
+        }
+        
         & .country-select-container{
             & .country-select {
                 width: 100%;
