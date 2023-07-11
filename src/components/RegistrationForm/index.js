@@ -8,14 +8,15 @@ import countries from './../../data/countries.json';
 
 import RegisterSlider from './slider';
 import useCookie from '../../hooks/useCookie';
+import useTicker from '../../hooks/useTicker';
 
 export default function RegistrationForm({ setFormData, stepData: { nextStep }, setLoading }) {
 
 	const [userCountry, setUserCountry] = useState('');
-
 	const { register, handleSubmit, formState: { errors } } = useForm({
 		mode: "onTouched"
 	});
+	const [startTicker, completeTicker] = useTicker();
 
 	const requiredConfig = {
 		required: "Please complete this required field."
@@ -27,6 +28,7 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep }, 
 	}, []);
 
 	const setRegistrationForm = ({ email, firstname, lastname, phone, company, numemployees, use_case, promotion }) => {
+		startTicker(setLoading);
 		const hutk = useCookie('hubspotutk');
 		const phoneNumber = countries[userCountry]?.code + phone;
 		setFormData({
@@ -37,7 +39,6 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep }, 
 			phone: phoneNumber,
 			country: userCountry
 		});
-		const loadingTick = setTimeout(() => setLoading(true), 10);
 		axios.post(
 			'/wp-json/v2cloud/v1/hubspot',
 			{
@@ -55,12 +56,10 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep }, 
 				hutk
 			}
 		)
-		.then(res => console.log(res))
 		.catch(err => console.log(err))
 		.finally(() => {
-			clearTimeout(loadingTick);
-			setLoading(100);
-			setLoading(false);
+			completeTicker(() => (setLoading(false)));
+			nextStep();
 		})
 	}
 
