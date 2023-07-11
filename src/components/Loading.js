@@ -12,8 +12,8 @@ export default function Loading({ progress }) {
     });
 
     return (
-        <div className="loading-container" ref={loadingBar}>
-            <div className="loading-bar">
+        <div className="loading-container">
+            <div className="loading-bar" ref={loadingBar}>
                 <div className="loading-bar__progress"></div>
             </div>
         </div>
