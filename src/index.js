@@ -102,6 +102,48 @@ const App = () => {
 			.catch(err => console.log(err?.response?.data || err.message));
 	}, [appData]);
 
+	useEffect(() => {
+		if ( ! appData.regions ) {
+			return;
+		}
+
+		// if ping is already set for atleast one region, don't ping again
+		if ( appData.regions.some(region => !!region?.ping) ) {
+			return;
+		}
+
+		// ping function to ping the url and return the time taken
+		const ping = (url) => {
+			return new Promise((resolve, reject) => {
+				const started = new Date().getTime();
+				const http = new XMLHttpRequest();
+				http.open("OPTIONS", "https://" + url, true);
+				http.onreadystatechange = function () {
+					const ended = new Date().getTime();
+					let milliseconds = ended - started;
+					if ( http.readyState === 4 ) {
+						resolve(milliseconds);
+					}
+					resolve(0);
+				};
+				http.onerror = () => resolve(0);
+				http.send();
+			});
+		}
+
+		// run ping synchronously for each region for 8 times
+		const data = appData.regions.map(async (region) => {
+			const pingTime = await Promise.all(
+				Array(8).fill(region.ping_url).map(url => ping(url)))
+					.then(pings => pings.reduce((total, curr) => total + curr, 0) / pings.length
+			);
+			return { ...region, ping: pingTime };
+		});
+
+		// wait for all pings to finish and set the state
+		Promise.all(data).then(regionsWithPing => setAppData({ regions: regionsWithPing }));
+	}, [appData]);
+
 	return (
 		<>
 			{ currentStep === 0 && <RegistrationForm  {...stepProps} /> }

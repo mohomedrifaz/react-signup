@@ -54,39 +54,13 @@ const SelectLocation = ({ formData, setFormData, stepData: { nextStep, prevStep 
             ...region,
             flag
         };
-    });
+    }).sort((regionA, regionB) => regionA.ping - regionB.ping);
 
     const locationVerification = () => {
         nextStep();
     }
 
     useEffect(() => {
-        const pings = [];
-
-        const forEachSeries = async (iterable, action) => {
-            const results = [];
-            for (const x of iterable) {
-                results.push(await action(x));
-            }
-            return results;
-        }
-
-        const pingAction = async (url) => {
-            return await forEachSeries(
-                Array(8).fill(url),
-                () => ping(url).catch(err => err)
-            );
-        }
-
-        async function fetchData() {
-            const data = await forEachSeries(
-                regions.map(region => region.ping_url),
-                pingAction
-            );
-    
-            console.log(data);
-        }
-        fetchData();
 
     }, []);
 
