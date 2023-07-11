@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
+import axios from 'axios';
+
 import './styles/styles.css';
 import SetupContainer from './components/SetupContainer/SetupContainer';
 import Sidebar from './components/Sidebar/Sidebar';
@@ -61,8 +63,14 @@ const App = () => {
 		malwarebytes_install: false
     });
 
+	const [appData, setApplicationdata] = useState({
+		token: ''
+	});
+
 	// helper function set only the data that is passed in
 	const setFormData = (data) => setUserRegistrationData({ ...userRegistrationData, ...data });
+
+	const setAppData = (data) => setApplicationdata({ ...appData, ...data });
 
 	const stepProps = {
 		stepData: {
@@ -72,8 +80,14 @@ const App = () => {
 			...stepData
 		},
 		formData: userRegistrationData,
-		setFormData
+		setFormData,
 	}
+
+	useEffect(() => {
+		axios.get('/wp-json/v2cloud/v1/access-token')
+			.then(res => setAppData({ token: res.data.access_token }))
+			.catch(err => console.log(err));
+	}, []);
 
 	return (
 		<>
