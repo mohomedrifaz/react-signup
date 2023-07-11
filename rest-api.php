@@ -82,6 +82,23 @@ function register_rest_api_endpoints() {
 			],
 		]
 	);
+
+	register_rest_route(
+		$namespace,
+		'/plans',
+		[
+			[
+				'callback'            => __NAMESPACE__ . '\get_plans',
+				'methods'             => \WP_REST_Server::READABLE,
+				'permission_callback' => '__return_true',
+				'args'                => [
+					'token' => [
+						'required' => true,
+					],
+				]
+			],
+		]
+	);
 }
 
 /**
@@ -173,6 +190,32 @@ function get_access_token() {
 			'body'    => json_encode( [
 				'grant_type'    => 'client_credentials',
 			], true ),
+		]
+	);
+
+	if ( is_wp_error( $request ) ) {
+		return $request;
+	}
+
+	return new \WP_REST_Response( json_decode( wp_remote_retrieve_body( $request ), true ) , 200);
+}
+
+/**
+ * Get plans.
+ * 
+ * @param WP_REST_Request $request Request Data.
+ * 
+ * @return WP_REST_Response | WP_Error
+ */
+function get_plans( $request ) {
+	$request = wp_remote_get(
+		'https://dash.v2cloud.com/api/plans/details/',
+		[
+			'headers' => [
+				'Content-Type'  => 'application/json',
+				'Accept'        => 'application/json',
+				'Authorization' => 'Bearer ' . $request['token'],
+			],
 		]
 	);
 

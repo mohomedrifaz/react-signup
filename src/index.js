@@ -89,6 +89,18 @@ const App = () => {
 			.catch(err => console.log(err));
 	}, []);
 
+	useEffect(() => {
+		if ( ! appData.token ) {
+			return;
+		}
+		if ( appData.plans ) {
+			return;
+		}
+		axios.get('/wp-json/v2cloud/v1/plans', { params: { token: appData.token } } )
+			.then(res => setAppData({...res.data}))
+			.catch(err => console.log(err?.response?.data || err.message));
+	}, [appData]);
+
 	return (
 		<>
 			{ currentStep === 0 && <RegistrationForm  {...stepProps} /> }
