@@ -12,6 +12,7 @@ import PaymentGateway from './components/PaymentGateway/PaymentGateway';
 import SelectPlan from './components/SelectPlan/SelectPlan';
 import ConfigPcIndividual from './components/ComputerConfig/ConfigPcIndividual';
 import RegistrationForm from './components/RegistrationForm';
+import Loading from './components/Loading';
 import useSteps from './hooks/useSteps';
 
 const CurrentStepComponent = (props) => {
@@ -67,6 +68,8 @@ const App = () => {
 		token: ''
 	});
 
+	const [loading, setLoading] = useState(false);
+
 	// helper function set only the data that is passed in
 	const setFormData = (data) => setUserRegistrationData({ ...userRegistrationData, ...data });
 
@@ -81,7 +84,9 @@ const App = () => {
 		},
 		formData: userRegistrationData,
 		setFormData,
-		appData
+		appData,
+		loading,
+		setLoading
 	}
 
 	useEffect(() => {
@@ -146,6 +151,7 @@ const App = () => {
 
 	return (
 		<>
+			{ loading && <Loading progress={loading}/> }
 			{ currentStep === 0 && <RegistrationForm  {...stepProps} /> }
 			{ currentStep > 0 && currentStep <= 5 && (
 				<div className="steps-container">

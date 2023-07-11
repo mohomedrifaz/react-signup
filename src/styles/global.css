@@ -103,6 +103,93 @@ body {
     }
 }
 
+/* Style for top loading bar with indicator */
+.loading-container {
+    position: fixed;
+    width: 100%;
+    top: var(--wp-admin--admin-bar--height, 0);
+    left: 0;
+    height: 2px;
+    background: transparent;
+    z-index: 999;
+
+    &:before {
+        content: '';
+        position: fixed;
+        right: 0;
+        top: calc(10px + var(--wp-admin--admin-bar--height, 0px));
+        border: 2px solid var(--primary-color);
+        opacity: 1;
+        border-radius: 50%;
+        animation: lds-ripple 0.8s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+
+    &:after {
+        content: '';
+        position: fixed;
+        right: 0;
+        top: calc(10px + var(--wp-admin--admin-bar--height, 0px));
+        border: 2px solid var(--primary-color);
+        opacity: 1;
+        border-radius: 50%;
+        animation: lds-ripple 0.8s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+        animation-delay: -0.4s;
+    }
+    
+    & .loading-bar {
+        height: 100%;
+        background: var(--primary-color);
+        width: 80%;
+        opacity: 1;
+        color: var(--primary-color);
+        transition: all 500ms ease 0s;
+        box-shadow: 0 0 10px 2px rgb(0,67,139,.6);
+        position: relative;
+
+        & .loading-bar__progress {
+            box-shadow: var(--primary-color) 0px 0px 10px, var(--primary-color) 0px 0px 5px;
+            width: 100px;
+            opacity: 1;
+            position: absolute;
+            height: 100%;
+            transform: rotate(3deg) translate(0px, -4px);
+            right: 0;
+            transition: all 500ms ease 0s;
+        }
+    }
+}
+
+@keyframes lds-ripple {
+    0% {
+        top: calc( 12.5px + var(--wp-admin--admin-bar--height, 0px) );
+        right: 12.5px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    4.9% {
+        top: calc( 12.5px + var(--wp-admin--admin-bar--height, 0px) );
+        right: 12.5px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    5% {
+        top: calc( 12.5px + var(--wp-admin--admin-bar--height, 0px) );
+        right: 12.5px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: var(--wp-admin--admin-bar--height, 0px);
+        right: 0px;
+        width: 25px;
+        height: 25px;
+        opacity: 0;
+    }
+  }
+
 @media only screen and (max-width: 768px) {
     .sidebar {
         display: none;
