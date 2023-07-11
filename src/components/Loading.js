@@ -8,7 +8,6 @@ export default function Loading({ progress }) {
         if ( progress === false ) {
             return;
         }
-
         loadingBar.current.style.width = `${progress}%`;
     });
 
