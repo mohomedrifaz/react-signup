@@ -58,11 +58,7 @@ const SelectLocation = ({ formData, setFormData, stepData: { nextStep, prevStep 
 
     const locationVerification = () => {
         nextStep();
-    }
-
-    useEffect(() => {
-
-    }, []);
+    };
 
     return (
         <>
@@ -78,23 +74,25 @@ const SelectLocation = ({ formData, setFormData, stepData: { nextStep, prevStep 
                 </div>
 
                 <div className="country-select-container">
-                    {regions.map((countryData, index) => {
+                    {
+                        regions.map((countryData, index) => {
 
-                        const countryName = countryData.display;
-                        const [city, country] = countryName.split(" (").map(str => str.replace(")", ""));
+                            const countryName = countryData.display;
+                            const [city, country] = countryName.split(" (").map(str => str.replace(")", ""));
 
 
-                        return <SelectCountry key={index}
-                            flag={countryData.flag}
-                            city={city}
-                            country={country}
-                            signal={countryData.ping_url}
-                            id={countryData.id}
-                            strength={countryData.strength}
-                            isSelected={countryData.id === formData.region.value}
-                            onClick={() => setFormData({ region: { value: countryData.id, display: countryName } })}
-                        />
-                    })}
+                            return <SelectCountry key={index}
+                                flag={countryData.flag}
+                                city={city}
+                                country={country}
+                                signal={countryData.ping_url}
+                                id={countryData.id}
+                                strength={countryData.ping - regions[0].ping <= 100 ? 'full' : ( countryData.ping - regions[0].ping <= 300 ? 'medium' : 'poor' )}
+                                isSelected={countryData.id === formData.region.value}
+                                onClick={() => setFormData({ region: { value: countryData.id, display: countryName } })}
+                            />
+                        })
+                    }
                 </div>
 
                 <div className="action-btn">
