@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import ping from "web-pingjs"
+
 import './SelectLocation.css';
 import SelectCountry from "./SelectCountry";
 import SG from "../../assets/svg/SG.svg";
@@ -146,6 +148,36 @@ const SelectLocation = ({ formData, setFormData, stepData: { nextStep, prevStep 
     const locationVerification = () => {
         nextStep();
     }
+
+    useEffect(() => {
+        const pings = [];
+
+        const forEachSeries = async (iterable, action) => {
+            const results = [];
+            for (const x of iterable) {
+                results.push(await action(x));
+            }
+            return results;
+        }
+
+        const pingAction = async (url) => {
+            return await forEachSeries(
+                Array(8).fill(url),
+                () => ping(url).catch(err => err)
+            );
+        }
+
+        async function fetchData() {
+            const data = await forEachSeries(
+                regions.map(region => region.ping_url),
+                pingAction
+            );
+    
+            console.log(data);
+        }
+        fetchData();
+
+    }, []);
 
     return (
         <>
