@@ -38,7 +38,7 @@ function register_rest_api_endpoints() {
 						'required'          => true,
 						'validate_callback' => 'is_email'
 					],
-					'phone'       => [
+					'phone'        => [
 						'required'          => true,
 						'validate_callback' => function( $param ) {
 							$param = str_replace( [' ', '.', '-', '(', ')'], '', $param );
@@ -48,10 +48,10 @@ function register_rest_api_endpoints() {
 					'company'     => [
 						'required' => true,
 					],
-					'companysize' => [
+					'numemployees' => [
 						'required' => false,
 					],
-					'usecase'     => [
+					'use_case'     => [
 						'required' => true,
 					],
 					'promotion'   => [
@@ -132,11 +132,11 @@ function create_hubspot_contact( $request ) {
 			],
 			[
 				'name' 			=> 'numemployees',
-				'value'			=> isset( $request['companysize'] ) ? $request['companysize'] : '',
+				'value'			=> isset( $request['numemployees'] ) ? $request['numemployees'] : '',
 			],
 			[
 				'name' 			=> 'use_case',
-				'value'			=> $request['usecase'],
+				'value'			=> $request['use_case'],
 			],
 			[
 				'name' 			=> 'i_agree_to_receive_information_about_your_products__promotions__and_awards_through_email_and_sms',
@@ -170,7 +170,7 @@ function create_hubspot_contact( $request ) {
 		return $api_request;
 	}
 
-	return new \WP_REST_Response( wp_remote_retrieve_body( $api_request ) , 200);
+	return new \WP_REST_Response( json_decode( wp_remote_retrieve_body( $api_request ), true ) , 200);
 }
 
 /**

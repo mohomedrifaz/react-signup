@@ -1,14 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo, faL } from '@fortawesome/free-solid-svg-icons';
 import { set, useForm } from 'react-hook-form';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './style.css';
 import countries from './../../data/countries.json';
 
 import RegisterSlider from './slider';
+import useCookie from '../../hooks/useCookie';
 
-export default function RegistrationForm({ setFormData, stepData: { nextStep } }) {
+export default function RegistrationForm({ setFormData, stepData: { nextStep }, setLoading }) {
 
 	const [userCountry, setUserCountry] = useState('');
 
@@ -25,23 +26,43 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep } }
 			.then((response) => setUserCountry(response.data?.country));
 	}, []);
 
-	const setRegistrationForm = ({ email, firstName, lastName, phone, company }) => {
+	const setRegistrationForm = ({ email, firstname, lastname, phone, company, numemployees, use_case, promotion }) => {
+		const hutk = useCookie('hubspotutk');
+		const phoneNumber = countries[userCountry]?.code + phone;
 		setFormData({
-			email: email,
-			first_name: firstName,
-			last_name: lastName,
-			phone: countries[userCountry]?.code + phone,
-			company: company
+			email,
+			firstname,
+			lastname,
+			company,
+			phone: phoneNumber,
+			country: userCountry
 		});
-		nextStep();
+		const loadingTick = setTimeout(() => setLoading(true), 10);
+		axios.post(
+			'/wp-json/v2cloud/v1/hubspot',
+			{
+				email,
+				firstname,
+				lastname,
+				company,
+				numemployees,
+				use_case,
+				promotion,
+				phone: phoneNumber,
+				country: userCountry,
+				pageurl: window.location.href,
+				pagetitle: document.title,
+				hutk
+			}
+		)
+		.then(res => console.log(res))
+		.catch(err => console.log(err))
+		.finally(() => {
+			clearTimeout(loadingTick);
+			setLoading(100);
+			setLoading(false);
+		})
 	}
-
-	const formRef = useRef();
-
-	const handleFormSubmit = () => {
-		// Access form validation logic and submit the form
-		formRef.current.requestSubmit();
-	};
 
 	return (
 		<div className="registration-form-container">
@@ -52,25 +73,25 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep } }
 				</div>
 				<p className="sub-title">(Not billed until your 7-Day trial is complete)</p>
 				<div className="form-wrapper">
-					<form id="registration-form" method="post"  ref={formRef} onSubmit={handleSubmit(setRegistrationForm)}>
+					<form id="registration-form" method="post" onSubmit={handleSubmit(setRegistrationForm)}>
 						<div className="form-row">
 							<div className="form-group form-group--half">
 								<label htmlFor="first-name">First Name*</label>
 								<input
-									type="text" name="first-name" id="first-name" className={`form-control ${errors.firstName ? "input-error" : ""} `}
+									type="text" name="first-name" id="first-name" className={`form-control ${errors.firstname ? "input-error" : ""} `}
 									placeholder="Enter first name"
-									{...register("firstName", requiredConfig)}
+									{...register("firstname", requiredConfig)}
 								/>
-								{errors.firstName && <div className="error-message">{errors.firstName.message}</div>}
+								{errors.firstname && <div className="error-message">{errors.firstname.message}</div>}
 							</div>
 							<div className="form-group form-group--half">
 								<label htmlFor="last-name">Last Name*</label>
 								<input
-									type="text" name="last-name" id="last-name" className={`form-control ${errors.lastName ? "input-error" : ""} `}
+									type="text" name="last-name" id="last-name" className={`form-control ${errors.lastname ? "input-error" : ""} `}
 									placeholder="Enter last name"
-									{...register("lastName", requiredConfig)}
+									{...register("lastname", requiredConfig)}
 								/>
-								{errors.lastName && <div className="error-message">{errors.lastName.message}</div>}
+								{errors.lastname && <div className="error-message">{errors.lastname.message}</div>}
 							</div>
 						</div>
 						<div className="form-row">
@@ -116,7 +137,7 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep } }
 							</div>
 							<div className="form-group form-group--half">
 								<label htmlFor="company-size">Company Size</label>
-								<select name="company-size" id="company-size" className="form-control">
+								<select name="company-size" id="company-size" className="form-control" {...register("numemployees", {required:false})} >
 									<option value="">Please Select</option>
 									<option value="1-4">1-4</option>
 									<option value="5-10">5-10</option>
@@ -132,16 +153,16 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep } }
 							<div className="form-group">
 								<label htmlFor="problem">Explain the problem you’re trying to solve*</label>
 								<textarea
-									name="problem" id="problem" className={`form-control ${errors.problem ? "input-error" : ""} `} placeholder="Enter a description"
-									{...register("problem", requiredConfig)}
+									name="problem" id="problem" className={`form-control ${errors.use_case ? "input-error" : ""} `} placeholder="Enter a description"
+									{...register("use_case", requiredConfig)}
 								></textarea>
-								{errors.problem && <div className="error-message">{errors.problem.message}</div>}
+								{errors.use_case && <div className="error-message">{errors.use_case.message}</div>}
 							</div>
 						</div>
 						<div className="form-row">
 							<div className="form-group checkbox">
 								<label htmlFor="promotion-agree">
-									<input type="checkbox" name="promotion-agree" id="promotion-agree" className="form-control" />
+									<input type="checkbox" name="promotion-agree" id="promotion-agree" className="form-control" {...register("promotion", {required:false})} />
 									I agree to receive information about your products, promotions, and awards through email and SMS
 								</label>
 							</div>
@@ -160,7 +181,7 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep } }
 				</div>
 			</div>
 			<div className="form-row mobile-sticky">
-				<button id="submit-registration" type="submit" onClick={handleFormSubmit}>
+				<button id="submit-registration" type="submit">
 					Start Your 7-Day Risk Free Trial
 				</button>
 				<p>Already have an account? <a href="#">Log In</a></p>

@@ -75,7 +75,7 @@ const Password = ({ formData, setFormData, stepData: { nextStep } }) => {
 
                     </div>
                     <div className="account-name-email">
-                        <div className="account-name">{formData.first_name} {formData.last_name}</div>
+                        <div className="account-name">{formData.firstname} {formData.lastname}</div>
                         <div className="account-email">{formData.email}</div>
                     </div>
                 </div>
