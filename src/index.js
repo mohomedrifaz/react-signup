@@ -81,6 +81,7 @@ const App = () => {
 		},
 		formData: userRegistrationData,
 		setFormData,
+		appData
 	}
 
 	useEffect(() => {
