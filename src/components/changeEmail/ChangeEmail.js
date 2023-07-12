@@ -1,14 +1,24 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { set, useForm } from 'react-hook-form';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import useAPI from "../../hooks/useAPi";
+import useTicker from "../../hooks/useTicker";
+
 import MobileHeader from "../mobileHeader";
 import './changeEmail.css';
 
-const ChangeEmail = ({ setFormData, stepData: { prevChildStep } }) => {
+const ChangeEmail = ({ setFormData, formData, stepData: { prevChildStep }, setLoading }) => {
+
+	const { resendOTP } = useAPI();
+	const [startTicker, completeTicker] = useTicker(60);
 
 	const emailChangeVerification = ({ email }) => {
 		setFormData({ email });
-		prevChildStep();
+		startTicker(setLoading);
+		resendOTP(email, formData.firstname).finally(() => {
+			completeTicker(() => setLoading(false));
+			prevChildStep();
+		});
 	};
 
 	const { register, handleSubmit, formState: { errors } } = useForm({
@@ -42,7 +52,7 @@ const ChangeEmail = ({ setFormData, stepData: { prevChildStep } }) => {
 					</div>
 
 					<div className="action-btn">
-						<button className="back-btn">
+						<button className="back-btn" type="button" onClick={() => prevChildStep()}>
 							Back
 						</button>
 						<button

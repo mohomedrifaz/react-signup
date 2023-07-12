@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
+import useAPI from "../../hooks/useAPi";
 import useTicker from "../../hooks/useTicker";
 import MobileHeader from "../mobileHeader";
 import './SetupContainer.css';
@@ -10,6 +11,7 @@ const SetupContainer = ({ formData, stepData: { nextChildStep, setCurrentChildSt
     const [isVerificationSuccessful, setVerificationSuccessful] = useState(true);
     const inputRefs = useRef([]);
     const [startTicker, completeTicker] = useTicker();
+    const { resendOTP } = useAPI();
 
     const handleChange = (event, index) => {
         const { value } = event.target;
@@ -35,16 +37,8 @@ const SetupContainer = ({ formData, stepData: { nextChildStep, setCurrentChildSt
 
     const handleResend = (e) => {
         startTicker(setLoading);
-        axios.post(
-            '/wp-json/v2cloud/v1/otp',
-            {
-                email: formData.email,
-                firstname: formData.firstname,
-            }
-        )
-        .catch(err => err)
-        .finally(() => {
-            completeTicker(() => setLoading(100));
+        resendOTP(formData.email, formData.firstname).finally(() => {
+            completeTicker(() => setLoading(false));
         });
     }
 
