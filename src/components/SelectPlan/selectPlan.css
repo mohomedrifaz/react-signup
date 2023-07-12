@@ -1,6 +1,8 @@
 /* Select Plan  */
 
 .select-plan-container {
+    max-width: 1040px;
+    margin-left: 0;
 
     &.overlayed {
         position: relative;
@@ -261,8 +263,15 @@
     & .pricing-cards {
         position: relative;
 
-        swiper-container::part(wrapper) {
-            align-items: flex-end;
+        & swiper-container {
+
+            &::part(wrapper) {
+                align-items: flex-end;
+            }
+
+            & swiper-slide {
+                flex-shrink: 1;
+            }
         }
 
         & .right-arrow,
@@ -289,6 +298,10 @@
 
         & .right-arrow {
             right: 60px;
+
+            @media (min-width: 1200px) {
+                right: -40px;
+            }
         }
 
         & .left-arrow {
@@ -301,7 +314,7 @@
             border-radius: 10px;
             font-size: 13px;
             cursor: pointer;
-            min-width: 200px;
+            width: 205px;
             margin-right: 12px;
 
             & input[type="checkbox"] {
