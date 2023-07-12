@@ -1,6 +1,3 @@
-import React, { useState, useEffect } from "react";
-import ping from "web-pingjs"
-
 import './SelectLocation.css';
 import SelectCountry from "./SelectCountry";
 import SG from "../../assets/svg/SG.svg";
