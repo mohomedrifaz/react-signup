@@ -8,8 +8,6 @@ import './password.css';
 
 const Password = ({ formData, setFormData, stepData: { nextStep } }) => {
 
-    const [password, setPassword] = useState("");
-    const [repassword, setRePassword] = useState("");
     const [ConfirmPassword, setConfirmPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
@@ -24,34 +22,26 @@ const Password = ({ formData, setFormData, stepData: { nextStep } }) => {
     const { register, handleSubmit, formState: { errors }, getValues } = useForm({
         mode: "onTouched",
         defaultValues: {
-            password: '',
-            repassword: '',
-        }
+            password: formData.user_password,
+            repassword: formData.user_password,
+        },
     });
 
     const requiredConfig = {
         required: "Please complete this required field."
     };
 
-    const hasMinLength = (value) => {
-        return value.length >= 12
-    }
+    const password = getValues("password");
+    
+    const hasMinLength = password.length >= 12;
 
-    const hasSpecialChar = (value) => {
-        return /[!@#%&+\-]/.test(value)
-    }
+    const hasSpecialChar = /[!@#%&+\-]/.test(password);
 
-    const hasLowercase = (value) => {
-        return /[a-z]/.test(value)
-    }
+    const hasLowercase =  /[a-z]/.test(password)
 
-    const hasUppercase = (value) => {
-        return /[A-Z]/.test(value)
-    }
+    const hasUppercase = /[A-Z]/.test(password)
 
-    const hasNumber = (value) => {
-        return /\d/.test(value)
-    }
+    const hasNumber = /\d/.test(password)
 
     const passwordVerification = () => {
         setFormData({ user_password: password });
@@ -92,11 +82,8 @@ const Password = ({ formData, setFormData, stepData: { nextStep } }) => {
                                 type={showPassword ? "text" : "password"}
                                 {...register("password", {
                                     requiredConfig,
-                                    validate: (value) => {
-                                        return (hasMinLength(value) && hasSpecialChar(value) && hasLowercase(value)
-                                            && hasUppercase(value) && hasNumber(value)) || "Passwords does not match Requirements"
-                                    },
-                                    onChange: (e) => setPassword(e.target.value)
+                                    validate: () => (hasMinLength && hasSpecialChar && hasLowercase && hasUppercase && hasNumber) || "Passwords does not match Requirements",
+                                    onChange: (e) => setFormData({ user_password: e.target.value })
                                 })}
                             />
 
@@ -140,10 +127,10 @@ const Password = ({ formData, setFormData, stepData: { nextStep } }) => {
                                     <label className="checkbox-label">
                                         <input
                                             type="checkbox"
-                                            checked={hasMinLength(password)}
+                                            checked={hasMinLength}
                                             readOnly
                                         />
-                                        <span className={`checkbox-custom ${hasMinLength(password) ? "active" : ""}`}></span>
+                                        <span className={`checkbox-custom ${hasMinLength ? "active" : ""}`}></span>
                                         Be at least 12 characters
                                     </label>
                                 </li>
@@ -151,10 +138,10 @@ const Password = ({ formData, setFormData, stepData: { nextStep } }) => {
                                     <label className="checkbox-label">
                                         <input
                                             type="checkbox"
-                                            checked={hasSpecialChar(password)}
+                                            checked={hasSpecialChar}
                                             readOnly
                                         />
-                                        <span className={`checkbox-custom ${hasSpecialChar(password) ? "active" : ""}`}></span>
+                                        <span className={`checkbox-custom ${hasSpecialChar ? "active" : ""}`}></span>
                                         1 allowed special character (! @ # % & + -)
                                     </label>
                                 </li>
@@ -162,10 +149,10 @@ const Password = ({ formData, setFormData, stepData: { nextStep } }) => {
                                     <label className="checkbox-label">
                                         <input
                                             type="checkbox"
-                                            checked={hasLowercase(password)}
+                                            checked={hasLowercase}
                                             readOnly
                                         />
-                                        <span className={`checkbox-custom ${hasLowercase(password) ? "active" : ""}`}></span>
+                                        <span className={`checkbox-custom ${hasLowercase ? "active" : ""}`}></span>
                                         1 lowercase letter
                                     </label>
                                 </li>
@@ -173,10 +160,10 @@ const Password = ({ formData, setFormData, stepData: { nextStep } }) => {
                                     <label className="checkbox-label">
                                         <input
                                             type="checkbox"
-                                            checked={hasUppercase(password)}
+                                            checked={hasUppercase}
                                             readOnly
                                         />
-                                        <span className={`checkbox-custom ${hasUppercase(password) ? "active" : ""}`}></span>
+                                        <span className={`checkbox-custom ${hasUppercase ? "active" : ""}`}></span>
                                         1 uppercase letter
                                     </label>
                                 </li>
@@ -184,10 +171,10 @@ const Password = ({ formData, setFormData, stepData: { nextStep } }) => {
                                     <label className="checkbox-label">
                                         <input
                                             type="checkbox"
-                                            checked={hasNumber(password)}
+                                            checked={hasNumber}
                                             readOnly
                                         />
-                                        <span className={`checkbox-custom ${hasNumber(password) ? "active" : ""}`}></span>
+                                        <span className={`checkbox-custom ${hasNumber ? "active" : ""}`}></span>
                                         1 number
                                     </label>
                                 </li>
