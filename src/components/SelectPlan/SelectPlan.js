@@ -33,7 +33,7 @@ const TabNav = ({ title, isActive, handleTabChange }) => {
     );
 }
 
-const SelectPlan = ({ formData, setFormData, appData }) => {
+const SelectPlan = ({ formData, setFormData, appData, stepData: { nextStep } }) => {
     const tabs = appData.plan_tabs.map(({name}) => name);
 
     const tabPlans = [
@@ -44,24 +44,11 @@ const SelectPlan = ({ formData, setFormData, appData }) => {
     const [activeTab, setActiveTab] = useState(0);
     const [showOverlay, setShowOverlay] = useState(false);
 
-
-    const handleOverlayClick = () => {
+    const handleOverlayClick = (upgrade = false) => {
+        if (upgrade) {
+            setFormData({ plan: 2 });
+        }
         setShowOverlay(false);
-    }
-
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         setShowOverlay(true);
-    //     }, 3000);
-
-    //     return () => {
-    //         clearTimeout(timer);
-    //     };
-    // }, []);
-
-
-
-    const planVerification = () => {
         nextStep();
     }
 
@@ -70,7 +57,6 @@ const SelectPlan = ({ formData, setFormData, appData }) => {
             <MobileHeader stepNo="Step 3" stepName="Select Plan" logo="step3" />
             <div
                 className={`select-plan-container ${showOverlay ? 'overlayed' : ''}`}
-                onClick={handleOverlayClick}
             >
                 <div className="main-title">
                     <h3>Compare our plans and find yours</h3>
@@ -136,10 +122,10 @@ const SelectPlan = ({ formData, setFormData, appData }) => {
                             upgrading to Our Business Plan?
                         </div>
                         <div className="cta-btns">
-                            <button className="skip-btn">
+                            <button className="skip-btn" onClick={() => handleOverlayClick()}>
                                 Skip &gt;&gt;
                             </button>
-                            <button className="upgrade-btn">
+                            <button className="upgrade-btn" onClick={() => handleOverlayClick(true)}>
                                 Upgrade to Business Plan
                             </button>
                         </div>
@@ -194,9 +180,14 @@ const SelectPlan = ({ formData, setFormData, appData }) => {
                     </button>
                     <button
                         className="verify-btn"
-                        onClick={planVerification}>
-                        Next
-                    </button>
+                        disabled={!formData.hardware?.value}
+                        onClick={() => {
+                            if ( formData.plan === 2 ) {
+                                nextStep();
+                                return;
+                            }
+                            setShowOverlay(true);
+                        }}>Next</button>
                 </div>
 
             </div>

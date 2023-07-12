@@ -10,7 +10,7 @@
         & .backups-checbox-container {
                 & .tooltip {
                     &.overlayed {
-                        display: block;
+                        display: table;
                         padding: 20px;
                     }   
                 }
@@ -108,12 +108,11 @@
 
         & .tooltip {
             position: absolute;
-            top: 110%;
-            left: 18%;
-            bottom: unset;
+            top: 95px;
+            left: 0;
             right: unset;
-            width: 35%;
-            transform: translateX(-50%);
+            width: 60%;
+            height: auto;
             background-color: #ffffff;
             padding: 8px;
             border-radius: 4px;
@@ -121,16 +120,18 @@
             color: #333333;
             font-size: 14px;
             display: none;
+            text-align: left;
 
             &::before {
                 content: "";
+                display: block;
+                width: 15px;
+                height: 15px;
                 position: absolute;
-                top: -10px;
-                left: 50%;
-                transform: translateX(-50%);
-                border-style: solid;
-                border-width: 10px;
-                border-color: transparent transparent #ffffff transparent;
+                top: -7px;
+                left: 20px;
+                transform: rotate(45deg);
+                background: #ffffff;
             }
 
             &::after {
@@ -162,7 +163,6 @@
                 line-height: 1.5;
                 color: var(--neutral-color);
                 padding-top: 10px;
-                text-align: left;
             }
 
             & .cta-btns {
