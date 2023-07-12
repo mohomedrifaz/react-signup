@@ -44,7 +44,7 @@ const Sidebar = ({ currentStep, formData }) => {
 			completedTitle: [
 				formData.software?.display,
 				`${!!formData.ip ? 'Public' : 'Private'} IP`,
-				!!formData.bck_retention ? `${formData.bck_retention/7} week backup` : ''
+				formData.bck_retention?.display
 			].filter(text => !!text).join('/ '),
 		},
 		{

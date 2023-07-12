@@ -247,18 +247,19 @@
                 & .title-message {
                     display: flex;
                     flex-direction: row;
-                    justify-content: space-around;
+                    justify-content: space-between;
                     align-items: center;
+                    margin-bottom: 20px;
     
                     & .package-title {
                         font-size: var(--font-md);
                         font-weight: var(--font-bold);
-                        width: 50%;
+                        width: fit-content;
                     }
     
                     & .message-content {
                         background-color: #bfe7d1;
-                        width: 50%;
+                        width: 150px;
                         text-align: center;
                         vertical-align: middle;
                         border-radius: 50px;
@@ -270,23 +271,25 @@
                 }
     
                 & .list-content {
-                    font-family:var(--font-family-primary) ;
-                    font-style: normal;
-                    font-weight: var(--font-normal);
-                    font-size: 14px;
-                    line-height: 150%;
-                    letter-spacing: -0.011em;
-                    color: var(--neutral-color);
+                    margin-bottom: 20px;
+
                     & ul {
                         list-style: none;
-                        padding-left: 12px;
+                        padding: 0;
                     }
     
                     & li {
-                        padding: 5px;
+                        padding-bottom: 5px;
+                        font-size: var(--font-xxs);
+                        line-height: var(--line-height-fancy);
+                        padding-left: 25px;
+                        position: relative;
                         &::before {
                             content: '✓';
-                            margin-right: 10px;
+                            position: absolute;
+                            left: 0;
+                            font-size: 20px;
+                            line-height: 1;
                         }
                     }
                 }
@@ -333,7 +336,7 @@
                 }
 
                 & .package-value {
-                    font-weight: var(--font-semi-bold);
+                    font-weight: var(--font-medium);
                 }
             }
 

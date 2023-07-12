@@ -9,23 +9,7 @@ import alertsvg from "../../assets/svg/cardAlert.svg";
 import { set, useForm } from 'react-hook-form';
 import MobileHeader from "../mobileHeader";
 
-const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTitle, planConfig, planUsers, windowsTitle, networkTitle, backupsTitle }) => {
-
-    const [totalPrice, setTotalPrice] = useState('$120');
-    // const configItems = planConfig.split(' ');
-
-    // const configParts = planConfig.split(' ');
-    // const configItems = configParts.slice(0, 4);
-    // const customString = ['core', 'Memory RAM', 'Storage'];
-    // const updatedConfigItems = configItems.map((val, index) => {
-    //     if (index === 2) {
-    //         return `${configItems[3]} ${customString[index]}`;
-    //     } else {
-    //         return `${val} ${customString[index]}`;
-    //     }
-    // });
-
-    // const finalConfigItems = updatedConfigItems.slice(0, -1);
+const PaymentGateway = ({ formData, appData }) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onTouched"
@@ -38,6 +22,13 @@ const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTit
     const handleVerify = () => {
         console.log('next-step');
     };
+
+    const hardwarePlan = [...appData.personal_hardwares_plans, ...appData.team_hardwares_plans].find(plan => plan.hardware_id === formData.hardware.value);
+    const packagePrice = hardwarePlan[`price_${formData.contract_type}_contract_plan_${formData.plan || 1}`];
+    const backupPrice = appData.backup_retention[`${formData.contract_type}_contract`].find(retention => retention.days === formData.bck_retention?.value)?.price_per_gb || 0;
+    const ipPrice = !!formData.ip ? appData.public_ip[`${formData.contract_type}_contract`] : 0;
+    const total = [packagePrice, backupPrice, ipPrice].reduce((total, price) => parseFloat(total) + parseFloat(price), 0).toFixed(2);
+    const dateInAWeek = ( new Date(new Date().setDate(new Date().getDate() + 7))).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
     return (
         <>
@@ -173,8 +164,8 @@ const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTit
                                     </div>
                                     <div className="info-content">
                                         By clicking "Agree and Create Cloud Computer", you agree to the following
-                                        terms:<span>you will be charged {totalPrice} monthly; you must cancel before Apr 25,
-                                            2023 in order to receive a full refund; and you accept the <a href="#"> Terms of Use. </a>
+                                        terms:<span>you will be charged {`$${total}`} monthly; you must cancel before {`${dateInAWeek} `}  
+                                        in order to receive a full refund; and you accept the <a href="#"> Terms of Use. </a>
                                         </span>
                                     </div>
                                 </div>
@@ -199,17 +190,21 @@ const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTit
                 <div className="packages-details-container-bg">
                     <div className="package-details-container">
                         <div className="title-message">
-                            <div className="package-title"> {planTitle} </div>
-                            <div className="message-content"> 7 Day No-Risk Trial* </div>
+                            <div className="package-title">{formData.hardware?.display}</div>
+                            <div className="message-content">7 Day No-Risk Trial*</div>
                         </div>
                         <div className="list-content">
                             <ul>
-                                {/* {finalConfigItems.map((item, index) => (
+                                {[
+                                    `${hardwarePlan?.cpus} Cores`,
+                                    `${hardwarePlan?.memory_display} Memory (RAM)`,
+                                    `${hardwarePlan?.storage1_display} Storage`,
+                                ].map((item, index) => (
                                     <li key={index}>{item}</li>
-                                ))} */}
+                                ))}
                                 <li>1 Admin included, $10 for additional users</li>
-                                <li>{planUsers} Users - Recommended</li>
-                                <li>{plan === "teamCloud" ? "Team Cloud Desktop" : "Team Individual Desktop"}</li>
+                                <li>{hardwarePlan?.users} Users - Recommended</li>
+                                <li>Team Cloud Desktop</li>
                             </ul>
                         </div>
                         <div className="trial-message">
@@ -234,43 +229,43 @@ const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTit
                     <div className="pricing-single-pack">
                         <div className="package-details">
                             <div className="package-title">Template</div>
-                            <div className="package-value"> {windowsTitle} </div>
+                            <div className="package-value"> {formData.software?.display} </div>
                         </div>
                         <div className="link">
-                            <a href="#"> Change </a>
+                            <a href="#">Change</a>
                         </div>
                     </div>
 
                     <div className="pricing-single-pack">
                         <div className="package-details">
-                            <div className="package-title"> Commitment </div>
-                            <div className="package-value"> Yearly, 12 monthly payments </div>
+                            <div className="package-title">Commitment</div>
+                            <div className="package-value"> {`${formData.contract_type} `}, 12 monthly payments </div>
                         </div>
                         <div className="link">
-                            <a href="#"> Change </a>
-                            <span className="price"> $105.00/mo </span>
+                            <a href="#">Change</a>
+                            <span className="price">{`$${packagePrice}/mo`}</span>
                         </div>
                     </div>
 
                     <div className="pricing-single-pack">
                         <div className="package-details">
-                            <div className="package-title"> Backup Retention </div>
-                            <div className="package-value"> {backupsTitle} backup </div>
+                            <div className="package-title">Backup Retention</div>
+                            <div className="package-value">{formData.bck_retention.display || `1 week backup`}</div>
                         </div>
                         <div className="link">
-                            <a href="#"> Change </a>
-                            <span className="price"> $7.50/mo </span>
+                            <a href="#">Change</a>
+                            <span className="price">{`$${backupPrice}/mo`}</span>
                         </div>
                     </div>
 
                     <div className="pricing-single-pack">
                         <div className="package-details">
-                            <div className="package-title"> IP Address </div>
-                            <div className="package-value"> {networkTitle} </div>
+                            <div className="package-title">IP Address</div>
+                            <div className="package-value">{formData.ip ? `Public` : `Private`} IP address</div>
                         </div>
                         <div className="link">
-                            <a href="#"> Change </a>
-                            <span className="price"> $5.50/mo </span>
+                            <a href="#">Change</a>
+                            <span className="price">{`$${ipPrice}/mo`}</span>
                         </div>
                     </div>
 
@@ -281,15 +276,15 @@ const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTit
                         Total
                     </div>
                     <div className="total-price">
-                        $117.50
+                        {`$${total}`}
                     </div>
                 </div>
 
                 <div className="condition-container">
                     <ul>
-                        <li> Upon sign-up, your card is pre-authorized for $117.50 </li>
+                        <li> Upon sign-up, your card is pre-authorized for {`$${total}`}</li>
                         <li> When you sign up, we place a hold on your credit card. It's just a placeholder,
-                            <span> no actual charges are made. Cancl before Apr 25, 2023, and we'll release it.</span> </li>
+                            <span> no actual charges are made. Cancl before {dateInAWeek}, and we'll release it.</span> </li>
                     </ul>
                 </div>
 
@@ -301,8 +296,7 @@ const PaymentGateway = ({ formData, selectedCity, selectedCountry, plan, planTit
                 </div>
                 <div className="info-content">
                     By clicking "Agree and Create Cloud Computer", you agree to the following
-                    terms:<span>you will be charged {totalPrice} monthly; you must cancel before Apr 25,
-                        2023 in order to receive a full refund; and you accept the <a href="#"> Terms of Use. </a>
+                    terms:<span>you will be charged {`$${total}`} monthly; you must cancel before {dateInAWeek} in order to receive a full refund; and you accept the <a href="#"> Terms of Use. </a>
                     </span>
                 </div>
             </div>
