@@ -41,7 +41,11 @@ const Sidebar = ({ currentStep, formData }) => {
 		},
 		{
 			header: 'Computer Configuration',
-			completedTitle: 'Computer Configured',
+			completedTitle: [
+				formData.software?.display,
+				`${!!formData.ip ? 'Public' : 'Private'} IP`,
+				!!formData.bck_retention ? `${formData.bck_retention/7} week backup` : ''
+			].filter(text => !!text).join('/ '),
 		},
 		{
 			header: 'Billing & Payment',
