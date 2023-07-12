@@ -300,6 +300,10 @@
             right: 60px;
 
             @media (min-width: 1200px) {
+                right: 0;
+            }
+
+            @media (min-width: 1500px) {
                 right: -40px;
             }
         }
