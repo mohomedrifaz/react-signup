@@ -344,8 +344,9 @@
             border-radius: 10px;
             width: 20%;
             position: relative;
-            min-height: 220px;
+            min-height: 235px;
             cursor: pointer;
+            min-width: 250px;
 
             &.selected {
                 border: 2px solid #003373;
@@ -363,7 +364,7 @@
             }
 
             & .main-title {
-                font-weight: var(--font-semi-bold);
+                font-weight: var(--font-medium);
                 font-size: var(--font-md);
                 line-height: 120%;
                 text-align: center;
@@ -374,7 +375,7 @@
             }
 
             & .sub-title {
-                font-weight: var(--font-semi-bold);
+                font-weight: var(--font-medium);
                 font-size: var(--font-md);
                 line-height: 120%;
                 text-align: center;

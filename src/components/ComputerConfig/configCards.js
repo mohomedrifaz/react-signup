@@ -30,7 +30,7 @@ const configCards = ({ logo, mainTitle, subTitle, content, logoSelected, recomme
             <div className="mobile-titles">
                 <div className="titles">
                     <span className="main-title">{mainTitle}</span>
-                    <span className="sub-title">{subTitle === "" ? "" : subTitle === "Multi-user" ? "" : subTitle === "INCLUDED" ? subTitle : subTitle + "/month"}</span>
+                    <span className="sub-title">{subTitle}</span>
                 </div>
                 <div className="content">
                     {content}
@@ -55,7 +55,7 @@ const configCards = ({ logo, mainTitle, subTitle, content, logoSelected, recomme
                 {mainTitle}
             </div>
             <div className="sub-title">
-                {subTitle === "" ? "" : subTitle === "Multi-user" ? "" : subTitle === "INCLUDED" ? subTitle : subTitle + "/month"}
+                {subTitle}
             </div>
 
             <div className="content">
