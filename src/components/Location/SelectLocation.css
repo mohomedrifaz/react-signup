@@ -107,6 +107,8 @@
     & .action-btn {
         display: flex;
         justify-content: center;
+        max-width: 960px;
+        margin-bottom: 20px;
 
         & .back-btn {
             width: 130px;
