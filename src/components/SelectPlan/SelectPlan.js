@@ -156,6 +156,7 @@ const SelectPlan = ({ formData, setFormData, appData }) => {
                                     <swiper-slide key={index}>
                                         <PlanCards
                                             {...plan}
+                                            isPopular={plan.hardware_id === 37}
                                             isSelected={plan.hardware_id === formData.hardware?.value}
                                             onSelect={(contract) => setFormData({ hardware: { value: plan.hardware_id, display: plan.title }, contract_type: contract }) }
                                             isBusiness={formData.plan === 2}
