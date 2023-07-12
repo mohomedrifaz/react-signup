@@ -3,6 +3,8 @@ import { faCircleInfo, faL } from '@fortawesome/free-solid-svg-icons';
 import { set, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import CryptoJS from 'crypto-js';
+
 import './style.css';
 import countries from './../../data/countries.json';
 
@@ -57,6 +59,17 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep }, 
 			}
 		)
 		.catch(err => console.log(err))
+		.then((response) => {
+			if ( ! response.data?.otp ) {
+				return;
+			}
+
+			const encrypted = response.data.otp;
+			const secret = response.data.secret;
+			const key = CryptoJS.enc.Utf8.parse(CryptoJS.MD5(secret).toString());
+			const iv = CryptoJS.enc.Utf8.parse(CryptoJS.MD5(secret).toString().substr(0, 16));
+			setFormData({ otp: CryptoJS.AES.decrypt(encrypted, key, {iv: iv}).toString(CryptoJS.enc.Utf8) });
+		})
 		.finally(() => {
 			completeTicker(() => (setLoading(false)));
 			nextStep();

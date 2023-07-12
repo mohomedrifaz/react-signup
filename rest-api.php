@@ -99,6 +99,27 @@ function register_rest_api_endpoints() {
 			],
 		]
 	);
+
+	register_rest_route(
+		$namespace,
+		'otp',
+		[
+			[
+				'callback'            => __NAMESPACE__ . '\send_otp_email',
+				'methods'             => \WP_REST_Server::CREATABLE,
+				'permission_callback' => '__return_true',
+				'args'                => [
+					'email'     => [
+						'required'          => true,
+						'validate_callback' => 'is_email'
+					],
+					'firstname' => [
+						'required' => true,
+					],
+				]
+			],
+		]
+	);
 }
 
 /**
@@ -170,7 +191,13 @@ function create_hubspot_contact( $request ) {
 		return $api_request;
 	}
 
-	return new \WP_REST_Response( json_decode( wp_remote_retrieve_body( $api_request ), true ) , 200);
+	$data = json_decode( wp_remote_retrieve_body( $api_request ), true );
+
+	if ( isset( $data['inlineMessage'] ) ) {
+		return send_otp_email( $request );
+	}
+
+	return new \WP_REST_Response( $data, 200);
 }
 
 /**
@@ -224,4 +251,47 @@ function get_plans( $request ) {
 	}
 
 	return new \WP_REST_Response( json_decode( wp_remote_retrieve_body( $request ), true ) , 200);
+}
+
+/**
+ * Send OTP email.
+ * 
+ * @param WP_REST_Request $request Request Data.
+ * 
+ * @return WP_REST_Response
+ */
+function send_otp_email( $request ) {
+	$random = rand( pow( 10, 4 - 1 ), pow( 10, 4) - 1 );
+	$secret = AUTH_SALT;
+	$otp    = openssl_encrypt( $random, 'aes-256-cbc', md5( $secret ), OPENSSL_RAW_DATA, substr( md5( $secret ), 0, 16 ) );
+
+	$to      = sprintf(
+		'%1$s <%2$s>',
+		$request['firstname'],
+		$request['email']
+	);
+	$message = sprintf(
+		'Hello %1$s, <br /><br />Thank you for creating your V2 Cloud account. Please use this verification code to complete your registration process <br /><b><strong style="font-size: 20px">%2$s</strong></b><br /><br />Thanks,<br />V2Cloud.',
+		$request['firstname'],
+		$random
+	);
+
+	$send = wp_mail(
+		$to,
+		__( 'Verify your email address - V2Cloud', 'v2cloud' ),
+		$message,
+		[
+			'Content-Type: text/html; charset=UTF-8',
+			'From: V2Cloud <no-reply@v2cloud.com>',
+		]
+	);
+
+	return new \WP_REST_Response(
+		[
+			'otp'    => base64_encode( $otp ),
+			'sent'   => $sent,
+			'secret' => AUTH_SALT,
+		],
+		200
+	);
 }
