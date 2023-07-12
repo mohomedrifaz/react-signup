@@ -6,8 +6,8 @@ import './changeEmail.css';
 
 const ChangeEmail = ({ setFormData, stepData: { prevChildStep } }) => {
 
-	const emailChangeVerification = (data) => {
-		setFormData({ email: document.getElementById('email').value });
+	const emailChangeVerification = ({ email }) => {
+		setFormData({ email });
 		prevChildStep();
 	};
 

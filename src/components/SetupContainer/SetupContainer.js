@@ -1,13 +1,15 @@
 import React, { useState, useRef } from "react";
-import ReactDOM from 'react-dom';
+import axios from "axios";
+import useTicker from "../../hooks/useTicker";
 import MobileHeader from "../mobileHeader";
 import './SetupContainer.css';
 
-const SetupContainer = ({ formData, stepData: { nextChildStep, setCurrentChildStep } }) => {
+const SetupContainer = ({ formData, stepData: { nextChildStep, setCurrentChildStep }, setLoading }) => {
 
     const [otp, setOtp] = useState(["", "", "", ""]);
     const [isVerificationSuccessful, setVerificationSuccessful] = useState(true);
     const inputRefs = useRef([]);
+    const [startTicker, completeTicker] = useTicker();
 
     const handleChange = (event, index) => {
         const { value } = event.target;
@@ -24,14 +26,27 @@ const SetupContainer = ({ formData, stepData: { nextChildStep, setCurrentChildSt
 
     const handleVerify = () => {
         const enteredOtp = otp.join('');
-
-        if (enteredOtp === '1111') {
+        if (parseInt(enteredOtp) === parseInt(formData.otp)) {
             setCurrentChildStep(3);
         } else {
             setVerificationSuccessful(false);
         }
-
     };
+
+    const handleResend = (e) => {
+        startTicker(setLoading);
+        axios.post(
+            '/wp-json/v2cloud/v1/otp',
+            {
+                email: formData.email,
+                firstname: formData.firstname,
+            }
+        )
+        .catch(err => err)
+        .finally(() => {
+            completeTicker(() => setLoading(100));
+        });
+    }
 
     const isButtonDisabled = otp.some(value => value === "");
 
@@ -138,7 +153,7 @@ const SetupContainer = ({ formData, stepData: { nextChildStep, setCurrentChildSt
                                     <path d="M12 10.75C11.9015 10.7505 11.8038 10.7313 11.7128 10.6935C11.6218 10.6557 11.5392 10.6001 11.47 10.53C11.3296 10.3894 11.2507 10.1988 11.2507 10C11.2507 9.80128 11.3296 9.61066 11.47 9.47003L13.94 7.00003L11.47 4.53003C11.3963 4.46137 11.3372 4.37857 11.2962 4.28657C11.2552 4.19457 11.2332 4.09526 11.2314 3.99455C11.2296 3.89385 11.2482 3.79382 11.2859 3.70043C11.3236 3.60705 11.3797 3.52221 11.451 3.45099C11.5222 3.37977 11.607 3.32363 11.7004 3.28591C11.7938 3.24819 11.8938 3.22966 11.9945 3.23144C12.0952 3.23322 12.1945 3.25526 12.2865 3.29625C12.3785 3.33724 12.4613 3.39634 12.53 3.47003L15.53 6.47003C15.6705 6.61066 15.7493 6.80128 15.7493 7.00003C15.7493 7.19878 15.6705 7.38941 15.53 7.53003L12.53 10.53C12.4608 10.6001 12.3782 10.6557 12.2872 10.6935C12.1962 10.7313 12.0985 10.7505 12 10.75Z" fill="#00438b" />
                                 </svg>
                             </div>
-                            <div className="resend-code-content">Resend code</div>
+                            <div className="resend-code-content" onClick={(e) => handleResend(e)}>Resend code</div>
                         </div>
                         <div className="change-email" onClick={nextChildStep}>Change email</div>
                     </div>
