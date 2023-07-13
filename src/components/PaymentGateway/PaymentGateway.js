@@ -24,6 +24,7 @@ const PaymentGateway = ({ formData, appData }) => {
         console.log('next-step');
     };
 
+    const [errorList, setErrorList] = useState([]);
     const [countries, setCountries] = useState([]);
     const [states, setStates] = useState([]);
 
@@ -70,6 +71,33 @@ const PaymentGateway = ({ formData, appData }) => {
         setStates(countries.find(country => country.iso2 === formData.country)?.states || []);
     }, [countries]);
 
+    const handleStripeSubmit = ({ nameOnCard, cardNumber, ccv, expiry, zip, billing, city, state, country }) => {
+        const expiryMonth = expiry.split('/')[0];
+        const expiryYear = expiry.split('/')[1];
+
+        setErrorList([]);
+
+        Stripe.setPublishableKey('pk_test_51LpeAeGwqitAZjLy9AZihfuc5L0LsPwzs01rWUuoh2uqlvWTkFIRbJGepcfZPyN7zcfOhYQNIEnxaD698FN9zQai009hcMKjfp');
+        Stripe.card.createToken({
+            name: nameOnCard,
+            number: cardNumber.replaceAll(' ', ''),
+            cvc: ccv,
+            exp_month: expiryMonth,
+            exp_year: expiryYear,
+            address_zip: zip,
+            address_line1: billing,
+            address_city: city,
+            address_state: state,
+            address_country: country
+        }, (status, response) => {
+            if ( status !== 200 ) {
+                setErrorList([{
+                    message: response?.error?.message || 'We were unable to charge your card. Please verify information and call your bank to authorize foreign transactions'
+                }])
+            }
+        });
+    }
+
     return (
         <>
         <MobileHeader stepNo="Step 5" stepName="Billing & Payment" logo="step5" />
@@ -94,7 +122,7 @@ const PaymentGateway = ({ formData, appData }) => {
                     </div>
                 </div>
 
-                <form id="payment" method="post" onSubmit={handleSubmit((data) => console.log(data))}>
+                <form id="payment" method="post" onSubmit={handleSubmit(handleStripeSubmit)}>
                     <div id="signup-form">
                         <div className="support-card-images">
                             <img src={paymentCardsImage} />
@@ -204,15 +232,14 @@ const PaymentGateway = ({ formData, appData }) => {
 
                         <div className="form-row form-row-6">
                             <div className="form-row-colfull">
-                                <div className="alert-message">
-                                    <div className="alert-svg">
-                                        <img src={alertsvg} alt="Card Alert" />
+                                { errorList.map(error => (
+                                    <div className="alert-message">
+                                        <div className="alert-svg">
+                                            <img src={alertsvg} alt="Card Alert" />
+                                        </div>
+                                        <div className="alert-content">{error.message}</div>
                                     </div>
-                                    <div className="alert-content">
-                                        We were unable to charge your card. Please verify information and call your
-                                        bank to authorize foreign transactions
-                                    </div>
-                                </div>
+                                ))}
                                 <div className="info-message">
                                     <div className="info-svg">
                                         <FontAwesomeIcon icon={faCircleInfo} />
