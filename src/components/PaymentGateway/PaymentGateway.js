@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import axios from "axios";
 import './paymentgateway.css';
 import paymentImage from "../../assets/images/securessl.png";
 import securityImage from "../../assets/images/security-system.png";
@@ -11,7 +12,7 @@ import MobileHeader from "../mobileHeader";
 
 const PaymentGateway = ({ formData, appData }) => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors }, setValue, getValues } = useForm({
         mode: "onTouched"
     });
 
@@ -23,12 +24,51 @@ const PaymentGateway = ({ formData, appData }) => {
         console.log('next-step');
     };
 
+    const [countries, setCountries] = useState([]);
+    const [states, setStates] = useState([]);
+
     const hardwarePlan = [...appData.personal_hardwares_plans, ...appData.team_hardwares_plans].find(plan => plan.hardware_id === formData.hardware.value);
     const packagePrice = hardwarePlan[`price_${formData.contract_type}_contract_plan_${formData.plan || 1}`];
     const backupPrice = appData.backup_retention[`${formData.contract_type}_contract`].find(retention => retention.days === formData.bck_retention?.value)?.price_per_gb || 0;
     const ipPrice = !!formData.ip ? appData.public_ip[`${formData.contract_type}_contract`] : 0;
     const total = [packagePrice, backupPrice, ipPrice].reduce((total, price) => parseFloat(total) + parseFloat(price), 0).toFixed(2);
     const dateInAWeek = ( new Date(new Date().setDate(new Date().getDate() + 7))).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+    const handleCardField = (e) => {
+        const value = e.target.value;
+        const regex = /^(\d{0,4})(\d{0,4})(\d{0,4})(\d{0,4})$/g
+        const onlyNumbers = value.replace(/[^\d]/g, '').slice(0, 16);
+
+        setValue( 'cardNumber', onlyNumbers.replace(regex, (regex, $1, $2, $3, $4) =>
+            [$1, $2, $3, $4].filter(group => !!group).join(' ')
+        ));
+    }
+
+    const handleExpiryField = (e) => {
+        const value = e.target.value;
+        const regex = /^(\d{0,2})(\d{0,2})$/g
+
+        let onlyNumbers = value.replace(/[^\d]/g, '').slice(0, 4);
+        if (onlyNumbers.length === 2) {
+            onlyNumbers = onlyNumbers + '/';
+        }
+
+        setValue( 'expiry', onlyNumbers.replace(regex, (regex, $1, $2) =>
+            [$1, $2].filter(group => !!group).join('/')
+        ));
+    }
+
+    useEffect(() => {
+        axios.get('https://raw.githubusercontent.com/dr5hn/countries-states-cities-database/master/countries+states.json')
+            .then(response => {
+                setCountries(response.data);
+            })
+    }, []);
+
+    useEffect(() => {
+        setValue("country", formData.country);
+        setStates(countries.find(country => country.iso2 === formData.country)?.states || []);
+    }, [countries]);
 
     return (
         <>
@@ -63,18 +103,18 @@ const PaymentGateway = ({ formData, appData }) => {
 
                             <div className="form-group form-group--70">
                                 <label htmlFor="card_number"> Card number* </label>
-                                <input required type="text" name="card_name" placeholder="Enter card number"
+                                <input type="text" name="card_name" placeholder="Enter card number"
                                     className={`form-control ${errors.cardNumber ? "input-error" : ""}`}
-                                    {...register("cardNumber", requiredConfig)} />
+                                    {...register("cardNumber", {...requiredConfig, onChange: handleCardField})} />
                                 {errors.cardNumber && <div className="error-message">{errors.cardNumber.message}</div>}
 
                             </div>
 
                             <div className="form-group form-group--30">
                                 <label htmlFor="expiry_date"> Expiry* </label>
-                                <input required type="text" name="expiry_date" placeholder="MM/YY"
+                                <input type="text" name="expiry_date" placeholder="MM/YY"
                                     className={`form-control ${errors.expiry ? "input-error" : ""}`}
-                                    {...register("expiry", requiredConfig)} />
+                                    {...register("expiry", {...requiredConfig, onChange: handleExpiryField})} />
                                 {errors.expiry && <div className="error-message">{errors.expiry.message}</div>}
                             </div>
 
@@ -83,16 +123,16 @@ const PaymentGateway = ({ formData, appData }) => {
                         <div className="form-row form-row-2">
                             <div className="form-group form-group--70">
                                 <label htmlFor="card_name" >Name on Card * </label>
-                                <input required type="text" name="card_name" placeholder="Enter card name"
+                                <input type="text" name="card_name" placeholder="Enter card name"
                                     className={`form-control ${errors.nameOnCard ? "input-error" : ""}`}
                                     {...register("nameOnCard", requiredConfig)} />
                                 {errors.nameOnCard && <div className="error-message">{errors.nameOnCard.message}</div>}
                             </div>
                             <div className="form-group form-group--30">
-                                <label htmlFor="ccv"> CCV* </label>
-                                <input required type="text" name="ccv" placeholder="..."
+                                <label htmlFor="ccv">CCV*</label>
+                                <input type="number" name="ccv" placeholder="..."
                                     className={`form-control ${errors.ccv ? "input-error" : ""}`}
-                                    {...register("ccv", requiredConfig)} />
+                                    {...register("ccv", { ...requiredConfig, maxLength: { value: 3, message: 'CCV cannot exceed more than 3 letters' }})} />
                                 {errors.ccv && <div className="error-message">{errors.ccv.message}</div>}
                             </div>
                         </div>
@@ -100,7 +140,7 @@ const PaymentGateway = ({ formData, appData }) => {
                         <div className="form-row form-row-3">
                             <div className="form-group">
                                 <label htmlFor="address"> Billing address* </label>
-                                <input required type="text" name="address"
+                                <input type="text" name="address"
                                     placeholder="Street Address (Apartment or Suite number)"
                                     className={`form-control ${errors.billing ? "input-error" : ""}`}
                                     {...register("billing", requiredConfig)} />
@@ -111,18 +151,27 @@ const PaymentGateway = ({ formData, appData }) => {
                         <div className="form-row form-row-4">
                             <div className="form-group form-group--70">
                                 <label htmlFor="city" >City* </label>
-                                <input required type="text" name="city" placeholder="Enter City"
+                                <input type="text" name="city" placeholder="Enter City"
                                     className={`form-control ${errors.city ? "input-error" : ""}`}
                                     {...register("city", requiredConfig)} />
                                 {errors.city && <div className="error-message">{errors.city.message}</div>}
                             </div>
                             <div className="form-group form-group--30">
                                 <label htmlFor="state"> State/Province* </label>
-                                <select className={`form-control ${errors.state ? "input-error" : ""}`}
-                                    name="state" {...register("state", requiredConfig)}>
-                                    <option value="" disabled> Select State </option>
-                                    <option>1-4</option>
-                                </select>
+                                { Array.isArray(states) && states.length ? 
+                                    (
+                                        <select className={`form-control ${errors.state ? "input-error" : ""}`}
+                                            name="state" {...register("state", requiredConfig)}>
+                                            <option value="" disabled>Select State</option>
+                                            {states.map(({state_code, name}) => (
+                                                <option key={state_code} value={state_code}>{name}</option>
+                                            ))}
+                                        </select>
+                                    ) :
+                                    (
+                                        <input type="text" name="state" className="form-control" placeholder="Enter State/Province" {...register("state", requiredConfig)}/>
+                                    )
+                                }
                                 {errors.state && <div className="error-message">{errors.state.message}</div>}
                             </div>
                         </div>
@@ -130,18 +179,24 @@ const PaymentGateway = ({ formData, appData }) => {
                         <div className="form-row form-row-5">
                             <div className="form-group form-group--70">
                                 <label htmlFor="zip" > Zip/Postal* </label>
-                                <input required type="text" name="zip" placeholder="Enter zip/postal code"
+                                <input type="text" name="zip" placeholder="Enter zip/postal code"
                                     className={`form-control ${errors.zip ? "input-error" : ""}`}
                                     {...register("zip", requiredConfig)} />
                                 {errors.zip && <div className="error-message">{errors.zip.message}</div>}
                             </div>
                             <div className="form-group form-group--30">
-                                <label htmlFor="state"> Country* </label>
+                                <label htmlFor="state">Country*</label>
                                 <select className={`form-control ${errors.country ? "input-error" : ""}`}
-                                    name="country" id="country-list" {...register("country", requiredConfig)}>
+                                    name="country" id="country-list"
+                                    {...register("country", {...requiredConfig, onChange: (e) => {
+                                        setValue("country", e.target.value);
+                                        setStates(countries.find(country => country.iso2 === e.target.value)?.states || []);
+                                    }})}
+                                >
                                     <option value="" disabled> Select Country </option>
-                                    <option>SL</option>
-                                    <option>US</option>
+                                    {countries.map(({iso2, name}) => (
+                                        <option key={iso2} value={iso2}>{name}</option>
+                                    ))}
                                 </select>
                                 {errors.country && <div className="error-message">{errors.country.message}</div>}
                             </div>
