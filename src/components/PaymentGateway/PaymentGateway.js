@@ -103,6 +103,9 @@ const PaymentGateway = ({ formData, setFormData, appData }) => {
                     onboardData[key] = data.value;
                     return;
                 }
+                if ( data === '' ) {
+                    return;
+                }
                 onboardData[key] = data;
             });
             axios.post( '/wp-json/v2cloud/v1/onboard', {...onboardData, token: appData.token, stripetoken: response.id} )
