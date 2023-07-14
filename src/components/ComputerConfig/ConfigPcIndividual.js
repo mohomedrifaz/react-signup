@@ -154,7 +154,7 @@ const ConfigPcIndividual = ({ formData, setFormData, stepData: { nextStep }, app
         .filter(software => !isTeamSoftware(software) && software.is_3rd_party === false)
         .map(mapSoftwareData);
 
-    const isBusiness = formData.plan === 2;
+    const isBusiness = !!appData.personal_hardwares_plans.find(hardware => hardware.hardware_id === formData.hardware?.value);
 
     const requiredConfig = {
         required: "Please complete this required field."
