@@ -37,14 +37,14 @@ const Sidebar = ({ currentStep, formData }) => {
 		},
 		{
 			header: 'Select Plan',
-			completedTitle: `${formData.hardware?.display || ''} / ${formData.contract_type} Commitment`,
+			completedTitle: `${formData.hardware?.display || ''} / ${formData.contracttype} Commitment`,
 		},
 		{
 			header: 'Computer Configuration',
 			completedTitle: [
 				formData.software?.display,
 				`${!!formData.ip ? 'Public' : 'Private'} IP`,
-				formData.bck_retention?.display
+				formData.backup?.display
 			].filter(text => !!text).join('/ '),
 		},
 		{

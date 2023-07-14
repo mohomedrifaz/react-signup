@@ -120,6 +120,78 @@ function register_rest_api_endpoints() {
 			],
 		]
 	);
+
+	register_rest_route(
+		$namespace,
+		'/onboard',
+		[
+			[
+				'callback'            => __NAMESPACE__ . '\onboard_user',
+				'methods'             => \WP_REST_Server::CREATABLE,
+				'permission_callback' => '__return_true',
+				'args'                => [
+					'email'        => [
+						'required'          => true,
+						'validate_callback' => 'is_email'
+					],
+					'firstname'    => [
+						'required' => true,
+					],
+					'lastname'     => [
+						'required' => true,
+					],
+					'phone'        => [
+						'required' => true,
+					],
+					'company'      => [
+						'required' => true,
+					],
+					'region'       => [
+						'required' => true,
+					],
+					'software'     => [
+						'required' => true,
+					],
+					'hardware'     => [
+						'required' => true,
+					],
+					'plan'         => [
+						'required' => true,
+					],
+					'ip'           => [
+						'required' => true,
+					],
+					'description'  => [
+						'required' => true,
+					],
+					'password'     => [
+						'required' => true,
+					],
+					'cycle'        => [
+						'required' => true,
+					],
+					'contracttype' => [
+						'required' => true,
+					],
+					'userpassword' => [
+						'required' => true,
+					],
+					'backup'       => [
+						'required' => true,
+					],
+					'malware'      => [
+						'required' => true,
+					],
+					'token'        => [
+						'required' => true,
+					],
+					'stripetoken'  => [
+						'required' => true
+					]
+				]
+			]
+		]
+	);
 }
 
 /**
@@ -294,4 +366,42 @@ function send_otp_email( $request ) {
 		],
 		200
 	);
+}
+
+function onboard_user( $request ) {
+	$api_compatible_data = [
+		'firstname'    => 'first_name',
+		'lastname'     => 'last_name',
+		'contracttype' => 'contract_type',
+		'backup'       => 'bck_retention',
+		'malware'      => 'malwarebytes_install',
+		'stripetoken'  => 'stripeToken'
+	];
+
+	$body = $request->get_body();
+
+	foreach ( $api_compatible_data as $key => $replace_key ) {
+		if ( isset( $body[ $key ] ) ) {
+			$body[ $replace_key ] = $body[ $key ];
+			unset( $body[ $key ] );
+		}
+	}
+
+	$api_request = wp_remote_post(
+		'https://dash.v2cloud.com/api/users/onboard_user',
+		[
+			'headers' => [
+				'Content-Type'  => 'application/json',
+				'Accept'        => 'application/json',
+				'Authorization' => 'Bearer ' . $body['token'],
+			],
+			'body'    => json_encode( $body ),
+		]
+	);
+
+	if ( is_wp_error( $api_request ) ) {
+		return $request;
+	}
+
+	return new \WP_REST_Response( $body, 200 );
 }

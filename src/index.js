@@ -46,7 +46,7 @@ const App = () => {
 	const [userRegistrationData, setUserRegistrationData] = useState({
         email: '',
         stripeToken: '',
-        user_password: '',
+        userpassword: '',
         firstname: '',
         lastname: '',
         phone: '',
@@ -55,14 +55,14 @@ const App = () => {
         software: '',
         hardware: '',
         plan: '',
-        ip: '',
+        ip: false,
         description: '',
         password: '',
         ssd: 1,
         cycle: "month",
-        contract_type: '',
-		bck_retention: '',
-		malwarebytes_install: false
+        contracttype: '',
+		backup: '',
+		malware: false
     });
 
 	const [appData, setApplicationdata] = useState({

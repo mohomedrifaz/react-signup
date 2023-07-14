@@ -22,8 +22,8 @@ const Password = ({ formData, setFormData, stepData: { nextStep } }) => {
     const { register, handleSubmit, formState: { errors }, getValues } = useForm({
         mode: "onTouched",
         defaultValues: {
-            password: formData.user_password,
-            repassword: formData.user_password,
+            password: formData.userpassword,
+            repassword: formData.userpassword,
         },
     });
 
@@ -44,7 +44,7 @@ const Password = ({ formData, setFormData, stepData: { nextStep } }) => {
     const hasNumber = /\d/.test(password)
 
     const passwordVerification = () => {
-        setFormData({ user_password: password });
+        setFormData({ userpassword: password });
         nextStep();
     }
 
@@ -83,7 +83,7 @@ const Password = ({ formData, setFormData, stepData: { nextStep } }) => {
                                 {...register("password", {
                                     requiredConfig,
                                     validate: () => (hasMinLength && hasSpecialChar && hasLowercase && hasUppercase && hasNumber) || "Passwords does not match Requirements",
-                                    onChange: (e) => setFormData({ user_password: e.target.value })
+                                    onChange: (e) => setFormData({ userpassword: e.target.value })
                                 })}
                             />
 

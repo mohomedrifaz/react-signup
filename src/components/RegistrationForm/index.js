@@ -3,7 +3,6 @@ import { faCircleInfo, faL } from '@fortawesome/free-solid-svg-icons';
 import { set, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import CryptoJS from 'crypto-js';
 
 import './style.css';
 import countries from './../../data/countries.json';
@@ -26,7 +25,11 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep }, 
 
 	useEffect(() => {
 		axios.get('https://ipinfo.io/json')
-			.then((response) => setUserCountry(response.data?.country));
+			.then((response) => {
+				const country = response.data?.country || '';
+				setFormData({country});
+				setUserCountry(country);
+			});
 	}, []);
 
 	const setRegistrationForm = ({ email, firstname, lastname, phone, company, numemployees, use_case, promotion }) => {

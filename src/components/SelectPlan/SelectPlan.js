@@ -144,10 +144,10 @@ const SelectPlan = ({ formData, setFormData, appData, stepData: { nextStep } }) 
                                             {...plan}
                                             isPopular={plan.hardware_id === 37}
                                             isSelected={plan.hardware_id === formData.hardware?.value}
-                                            onSelect={(contract) => setFormData({ hardware: { value: plan.hardware_id, display: plan.title }, contract_type: contract }) }
+                                            onSelect={(contract) => setFormData({ hardware: { value: plan.hardware_id, display: plan.title }, contracttype: contract }) }
                                             isBusiness={formData.plan === 2}
                                             plan={formData.hardware?.value}
-                                            planType={formData.contract_type}
+                                            planType={formData.contracttype}
                                             showUsers={activeTab === 0}
                                         />
                                     </swiper-slide>

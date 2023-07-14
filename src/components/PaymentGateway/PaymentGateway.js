@@ -10,7 +10,7 @@ import alertsvg from "../../assets/svg/cardAlert.svg";
 import { set, useForm } from 'react-hook-form';
 import MobileHeader from "../mobileHeader";
 
-const PaymentGateway = ({ formData, appData }) => {
+const PaymentGateway = ({ formData, setFormData, appData }) => {
 
     const { register, handleSubmit, formState: { errors }, setValue, getValues } = useForm({
         mode: "onTouched"
@@ -29,9 +29,9 @@ const PaymentGateway = ({ formData, appData }) => {
     const [states, setStates] = useState([]);
 
     const hardwarePlan = [...appData.personal_hardwares_plans, ...appData.team_hardwares_plans].find(plan => plan.hardware_id === formData.hardware.value);
-    const packagePrice = hardwarePlan[`price_${formData.contract_type}_contract_plan_${formData.plan || 1}`];
-    const backupPrice = appData.backup_retention[`${formData.contract_type}_contract`].find(retention => retention.days === formData.bck_retention?.value)?.price_per_gb || 0;
-    const ipPrice = !!formData.ip ? appData.public_ip[`${formData.contract_type}_contract`] : 0;
+    const packagePrice = hardwarePlan[`price_${formData.contracttype}_contract_plan_${formData.plan || 1}`];
+    const backupPrice = appData.backup_retention[`${formData.contracttype}_contract`].find(retention => retention.days === formData.backup?.value)?.price_per_gb || 0;
+    const ipPrice = !!formData.ip ? appData.public_ip[`${formData.contracttype}_contract`] : 0;
     const total = [packagePrice, backupPrice, ipPrice].reduce((total, price) => parseFloat(total) + parseFloat(price), 0).toFixed(2);
     const dateInAWeek = ( new Date(new Date().setDate(new Date().getDate() + 7))).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
@@ -93,8 +93,22 @@ const PaymentGateway = ({ formData, appData }) => {
             if ( status !== 200 ) {
                 setErrorList([{
                     message: response?.error?.message || 'We were unable to charge your card. Please verify information and call your bank to authorize foreign transactions'
-                }])
+                }]);
+                return;
             }
+            let onboardData = {};
+            Object.keys(formData).forEach(key => {
+                const data = formData[key];
+                if ( typeof data === 'object' && data !== null ) {
+                    onboardData[key] = data.value;
+                    return;
+                }
+                onboardData[key] = data;
+            });
+            axios.post( '/wp-json/v2cloud/v1/onboard', {...onboardData, token: appData.token, stripetoken: response.id} )
+                .then( response => {
+                    console.log(response);
+                });
         });
     }
 
@@ -321,7 +335,7 @@ const PaymentGateway = ({ formData, appData }) => {
                     <div className="pricing-single-pack">
                         <div className="package-details">
                             <div className="package-title">Commitment</div>
-                            <div className="package-value"> {`${formData.contract_type} `}, 12 monthly payments </div>
+                            <div className="package-value"> {`${formData.contracttype} `}, 12 monthly payments </div>
                         </div>
                         <div className="link">
                             <a href="#">Change</a>
@@ -332,7 +346,7 @@ const PaymentGateway = ({ formData, appData }) => {
                     <div className="pricing-single-pack">
                         <div className="package-details">
                             <div className="package-title">Backup Retention</div>
-                            <div className="package-value">{formData.bck_retention.display || `1 week backup`}</div>
+                            <div className="package-value">{formData.backup.display || `1 week backup`}</div>
                         </div>
                         <div className="link">
                             <a href="#">Change</a>
