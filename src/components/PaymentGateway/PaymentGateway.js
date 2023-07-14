@@ -10,7 +10,7 @@ import alertsvg from "../../assets/svg/cardAlert.svg";
 import { set, useForm } from 'react-hook-form';
 import MobileHeader from "../mobileHeader";
 
-const PaymentGateway = ({ formData, setFormData, appData }) => {
+const PaymentGateway = ({ formData, setFormData, appData, stepData: { setCurrentStep } }) => {
 
     const { register, handleSubmit, formState: { errors }, setValue, getValues } = useForm({
         mode: "onTouched"
@@ -115,6 +115,25 @@ const PaymentGateway = ({ formData, setFormData, appData }) => {
                     }
                 });
         });
+    }
+
+    const handleChange = (e, name) => {
+        e.preventDefault();
+        let step = '';
+        switch (name) {
+            case 'template':
+            case 'config':
+            case 'ip':
+                step = 4;
+                break;
+            case 'plan':
+                step = 3;
+                break;
+        }
+
+        if ( step ) {
+            setCurrentStep(step);
+        }
     }
 
     return (
@@ -333,7 +352,7 @@ const PaymentGateway = ({ formData, setFormData, appData }) => {
                             <div className="package-value"> {formData.software?.display} </div>
                         </div>
                         <div className="link">
-                            <a href="#">Change</a>
+                            <a href="#" onClick={(e) => handleChange(e, 'template') }>Change</a>
                         </div>
                     </div>
 
@@ -343,7 +362,7 @@ const PaymentGateway = ({ formData, setFormData, appData }) => {
                             <div className="package-value"> {`${formData.contracttype} `}, 12 monthly payments </div>
                         </div>
                         <div className="link">
-                            <a href="#">Change</a>
+                            <a href="#" onClick={(e) => handleChange(e, 'plan') }>Change</a>
                             <span className="price">{`$${packagePrice}/mo`}</span>
                         </div>
                     </div>
@@ -354,7 +373,7 @@ const PaymentGateway = ({ formData, setFormData, appData }) => {
                             <div className="package-value">{formData.backup.display || `1 week backup`}</div>
                         </div>
                         <div className="link">
-                            <a href="#">Change</a>
+                            <a href="#" onClick={(e) => handleChange(e, 'config') }>Change</a>
                             <span className="price">{`$${backupPrice}/mo`}</span>
                         </div>
                     </div>
@@ -365,7 +384,7 @@ const PaymentGateway = ({ formData, setFormData, appData }) => {
                             <div className="package-value">{formData.ip ? `Public` : `Private`} IP address</div>
                         </div>
                         <div className="link">
-                            <a href="#">Change</a>
+                            <a href="#" onClick={(e) => handleChange(e, 'ip') }>Change</a>
                             <span className="price">{`$${ipPrice}/mo`}</span>
                         </div>
                     </div>
