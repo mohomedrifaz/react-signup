@@ -17,12 +17,13 @@ const PlanCards = ({
 	onSelect,
 	isBusiness,
 	plan,
-	planType
+	planType,
+    showTooltip
 }) => {
     const configItems = config.split(' ').slice(0, 3);
     const customString = ['core', 'Memory RAM', 'Storage'];
     const UpdatedconfigItems = configItems.map( (val, index) => `${val} ${customString[index]}`);
-
+    const [isHovered, setHover] = useState(false);
 
     return (
         <div 
@@ -36,20 +37,20 @@ const PlanCards = ({
                 // by default clicking on the card make the plan monthly
                 onSelect('monthly');
             }}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
         >
 
-            {/* {isHovered && functions && (
-                <div className="tooltip-container">
-                    <div className="tooltip">
-                        <span className="tooltip-tip">Best User of {title}</span>
-                        <ul>
-                            {functions.split(',').map((func, index) => (
-                                <li key={index}>{func.trim()}</li>
-                            ))}
-                        </ul>
-                    </div>
+            {showTooltip && isHovered && (
+                <div className="card-tooltip">
+                    <div className="tooltip-title">Best User of {title}</div>
+                    <ul className="tooltip-datalist">
+                        {description.split(',').map((func, index) => (
+                            <li key={index}>{func}</li>
+                        ))}
+                    </ul>
                 </div>
-            )} */}
+            )}
 
             {isPopular && <div className="popular-badge">Most Popular</div>}
 

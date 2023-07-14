@@ -8,6 +8,7 @@
         position: relative;
 
         & .backups-checbox-container {
+                z-index: 9999;
                 & .tooltip {
                     &.overlayed {
                         display: table;
@@ -99,8 +100,7 @@
     }
 
     & .backups-checbox-container {
-        position: relative;
-        z-index: 10000;        
+        position: relative;       
         display: flex;
         flex-direction: row;
         align-items: flex-end;
@@ -267,6 +267,10 @@
 
             &::part(wrapper) {
                 align-items: flex-end;
+            }
+
+            &::part(container) {
+                overflow-y: visible;
             }
 
             & swiper-slide {
@@ -632,40 +636,42 @@
                 
             }
 
-            & .tooltip-container {
-                position: relative;
+            & .card-tooltip {
+                position: absolute;
+                top: -10px;
+                left: 0;
                 z-index: 999999;
-                top: -125px;
+                transform: translateY(-100%);
+                background: rgb(34 34 34);
+                color: #fff;
+                padding: 10px;
+                width: calc(100% - 12px);
+                border-radius: 4px;
 
-                & .tooltip {
-                    position: absolute;
-                    top: -10px;
-                    left: 50%;
-                    width: 100%;
-                    -webkit-transform: translateX(-50%);
-                    transform: translateX(-50%);
-                    background-color: rgba(0, 0, 0, 0.8);
-                    color: white;
-                    padding: 10px;
-                    border-radius: 4px;
-                    opacity: 0.9;
-                    white-space: nowrap;
+                &::after {
+                    content: '';
+                    width: 10px;
+                    height: 10px;
+                    color: inherit;
+                    background: inherit;
+                    display: block;
+                    position: relative;
+                    bottom: -15px;
+                    transform: rotate(45deg);
+                    margin: 0 auto;
+                }
 
-                    & .tooltip-tip {
-                        display: block;
-                        margin-bottom: 5px;
-                    }
-
-                    & ul {
-                        list-style: disc;
-                        margin: 0;
-                        padding: 0 25px;
+                & .tooltip-datalist {
+                    padding-bottom: 0;
+                    margin-left: 10px;
+                    margin-top: 10px;
 
                     & li {
-                        margin-bottom: 5px;
-                    }
+                        line-height: var(--line-height-fancy);
+                        font-size: var(--font-xxxs);
                     }
                 }
+                
             }
 
             &.special {

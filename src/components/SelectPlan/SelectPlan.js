@@ -159,7 +159,7 @@ const SelectPlan = ({ formData, setFormData, appData, stepData: { nextStep } }) 
                                             isBusiness={formData.plan === 2}
                                             plan={formData.hardware?.value}
                                             planType={formData.contracttype}
-                                            showUsers={activeTab === 0}
+                                            showTooltip={activeTab === 1}
                                         />
                                     </swiper-slide>
                                 )
