@@ -62,7 +62,7 @@ const App = () => {
         cycle: "month",
         contracttype: '',
 		backup: '',
-		malware: false
+		malware: true
     });
 
 	const [appData, setApplicationdata] = useState({

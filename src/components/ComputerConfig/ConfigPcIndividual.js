@@ -154,7 +154,8 @@ const ConfigPcIndividual = ({ formData, setFormData, stepData: { nextStep }, app
         .filter(software => !isTeamSoftware(software) && software.is_3rd_party === false)
         .map(mapSoftwareData);
 
-    const isBusiness = !!appData.personal_hardwares_plans.find(hardware => hardware.hardware_id === formData.hardware?.value);
+    const isPersonal = !!appData.personal_hardwares_plans.find(hardware => hardware.hardware_id === formData.hardware?.value);
+    const isBusiness = formData.plan === 2;
 
     const requiredConfig = {
         required: "Please complete this required field."
@@ -171,18 +172,34 @@ const ConfigPcIndividual = ({ formData, setFormData, stepData: { nextStep }, app
                 text: () => formData.password 
             }
         );
+
         return () => clipboard.destroy();
     }, []);
 
-    const handleConfigurationStep = () => {
-        trigger();
-        if ( ! Object.keys(errors).length ) {
+    useEffect(() => {
+        if ( isBusiness && !formData.backup ) {
             setFormData({
-                description: getValues("description"),
-                password: getValues("password"),
-            });
-            nextStep();
+                backup: {
+                    display: '1 week backup', 
+                    value: 7
+                }
+            })
         }
+    }, [formData]);
+
+    const handleConfigurationStep = async () => {
+        const isValid = await trigger();
+        if ( !isValid || Object.keys(errors).length ) {
+            return;
+        }
+        if ( !formData.software || ( formData.plan === 2 && !formData.backup ) ) {
+            return;
+        }
+        setFormData({
+            description: getValues("description"),
+            password: getValues("password"),
+        });
+        nextStep();
     }
 
     return (
@@ -243,17 +260,17 @@ const ConfigPcIndividual = ({ formData, setFormData, stepData: { nextStep }, app
                 </div>
 
                 <div className="main-title">
-                    <h2> Select Operating System <span className="sub-topic"> {`${isBusiness ? "For Individual Cloud Desktops" : "For Team Cloud Desktops"}`} </span></h2>
+                    <h2> Select Operating System <span className="sub-topic"> {`${isPersonal ? "For Individual Cloud Desktops" : "For Team Cloud Desktops"}`} </span></h2>
                 </div>
 
-                {isBusiness && <div className="line-with-text">
+                {isPersonal && <div className="line-with-text">
                     <span className="line"></span>
                     <span className="text">Bring Your Own License</span>
                     <span className="line"></span>
                 </div>}
 
                 {/* Individual */}
-                {isBusiness && <div className="windows-cards-container">
+                {isPersonal && <div className="windows-cards-container">
                     {configCards.map((software, index) => (
                         <ConfigCards key={index} logo={software.logo} mainTitle={software.mainTitle}
                             subTitle={software.subTitle}
@@ -263,7 +280,7 @@ const ConfigPcIndividual = ({ formData, setFormData, stepData: { nextStep }, app
                     ))}
                 </div>}
 
-                {!isBusiness && <div className={`windows-cards-container team`}>
+                {!isPersonal && <div className={`windows-cards-container team`}>
                     {configCardsTeam.map((software, index) => (
                         <ConfigCards key={index} logo={software.logo} mainTitle={software.mainTitle}
                             subTitle={software.subTitle}
@@ -274,7 +291,7 @@ const ConfigPcIndividual = ({ formData, setFormData, stepData: { nextStep }, app
                 </div>}
 
                 <div className="main-title">
-                    <h2> Select Networking </h2>
+                    <h2>Select Networking</h2>
                 </div>
 
                 <div className="networking-container">
@@ -291,24 +308,26 @@ const ConfigPcIndividual = ({ formData, setFormData, stepData: { nextStep }, app
                 <div className={`backups-antivirus-container ${isBusiness ? "enabled" : "disabled"}`}>
 
                     <div className="main-title">
-                        <h2> Backup Retention </h2>
+                        <h2>Backup Retention</h2>
                     </div>
 
                     <div className="backups-container">
-                        {backups.map((backup, index) => (
-                            <ConfigCards key={index} logo={backup.logo} mainTitle={backup.mainTitle}
-                                subTitle={backup.subTitle}
-                                content={backup.content} logoSelected={backup.logoSelected}
-                                isSelected={formData.backup?.value === backup.days}
-                                onClick={() => {
-                                    setFormData({
-                                        backup: {
-                                            display: `${(backup.days/7) === 1 ? '1 week' : (backup.days/7) + ' weeks' } backup`, 
-                                            value: backup.days
-                                        }
-                                    })
-                                }} />
-                        ))}
+                        {backups.map((backup, index) => {
+                            return (
+                                <ConfigCards key={index} logo={backup.logo} mainTitle={backup.mainTitle}
+                                    subTitle={backup.subTitle}
+                                    content={backup.content} logoSelected={backup.logoSelected}
+                                    isSelected={formData.backup?.value === backup.days}
+                                    onClick={() => {
+                                        setFormData({
+                                            backup: {
+                                                display: `${(backup.days/7) === 1 ? '1 week' : (backup.days/7) + ' weeks' } backup`, 
+                                                value: backup.days
+                                            }
+                                        })
+                                    }} />
+                            )
+                        })}
                     </div>
 
                     <div className="main-title">
@@ -319,7 +338,7 @@ const ConfigPcIndividual = ({ formData, setFormData, stepData: { nextStep }, app
                         <label className="checkbox-label">
                             <input type="checkbox"
                                 className="checkbox-input"
-                                checked={!!formData.malware}
+                                checked={isBusiness && !!formData.malware}
                                 onChange={(e) => setFormData({ malware: e.target.checked })}
                             />
                         </label>
