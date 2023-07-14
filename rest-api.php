@@ -177,7 +177,7 @@ function register_rest_api_endpoints() {
 						'required' => true,
 					],
 					'backup'       => [
-						'required' => true,
+						'required' => false,
 					],
 					'malware'      => [
 						'required' => true,
@@ -379,7 +379,7 @@ function onboard_user( $request ) {
 		'userpassword' => 'user_password',
 	];
 
-	$body = $request->get_body_params();
+	$body = json_decode( $request->get_body(), true );
 
 	foreach ( $api_compatible_data as $key => $replace_key ) {
 		if ( isset( $body[ $key ] ) ) {
@@ -401,8 +401,8 @@ function onboard_user( $request ) {
 	);
 
 	if ( is_wp_error( $api_request ) ) {
-		return $request;
+		return $api_request;
 	}
 
-	return new \WP_REST_Response( json_decode( wp_remote_retrieve_body( $api_request ), true ), 200 );
+	return new \WP_REST_Response( wp_remote_retrieve_body( $api_request ), 200 );
 }
