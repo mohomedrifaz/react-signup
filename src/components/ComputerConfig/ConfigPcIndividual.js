@@ -176,12 +176,12 @@ const ConfigPcIndividual = ({ formData, setFormData, stepData: { nextStep }, app
 
     const handleConfigurationStep = () => {
         trigger();
-
         if ( ! Object.keys(errors).length ) {
             setFormData({
                 description: getValues("description"),
                 password: getValues("password"),
             });
+            nextStep();
         }
     }
 
