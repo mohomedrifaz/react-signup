@@ -29,7 +29,7 @@ const Sidebar = ({ currentStep, formData }) => {
 	const steps = [
 		{
 			header: 'Setup Account',
-			completedTitle: 'Password Created',
+			completedTitle: !!formData.userpassword ? 'Password Created' : '',
 		},
 		{
 			header: 'Select Location',
