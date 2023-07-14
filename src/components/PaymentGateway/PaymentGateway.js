@@ -107,7 +107,9 @@ const PaymentGateway = ({ formData, setFormData, appData }) => {
             });
             axios.post( '/wp-json/v2cloud/v1/onboard', {...onboardData, token: appData.token, stripetoken: response.id} )
                 .then( response => {
-                    console.log(response);
+                    if ( response.data.status_code === 200 ) {
+                        window.location.href = '/thank-you';
+                    }
                 });
         });
     }

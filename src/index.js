@@ -54,7 +54,7 @@ const App = () => {
         region: '',
         software: '',
         hardware: '',
-        plan: '',
+        plan: 2,
         ip: false,
         description: '',
         password: '',

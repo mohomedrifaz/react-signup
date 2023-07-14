@@ -12,7 +12,7 @@ import RegisterSlider from './slider';
 import useCookie from '../../hooks/useCookie';
 import useTicker from '../../hooks/useTicker';
 
-export default function RegistrationForm({ setFormData, stepData: { nextStep }, setLoading }) {
+export default function RegistrationForm({ formData, setFormData, stepData: { nextStep }, setLoading }) {
 
 	const [userCountry, setUserCountry] = useState('');
 	const { register, handleSubmit, formState: { errors } } = useForm({
@@ -37,14 +37,6 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep }, 
 		startTicker(setLoading);
 		const hutk = useCookie('hubspotutk');
 		const phoneNumber = countries[userCountry]?.code + phone;
-		setFormData({
-			email,
-			firstname,
-			lastname,
-			company,
-			phone: phoneNumber,
-			country: userCountry
-		});
 		axios.post(
 			'/wp-json/v2cloud/v1/hubspot',
 			{
@@ -72,7 +64,16 @@ export default function RegistrationForm({ setFormData, stepData: { nextStep }, 
 			const secret = response.data.secret;
 			const key = CryptoJS.enc.Utf8.parse(CryptoJS.MD5(secret).toString());
 			const iv = CryptoJS.enc.Utf8.parse(CryptoJS.MD5(secret).toString().substr(0, 16));
-			setFormData({ otp: CryptoJS.AES.decrypt(encrypted, key, {iv: iv}).toString(CryptoJS.enc.Utf8) });
+			const otp = CryptoJS.AES.decrypt(encrypted, key, {iv: iv}).toString(CryptoJS.enc.Utf8)
+			setFormData({
+				email,
+				firstname,
+				lastname,
+				company,
+				otp,
+				phone: phoneNumber,
+				country: userCountry
+			});
 		})
 		.finally(() => {
 			completeTicker(() => (setLoading(false)));

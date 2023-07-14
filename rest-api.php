@@ -375,10 +375,11 @@ function onboard_user( $request ) {
 		'contracttype' => 'contract_type',
 		'backup'       => 'bck_retention',
 		'malware'      => 'malwarebytes_install',
-		'stripetoken'  => 'stripeToken'
+		'stripetoken'  => 'stripeToken',
+		'userpassword' => 'user_password',
 	];
 
-	$body = $request->get_body();
+	$body = $request->get_body_params();
 
 	foreach ( $api_compatible_data as $key => $replace_key ) {
 		if ( isset( $body[ $key ] ) ) {
@@ -403,5 +404,5 @@ function onboard_user( $request ) {
 		return $request;
 	}
 
-	return new \WP_REST_Response( $body, 200 );
+	return new \WP_REST_Response( json_decode( wp_remote_retrieve_body( $api_request ), true ), 200 );
 }
