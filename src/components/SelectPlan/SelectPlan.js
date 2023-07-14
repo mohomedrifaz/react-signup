@@ -52,6 +52,17 @@ const SelectPlan = ({ formData, setFormData, appData, stepData: { nextStep } }) 
         nextStep();
     }
 
+    const handleSelectPlan = () => {
+        if ( !formData.hardware || !formData.contracttype ) {
+            return;
+        }
+        if ( formData.plan === 2 ) {
+            nextStep();
+            return;
+        }
+        setShowOverlay(true);
+    }
+
     return (
         <>
             <MobileHeader stepNo="Step 3" stepName="Select Plan" logo="step3" />
@@ -181,13 +192,7 @@ const SelectPlan = ({ formData, setFormData, appData, stepData: { nextStep } }) 
                     <button
                         className="verify-btn"
                         disabled={!formData.hardware?.value}
-                        onClick={() => {
-                            if ( formData.plan === 2 ) {
-                                nextStep();
-                                return;
-                            }
-                            setShowOverlay(true);
-                        }}>Next</button>
+                        onClick={handleSelectPlan}>Next</button>
                 </div>
 
             </div>
