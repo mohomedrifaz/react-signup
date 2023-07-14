@@ -7,9 +7,9 @@ export default function useSteps() {
 
 	useEffect(() => {
 		// reset child step to 1 when current step changes
-		if ( currentStep !== previousStep ) {
-			setCurrentChildStep(1);
-		}
+		// if ( currentStep !== previousStep ) {
+		// 	setCurrentChildStep(1);
+		// }
 
 		return () => {
 			previousStep = currentStep;

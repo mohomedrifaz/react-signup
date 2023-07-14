@@ -11,7 +11,7 @@ import mumbai from "../../assets/svg/IN.svg";
 import MobileHeader from "../mobileHeader";
 import Map from "./Map";
 
-const SelectLocation = ({ formData, setFormData, stepData: { nextStep, prevStep }, appData }) => {
+const SelectLocation = ({ formData, setFormData, stepData: { nextStep, prevStep, setCurrentChildStep }, appData }) => {
     const regions = appData.regions.map(region => {
         let flag = '';
         switch ( region.id ){
@@ -54,6 +54,9 @@ const SelectLocation = ({ formData, setFormData, stepData: { nextStep, prevStep 
     }).sort((regionA, regionB) => regionA.ping - regionB.ping);
 
     const locationVerification = () => {
+        if ( !formData.region ) {
+            return;
+        }
         nextStep();
     };
 
@@ -95,6 +98,10 @@ const SelectLocation = ({ formData, setFormData, stepData: { nextStep, prevStep 
                 <div className="action-btn">
                     <button
                         className="back-btn"
+                        onClick={() => {
+                            prevStep();
+                            setCurrentChildStep(3);
+                        }}
                     >
                         Previous Step
                     </button>
